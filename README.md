@@ -7,6 +7,7 @@ Memoire officielle Markdown du projet BOT-PIVOT / bot-live_V00.
 Pour retrouver le projet sans se perdre, lire dans cet ordre :
 
 ```text
+00_COMMUN_SOURCE_DE_VERITE/ETAT_COURANT_PROJET.md
 00_PILOTE_MEMOIRE/ARCHITECTURE_CANONIQUE_BOT_LIVE_V00.md
 00_PILOTE_MEMOIRE/INDEX_PILOTE.md
 00_COMMUN_SOURCE_DE_VERITE/BOT_PIVOT_V2446_REGLES_MAITRES.md
@@ -36,7 +37,7 @@ Drive = support secondaire
 
 ```text
 00_PILOTE_MEMOIRE/              pilotage et architecture
-00_COMMUN_SOURCE_DE_VERITE/     decisions, questions, regles maitresses
+00_COMMUN_SOURCE_DE_VERITE/     etat courant, decisions, questions, regles maitresses
 01_PROJET_BOT_LIVE_CODEX/       technique Codex
 02_PROJET_BOT_LIVE_GPT/         strategie GPT
 03_SSH_BOT_LIVE/                references SSH / bot live
