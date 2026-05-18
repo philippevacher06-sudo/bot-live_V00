@@ -1,0 +1,14 @@
+============================================================================================================================================
+FORCE RESET ALL LIVE LOCAL STATE
+============================================================================================================================================
+Aucun appel broker. Aucun ordre envoyé. À utiliser uniquement après POS=0 / PEND=0.
+UTC: 2026-05-15T08:14:23.845246+00:00
+============================================================================================================================================
+BACKUP data/cycles/cycle_state.json -> data/cycles/cycle_state.json.before_FORCE_RESET_ALL_LIVE_20260515_081423.bak
+BACKUP data/execution/cycle_execution_state.json -> data/execution/cycle_execution_state.json.before_FORCE_RESET_ALL_LIVE_20260515_081423.bak
+CYCLE_STATE: tous les actifs -> IDLE
+EXEC_STATE: active dict vidé, len_before=1
+EXEC_STATE: états vivants vidés
+============================================================================================================================================
+RESET LOCAL COMPLET TERMINÉ
+============================================================================================================================================

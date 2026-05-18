@@ -1,0 +1,10 @@
+{
+  "ETHUSD": {"confirm_asset": "BTCUSD", "base_size": 0.01, "max_margin": 10.0},
+  "US500": {"confirm_asset": "US100", "base_size": 0.06, "max_margin": 20.0},
+  "GOLD": {"confirm_asset": "SILVER", "base_size": 0.01, "max_margin": 10.0},
+  "EURUSD": {"confirm_asset": "GBPUSD", "base_size": 0.01, "max_margin": 10.0},
+  "FR40": {"confirm_asset": "DE40", "base_size": 0.01, "max_margin": 10.0},
+  "USDJPY": {"confirm_asset": "EURJPY", "base_size": 0.01, "max_margin": 10.0},
+  "OIL_CRUDE": {"confirm_asset": "OIL_BRENT", "base_size": 0.01, "max_margin": 10.0},
+  "J225": {"confirm_asset": "USDJPY", "base_size": 0.01, "max_margin": 10.0}
+}

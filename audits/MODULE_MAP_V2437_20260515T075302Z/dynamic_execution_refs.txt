@@ -1,0 +1,47 @@
+BOT_PIVOT_03_tick_stream.py:86:    Capital.com renvoie parfois streamingHost avec un slash final.
+BOT_PIVOT_05_cycle_engine.py:743:                demo_sampler = str(__import__("os").getenv("V2435I_DEMO_SIGNAL_SAMPLER", "0")).lower() in (
+BOT_PIVOT_05_cycle_engine.py:775:                    low_thr = float(__import__("os").getenv("V2435I_DEMO_RPOS_LOW", "25"))
+BOT_PIVOT_05_cycle_engine.py:776:                    high_thr = float(__import__("os").getenv("V2435I_DEMO_RPOS_HIGH", "75"))
+BOT_PIVOT_05_cycle_engine.py:822:        # Le 06G2 devient la seule source de vérité pour open/pending/close.
+BOT_PIVOT_06G2_execution_secure.py:815:        use_stream_guard = str(__import__("os").getenv("V2435H_USE_STREAM_PRICE_GUARD", "0")).lower() in (
+BOT_PIVOT_06G2_execution_secure.py:2350:def working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure.py:2523:        if working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure.py:3068:        pnl_source = "CONSERVATIVE_MIN_DISTANCE_MODULE"
+BOT_PIVOT_06G2_execution_secure.py:3071:        pnl_source = "FALLBACK_RAW_PRICE_TIMES_SIZE"
+BOT_PIVOT_06G2_execution_secure.py:4139:    ticks_by_asset, tick_source = v243_recent_ticks_by_asset(assets)
+BOT_PIVOT_06G2_execution_secure.py:6187:                # EXEC devient la source de vérité du panier.
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1183:def working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1236:        if working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1983:                # EXEC devient la source de vérité du panier.
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1256:def working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1309:        if working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2056:                # EXEC devient la source de vérité du panier.
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1183:def working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1236:        if working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1983:                # EXEC devient la source de vérité du panier.
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1178:def working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1231:        if working_order_matches_exec(item, active_exec):
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1978:                # EXEC devient la source de vérité du panier.
+BOT_PIVOT_07C_loop.py:8:import subprocess
+BOT_PIVOT_07C_loop.py:27:    result = subprocess.run(
+BOT_PIVOT_07C_loop.py:29:        stdout=subprocess.PIPE,
+BOT_PIVOT_07C_loop.py:30:        stderr=subprocess.STDOUT,
+BOT_PIVOT_07_main.py:8:import subprocess
+BOT_PIVOT_07_main.py:33:        result = subprocess.run(
+BOT_PIVOT_07_main.py:35:            stdout=subprocess.PIPE,
+BOT_PIVOT_07_main.py:36:            stderr=subprocess.STDOUT,
+BOT_PIVOT_V2432_entry_quality_report.py:266:    if source is None:
+BOT_PIVOT_V2432_entry_quality_report.py:268:        source = path
+run_BOT_PIVOT_07D_24_7_DEMO.sh:237:echo "Refresh markets : ${REFRESH_MARKETS_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:238:echo "Refresh zones   : ${REFRESH_ZONES_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:239:echo "Refresh history : ${REFRESH_HISTORY_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:243:# Refresh initial obligatoire au démarrage
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:138:echo "Refresh markets : ${REFRESH_MARKETS_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:139:echo "Refresh zones   : ${REFRESH_ZONES_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:140:echo "Refresh history : ${REFRESH_HISTORY_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:144:# Refresh initial obligatoire au démarrage
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:149:echo "Refresh markets : ${REFRESH_MARKETS_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:150:echo "Refresh zones   : ${REFRESH_ZONES_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:151:echo "Refresh history : ${REFRESH_HISTORY_SECONDS}s" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:155:# Refresh initial obligatoire au démarrage
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:12:source venv/bin/activate

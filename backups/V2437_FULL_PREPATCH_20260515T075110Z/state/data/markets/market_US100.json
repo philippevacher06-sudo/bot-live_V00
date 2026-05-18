@@ -1,0 +1,96 @@
+{
+  "instrument": {
+    "epic": "US100",
+    "symbol": "US100",
+    "expiry": "-",
+    "name": "US Tech 100",
+    "lotSize": 1,
+    "type": "INDICES",
+    "guaranteedStopAllowed": true,
+    "streamingPricesAvailable": true,
+    "currency": "USD",
+    "marginFactor": 100,
+    "marginFactorUnit": "PERCENTAGE",
+    "openingHours": {
+      "mon": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "tue": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "wed": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "thu": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "fri": [
+        "00:00 - 21:00"
+      ],
+      "sat": [],
+      "sun": [
+        "22:00 - 00:00"
+      ],
+      "zone": "UTC"
+    },
+    "country": "United States of America",
+    "overnightFee": {
+      "longRate": -0.0214013,
+      "shortRate": -0.0008209,
+      "swapChargeTimestamp": 1778878800000,
+      "swapChargeInterval": 1440
+    }
+  },
+  "dealingRules": {
+    "minStepDistance": {
+      "unit": "POINTS",
+      "value": 0.1
+    },
+    "minDealSize": {
+      "unit": "POINTS",
+      "value": 0.001
+    },
+    "maxDealSize": {
+      "unit": "POINTS",
+      "value": 1250
+    },
+    "minSizeIncrement": {
+      "unit": "POINTS",
+      "value": 0.001
+    },
+    "minGuaranteedStopDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.1
+    },
+    "minStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.01
+    },
+    "maxStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 100
+    },
+    "marketOrderPreference": "AVAILABLE_DEFAULT_ON",
+    "trailingStopsPreference": "NOT_AVAILABLE"
+  },
+  "snapshot": {
+    "marketStatus": "TRADEABLE",
+    "netChange": -93.4,
+    "percentageChange": -0.73,
+    "updateTime": "2026-05-15T09:20:59.844",
+    "delayTime": 0,
+    "bid": 29365.3,
+    "offer": 29367.1,
+    "high": 29635.2,
+    "low": 29150.4,
+    "decimalPlacesFactor": 1,
+    "scalingFactor": 1,
+    "marketModes": [
+      "REGULAR"
+    ]
+  }
+}

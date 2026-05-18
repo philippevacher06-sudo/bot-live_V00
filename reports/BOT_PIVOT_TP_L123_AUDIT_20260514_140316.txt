@@ -1,0 +1,202 @@
+========================================================================================================================
+BOT-PIVOT — AUDIT L1/L2/L3 + TP PANIER
+========================================================================================================================
+Thu May 14 14:03:16 UTC 2026
+LOG=
+LINES=
+
+===== RECONCILE BROKER / LOCAL =====
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | --                         | --                                             | OK
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | --                         | --                                             | OK
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | --                         | --                                             | OK
+EURUSD     |   0 |    0 | --                         | --                                             | OK
+GBPUSD     |   0 |    0 | --                         | --                                             | OK
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | --                         | --                                             | OK
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | --                         | --                                             | OK
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | --                         | --                                             | OK
+============================================================================================================================================
+
+===== CODE TP / LADDERS / BROKER UPL =====
+247:def cycle_target_tp_eur(cycle):
+252:    for key in ("tp_eur", "target_tp_eur", "take_profit_eur"):
+281:    target_eur = cycle_target_tp_eur(cycle)
+282:    desired_distance = PNL.profit_distance_for_target_eur(asset, size, target_eur)
+2609:                    reason="V24_BASKET_PARTIAL_REJECT_CANCEL",
+2621:                    "reason": "NO_WORKING_ID_TO_CANCEL_AFTER_PARTIAL_REJECT",
+2628:            reason="V24_BASKET_PARTIAL_REJECT_ORPHAN_CLOSE",
+2633:            "event": "V24_BASKET_PARTIAL_REJECT_CANCELLED",
+2650:            "reason": "V24_BASKET_PARTIAL_REJECT",
+2668:        "target_mode": "BASKET_GLOBAL_TP",
+2793:    - méthode distance_for_target_eur
+2815:        one_eur_distance = float(PNL.profit_distance_for_target_eur(asset, size, 1.0))
+2878:def v24_pick_broker_upl_eur(candidates):
+2934:    open_count = 0
+2936:    broker_upl_total = 0.0
+2937:    broker_upl_count = 0
+2938:    broker_upl_missing = 0
+2963:        broker_upl_eur = v24_pick_broker_upl_eur(broker_pnl_candidates)
+2965:        if broker_upl_eur is None:
+2966:            broker_upl_missing += 1
+2968:            broker_upl_total += float(broker_upl_eur)
+2969:            broker_upl_count += 1
+2974:        rec["last_broker_upl_eur"] = broker_upl_eur
+2981:        open_count += 1
+2997:            "broker_upl_eur": broker_upl_eur,
+3001:    target = float(0.20 * open_count) if open_count > 0 else None
+3002:    broker_upl_total_complete = (
+3003:        float(broker_upl_total)
+3004:        if open_count > 0 and broker_upl_count >= open_count
+3014:        "open_count": int(open_count),
+3015:        "target": target,
+3018:        "total_broker_upl_eur": broker_upl_total_complete,
+3019:        "broker_upl_partial_total_eur": float(broker_upl_total),
+3020:        "broker_upl_count": int(broker_upl_count),
+3021:        "broker_upl_missing": int(broker_upl_missing),
+3022:        "tp_decision_source": "BROKER_POSITION_UPL" if broker_upl_total_complete is not None else "NO_BROKER_UPL_BLOCK_TP",
+3023:        "tp_decision_pnl_eur": broker_upl_total_complete,
+3028:    if open_count > 0 and v24_bool_env("V24_PNL_AUDIT", True):
+3029:        broker_upl_log = "none" if broker_upl_total_complete is None else f"{broker_upl_total_complete:.4f}"
+3047:                f"broker_upl={leg.get('broker_upl_eur')} "
+3053:            f"open={open_count} pnl={total:.4f} broker_upl={broker_upl_log} target={target}"
+3066:    return total, open_count, target
+3341:        "event": "V24_BASKET_CLOSE_DONE" if ok_all else "V24_BASKET_CLOSE_PARTIAL_FAIL",
+3546:def v243_margin_selector_threshold_eur():
+3563:        return float(margin) >= float(v243_margin_selector_threshold_eur())
+3641:            broker_open_count = len(positions_for_asset(asset, positions or []))
+3643:            broker_open_count = 0
+3646:            local_open_count = int(rec.get("last_open_count") or 0)
+3648:            local_open_count = 0
+3651:        if max(broker_open_count, local_open_count) > 0:
+3988:def v243_storm_max_loss_eur(open_count):
+3991:    return max(float(minimum), max(1, int(open_count or 0)) * float(per_leg))
+3998:def v243_basket_max_loss_eur(open_count):
+3999:    count = max(1, min(3, int(open_count or 1)))
+4181:def v24_open_basket_invalidation_reason(asset, direction, active_exec, cycle, pnl_total, open_count):
+4192:    if open_count <= 0:
+4776:                f"{asset:10s} | BASKET_FILL | {int(matched_key):<3} | {direction:4s} | "
+4794:    pnl_total, open_count, target = v24_basket_current_pnl(asset, active_exec, broker_items=broker_items)
+4797:    active_exec["last_open_count"] = int(open_count)
+4798:    active_exec["last_target_tp_eur"] = target
+4801:    broker_upl_total_for_tp = pnl_audit.get("total_broker_upl_eur")
+4802:    broker_upl_count_for_tp = int(pnl_audit.get("broker_upl_count") or 0)
+4805:        open_count > 0
+4806:        and target is not None
+4807:        and broker_upl_total_for_tp is not None
+4808:        and broker_upl_count_for_tp >= int(open_count)
+4811:    tp_decision_pnl = float(broker_upl_total_for_tp) if tp_broker_ready else None
+4814:        "BROKER_POSITION_UPL" if tp_broker_ready else "NO_BROKER_UPL_BLOCK_TP"
+4818:    active_exec["last_broker_upl_total_eur"] = broker_upl_total_for_tp
+4819:    active_exec["last_broker_upl_count"] = broker_upl_count_for_tp
+4823:    # Prouve explicitement open=1/2/3 => target=0.20/0.40/0.60.
+4825:    if open_count > 0 and v24_bool_env("V243_TP_LADDER_CHECK_LOG", True):
+4832:            ladder_threshold = float(target) + float(ladder_margin) if target is not None else None
+4834:            ladder_threshold = None
+4836:        if target is None:
+4840:        elif tp_decision_pnl is not None and ladder_threshold is not None and float(tp_decision_pnl) >= float(ladder_threshold):
+4845:        target_s = "None" if target is None else f"{float(target):.4f}"
+4846:        threshold_s = "None" if ladder_threshold is None else f"{float(ladder_threshold):.4f}"
+4847:        broker_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+4849:        source_s = "BROKER_POSITION_UPL" if tp_broker_ready else "NO_BROKER_UPL_BLOCK_TP"
+4852:            f"{asset:10s} | BASKET_TP_LADDER_CHECK | 1-3 | {direction:4s} | "
+4854:            f"open={int(open_count)} expected_target={target_s} threshold={threshold_s} "
+4855:            f"broker_upl={broker_upl_s} tp_pnl={tp_pnl_s} "
+4856:            f"broker_count={int(broker_upl_count_for_tp)}/{int(open_count)} "
+4870:    if open_count > 0 and not broker_items:
+4889:            active_exec["broker_empty_reset_open_count"] = int(open_count)
+4893:            active_exec["broker_empty_reset_last_broker_upl_total_eur"] = broker_upl_total_for_tp
+4894:            active_exec["broker_empty_reset_last_target_tp_eur"] = target
+4896:            active_exec["broker_empty_reset_last_broker_upl_count"] = int(broker_upl_count_for_tp)
+4907:            broker_empty_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+4908:            broker_empty_target_s = "none" if target is None else f"{float(target):.4f}"
+4913:                f"local_open={open_count} broker_open=0 pending={pending_count} "
+4914:                f"last_broker_upl={broker_empty_upl_s} target={broker_empty_target_s} "
+4915:                f"broker_count={broker_upl_count_for_tp}/{open_count} internal={float(pnl_total):.4f} "
+4924:                "local_open_count": int(open_count),
+4971:            "open_count": open_count,
+4981:            f"open={open_count} pending={pending_count} reasons={','.join(storm_reasons[:4])}"
+4984:        if open_count <= 0:
+4998:    if storm_blocked and open_count > 0 and v243_storm_emergency_close_enabled():
+4999:        storm_loss_limit = v243_storm_max_loss_eur(open_count)
+5001:        if broker_upl_total_for_tp is None:
+5006:        elif float(broker_upl_total_for_tp) <= -float(storm_loss_limit):
+5016:            active_exec["storm_guard_emergency_close_broker_upl"] = float(broker_upl_total_for_tp)
+5033:                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5042:                    "broker_upl": float(broker_upl_total_for_tp),
+5052:                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5060:    if open_count > 0 and v243_max_loss_guard_enabled():
+5061:        max_loss_eur = v243_basket_max_loss_eur(open_count)
+5063:        if broker_upl_total_for_tp is None:
+5068:        elif float(broker_upl_total_for_tp) <= -float(max_loss_eur):
+5087:            active_exec["max_loss_broker_upl"] = float(broker_upl_total_for_tp)
+5089:            active_exec["max_loss_open_count"] = int(open_count)
+5106:                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5107:                    f"limit=-{max_loss_eur:.4f} open={open_count}"
+5115:                    "broker_upl": float(broker_upl_total_for_tp),
+5117:                    "open_count": int(open_count),
+5125:                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5140:        open_count=int(open_count),
+5166:        active_exec["invalidation_open_count"] = int(open_count)
+5192:                    "open_count": int(open_count),
+5214:        open_count > 0
+5215:        and target is not None
+5217:        and float(tp_decision_pnl) >= (target + tp_safety_margin)
+5253:                f"{asset:10s} | BASKET_TP_OK | 1-3 | {direction:4s} | "
+5254:                f"--         | {market_status:9s} | pnl={float(tp_decision_pnl):.4f} target={target:.4f} "
+5255:                f"internal={pnl_total:.4f} source=BROKER_POSITION_UPL"
+5268:                reason="V24_BASKET_TP_FAIL_CANCEL_PENDING_TO_FREE_MARGIN",
+5276:        active_exec["last_tp_fail_target_eur"] = float(target)
+5281:            f"{asset:10s} | BASKET_TP_FAIL | 1-3 | {direction:4s} | "
+5282:            f"--         | {market_status:9s} | pnl={pnl_total:.4f} target={target:.4f}"
+5288:    if open_count > 0 and target is not None and pnl_total >= (target + tp_safety_margin):
+5291:                f"{asset:10s} | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | {direction:4s} | "
+5293:                f"broker_upl=None target={target:.4f}"
+5295:        elif float(tp_decision_pnl) < (target + tp_safety_margin):
+5297:                f"{asset:10s} | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | {direction:4s} | "
+5299:                f"broker_upl={float(tp_decision_pnl):.4f} target={target:.4f}"
+5309:    active_exec["last_open_count"] = int(open_count)
+5324:                f"threshold={v243_margin_selector_threshold_eur()}"
+5331:                f"worst={selector_asset} threshold={v243_margin_selector_threshold_eur()}"
+5379:                f"threshold={v243_margin_selector_threshold_eur()} pending={pending_count} "
+5431:            "open_count": open_count,
+5441:            f"open={open_count} pending={pending_count} "
+5446:        if open_count <= 0:
+5463:    if open_count > 0 and pending_count > 0:
+5469:                float(os.getenv("PARTIAL_BASKET_PENDING_MAX_AGE_SEC", "90"))
+5475:            reason = "V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL"
+5504:                f"{asset:10s} | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | {direction:4s} | "
+5506:                f"open={open_count} pending={pending_count} age={age_sec:.1f}s "
+5514:    if open_count <= 0 and pending_count <= 0:
+5577:    if open_count <= 0 and pending_count > 0:
+5617:                f"{asset:10s} | BASKET_PENDING_CANCEL | 1-3 | {direction:4s} | "
+5619:                f"open=0 pending={pending_count} age={age_sec:.1f}s max={max_age:.1f}s reason={reason}"
+5626:        f"open={open_count} pending={pending_count} pnl={pnl_total:.4f} target={target}"
+5634:        "open_count": open_count,
+5637:        "target": target,
+6301:                    "reason": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+6309:                reset_cycle_idle(asset, "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT")
+
+===== EVENTS L1/L2/L3 + TP =====
+
+===== FOCUS TP LADDER =====
+
+===== FOCUS FILLS =====

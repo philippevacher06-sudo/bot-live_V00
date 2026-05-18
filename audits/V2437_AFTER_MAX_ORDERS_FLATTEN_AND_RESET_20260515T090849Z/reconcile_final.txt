@@ -1,0 +1,13 @@
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+Traceback (most recent call last):
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06G1_reconcile_broker.py", line 211, in <module>
+    main()
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06G1_reconcile_broker.py", line 102, in main
+    headers = B.login()
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06G_execution_from_cycle_state.py", line 133, in login
+    raise RuntimeError(f"Login Capital.com refusé HTTP {r.status_code} : {r.text[:300]}")
+RuntimeError: Login Capital.com refusé HTTP 429 : {"errorCode":"error.too-many.requests"}

@@ -1,0 +1,395 @@
+# BOT_PIVOT_24_4_forced_audit_runner.py
+# V24.4 — runner expérimental DIRECT BROKER
+# Objectif : éviter totalement open_cycle_secure() qui renvoyait DRY_RUN.
+# Ouvre ETHUSD directement via Capital.com /api/v1/positions.
+# Ferme par paire faible/forte via close_deal_secure().
+#
+# ATTENTION : DEMO UNIQUEMENT.
+
+from __future__ import annotations
+
+import os
+import time
+import uuid
+import traceback
+import requests
+from typing import Any, Dict, List, Optional, Tuple
+
+import BOT_PIVOT_06G2_execution_secure as G
+import BOT_PIVOT_24_4_forced_audit_sampling as FAS
+
+
+ASSET = os.getenv("V244_TRADED_ASSET", "ETHUSD").upper()
+CAPITAL_BASE_URL = os.getenv("CAPITAL_BASE_URL", "https://demo-api-capital.backend-capital.com/api/v1").rstrip("/")
+SLEEP_SEC = float(os.getenv("V244_RUNNER_SLEEP_SEC", "20"))
+TARGET_OPENINGS_PER_MIN = int(os.getenv("V244_TARGET_OPENINGS_PER_MIN", "2"))
+MAX_POSITIONS = int(os.getenv("V244_MAX_OPEN_POSITIONS", "12"))
+
+# Important : avec hedgingMode=False, éviter BUY/SELL alternés.
+# On force BUY_ONLY par défaut pour créer des tranches faibles/fortes dans le même sens.
+SIDE_MODE = os.getenv("V244_SIDE_MODE", "BUY_ONLY").upper()
+
+# Stop broker de sécurité, large, pour éviter une position nue.
+# À ajuster ensuite.
+STOP_DISTANCE = float(os.getenv("V244_STOP_DISTANCE", "25"))
+PROFIT_DISTANCE = os.getenv("V244_PROFIT_DISTANCE", "").strip()
+
+
+def log(event: str, **kw: Any) -> None:
+    FAS.audit_log(event, **kw)
+
+
+def api_post(headers: Dict[str, str], path: str, payload: Dict[str, Any]) -> Tuple[int, Any]:
+    """
+    POST direct vers Capital.com.
+    Ne passe PAS par les wrappers internes du bot, car ils retournent DRY_RUN.
+    """
+    url = CAPITAL_BASE_URL + path
+
+    h = dict(headers or {})
+    h.setdefault("Content-Type", "application/json")
+    h.setdefault("Accept", "application/json")
+
+    # Sécurité : on refuse tout URL non démo dans cette phase.
+    if "demo-api-capital" not in url:
+        return 0, {
+            "BLOCKED": True,
+            "reason": "DEMO_ONLY_URL_REQUIRED",
+            "url": url,
+        }
+
+    try:
+        r = requests.post(url, headers=h, json=payload, timeout=20)
+        try:
+            data = r.json()
+        except Exception:
+            data = {"text": r.text}
+        return int(r.status_code), data
+    except Exception as e:
+        return 0, {
+            "REQUEST_EXCEPTION": True,
+            "exception": str(e),
+            "url": url,
+            "payload": payload,
+        }
+
+
+def broker_positions(headers: Dict[str, str]) -> List[Dict[str, Any]]:
+    status, positions, raw = G.fetch_positions(headers)
+    return positions or []
+
+
+def pos_asset(item: Dict[str, Any]) -> str:
+    try:
+        a = G.pos_epic(item)
+        if a:
+            return str(a).upper()
+    except Exception:
+        pass
+
+    pos = item.get("position", {}) if isinstance(item, dict) else {}
+    for k in ("epic", "market", "asset", "symbol"):
+        if item.get(k):
+            return str(item.get(k)).upper()
+        if pos.get(k):
+            return str(pos.get(k)).upper()
+    return ""
+
+
+def positions_for_asset(asset: str, positions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    return [p for p in positions or [] if pos_asset(p) == asset]
+
+
+def deal_id_of(item: Dict[str, Any]) -> Optional[str]:
+    try:
+        d = G.pos_deal_id(item)
+        if d:
+            return str(d)
+    except Exception:
+        pass
+
+    pos = item.get("position", {}) if isinstance(item, dict) else {}
+    for k in ("dealId", "deal_id", "id"):
+        if item.get(k):
+            return str(item.get(k))
+        if pos.get(k):
+            return str(pos.get(k))
+    return None
+
+
+def normalize_broker_item(item: Dict[str, Any]) -> Dict[str, Any]:
+    pos = item.get("position", {}) if isinstance(item, dict) else {}
+
+    deal_id = deal_id_of(item)
+
+    size = (
+        pos.get("size")
+        or item.get("size")
+        or pos.get("dealSize")
+        or item.get("dealSize")
+        or 0
+    )
+
+    upl = (
+        pos.get("upl")
+        or pos.get("profit")
+        or item.get("upl")
+        or item.get("profit")
+        or 0.0
+    )
+
+    direction = (
+        pos.get("direction")
+        or item.get("direction")
+        or ""
+    )
+
+    return {
+        "asset": ASSET,
+        "epic": ASSET,
+        "dealId": deal_id,
+        "brokerDealId": deal_id,
+        "size": size,
+        "broker_upl": upl,
+        "direction": direction,
+        "raw": item,
+    }
+
+
+def close_pair_if_available(headers: Dict[str, str], positions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    items = positions_for_asset(ASSET, positions)
+    records = [normalize_broker_item(x) for x in items]
+
+    pair = FAS.select_close_pair_from_records(ASSET, records)
+
+    if not pair:
+        return positions
+
+    weak, strong = pair
+    closed = []
+
+    for rec in (weak, strong):
+        deal_id = rec.get("brokerDealId") or rec.get("dealId")
+
+        if not deal_id:
+            closed.append({"deal_id": None, "ok": False, "reason": "MISSING_DEAL_ID"})
+            continue
+
+        ok, info, positions_after = G.close_deal_secure(
+            headers=headers,
+            asset=ASSET,
+            deal_id=deal_id,
+            reason="V244_DIRECT_PAIR_CLOSE",
+            old_exec=rec,
+        )
+
+        closed.append({
+            "deal_id": deal_id,
+            "ok": ok,
+            "info": info,
+        })
+
+        if positions_after is not None:
+            positions = positions_after
+
+    FAS.register_close_pair(ASSET, weak, strong, reason="V244_DIRECT_PAIR_CLOSE")
+
+    log(
+        "RUNNER_CLOSE_PAIR_DONE",
+        asset=ASSET,
+        closed=closed,
+    )
+
+    return positions
+
+
+def next_side_and_size() -> Tuple[str, float, int]:
+    """
+    On utilise la séquence FAS pour les tailles.
+    Mais on force le sens par défaut en BUY_ONLY pour éviter le netting BUY/SELL.
+    """
+    side, size, seq = FAS.next_forced_order()
+
+    if SIDE_MODE == "BUY_ONLY":
+        side = "BUY"
+    elif SIDE_MODE == "SELL_ONLY":
+        side = "SELL"
+    elif SIDE_MODE == "ALTERNATE":
+        side = side
+    else:
+        side = "BUY"
+
+    return side, float(size), seq
+
+
+def open_market_direct(headers: Dict[str, str], side: str, size: float, seq: int) -> Tuple[bool, Dict[str, Any]]:
+    """
+    Ouverture directe broker.
+    Ne passe pas par open_cycle_secure().
+    """
+    client_ref = f"V244_DIRECT_{int(time.time())}_{seq}_{uuid.uuid4().hex[:6]}"
+
+    payload = {
+        "epic": ASSET,
+        "direction": side,
+        "size": float(size),
+        "orderType": "MARKET",
+        "guaranteedStop": False,
+        "forceOpen": True,
+        "stopDistance": STOP_DISTANCE,
+    }
+
+    if PROFIT_DISTANCE:
+        try:
+            payload["profitDistance"] = float(PROFIT_DISTANCE)
+        except Exception:
+            pass
+
+    log(
+        "RUNNER_DIRECT_OPEN_REQUEST",
+        asset=ASSET,
+        side=side,
+        size=size,
+        seq=seq,
+        client_ref=client_ref,
+        payload=payload,
+    )
+
+    status, data = api_post(headers, "/api/v1/positions", payload)
+
+    ok = int(status) in (200, 201)
+
+    log(
+        "RUNNER_DIRECT_OPEN_RESPONSE",
+        asset=ASSET,
+        side=side,
+        size=size,
+        seq=seq,
+        status=status,
+        ok=ok,
+        response=data,
+    )
+
+    if not ok:
+        return False, {
+            "status": status,
+            "response": data,
+            "payload": payload,
+        }
+
+    return True, {
+        "status": status,
+        "response": data,
+        "payload": payload,
+    }
+
+
+def main() -> None:
+    FAS.safety_banner()
+
+    log(
+        "RUNNER_DIRECT_START",
+        asset=ASSET,
+        target_openings_per_min=TARGET_OPENINGS_PER_MIN,
+        sleep_sec=SLEEP_SEC,
+        max_positions=MAX_POSITIONS,
+        side_mode=SIDE_MODE,
+        stop_distance=STOP_DISTANCE,
+    )
+
+    headers = G.login()
+    log("RUNNER_LOGIN_OK", asset=ASSET)
+
+    while True:
+        try:
+            positions = broker_positions(headers)
+            asset_positions = positions_for_asset(ASSET, positions)
+
+            log(
+                "RUNNER_STATUS",
+                asset=ASSET,
+                open_positions=len(asset_positions),
+                openings_last_60s=FAS.count_opens_last_60s(),
+                missing_openings=FAS.missing_openings(),
+            )
+
+            # 1. Fermeture par paire faible/forte si possible
+            positions = close_pair_if_available(headers, positions)
+            asset_positions = positions_for_asset(ASSET, positions)
+
+            # 2. Limite positions ouvertes
+            if len(asset_positions) >= MAX_POSITIONS:
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason="MAX_POSITIONS_REACHED",
+                    open_positions=len(asset_positions),
+                    max_positions=MAX_POSITIONS,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            # 3. Ouvrir le nombre manquant pour atteindre 2/minute
+            missing = FAS.missing_openings()
+
+            for _ in range(missing):
+                positions = broker_positions(headers)
+                asset_positions = positions_for_asset(ASSET, positions)
+
+                if len(asset_positions) >= MAX_POSITIONS:
+                    log(
+                        "RUNNER_OPEN_BLOCKED",
+                        asset=ASSET,
+                        reason="MAX_POSITIONS_REACHED_INSIDE_LOOP",
+                        open_positions=len(asset_positions),
+                        max_positions=MAX_POSITIONS,
+                    )
+                    break
+
+                side, size, seq = next_side_and_size()
+
+                ok, info = open_market_direct(headers, side, size, seq)
+
+                log(
+                    "RUNNER_OPEN_RESULT",
+                    asset=ASSET,
+                    side=side,
+                    size=size,
+                    seq=seq,
+                    ok=ok,
+                    dry_run=False,
+                    direct_broker=True,
+                    info=info,
+                )
+
+                if ok:
+                    FAS.register_open(
+                        asset=ASSET,
+                        side=side,
+                        size=size,
+                        reason="FORCED_DIRECT_BROKER_OPEN",
+                        extra={"seq": seq, "info": info},
+                    )
+
+                time.sleep(2)
+
+            time.sleep(SLEEP_SEC)
+
+        except Exception as e:
+            log(
+                "RUNNER_EXCEPTION",
+                asset=ASSET,
+                exception=str(e),
+                traceback=traceback.format_exc().replace("\n", " / "),
+            )
+
+            if "429" in str(e) or "too-many" in str(e).lower() or "session" in str(e).lower():
+                time.sleep(120)
+                headers = G.login()
+                log("RUNNER_RELOGIN_OK", asset=ASSET)
+            else:
+                time.sleep(20)
+
+
+if __name__ == "__main__":
+    main()

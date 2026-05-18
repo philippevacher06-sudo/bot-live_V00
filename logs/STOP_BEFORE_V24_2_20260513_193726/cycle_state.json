@@ -1,0 +1,143 @@
+{
+  "updated_utc": "2026-05-13T19:33:30+00:00",
+  "assets": {
+    "US500": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "US100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "V24_PENDING_BASKET_EXPIRED_CANCEL",
+      "last_event_utc": "2026-05-13T19:33:27+00:00"
+    },
+    "US30": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "V24_PENDING_BASKET_EXPIRED_CANCEL",
+      "last_event_utc": "2026-05-13T19:33:30+00:00"
+    },
+    "DE40": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "DE40",
+        "cycle_id": "1d675163-8db",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 24212.6,
+        "size": 0.051,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-13T19:02:51+00:00",
+        "opened_utc": "2026-05-13T19:02:51+00:00",
+        "level_open_utc": "2026-05-13T19:02:51+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "FR40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "UK100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "J225": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "EURUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "GBPUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "GBPUSD",
+        "cycle_id": "ec0f7697-45d",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 1.35228,
+        "size": 1200.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-13T19:33:25+00:00",
+        "opened_utc": "2026-05-13T19:33:25+00:00",
+        "level_open_utc": "2026-05-13T19:33:25+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2"
+      },
+      "last_event": "OPEN_L1",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "USDJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "EURJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "GOLD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "GOLD",
+        "cycle_id": "9c800d5d-877",
+        "level": 1,
+        "direction": "BUY",
+        "entry_price": 4687.11,
+        "size": 0.27,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-13T19:33:25+00:00",
+        "opened_utc": "2026-05-13T19:33:25+00:00",
+        "level_open_utc": "2026-05-13T19:33:25+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2"
+      },
+      "last_event": "OPEN_L1",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "SILVER": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE_PHASE_VETO",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "BTCUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "ETHUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "created_utc": "2026-05-16T08:33:14+00:00",
+  "signals": [
+    {
+      "asset": "US500",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "US100",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "US30",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "DE40",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "FR40",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "UK100",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "J225",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "EURUSD",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "GBPUSD",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "USDJPY",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "EURJPY",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "GOLD",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "SILVER",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "OIL_CRUDE",
+      "decision": "NO_TICKS",
+      "reason": "aucun tick récent",
+      "tick_count": 0
+    },
+    {
+      "asset": "BTCUSD",
+      "decision": "WAIT",
+      "reason": "hors_zone",
+      "tick_count": 497,
+      "lookback_minutes": 14.0,
+      "age_sec": 7.226932,
+      "bid": 78417.95,
+      "ask": 78467.95,
+      "mid": 78442.95,
+      "spread": 50.0,
+      "spread_median": 50.0,
+      "spread_ok": true,
+      "range_low": 78355.0,
+      "range_high": 78461.5,
+      "range_width": 106.5,
+      "range_position": 82.58215962441041,
+      "micro_rebound": false,
+      "micro_reject": true,
+      "zones_touched": 0,
+      "chosen_zone": null,
+      "context_score": 0,
+      "context_ok": false,
+      "context_summary": "decision=WAIT; vwap=NEUTRAL; phase=TREND_DOWN",
+      "vwap": 78417.56637863022,
+      "vwap_bias": "NEUTRAL",
+      "phase": "TREND_DOWN",
+      "camarilla_context": "NO_SIGNAL",
+      "camarilla": {
+        "h3": null,
+        "h4": null,
+        "l3": null,
+        "l4": null
+      }
+    },
+    {
+      "asset": "ETHUSD",
+      "decision": "WAIT",
+      "reason": "hors_zone",
+      "tick_count": 445,
+      "lookback_minutes": 14.0,
+      "age_sec": 1.288916,
+      "bid": 2193.27,
+      "ask": 2195.02,
+      "mid": 2194.145,
+      "spread": 1.75,
+      "spread_median": 1.75,
+      "spread_ok": true,
+      "range_low": 2192.555,
+      "range_high": 2195.475,
+      "range_width": 2.9200000000000728,
+      "range_position": 54.45205479452417,
+      "micro_rebound": true,
+      "micro_reject": false,
+      "zones_touched": 0,
+      "chosen_zone": null,
+      "context_score": 0,
+      "context_ok": false,
+      "context_summary": "decision=WAIT; vwap=SELL; phase=TREND_DOWN",
+      "vwap": 2198.271490278707,
+      "vwap_bias": "SELL",
+      "phase": "TREND_DOWN",
+      "camarilla_context": "NO_SIGNAL",
+      "camarilla": {
+        "h3": null,
+        "h4": null,
+        "l3": null,
+        "l4": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,1105 @@
+========================================================================================================================
+BOT-PIVOT — AUDIT L1/L2/L3 + TP PANIER
+========================================================================================================================
+Thu May 14 14:04:39 UTC 2026
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260514_133002.log
+LINES=5191
+
+===== RECONCILE BROKER / LOCAL =====
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | --                         | --                                             | OK
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | --                         | --                                             | OK
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | --                         | --                                             | OK
+EURUSD     |   0 |    0 | --                         | --                                             | OK
+GBPUSD     |   0 |    0 | --                         | --                                             | OK
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | --                         | --                                             | OK
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | --                         | --                                             | OK
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | --                         | --                                             | OK
+============================================================================================================================================
+
+===== CODE TP LADDER — ZONE OPEN_COUNT / TARGET / BROKER_UPL =====
+  2930	        except Exception:
+  2931	            pass
+  2932	
+  2933	    total = 0.0
+  2934	    open_count = 0
+  2935	    audit_legs = []
+  2936	    broker_upl_total = 0.0
+  2937	    broker_upl_count = 0
+  2938	    broker_upl_missing = 0
+  2939	
+  2940	    for level_key, rec in basket_exec.get("levels", {}).items():
+  2941	        if rec.get("status") != "OPEN_POSITION":
+  2942	            continue
+  2943	
+  2944	        direction = rec.get("direction")
+  2945	        entry = rec.get("brokerEntryPrice")
+  2946	        size = rec.get("size")
+  2947	
+  2948	        if entry is None or size is None:
+  2949	            rec["last_pnl_error"] = "MISSING_ENTRY_OR_SIZE"
+  2950	            continue
+  2951	
+  2952	        # BUY se ferme au côté bas du spread.
+  2953	        # SELL se ferme au côté haut du spread.
+  2954	        current = low_side if direction == "BUY" else high_side
+  2955	        price_side = "BID_LOW_SIDE_FOR_BUY" if direction == "BUY" else "ASK_HIGH_SIDE_FOR_SELL"
+  2956	
+  2957	        detail = v24_leg_pnl_detail(asset, direction, entry, current, size)
+  2958	        pnl = float(detail["pnl_selected_eur"])
+  2959	
+  2960	        broker_deal_id = rec.get("brokerDealId") or rec.get("dealId")
+  2961	        broker_item = broker_by_deal.get(broker_deal_id)
+  2962	        broker_pnl_candidates = v24_position_pnl_candidates(broker_item) if broker_item else []
+  2963	        broker_upl_eur = v24_pick_broker_upl_eur(broker_pnl_candidates)
+  2964	
+  2965	        if broker_upl_eur is None:
+  2966	            broker_upl_missing += 1
+  2967	        else:
+  2968	            broker_upl_total += float(broker_upl_eur)
+  2969	            broker_upl_count += 1
+  2970	
+  2971	        rec["last_pnl_eur"] = float(pnl)
+  2972	        rec["last_pnl_detail"] = detail
+  2973	        rec["last_broker_pnl_candidates"] = broker_pnl_candidates
+  2974	        rec["last_broker_upl_eur"] = broker_upl_eur
+  2975	        rec["last_price_used"] = float(current)
+  2976	        rec["last_raw_bid"] = float(raw_bid)
+  2977	        rec["last_raw_ask"] = float(raw_ask)
+  2978	        rec["last_price_side"] = price_side
+  2979	
+  2980	        total += float(pnl)
+  2981	        open_count += 1
+  2982	
+  2983	        audit_legs.append({
+  2984	            "level": str(level_key),
+  2985	            "direction": direction,
+  2986	            "entry": float(entry),
+  2987	            "size": float(size),
+  2988	            "raw_bid": float(raw_bid),
+  2989	            "raw_ask": float(raw_ask),
+  2990	            "exit_used": float(current),
+  2991	            "price_side": price_side,
+  2992	            "pnl_selected_eur": float(pnl),
+  2993	            "pnl_distance_eur": detail.get("pnl_distance_eur"),
+  2994	            "pnl_module_eur": detail.get("pnl_module_eur"),
+  2995	            "raw_price_times_size": detail.get("raw_price_times_size"),
+  2996	            "pnl_source": detail.get("pnl_source"),
+  2997	            "broker_upl_eur": broker_upl_eur,
+  2998	            "broker_pnl_candidates": broker_pnl_candidates[:5],
+  2999	        })
+  3000	
+  3001	    target = float(0.20 * open_count) if open_count > 0 else None
+  3002	    broker_upl_total_complete = (
+  3003	        float(broker_upl_total)
+  3004	        if open_count > 0 and broker_upl_count >= open_count
+  3005	        else None
+  3006	    )
+  3007	
+  3008	    basket_exec["last_pnl_audit"] = {
+  3009	        "asset": asset,
+  3010	        "raw_bid": float(raw_bid),
+  3011	        "raw_ask": float(raw_ask),
+  3012	        "low_side": float(low_side),
+  3013	        "high_side": float(high_side),
+  3014	        "open_count": int(open_count),
+  3015	        "target": target,
+  3016	        "total_selected_eur": float(total),
+  3017	        "total_internal_eur": float(total),
+  3018	        "total_broker_upl_eur": broker_upl_total_complete,
+  3019	        "broker_upl_partial_total_eur": float(broker_upl_total),
+  3020	        "broker_upl_count": int(broker_upl_count),
+  3021	        "broker_upl_missing": int(broker_upl_missing),
+  3022	        "tp_decision_source": "BROKER_POSITION_UPL" if broker_upl_total_complete is not None else "NO_BROKER_UPL_BLOCK_TP",
+  3023	        "tp_decision_pnl_eur": broker_upl_total_complete,
+  3024	        "legs": audit_legs,
+  3025	        "checked_utc": utc(),
+  3026	    }
+  3027	
+  3028	    if open_count > 0 and v24_bool_env("V24_PNL_AUDIT", True):
+  3029	        broker_upl_log = "none" if broker_upl_total_complete is None else f"{broker_upl_total_complete:.4f}"
+  3030	
+  3031	        for leg in audit_legs:
+  3032	            broker_short = ",".join(
+  3033	                f"{x.get('path')}={x.get('value')}"
+  3034	                for x in leg.get("broker_pnl_candidates", [])[:3]
+  3035	            ) or "none"
+  3036	
+  3037	            print(
+  3038	                f"{asset:10s} | PNL_AUDIT_LEG | L{leg['level']:<3} | {str(leg['direction']):4s} | "
+  3039	                f"entry={leg['entry']:.6f} size={leg['size']:.6f} "
+  3040	                f"bid={leg['raw_bid']:.6f} ask={leg['raw_ask']:.6f} "
+  3041	                f"exit={leg['exit_used']:.6f} side={leg['price_side']} "
+  3042	                f"pnl_sel={leg['pnl_selected_eur']:.4f} "
+  3043	                f"pnl_dist={leg['pnl_distance_eur']} "
+  3044	                f"pnl_mod={leg['pnl_module_eur']} "
+  3045	                f"raw={leg['raw_price_times_size']} "
+  3046	                f"src={leg['pnl_source']} "
+  3047	                f"broker_upl={leg.get('broker_upl_eur')} "
+  3048	                f"broker={broker_short}"
+  3049	            )
+  3050	
+  3051	        print(
+  3052	            f"{asset:10s} | PNL_AUDIT_TOTAL | 1-3 | {str(basket_exec.get('direction', '--')):4s} | "
+  3053	            f"open={open_count} pnl={total:.4f} broker_upl={broker_upl_log} target={target}"
+  3054	        )
+  3055	
+  3056	        try:
+  3057	            event({
+  3058	                "event": "V24_BASKET_PNL_AUDIT",
+  3059	                "asset": asset,
+  3060	                "cycle_id": basket_exec.get("cycle_id"),
+  3061	                "audit": basket_exec.get("last_pnl_audit"),
+  3062	            })
+  3063	        except Exception:
+  3064	            pass
+  3065	
+  3066	    return total, open_count, target
+  3067	
+  3068	
+
+===== CODE TP DECISION — ZONE BASKET_TP_LADDER_CHECK / TP_OK / TP_BLOCKED =====
+  4790	                "price_audit": matched_rec.get("price_audit"),
+  4791	            })
+  4792	
+  4793	    # 3. Calcul PnL global.
+  4794	    pnl_total, open_count, target = v24_basket_current_pnl(asset, active_exec, broker_items=broker_items)
+  4795	
+  4796	    active_exec["last_basket_pnl_eur"] = float(pnl_total)
+  4797	    active_exec["last_open_count"] = int(open_count)
+  4798	    active_exec["last_target_tp_eur"] = target
+  4799	
+  4800	    pnl_audit = active_exec.get("last_pnl_audit") or {}
+  4801	    broker_upl_total_for_tp = pnl_audit.get("total_broker_upl_eur")
+  4802	    broker_upl_count_for_tp = int(pnl_audit.get("broker_upl_count") or 0)
+  4803	
+  4804	    tp_broker_ready = (
+  4805	        open_count > 0
+  4806	        and target is not None
+  4807	        and broker_upl_total_for_tp is not None
+  4808	        and broker_upl_count_for_tp >= int(open_count)
+  4809	    )
+  4810	
+  4811	    tp_decision_pnl = float(broker_upl_total_for_tp) if tp_broker_ready else None
+  4812	
+  4813	    active_exec["last_tp_decision_source"] = (
+  4814	        "BROKER_POSITION_UPL" if tp_broker_ready else "NO_BROKER_UPL_BLOCK_TP"
+  4815	    )
+  4816	    active_exec["last_tp_decision_pnl_eur"] = tp_decision_pnl
+  4817	    active_exec["last_internal_pnl_eur"] = float(pnl_total)
+  4818	    active_exec["last_broker_upl_total_eur"] = broker_upl_total_for_tp
+  4819	    active_exec["last_broker_upl_count"] = broker_upl_count_for_tp
+  4820	    active_exec["last_check_utc"] = utc()
+  4821	
+  4822	    # V24.3.1 - TP LADDER AUDIT LOG ONLY
+  4823	    # Prouve explicitement open=1/2/3 => target=0.20/0.40/0.60.
+  4824	    # Aucun changement de decision, aucun appel API supplementaire.
+  4825	    if open_count > 0 and v24_bool_env("V243_TP_LADDER_CHECK_LOG", True):
+  4826	        try:
+  4827	            ladder_margin = float(v24_tp_safety_margin_eur())
+  4828	        except Exception:
+  4829	            ladder_margin = 0.0
+  4830	
+  4831	        try:
+  4832	            ladder_threshold = float(target) + float(ladder_margin) if target is not None else None
+  4833	        except Exception:
+  4834	            ladder_threshold = None
+  4835	
+  4836	        if target is None:
+  4837	            ladder_decision = "NO_TARGET"
+  4838	        elif not tp_broker_ready:
+  4839	            ladder_decision = "HOLD_NO_BROKER_UPL"
+  4840	        elif tp_decision_pnl is not None and ladder_threshold is not None and float(tp_decision_pnl) >= float(ladder_threshold):
+  4841	            ladder_decision = "TP_READY"
+  4842	        else:
+  4843	            ladder_decision = "HOLD_BELOW_TARGET"
+  4844	
+  4845	        target_s = "None" if target is None else f"{float(target):.4f}"
+  4846	        threshold_s = "None" if ladder_threshold is None else f"{float(ladder_threshold):.4f}"
+  4847	        broker_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+  4848	        tp_pnl_s = "none" if tp_decision_pnl is None else f"{float(tp_decision_pnl):.4f}"
+  4849	        source_s = "BROKER_POSITION_UPL" if tp_broker_ready else "NO_BROKER_UPL_BLOCK_TP"
+  4850	
+  4851	        print(
+  4852	            f"{asset:10s} | BASKET_TP_LADDER_CHECK | 1-3 | {direction:4s} | "
+  4853	            f"--         | {market_status:9s} | "
+  4854	            f"open={int(open_count)} expected_target={target_s} threshold={threshold_s} "
+  4855	            f"broker_upl={broker_upl_s} tp_pnl={tp_pnl_s} "
+  4856	            f"broker_count={int(broker_upl_count_for_tp)}/{int(open_count)} "
+  4857	            f"internal={float(pnl_total):.4f} margin={float(ladder_margin):.4f} "
+  4858	            f"decision={ladder_decision} source={source_s}"
+  4859	        )
+  4860	
+  4861	    exec_state.setdefault("active", {})[asset] = active_exec
+  4862	    B.save_json(B.EXEC_STATE_FILE, exec_state)
+  4863	
+  4864	    pending_count = len([
+  4865	        rec for rec in levels.values()
+  4866	        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+  4867	    ])
+  4868	
+  4869	    # V24.3 -- anti-zombie local : jambes OPEN localement mais disparues côté broker.
+  4870	    if open_count > 0 and not broker_items:
+  4871	        fresh_status, fresh_positions, fresh_raw = fetch_positions(headers)
+  4872	        fresh_broker_items = positions_for_asset(asset, fresh_positions)
+  4873	
+  4874	        if fresh_status in (200, 201, 202) and not fresh_broker_items:
+  4875	            reason = "V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET"
+  4876	
+  4877	            try:
+  4878	                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+  4879	                    headers=headers,
+  4880	                    asset=asset,
+  4881	                    direction=direction,
+  4882	                    reason=reason + "_PENDING_SWEEP",
+  4883	                )
+  4884	            except Exception as e:
+  4885	                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+  4886	
+  4887	            active_exec["broker_empty_reset_reason"] = reason
+  4888	            active_exec["broker_empty_reset_utc"] = utc()
+  4889	            active_exec["broker_empty_reset_open_count"] = int(open_count)
+  4890	            active_exec["broker_empty_reset_pending_count"] = int(pending_count)
+  4891	            active_exec["broker_empty_reset_fetch_status"] = fresh_status
+  4892	            active_exec["broker_empty_reset_cleanup_results"] = broker_cleanup_results
+  4893	            active_exec["broker_empty_reset_last_broker_upl_total_eur"] = broker_upl_total_for_tp
+  4894	            active_exec["broker_empty_reset_last_target_tp_eur"] = target
+  4895	            active_exec["broker_empty_reset_last_internal_pnl_eur"] = float(pnl_total)
+  4896	            active_exec["broker_empty_reset_last_broker_upl_count"] = int(broker_upl_count_for_tp)
+  4897	
+  4898	            exec_state.setdefault("orphaned_resets", []).append({
+  4899	                **active_exec,
+  4900	                "orphaned_reason": reason,
+  4901	                "orphaned_utc": utc(),
+  4902	            })
+  4903	            exec_state.setdefault("active", {}).pop(asset, None)
+  4904	            reset_cycle_idle(asset, reason)
+  4905	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  4906	
+  4907	            broker_empty_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+  4908	            broker_empty_target_s = "none" if target is None else f"{float(target):.4f}"
+  4909	
+  4910	            print(
+  4911	                f"{asset:10s} | BROKER_EMPTY_RESET | 1-3 | {direction:4s} | "
+  4912	                f"--         | {market_status:9s} | "
+  4913	                f"local_open={open_count} broker_open=0 pending={pending_count} "
+  4914	                f"last_broker_upl={broker_empty_upl_s} target={broker_empty_target_s} "
+  4915	                f"broker_count={broker_upl_count_for_tp}/{open_count} internal={float(pnl_total):.4f} "
+  4916	                f"reason={reason}"
+  4917	            )
+  4918	
+  4919	            event({
+  4920	                "event": "BROKER_EMPTY_RESET",
+  4921	                "asset": asset,
+  4922	                "cycle_id": active_exec.get("cycle_id"),
+  4923	                "direction": direction,
+  4924	                "local_open_count": int(open_count),
+  4925	                "pending_count": int(pending_count),
+  4926	                "fetch_status": fresh_status,
+  4927	                "cleanup_results": broker_cleanup_results,
+  4928	                "reason": reason,
+  4929	            })
+  4930	
+  4931	            return True, fresh_positions
+  4932	
+  4933	        active_exec["broker_empty_reset_blocked_utc"] = utc()
+  4934	        active_exec["broker_empty_reset_blocked_status"] = fresh_status
+  4935	        active_exec["broker_empty_reset_blocked_broker_count"] = len(fresh_broker_items)
+  4936	        exec_state.setdefault("active", {})[asset] = active_exec
+  4937	        B.save_json(B.EXEC_STATE_FILE, exec_state)
+  4938	
+  4939	    storm_blocked, storm_reasons = v243_storm_guard_blocks_asset(storm_snapshot, asset)
+  4940	
+  4941	    if storm_blocked and pending_count > 0:
+  4942	        reason = "V243_STORM_GUARD_CANCEL_PENDING"
+  4943	
+  4944	        cancel_results = v24_cancel_all_pending_limits(
+  4945	            headers=headers,
+  4946	            asset=asset,
+  4947	            levels=levels,
+  4948	            reason=reason,
+  4949	        )
+  4950	
+  4951	        try:
+  4952	            broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+  4953	                headers=headers,
+  4954	                asset=asset,
+  4955	                direction=direction,
+  4956	                reason=reason + "_BROKER_SWEEP",
+  4957	            )
+  4958	        except Exception as e:
+  4959	            broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+  4960	
+  4961	        active_exec["storm_guard_reasons"] = storm_reasons
+  4962	        active_exec["storm_guard_cancel_results"] = cancel_results
+  4963	        active_exec["storm_guard_broker_cleanup_results"] = broker_cleanup_results
+  4964	        active_exec["storm_guard_cancel_utc"] = utc()
+  4965	
+  4966	        event({
+  4967	            "event": "STORM_GUARD_CANCEL_PENDING",
+  4968	            "asset": asset,
+  4969	            "cycle_id": active_exec.get("cycle_id"),
+  4970	            "direction": direction,
+  4971	            "open_count": open_count,
+  4972	            "pending_count": pending_count,
+  4973	            "storm_reasons": storm_reasons,
+  4974	            "cancel_results": cancel_results,
+  4975	            "broker_cleanup_results": broker_cleanup_results,
+  4976	        })
+  4977	
+  4978	        print(
+  4979	            f"{asset:10s} | STORM_GUARD_CANCEL_PENDING | 1-3 | {direction:4s} | "
+  4980	            f"--         | {market_status:9s} | "
+  4981	            f"open={open_count} pending={pending_count} reasons={','.join(storm_reasons[:4])}"
+  4982	        )
+  4983	
+  4984	        if open_count <= 0:
+  4985	            exec_state.setdefault("cancelled", []).append({
+  4986	                **active_exec,
+  4987	                "cancelled_reason": reason,
+  4988	                "cancelled_utc": utc(),
+  4989	            })
+  4990	            exec_state.setdefault("active", {}).pop(asset, None)
+  4991	            reset_cycle_idle(asset, reason)
+  4992	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  4993	            return True, positions
+  4994	
+  4995	        exec_state.setdefault("active", {})[asset] = active_exec
+  4996	        B.save_json(B.EXEC_STATE_FILE, exec_state)
+  4997	
+  4998	    if storm_blocked and open_count > 0 and v243_storm_emergency_close_enabled():
+  4999	        storm_loss_limit = v243_storm_max_loss_eur(open_count)
+  5000	
+  5001	        if broker_upl_total_for_tp is None:
+  5002	            print(
+  5003	                f"{asset:10s} | STORM_GUARD_CLOSE_BLOCKED_NO_BROKER_UPL | 1-3 | {direction:4s} | "
+  5004	                f"--         | {market_status:9s} | limit=-{storm_loss_limit:.4f} reasons={','.join(storm_reasons[:4])}"
+  5005	            )
+  5006	        elif float(broker_upl_total_for_tp) <= -float(storm_loss_limit):
+  5007	            ok, close_info, positions_after = v24_close_basket_secure(
+  5008	                headers=headers,
+  5009	                asset=asset,
+  5010	                basket_exec=active_exec,
+  5011	                reason="V243_STORM_GUARD_EMERGENCY_CLOSE",
+  5012	            )
+  5013	
+  5014	            active_exec["storm_guard_emergency_close_utc"] = utc()
+  5015	            active_exec["storm_guard_emergency_close_reasons"] = storm_reasons
+  5016	            active_exec["storm_guard_emergency_close_broker_upl"] = float(broker_upl_total_for_tp)
+  5017	            active_exec["storm_guard_emergency_close_loss_limit"] = float(storm_loss_limit)
+  5018	
+  5019	            if ok:
+  5020	                exec_state.setdefault("closed", []).append({
+  5021	                    **active_exec,
+  5022	                    "closed_reason": "V243_STORM_GUARD_EMERGENCY_CLOSE",
+  5023	                    "closed_utc": utc(),
+  5024	                    "close_info": close_info,
+  5025	                })
+  5026	                exec_state.setdefault("active", {}).pop(asset, None)
+  5027	
+  5028	                reset_cycle_idle(asset, "V243_STORM_GUARD_EMERGENCY_CLOSE")
+  5029	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5030	
+  5031	                print(
+  5032	                    f"{asset:10s} | STORM_GUARD_EMERGENCY_CLOSE_OK | 1-3 | {direction:4s} | "
+  5033	                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5034	                    f"limit=-{storm_loss_limit:.4f} reasons={','.join(storm_reasons[:4])}"
+  5035	                )
+  5036	
+  5037	                event({
+  5038	                    "event": "STORM_GUARD_EMERGENCY_CLOSE_OK",
+  5039	                    "asset": asset,
+  5040	                    "cycle_id": active_exec.get("cycle_id"),
+  5041	                    "direction": direction,
+  5042	                    "broker_upl": float(broker_upl_total_for_tp),
+  5043	                    "loss_limit": float(storm_loss_limit),
+  5044	                    "storm_reasons": storm_reasons,
+  5045	                    "close_info": close_info,
+  5046	                })
+  5047	
+  5048	                return True, positions_after
+  5049	
+  5050	            print(
+  5051	                f"{asset:10s} | STORM_GUARD_EMERGENCY_CLOSE_FAIL | 1-3 | {direction:4s} | "
+  5052	                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5053	                f"limit=-{storm_loss_limit:.4f}"
+  5054	            )
+  5055	
+  5056	            exec_state.setdefault("active", {})[asset] = active_exec
+  5057	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5058	            return True, positions
+  5059	
+  5060	    if open_count > 0 and v243_max_loss_guard_enabled():
+  5061	        max_loss_eur = v243_basket_max_loss_eur(open_count)
+  5062	
+  5063	        if broker_upl_total_for_tp is None:
+  5064	            print(
+  5065	                f"{asset:10s} | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | {direction:4s} | "
+  5066	                f"--         | {market_status:9s} | limit=-{max_loss_eur:.4f}"
+  5067	            )
+  5068	        elif float(broker_upl_total_for_tp) <= -float(max_loss_eur):
+  5069	            try:
+  5070	                max_loss_cancel_results = v24_cancel_all_pending_limits(
+  5071	                    headers=headers,
+  5072	                    asset=asset,
+  5073	                    levels=levels,
+  5074	                    reason="V243_BASKET_MAX_LOSS_CANCEL_PENDING",
+  5075	                )
+  5076	                active_exec["max_loss_cancel_results"] = max_loss_cancel_results
+  5077	            except Exception as e:
+  5078	                active_exec["max_loss_cancel_error"] = str(e)
+  5079	
+  5080	            ok, close_info, positions_after = v24_close_basket_secure(
+  5081	                headers=headers,
+  5082	                asset=asset,
+  5083	                basket_exec=active_exec,
+  5084	                reason="V243_BASKET_MAX_LOSS_BROKER_UPL",
+  5085	            )
+  5086	
+  5087	            active_exec["max_loss_broker_upl"] = float(broker_upl_total_for_tp)
+  5088	            active_exec["max_loss_limit_eur"] = float(max_loss_eur)
+  5089	            active_exec["max_loss_open_count"] = int(open_count)
+  5090	            active_exec["max_loss_utc"] = utc()
+  5091	
+  5092	            if ok:
+  5093	                exec_state.setdefault("closed", []).append({
+  5094	                    **active_exec,
+  5095	                    "closed_reason": "V243_BASKET_MAX_LOSS_BROKER_UPL",
+  5096	                    "closed_utc": utc(),
+  5097	                    "close_info": close_info,
+  5098	                })
+  5099	                exec_state.setdefault("active", {}).pop(asset, None)
+  5100	
+  5101	                reset_cycle_idle(asset, "V243_BASKET_MAX_LOSS_BROKER_UPL")
+  5102	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5103	
+  5104	                print(
+  5105	                    f"{asset:10s} | BASKET_MAX_LOSS_CLOSE_OK | 1-3 | {direction:4s} | "
+  5106	                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5107	                    f"limit=-{max_loss_eur:.4f} open={open_count}"
+  5108	                )
+  5109	
+  5110	                event({
+  5111	                    "event": "BASKET_MAX_LOSS_CLOSE_OK",
+  5112	                    "asset": asset,
+  5113	                    "cycle_id": active_exec.get("cycle_id"),
+  5114	                    "direction": direction,
+  5115	                    "broker_upl": float(broker_upl_total_for_tp),
+  5116	                    "loss_limit": float(max_loss_eur),
+  5117	                    "open_count": int(open_count),
+  5118	                    "close_info": close_info,
+  5119	                })
+  5120	
+  5121	                return True, positions_after
+  5122	
+  5123	            print(
+  5124	                f"{asset:10s} | BASKET_MAX_LOSS_CLOSE_FAIL | 1-3 | {direction:4s} | "
+  5125	                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5126	                f"limit=-{max_loss_eur:.4f}"
+  5127	            )
+  5128	
+  5129	            exec_state.setdefault("active", {})[asset] = active_exec
+  5130	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5131	            return True, positions
+  5132	
+  5133	    # 4. Invalidation panier ouvert si le signal initial est mort.
+  5134	    invalidation_reason = v24_open_basket_invalidation_reason(
+  5135	        asset=asset,
+  5136	        direction=direction,
+  5137	        active_exec=active_exec,
+  5138	        cycle=cycle,
+  5139	        pnl_total=float(pnl_total),
+  5140	        open_count=int(open_count),
+  5141	    )
+  5142	
+  5143	    if invalidation_reason:
+  5144	        # On annule d'abord les LIMIT encore en attente, puis on ferme les jambes ouvertes.
+  5145	        try:
+  5146	            cancel_results = v24_cancel_all_pending_limits(
+  5147	                headers=headers,
+  5148	                asset=asset,
+  5149	                levels=levels,
+  5150	                reason=invalidation_reason,
+  5151	            )
+  5152	            active_exec["invalidation_cancel_results"] = cancel_results
+  5153	        except Exception as e:
+  5154	            active_exec["invalidation_cancel_error"] = str(e)
+  5155	
+  5156	        ok, close_info, positions_after = v24_close_basket_secure(
+  5157	            headers=headers,
+  5158	            asset=asset,
+  5159	            basket_exec=active_exec,
+  5160	            reason=invalidation_reason,
+  5161	        )
+  5162	
+  5163	        active_exec["invalidation_reason"] = invalidation_reason
+  5164	        active_exec["invalidation_utc"] = utc()
+  5165	        active_exec["invalidation_pnl_eur"] = float(pnl_total)
+  5166	        active_exec["invalidation_open_count"] = int(open_count)
+  5167	
+  5168	        if ok:
+  5169	            exec_state.setdefault("closed", []).append({
+  5170	                **active_exec,
+  5171	                "closed_reason": invalidation_reason,
+  5172	                "closed_utc": utc(),
+  5173	                "close_info": close_info,
+  5174	            })
+  5175	            exec_state.setdefault("active", {}).pop(asset, None)
+  5176	
+  5177	            reset_cycle_idle(asset, invalidation_reason)
+  5178	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5179	
+  5180	            print(
+  5181	                f"{asset:10s} | BASKET_INVALIDATION_CLOSE_OK | 1-3 | {direction:4s} | "
+  5182	                f"--         | {market_status:9s} | pnl={pnl_total:.4f} reason={invalidation_reason}"
+  5183	            )
+  5184	
+  5185	            try:
+  5186	                event({
+  5187	                    "event": "V24_OPEN_BASKET_INVALIDATION_CLOSE_OK",
+  5188	                    "asset": asset,
+  5189	                    "cycle_id": active_exec.get("cycle_id"),
+  5190	                    "direction": direction,
+  5191	                    "pnl_total": float(pnl_total),
+  5192	                    "open_count": int(open_count),
+  5193	                    "reason": invalidation_reason,
+  5194	                    "close_info": close_info,
+  5195	                })
+  5196	            except Exception:
+  5197	                pass
+  5198	
+  5199	            return True, positions_after
+  5200	
+  5201	        print(
+  5202	            f"{asset:10s} | BASKET_INVALIDATION_CLOSE_FAIL | 1-3 | {direction:4s} | "
+  5203	            f"--         | {market_status:9s} | pnl={pnl_total:.4f} reason={invalidation_reason}"
+  5204	        )
+  5205	
+  5206	        exec_state.setdefault("active", {})[asset] = active_exec
+  5207	        B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5208	        return True, positions
+  5209	
+  5210	    # 5. TP panier global.
+  5211	    tp_safety_margin = v24_tp_safety_margin_eur()
+  5212	
+  5213	    if (
+  5214	        open_count > 0
+  5215	        and target is not None
+  5216	        and tp_broker_ready
+  5217	        and float(tp_decision_pnl) >= (target + tp_safety_margin)
+  5218	    ):
+  5219	        ok, close_info, positions_after = v24_close_basket_secure(
+  5220	            headers=headers,
+  5221	            asset=asset,
+  5222	            basket_exec=active_exec,
+  5223	            reason="V24_BASKET_GLOBAL_TP",
+  5224	        )
+  5225	
+  5226	        if ok:
+  5227	            # TP atteint : on ferme les positions puis on nettoie aussi
+  5228	            # les LIMIT restants du panier côté broker.
+  5229	            try:
+  5230	                tp_pending_cancel_results = v24_cancel_broker_pending_for_asset(
+  5231	                    headers=headers,
+  5232	                    asset=asset,
+  5233	                    direction=direction,
+  5234	                    reason="V24_BASKET_GLOBAL_TP_CANCEL_REMAINING_PENDING",
+  5235	                )
+  5236	                active_exec["tp_pending_cancel_results"] = tp_pending_cancel_results
+  5237	            except Exception as e:
+  5238	                active_exec["tp_pending_cancel_error"] = str(e)
+  5239	
+  5240	            exec_state.setdefault("closed", []).append({
+  5241	                **active_exec,
+  5242	                "closed_reason": "V24_BASKET_GLOBAL_TP",
+  5243	                "closed_utc": utc(),
+  5244	                "close_info": close_info,
+  5245	            })
+  5246	            exec_state.setdefault("active", {}).pop(asset, None)
+  5247	
+  5248	            reset_cycle_idle(asset, "V24_BASKET_GLOBAL_TP")
+  5249	
+  5250	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5251	
+  5252	            print(
+  5253	                f"{asset:10s} | BASKET_TP_OK | 1-3 | {direction:4s} | "
+  5254	                f"--         | {market_status:9s} | pnl={float(tp_decision_pnl):.4f} target={target:.4f} "
+  5255	                f"internal={pnl_total:.4f} source=BROKER_POSITION_UPL"
+  5256	            )
+  5257	
+  5258	            return True, positions_after
+  5259	
+  5260	        # Si le TP est atteint mais que la fermeture échoue,
+  5261	        # on garde le panier actif, mais on annule les pending restants
+  5262	        # pour éviter d'ajouter L2/L3 trop tard.
+  5263	        try:
+  5264	            tp_fail_cancel_results = v24_cancel_broker_pending_for_asset(
+  5265	                headers=headers,
+  5266	                asset=asset,
+  5267	                direction=direction,
+  5268	                reason="V24_BASKET_TP_FAIL_CANCEL_PENDING_TO_FREE_MARGIN",
+  5269	            )
+  5270	            active_exec["tp_fail_pending_cancel_results"] = tp_fail_cancel_results
+  5271	        except Exception as e:
+  5272	            active_exec["tp_fail_pending_cancel_error"] = str(e)
+  5273	
+  5274	        active_exec["last_tp_fail_utc"] = utc()
+  5275	        active_exec["last_tp_fail_pnl_eur"] = float(pnl_total)
+  5276	        active_exec["last_tp_fail_target_eur"] = float(target)
+  5277	
+  5278	        exec_state.setdefault("active", {})[asset] = active_exec
+  5279	
+  5280	        print(
+  5281	            f"{asset:10s} | BASKET_TP_FAIL | 1-3 | {direction:4s} | "
+  5282	            f"--         | {market_status:9s} | pnl={pnl_total:.4f} target={target:.4f}"
+  5283	        )
+  5284	        B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5285	        return True, positions
+  5286	
+  5287	    # 5. Blocage TP si le PnL interne dit TP mais que le broker ne confirme pas.
+  5288	    if open_count > 0 and target is not None and pnl_total >= (target + tp_safety_margin):
+  5289	        if not tp_broker_ready:
+  5290	            print(
+  5291	                f"{asset:10s} | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | {direction:4s} | "
+  5292	                f"--         | {market_status:9s} | internal={pnl_total:.4f} "
+  5293	                f"broker_upl=None target={target:.4f}"
+  5294	            )
+  5295	        elif float(tp_decision_pnl) < (target + tp_safety_margin):
+  5296	            print(
+  5297	                f"{asset:10s} | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | {direction:4s} | "
+  5298	                f"--         | {market_status:9s} | internal={pnl_total:.4f} "
+  5299	                f"broker_upl={float(tp_decision_pnl):.4f} target={target:.4f}"
+  5300	            )
+  5301	
+  5302	    # 5. Maintien panier.
+  5303	    pending_count = len([
+  5304	        rec for rec in levels.values()
+  5305	        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+  5306	    ])
+  5307	
+  5308	    active_exec["last_pending_count"] = int(pending_count)
+  5309	    active_exec["last_open_count"] = int(open_count)
+  5310	    active_exec["last_basket_age_sec"] = float(v24_age_sec_from_iso(active_exec.get("created_utc")))
+
+===== CODE PENDING / PARTIAL CANCEL — L2/L3 RESTANTS =====
+  5460	    # V24.1 SCALP ACTIVE — panier partiel :
+  5461	    # une position est ouverte, mais L2/L3 restent en attente.
+  5462	    # Ces pending restants ne doivent pas traîner trop longtemps.
+  5463	    if open_count > 0 and pending_count > 0:
+  5464	        import os
+  5465	        age_sec = v24_age_sec_from_iso(active_exec.get("created_utc"))
+  5466	        try:
+  5467	            partial_max_age = max(
+  5468	                10.0,
+  5469	                float(os.getenv("PARTIAL_BASKET_PENDING_MAX_AGE_SEC", "90"))
+  5470	            )
+  5471	        except Exception:
+  5472	            partial_max_age = 90.0
+  5473	
+  5474	        if age_sec >= partial_max_age:
+  5475	            reason = "V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL"
+  5476	
+  5477	            cancel_results = v24_cancel_all_pending_limits(
+  5478	                headers=headers,
+  5479	                asset=asset,
+  5480	                levels=levels,
+  5481	                reason=reason,
+  5482	            )
+  5483	
+  5484	            try:
+  5485	                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+  5486	                    headers=headers,
+  5487	                    asset=asset,
+  5488	                    direction=direction,
+  5489	                    reason=reason + "_BROKER_SWEEP",
+  5490	                )
+  5491	            except Exception as e:
+  5492	                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+  5493	
+  5494	            active_exec["partial_pending_cancel_results"] = cancel_results
+  5495	            active_exec["partial_pending_broker_cleanup_results"] = broker_cleanup_results
+  5496	            active_exec["partial_pending_cancel_utc"] = utc()
+  5497	            active_exec["partial_pending_cancel_reason"] = reason
+  5498	            active_exec["last_basket_age_sec"] = float(age_sec)
+  5499	
+  5500	            exec_state.setdefault("active", {})[asset] = active_exec
+  5501	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5502	
+  5503	            print(
+  5504	                f"{asset:10s} | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | {direction:4s} | "
+  5505	                f"--         | {market_status:9s} | "
+  5506	                f"open={open_count} pending={pending_count} age={age_sec:.1f}s "
+  5507	                f"max={partial_max_age:.1f}s reason={reason}"
+  5508	            )
+  5509	
+  5510	            return True, positions
+  5511	
+  5512	    # V24.1 — panier vide localement.
+  5513	    # Sécurité critique : avant de supprimer EXEC_STATE, on vérifie le broker.
+  5514	    if open_count <= 0 and pending_count <= 0:
+  5515	        broker_positions_left = v24_broker_positions_for_asset_from_list(
+  5516	            positions=positions,
+  5517	            asset=asset,
+  5518	            direction=None,
+  5519	        )
+  5520	
+  5521	        broker_pending_left, broker_pending_status, broker_pending_raw = v24_broker_pending_orders_for_asset(
+  5522	            headers=headers,
+  5523	            asset=asset,
+  5524	            direction=direction,
+  5525	        )
+  5526	
+  5527	        if broker_positions_left or broker_pending_left:
+  5528	            reason = "V24_BASKET_EMPTY_RESET_BLOCKED_BROKER_NOT_EMPTY"
+  5529	
+  5530	            cleanup_results = []
+  5531	            if broker_pending_left:
+  5532	                cleanup_results = v24_cancel_broker_pending_for_asset(
+  5533	                    headers=headers,
+  5534	                    asset=asset,
+  5535	                    direction=direction,
+  5536	                    reason="V24_ORPHAN_WORKING_ORDER_CLEANUP_BEFORE_RESET",
+  5537	                )
+  5538	
+  5539	            active_exec["empty_reset_blocked_reason"] = reason
+  5540	            active_exec["empty_reset_blocked_utc"] = utc()
+  5541	            active_exec["broker_positions_left_count"] = len(broker_positions_left)
+  5542	            active_exec["broker_pending_left_count"] = len(broker_pending_left)
+  5543	            active_exec["orphan_pending_cleanup_results"] = cleanup_results
+  5544	
+  5545	            exec_state.setdefault("active", {})[asset] = active_exec
+  5546	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5547	
+  5548	            print(
+  5549	                f"{asset:10s} | BASKET_EMPTY_RESET_BLOCKED | 1-3 | {direction:4s} | "
+  5550	                f"--         | {market_status:9s} | "
+  5551	                f"broker_positions={len(broker_positions_left)} "
+  5552	                f"broker_pending={len(broker_pending_left)} "
+  5553	                f"cleanup={len(cleanup_results)}"
+  5554	            )
+  5555	
+  5556	            return True, positions
+  5557	
+  5558	        reason = "V24_BASKET_EMPTY_RESET"
+  5559	        exec_state.setdefault("cancelled", []).append({
+  5560	            **active_exec,
+  5561	            "cancelled_reason": reason,
+  5562	            "cancelled_utc": utc(),
+  5563	        })
+  5564	        exec_state.setdefault("active", {}).pop(asset, None)
+  5565	        reset_cycle_idle(asset, reason)
+  5566	        B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5567	
+  5568	        print(
+  5569	            f"{asset:10s} | BASKET_EMPTY_RESET | 1-3 | {direction:4s} | "
+  5570	            f"--         | {market_status:9s} | broker confirmé vide -> EXEC supprimé"
+  5571	        )
+  5572	        return True, positions
+  5573	
+  5574	    # V24.1 — panier raté : aucune jambe ouverte, ordres LIMIT encore en attente.
+  5575	    # Si le cycle moteur est repassé IDLE ou si le panier est trop vieux,
+  5576	    # on annule les LIMIT pour libérer la marge.
+  5577	    if open_count <= 0 and pending_count > 0:
+  5578	        age_sec = v24_age_sec_from_iso(active_exec.get("created_utc"))
+  5579	        max_age = v24_pending_basket_max_age_sec()
+  5580	        cycle_missing = bool(cycle.get("cycle_missing"))
+  5581	
+  5582	        if cycle_missing or age_sec >= max_age:
+  5583	            reason = "V24_PENDING_BASKET_SIGNAL_LOST_CANCEL" if cycle_missing else "V24_PENDING_BASKET_EXPIRED_CANCEL"
+  5584	
+  5585	            cancel_results = v24_cancel_all_pending_limits(
+  5586	                headers=headers,
+  5587	                asset=asset,
+  5588	                levels=levels,
+  5589	                reason=reason,
+  5590	            )
+  5591	
+  5592	            # Filet de sécurité broker : même si le matching local rate
+  5593	            # à cause d'un arrondi de taille, on annule aussi les vrais
+  5594	            # working orders encore présents côté Capital.com.
+  5595	            try:
+  5596	                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+  5597	                    headers=headers,
+  5598	                    asset=asset,
+  5599	                    direction=direction,
+  5600	                    reason=reason + "_BROKER_SWEEP",
+  5601	                )
+  5602	            except Exception as e:
+  5603	                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+  5604	
+  5605	            active_exec["cancel_results"] = cancel_results
+  5606	            active_exec["broker_cleanup_results"] = broker_cleanup_results
+  5607	            active_exec["cancelled_reason"] = reason
+  5608	            active_exec["cancelled_utc"] = utc()
+  5609	            active_exec["last_basket_age_sec"] = float(age_sec)
+  5610	
+  5611	            exec_state.setdefault("cancelled", []).append(active_exec)
+  5612	            exec_state.setdefault("active", {}).pop(asset, None)
+  5613	            reset_cycle_idle(asset, reason)
+  5614	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5615	
+  5616	            print(
+  5617	                f"{asset:10s} | BASKET_PENDING_CANCEL | 1-3 | {direction:4s} | "
+  5618	                f"--         | {market_status:9s} | "
+  5619	                f"open=0 pending={pending_count} age={age_sec:.1f}s max={max_age:.1f}s reason={reason}"
+  5620	            )
+  5621	            return True, positions
+  5622	
+  5623	    print(
+  5624	        f"{asset:10s} | BASKET_HOLD | 1-3 | {direction:4s} | "
+  5625	        f"--         | {market_status:9s} | "
+  5626	        f"open={open_count} pending={pending_count} pnl={pnl_total:.4f} target={target}"
+  5627	    )
+  5628	
+  5629	    event({
+  5630	        "event": "V24_BASKET_HOLD",
+  5631	        "asset": asset,
+  5632	        "cycle_id": cycle.get("cycle_id"),
+  5633	        "direction": direction,
+  5634	        "open_count": open_count,
+  5635	        "pending_count": pending_count,
+
+===== CODE LIMIT OPEN — REJET PARTIEL / BASKET_NEW =====
+  6200	                print(
+  6201	                    f"{asset:10s} | {reason} | 1-3 | {direction:4s} | "
+  6202	                    f"{size:<10.6f} | {market_status:9s} | {detail}"
+  6203	                )
+  6204	
+  6205	                event({
+  6206	                    "event": reason,
+  6207	                    "asset": asset,
+  6208	                    "cycle_id": cycle.get("cycle_id"),
+  6209	                    "direction": direction,
+  6210	                    "size": size,
+  6211	                    "storm_reasons": storm_reasons,
+  6212	                    "storm_snapshot": storm_snapshot,
+  6213	                })
+  6214	
+  6215	                exec_state.setdefault("rejected", []).append({
+  6216	                    "asset": asset,
+  6217	                    "cycle_id": cycle.get("cycle_id"),
+  6218	                    "level": level,
+  6219	                    "direction": direction,
+  6220	                    "size": size,
+  6221	                    "reason": reason,
+  6222	                    "detail": detail,
+  6223	                    "utc": utc(),
+  6224	                })
+  6225	
+  6226	                reset_cycle_idle(asset, reason)
+  6227	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  6228	                continue
+  6229	
+  6230	            margin_blocked, margin_reasons = v242_margin_guard_blocks_new_basket(margin_snapshot)
+  6231	            if margin_blocked:
+  6232	                reason = "BASKET_REJECT_MARGIN_GUARD"
+  6233	                detail = ",".join(margin_reasons) or "MARGIN_GUARD"
+  6234	
+  6235	                print(
+  6236	                    f"{asset:10s} | {reason} | 1-3 | {direction:4s} | "
+  6237	                    f"{size:<10.6f} | {market_status:9s} | "
+  6238	                    f"{detail} margin={margin_snapshot.get('margin_cfd_eur')} "
+  6239	                    f"available={margin_snapshot.get('available_to_trade_eur')}"
+  6240	                )
+  6241	
+  6242	                event({
+  6243	                    "event": reason,
+  6244	                    "asset": asset,
+  6245	                    "cycle_id": cycle.get("cycle_id"),
+  6246	                    "direction": direction,
+  6247	                    "size": size,
+  6248	                    "margin_snapshot": margin_snapshot,
+  6249	                    "reasons": margin_reasons,
+  6250	                })
+  6251	
+  6252	                exec_state.setdefault("rejected", []).append({
+  6253	                    "asset": asset,
+  6254	                    "cycle_id": cycle.get("cycle_id"),
+  6255	                    "level": level,
+  6256	                    "direction": direction,
+  6257	                    "size": size,
+  6258	                    "reason": reason,
+  6259	                    "detail": detail,
+  6260	                    "margin_snapshot": margin_snapshot,
+  6261	                    "utc": utc(),
+  6262	                })
+  6263	
+  6264	                reset_cycle_idle(asset, reason)
+  6265	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  6266	                continue
+  6267	
+  6268	            ok, record = v24_open_basket_limits_secure(
+  6269	
+  6270	                headers=headers,
+  6271	
+  6272	                asset=asset,
+  6273	
+  6274	                cycle=cycle,
+  6275	
+  6276	                market_status=market_status,
+  6277	
+  6278	            )
+  6279	
+  6280	
+  6281	            if ok:
+  6282	
+  6283	                exec_state.setdefault("active", {})[asset] = record
+  6284	
+  6285	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  6286	
+  6287	            else:
+  6288	
+  6289	                exec_state.setdefault("rejected", []).append({
+  6290	
+  6291	                    "asset": asset,
+  6292	
+  6293	                    "cycle_id": cycle.get("cycle_id"),
+  6294	
+  6295	                    "level": level,
+  6296	
+  6297	                    "direction": direction,
+  6298	
+  6299	                    "size": size,
+  6300	
+  6301	                    "reason": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+  6302	
+  6303	                    "record": record,
+  6304	
+  6305	                    "utc": utc(),
+  6306	
+  6307	                })
+  6308	
+  6309	                reset_cycle_idle(asset, "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT")
+  6310	
+  6311	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  6312	
+  6313	
+  6314	            continue
+  6315	
+  6316	            if ok:
+  6317	                exec_state.setdefault("active", {})[asset] = record
+  6318	
+  6319	                # Synchronisation du cycle moteur avec le vrai prix d'entrée broker.
+  6320	                # Après ouverture confirmée, le PnL du moteur doit utiliser le level réel Capital.com.
+  6321	                broker_entry_price = record.get("brokerEntryPrice")
+  6322	                if broker_entry_price is not None:
+  6323	                    try:
+  6324	                        previous_entry_price = cycle.get("entry_price")
+  6325	                        cycle["entry_price_theoretical"] = previous_entry_price
+
+===== EVENTS L1/L2/L3 + TP DU LOG =====
+1673:UK100      | LIMIT_REQUEST | 1   | BUY  | 0.120000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.12, "guaranteedStop": true, "stopDistance": 80.0, "type": "LIMIT", "level": 10348.9}
+1678:UK100      | LIMIT_REJECT  | 1   | BUY  | 0.120000   | TRADEABLE | HTTP 400 | {'errorCode': 'error.validation.limit.price'}
+1680:UK100      | LIMIT_REQUEST | 2   | BUY  | 0.240000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.24, "guaranteedStop": true, "stopDistance": 72.0, "type": "LIMIT", "level": 10340.9}
+1682:UK100      | LIMIT_OK      | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_61d3...8bda limit=10340.9
+1684:UK100      | LIMIT_REQUEST | 3   | BUY  | 0.360000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.36, "guaranteedStop": true, "stopDistance": 64.0, "type": "LIMIT", "level": 10332.9}
+1686:UK100      | LIMIT_OK      | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_7a77...88ca limit=10332.9
+1870:EURUSD     | LIMIT_REQUEST | 1   | BUY  | 450.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 450.0, "guaranteedStop": true, "stopDistance": 0.25048, "type": "LIMIT", "level": 1.16889}
+1872:EURUSD     | LIMIT_OK      | 1   | BUY  | 450.000000 | TRADEABLE | ref=o_b812...611e limit=1.16889
+1874:EURUSD     | LIMIT_REQUEST | 2   | BUY  | 900.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 900.0, "guaranteedStop": true, "stopDistance": 0.25024, "type": "LIMIT", "level": 1.16865}
+1876:EURUSD     | LIMIT_OK      | 2   | BUY  | 900.000000 | TRADEABLE | ref=o_bbd8...def9 limit=1.16865
+1878:EURUSD     | LIMIT_REQUEST | 3   | BUY  | 1350.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 1350.0, "guaranteedStop": true, "stopDistance": 0.25, "type": "LIMIT", "level": 1.16841}
+1880:EURUSD     | LIMIT_OK      | 3   | BUY  | 1350.000000 | TRADEABLE | ref=o_5dfa...eea4 limit=1.16841
+1881:EURUSD     | BASKET_NEW  | 1-3 | BUY  | 450.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+2067:GBPUSD     | LIMIT_REQUEST | 1   | BUY  | 1200.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 1200.0, "guaranteedStop": true, "stopDistance": 0.10056, "type": "LIMIT", "level": 1.34971}
+2072:GBPUSD     | LIMIT_REJECT  | 1   | BUY  | 1200.000000 | TRADEABLE | HTTP 400 | {'errorCode': 'error.validation.limit.price'}
+2074:GBPUSD     | LIMIT_REQUEST | 2   | BUY  | 2400.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 2400.0, "guaranteedStop": true, "stopDistance": 0.10028, "type": "LIMIT", "level": 1.34943}
+2076:GBPUSD     | LIMIT_OK      | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_bc6c...77e2 limit=1.34943
+2078:GBPUSD     | LIMIT_REQUEST | 3   | BUY  | 3600.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.10001, "type": "LIMIT", "level": 1.34915}
+2080:GBPUSD     | LIMIT_OK      | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_bee2...a687 limit=1.34915
+2606:EURUSD     | BASKET_FILL | 2   | BUY  | 900.000000 | TRADEABLE | deal=000055...6e87 limit=1.16865 entry=1.16865
+2607:EURUSD     | PNL_AUDIT_LEG | L2   | BUY  | entry=1.168650 size=900.000000 bid=1.169430 ask=1.169500 exit=1.169430 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.6000 pnl_dist=0.6000000000000023 pnl_mod=0.6000000000000023 raw=0.7020000000000026 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.06 broker=position.upl=-0.06
+2608:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.6000 broker_upl=-0.0600 target=0.2
+2609:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.0600 tp_pnl=-0.0600 broker_count=1/1 internal=0.6000 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2610:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=0.6000 broker_upl=-0.0600 target=0.2000
+2611:EURUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 age=238.0s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+2792:DE40       | LIMIT_REQUEST | 1   | BUY  | 0.051000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.051, "guaranteedStop": true, "stopDistance": 120.0, "type": "LIMIT", "level": 24380.5}
+2797:DE40       | LIMIT_REJECT  | 1   | BUY  | 0.051000   | TRADEABLE | HTTP 400 | {'errorCode': 'error.validation.limit.price'}
+2799:DE40       | LIMIT_REQUEST | 2   | BUY  | 0.102000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.102, "guaranteedStop": true, "stopDistance": 108.0, "type": "LIMIT", "level": 24368.5}
+2801:DE40       | LIMIT_OK      | 2   | BUY  | 0.102000   | TRADEABLE | ref=o_7913...ae57 limit=24368.5
+2803:DE40       | LIMIT_REQUEST | 3   | BUY  | 0.153000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.153, "guaranteedStop": true, "stopDistance": 96.0, "type": "LIMIT", "level": 24356.5}
+2805:DE40       | LIMIT_OK      | 3   | BUY  | 0.153000   | TRADEABLE | ref=o_d1ea...a385 limit=24356.5
+2813:EURUSD     | PNL_AUDIT_LEG | L2   | BUY  | entry=1.168650 size=900.000000 bid=1.169430 ask=1.169500 exit=1.169430 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.6000 pnl_dist=0.6000000000000023 pnl_mod=0.6000000000000023 raw=0.7020000000000026 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.13 broker=position.upl=0.13
+2814:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.6000 broker_upl=0.1300 target=0.2
+2815:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.1300 tp_pnl=0.1300 broker_count=1/1 internal=0.6000 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2816:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=0.6000 broker_upl=0.1300 target=0.2000
+2995:EURUSD     | PNL_AUDIT_LEG | L2   | BUY  | entry=1.168650 size=900.000000 bid=1.169430 ask=1.169500 exit=1.169430 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.6000 pnl_dist=0.6000000000000023 pnl_mod=0.6000000000000023 raw=0.7020000000000026 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+2996:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.6000 broker_upl=none target=0.2
+2997:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=none tp_pnl=none broker_count=0/1 internal=0.6000 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+2998:EURUSD     | BROKER_EMPTY_RESET | 1-3 | BUY  | --         | TRADEABLE | local_open=1 broker_open=0 pending=0 last_broker_upl=none target=0.2000 broker_count=0/1 internal=0.6000 reason=V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET
+3592:ETHUSD     | LIMIT_REQUEST | 1   | SELL | 0.060000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.06, "guaranteedStop": true, "stopDistance": 40.0, "type": "LIMIT", "level": 2269.32}
+3597:ETHUSD     | LIMIT_OK      | 1   | SELL | 0.060000   | TRADEABLE | ref=o_5bfb...d4e9 limit=2269.32
+3599:ETHUSD     | LIMIT_REQUEST | 2   | SELL | 0.120000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.12, "guaranteedStop": true, "stopDistance": 36.0, "type": "LIMIT", "level": 2273.32}
+3604:ETHUSD     | LIMIT_OK      | 2   | SELL | 0.120000   | TRADEABLE | ref=o_2a22...4e7b limit=2273.32
+3606:ETHUSD     | LIMIT_REQUEST | 3   | SELL | 0.180000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.18, "guaranteedStop": true, "stopDistance": 32.0, "type": "LIMIT", "level": 2277.32}
+3611:ETHUSD     | LIMIT_OK      | 3   | SELL | 0.180000   | TRADEABLE | ref=o_0437...ad87 limit=2277.32
+3612:ETHUSD     | BASKET_NEW  | 1-3 | SELL | 0.060000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4480:ETHUSD     | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=357.0s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+
+===== FOCUS TP LADDER =====
+2608:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.6000 broker_upl=-0.0600 target=0.2
+2609:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.0600 tp_pnl=-0.0600 broker_count=1/1 internal=0.6000 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2610:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=0.6000 broker_upl=-0.0600 target=0.2000
+2814:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.6000 broker_upl=0.1300 target=0.2
+2815:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.1300 tp_pnl=0.1300 broker_count=1/1 internal=0.6000 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2816:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=0.6000 broker_upl=0.1300 target=0.2000
+2996:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.6000 broker_upl=none target=0.2
+2997:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=none tp_pnl=none broker_count=0/1 internal=0.6000 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+
+===== FOCUS FILLS / LIMITS =====
+1673:UK100      | LIMIT_REQUEST | 1   | BUY  | 0.120000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.12, "guaranteedStop": true, "stopDistance": 80.0, "type": "LIMIT", "level": 10348.9}
+1678:UK100      | LIMIT_REJECT  | 1   | BUY  | 0.120000   | TRADEABLE | HTTP 400 | {'errorCode': 'error.validation.limit.price'}
+1680:UK100      | LIMIT_REQUEST | 2   | BUY  | 0.240000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.24, "guaranteedStop": true, "stopDistance": 72.0, "type": "LIMIT", "level": 10340.9}
+1682:UK100      | LIMIT_OK      | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_61d3...8bda limit=10340.9
+1684:UK100      | LIMIT_REQUEST | 3   | BUY  | 0.360000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.36, "guaranteedStop": true, "stopDistance": 64.0, "type": "LIMIT", "level": 10332.9}
+1686:UK100      | LIMIT_OK      | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_7a77...88ca limit=10332.9
+1870:EURUSD     | LIMIT_REQUEST | 1   | BUY  | 450.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 450.0, "guaranteedStop": true, "stopDistance": 0.25048, "type": "LIMIT", "level": 1.16889}
+1872:EURUSD     | LIMIT_OK      | 1   | BUY  | 450.000000 | TRADEABLE | ref=o_b812...611e limit=1.16889
+1874:EURUSD     | LIMIT_REQUEST | 2   | BUY  | 900.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 900.0, "guaranteedStop": true, "stopDistance": 0.25024, "type": "LIMIT", "level": 1.16865}
+1876:EURUSD     | LIMIT_OK      | 2   | BUY  | 900.000000 | TRADEABLE | ref=o_bbd8...def9 limit=1.16865
+1878:EURUSD     | LIMIT_REQUEST | 3   | BUY  | 1350.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 1350.0, "guaranteedStop": true, "stopDistance": 0.25, "type": "LIMIT", "level": 1.16841}
+1880:EURUSD     | LIMIT_OK      | 3   | BUY  | 1350.000000 | TRADEABLE | ref=o_5dfa...eea4 limit=1.16841
+1881:EURUSD     | BASKET_NEW  | 1-3 | BUY  | 450.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+2067:GBPUSD     | LIMIT_REQUEST | 1   | BUY  | 1200.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 1200.0, "guaranteedStop": true, "stopDistance": 0.10056, "type": "LIMIT", "level": 1.34971}
+2072:GBPUSD     | LIMIT_REJECT  | 1   | BUY  | 1200.000000 | TRADEABLE | HTTP 400 | {'errorCode': 'error.validation.limit.price'}
+2074:GBPUSD     | LIMIT_REQUEST | 2   | BUY  | 2400.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 2400.0, "guaranteedStop": true, "stopDistance": 0.10028, "type": "LIMIT", "level": 1.34943}
+2076:GBPUSD     | LIMIT_OK      | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_bc6c...77e2 limit=1.34943
+2078:GBPUSD     | LIMIT_REQUEST | 3   | BUY  | 3600.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.10001, "type": "LIMIT", "level": 1.34915}
+2080:GBPUSD     | LIMIT_OK      | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_bee2...a687 limit=1.34915
+2606:EURUSD     | BASKET_FILL | 2   | BUY  | 900.000000 | TRADEABLE | deal=000055...6e87 limit=1.16865 entry=1.16865
+2611:EURUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 age=238.0s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+2792:DE40       | LIMIT_REQUEST | 1   | BUY  | 0.051000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.051, "guaranteedStop": true, "stopDistance": 120.0, "type": "LIMIT", "level": 24380.5}
+2797:DE40       | LIMIT_REJECT  | 1   | BUY  | 0.051000   | TRADEABLE | HTTP 400 | {'errorCode': 'error.validation.limit.price'}
+2799:DE40       | LIMIT_REQUEST | 2   | BUY  | 0.102000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.102, "guaranteedStop": true, "stopDistance": 108.0, "type": "LIMIT", "level": 24368.5}
+2801:DE40       | LIMIT_OK      | 2   | BUY  | 0.102000   | TRADEABLE | ref=o_7913...ae57 limit=24368.5
+2803:DE40       | LIMIT_REQUEST | 3   | BUY  | 0.153000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.153, "guaranteedStop": true, "stopDistance": 96.0, "type": "LIMIT", "level": 24356.5}
+2805:DE40       | LIMIT_OK      | 3   | BUY  | 0.153000   | TRADEABLE | ref=o_d1ea...a385 limit=24356.5
+3592:ETHUSD     | LIMIT_REQUEST | 1   | SELL | 0.060000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.06, "guaranteedStop": true, "stopDistance": 40.0, "type": "LIMIT", "level": 2269.32}
+3597:ETHUSD     | LIMIT_OK      | 1   | SELL | 0.060000   | TRADEABLE | ref=o_5bfb...d4e9 limit=2269.32
+3599:ETHUSD     | LIMIT_REQUEST | 2   | SELL | 0.120000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.12, "guaranteedStop": true, "stopDistance": 36.0, "type": "LIMIT", "level": 2273.32}
+3604:ETHUSD     | LIMIT_OK      | 2   | SELL | 0.120000   | TRADEABLE | ref=o_2a22...4e7b limit=2273.32
+3606:ETHUSD     | LIMIT_REQUEST | 3   | SELL | 0.180000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.18, "guaranteedStop": true, "stopDistance": 32.0, "type": "LIMIT", "level": 2277.32}
+3611:ETHUSD     | LIMIT_OK      | 3   | SELL | 0.180000   | TRADEABLE | ref=o_0437...ad87 limit=2277.32
+3612:ETHUSD     | BASKET_NEW  | 1-3 | SELL | 0.060000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4480:ETHUSD     | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=357.0s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+
+===== SANTE =====

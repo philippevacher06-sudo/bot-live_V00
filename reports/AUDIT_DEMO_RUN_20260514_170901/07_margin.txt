@@ -1,0 +1,200 @@
+149:2026-05-14 16:09:53,673 - INFO - BOT_PIVOT_02_ZONES v02.4 GLOBAL + LOCAL + PSYCHO
+178:SYNTHÈSE DES ZONES — v02.4 GLOBAL + LOCAL + PSYCHO
+557:MARGIN_GUARD | margin_cfd=1370.1399999999999 max=3100.0 available=2135.85 min_available=0.0 block=False reasons=
+558:STORM_GUARD | mode=LOCAL alerts=1 assets=GBPUSD systemic=False
+568:US100      | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=29693.100000 stopLevel≈29813.100000 stopDistance=120.000000 step=12.000000 spread=1.800000 minStop=0.100000
+572:US100      | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=29705.100000 stopLevel≈29813.100000 stopDistance=108.000000 step=12.000000 spread=1.800000 minStop=0.100000
+576:US100      | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=29717.100000 stopLevel≈29813.100000 stopDistance=96.000000 step=12.000000 spread=1.800000 minStop=0.100000
+589:GBPUSD     | BASKET_REJECT_STORM_GUARD | 1-3 | BUY  | 1200.000000 | TRADEABLE | FAST_RANGE:0.0009>=0.00084
+595:USDJPY     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=158.257000 stopLevel≈158.657000 stopDistance=0.400000 step=0.040000 spread=0.012000 minStop=0.100000
+602:USDJPY     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=158.297000 stopLevel≈158.657000 stopDistance=0.360000 step=0.040000 spread=0.012000 minStop=0.100000
+609:USDJPY     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=158.337000 stopLevel≈158.657000 stopDistance=0.320000 step=0.040000 spread=0.012000 minStop=0.100000
+633:BTCUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=81617.150000 stopLevel≈82097.150000 stopDistance=480.000000 step=40.000000 spread=50.000000 minStop=0.500000
+640:BTCUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=81657.150000 stopLevel≈82097.150000 stopDistance=440.000000 step=40.000000 spread=50.000000 minStop=0.500000
+649:BTCUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=81697.150000 stopLevel≈82097.150000 stopDistance=400.000000 step=40.000000 spread=50.000000 minStop=0.500000
+850:MARGIN_GUARD | margin_cfd=2381.77 max=3100.0 available=1124.85 min_available=0.0 block=False reasons=
+851:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+868:UK100      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=10338.500000 stopLevel≈10258.500000 stopDistance=80.000000 step=8.000000 spread=2.000000 minStop=0.100000
+872:UK100      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=10330.500000 stopLevel≈10258.500000 stopDistance=72.000000 step=8.000000 spread=2.000000 minStop=0.100000
+876:UK100      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=10322.500000 stopLevel≈10258.500000 stopDistance=64.000000 step=8.000000 spread=2.000000 minStop=0.100000
+887:GBPUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=1.346130 stopLevel≈1.245570 stopDistance=0.100570 step=0.000280 spread=0.000130 minStop=0.100000
+891:GBPUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=1.345850 stopLevel≈1.245570 stopDistance=0.100290 step=0.000280 spread=0.000130 minStop=0.100000
+895:GBPUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=1.345570 stopLevel≈1.245570 stopDistance=0.100010 step=0.000280 spread=0.000130 minStop=0.100000
+908:EURJPY     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=184.726000 stopLevel≈185.206000 stopDistance=0.481000 step=0.048000 spread=0.022000 minStop=0.100000
+915:EURJPY     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=184.774000 stopLevel≈185.206000 stopDistance=0.433000 step=0.048000 spread=0.022000 minStop=0.100000
+922:EURJPY     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=184.822000 stopLevel≈185.206000 stopDistance=0.385000 step=0.048000 spread=0.022000 minStop=0.100000
+1139:MARGIN_GUARD | margin_cfd=3317.62 max=3100.0 available=189.54 min_available=0.0 block=True reasons=MARGIN_CFD_TOO_HIGH
+1140:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1147:US30       | BASKET_REJECT_MARGIN_GUARD | 1-3 | BUY  | 0.024000   | TRADEABLE | MARGIN_CFD_TOO_HIGH margin=3317.62 available=189.54
+1175:SILVER     | BASKET_REJECT_MARGIN_GUARD | 1-3 | SELL | 15.000000  | TRADEABLE | MARGIN_CFD_TOO_HIGH margin=3317.62 available=189.54
+1176:OIL_CRUDE  | BASKET_REJECT_MARGIN_GUARD | 1-3 | BUY  | 4.000000   | TRADEABLE | MARGIN_CFD_TOO_HIGH margin=3317.62 available=189.54
+1366:MARGIN_GUARD | margin_cfd=2295.42 max=3100.0 available=1212.4 min_available=0.0 block=False reasons=
+1367:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1376:US500      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=7489.200000 stopLevel≈7449.200000 stopDistance=40.000000 step=4.000000 spread=0.400000 minStop=0.100000
+1380:US500      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=7485.200000 stopLevel≈7449.200000 stopDistance=36.000000 step=4.000000 spread=0.400000 minStop=0.100000
+1384:US500      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=7481.200000 stopLevel≈7449.200000 stopDistance=32.000000 step=4.000000 spread=0.400000 minStop=0.100000
+1405:EURUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=1.169150 stopLevel≈1.419630 stopDistance=0.250480 step=0.000240 spread=0.000070 minStop=0.250000
+1409:EURUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=1.169390 stopLevel≈1.419630 stopDistance=0.250240 step=0.000240 spread=0.000070 minStop=0.250000
+1413:EURUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=1.169630 stopLevel≈1.419630 stopDistance=0.250000 step=0.000240 spread=0.000070 minStop=0.250000
+1427:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=96.820000 stopLevel≈94.820000 stopDistance=2.000000 step=0.200000 spread=0.040000 minStop=1.500000
+1434:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=96.620000 stopLevel≈94.820000 stopDistance=1.800000 step=0.200000 spread=0.040000 minStop=1.500000
+1441:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=96.420000 stopLevel≈94.820000 stopDistance=1.600000 step=0.200000 spread=0.040000 minStop=1.500000
+1651:MARGIN_GUARD | margin_cfd=3336.25 max=3100.0 available=170.74 min_available=0.0 block=True reasons=MARGIN_CFD_TOO_HIGH
+1652:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1663:DE40       | BASKET_REJECT_MARGIN_GUARD | 1-3 | BUY  | 0.051000   | TRADEABLE | MARGIN_CFD_TOO_HIGH margin=3336.25 available=170.74
+1664:FR40       | BASKET_REJECT_MARGIN_GUARD | 1-3 | BUY  | 0.150000   | TRADEABLE | MARGIN_CFD_TOO_HIGH margin=3336.25 available=170.74
+1667:J225       | BASKET_REJECT_MARGIN_GUARD | 1-3 | SELL | 0.300000   | TRADEABLE | MARGIN_CFD_TOO_HIGH margin=3336.25 available=170.74
+1686:SILVER     | BASKET_REJECT_MARGIN_GUARD | 1-3 | SELL | 15.000000  | TRADEABLE | MARGIN_CFD_TOO_HIGH margin=3336.25 available=170.74
+1874:MARGIN_GUARD | margin_cfd=1221.42 max=3100.0 available=2287.22 min_available=0.0 block=False reasons=
+1875:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1888:UK100      | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=10391.500000 stopLevel≈10471.500000 stopDistance=80.000000 step=8.000000 spread=2.000000 minStop=0.100000
+1892:UK100      | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=10399.500000 stopLevel≈10471.500000 stopDistance=72.000000 step=8.000000 spread=2.000000 minStop=0.100000
+1896:UK100      | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=10407.500000 stopLevel≈10471.500000 stopDistance=64.000000 step=8.000000 spread=2.000000 minStop=0.100000
+1917:GOLD       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=4690.810000 stopLevel≈4730.810000 stopDistance=40.000000 step=4.000000 spread=0.500000 minStop=1.000000
+1926:GOLD       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=4694.810000 stopLevel≈4730.810000 stopDistance=36.000000 step=4.000000 spread=0.500000 minStop=1.000000
+1935:GOLD       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=4698.810000 stopLevel≈4730.810000 stopDistance=32.000000 step=4.000000 spread=0.500000 minStop=1.000000
+2129:MARGIN_GUARD | margin_cfd=1802.57 max=3100.0 available=1705.34 min_available=0.0 block=False reasons=
+2130:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2336:MARGIN_GUARD | margin_cfd=958.9700000000003 max=3100.0 available=2549.12 min_available=0.0 block=False reasons=
+2337:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2346:US500      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=7492.400000 stopLevel≈7452.400000 stopDistance=40.000000 step=4.000000 spread=0.400000 minStop=0.100000
+2350:US500      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=7488.400000 stopLevel≈7452.400000 stopDistance=36.000000 step=4.000000 spread=0.400000 minStop=0.100000
+2354:US500      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=7484.400000 stopLevel≈7452.400000 stopDistance=32.000000 step=4.000000 spread=0.400000 minStop=0.100000
+2571:MARGIN_GUARD | margin_cfd=1246.2199999999998 max=3100.0 available=2262.55 min_available=0.0 block=False reasons=
+2572:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2585:US100      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=29581.400000 stopLevel≈29461.400000 stopDistance=120.000000 step=12.000000 spread=1.800000 minStop=0.100000
+2589:US100      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=29569.400000 stopLevel≈29461.400000 stopDistance=108.000000 step=12.000000 spread=1.800000 minStop=0.100000
+2593:US100      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=29557.400000 stopLevel≈29461.400000 stopDistance=96.000000 step=12.000000 spread=1.800000 minStop=0.100000
+2612:EURUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=1.166830 stopLevel≈0.916350 stopDistance=0.250480 step=0.000240 spread=0.000070 minStop=0.250000
+2616:EURUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=1.166590 stopLevel≈0.916350 stopDistance=0.250240 step=0.000240 spread=0.000070 minStop=0.250000
+2620:EURUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=1.166350 stopLevel≈0.916350 stopDistance=0.250000 step=0.000240 spread=0.000070 minStop=0.250000
+2634:USDJPY     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=158.234000 stopLevel≈158.634000 stopDistance=0.400000 step=0.040000 spread=0.012000 minStop=0.100000
+2641:USDJPY     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=158.274000 stopLevel≈158.634000 stopDistance=0.360000 step=0.040000 spread=0.012000 minStop=0.100000
+2648:USDJPY     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=158.314000 stopLevel≈158.634000 stopDistance=0.320000 step=0.040000 spread=0.012000 minStop=0.100000
+2856:MARGIN_GUARD | margin_cfd=2106.31 max=3100.0 available=1403.0 min_available=0.0 block=False reasons=
+2857:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2871:US30       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=50016.300000 stopLevel≈49816.300000 stopDistance=200.000000 step=20.000000 spread=2.000000 minStop=0.100000
+2875:US30       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=49996.300000 stopLevel≈49816.300000 stopDistance=180.000000 step=20.000000 spread=2.000000 minStop=0.100000
+2879:US30       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=49976.300000 stopLevel≈49816.300000 stopDistance=160.000000 step=20.000000 spread=2.000000 minStop=0.100000
+2895:J225       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=62885.200000 stopLevel≈62485.200000 stopDistance=400.000000 step=40.000000 spread=10.000000 minStop=0.500000
+2902:J225       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=62845.200000 stopLevel≈62485.200000 stopDistance=360.000000 step=40.000000 spread=10.000000 minStop=0.500000
+2909:J225       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=62805.200000 stopLevel≈62485.200000 stopDistance=320.000000 step=40.000000 spread=10.000000 minStop=0.500000
+2934:GOLD       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=4674.990000 stopLevel≈4634.990000 stopDistance=40.000000 step=4.000000 spread=0.500000 minStop=1.000000
+2943:GOLD       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=4670.990000 stopLevel≈4634.990000 stopDistance=36.000000 step=4.000000 spread=0.500000 minStop=1.000000
+2952:GOLD       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=4666.990000 stopLevel≈4634.990000 stopDistance=32.000000 step=4.000000 spread=0.500000 minStop=1.000000
+3156:MARGIN_GUARD | margin_cfd=2139.96 max=3100.0 available=1369.83 min_available=0.0 block=False reasons=
+3157:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3171:DE40       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=24412.800000 stopLevel≈24292.800000 stopDistance=120.000000 step=12.000000 spread=1.500000 minStop=0.100000
+3175:DE40       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=24400.800000 stopLevel≈24292.800000 stopDistance=108.000000 step=12.000000 spread=1.500000 minStop=0.100000
+3179:DE40       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=24388.800000 stopLevel≈24292.800000 stopDistance=96.000000 step=12.000000 spread=1.500000 minStop=0.100000
+3200:EURJPY     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=184.584000 stopLevel≈184.104000 stopDistance=0.481000 step=0.048000 spread=0.022000 minStop=0.100000
+3207:EURJPY     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=184.536000 stopLevel≈184.104000 stopDistance=0.433000 step=0.048000 spread=0.022000 minStop=0.100000
+3214:EURJPY     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=184.488000 stopLevel≈184.104000 stopDistance=0.385000 step=0.048000 spread=0.022000 minStop=0.100000
+3233:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=97.480000 stopLevel≈99.480000 stopDistance=2.001000 step=0.200000 spread=0.040000 minStop=1.500000
+3240:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=97.680000 stopLevel≈99.480000 stopDistance=1.801000 step=0.200000 spread=0.040000 minStop=1.500000
+3247:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=97.880000 stopLevel≈99.480000 stopDistance=1.601000 step=0.200000 spread=0.040000 minStop=1.500000
+3441:MARGIN_GUARD | margin_cfd=2790.6600000000003 max=3100.0 available=719.39 min_available=0.0 block=False reasons=
+3442:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3659:MARGIN_GUARD | margin_cfd=1276.58 max=3100.0 available=2232.44 min_available=0.0 block=False reasons=
+3660:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3670:US100      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=29585.400000 stopLevel≈29465.400000 stopDistance=120.000000 step=12.000000 spread=1.800000 minStop=0.100000
+3674:US100      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=29573.400000 stopLevel≈29465.400000 stopDistance=108.000000 step=12.000000 spread=1.800000 minStop=0.100000
+3678:US100      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=29561.400000 stopLevel≈29465.400000 stopDistance=96.000000 step=12.000000 spread=1.800000 minStop=0.100000
+3698:UK100      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=10350.900000 stopLevel≈10270.900000 stopDistance=80.000000 step=8.000000 spread=2.000000 minStop=0.100000
+3702:UK100      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=10342.900000 stopLevel≈10270.900000 stopDistance=72.000000 step=8.000000 spread=2.000000 minStop=0.100000
+3706:UK100      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=10334.900000 stopLevel≈10270.900000 stopDistance=64.000000 step=8.000000 spread=2.000000 minStop=0.100000
+3739:ETHUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=2275.400000 stopLevel≈2235.400000 stopDistance=40.000000 step=4.000000 spread=1.750000 minStop=0.500000
+3746:ETHUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=2271.400000 stopLevel≈2235.400000 stopDistance=36.000000 step=4.000000 spread=1.750000 minStop=0.500000
+3753:ETHUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=2267.400000 stopLevel≈2235.400000 stopDistance=32.000000 step=4.000000 spread=1.750000 minStop=0.500000
+3941:MARGIN_GUARD | margin_cfd=1481.8100000000002 max=3100.0 available=2027.47 min_available=0.0 block=False reasons=
+3942:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3951:US500      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=7495.700000 stopLevel≈7455.700000 stopDistance=40.000000 step=4.000000 spread=0.400000 minStop=0.100000
+3955:US500      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=7491.700000 stopLevel≈7455.700000 stopDistance=36.000000 step=4.000000 spread=0.400000 minStop=0.100000
+3959:US500      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=7487.700000 stopLevel≈7455.700000 stopDistance=32.000000 step=4.000000 spread=0.400000 minStop=0.100000
+3973:US30       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=50024.300000 stopLevel≈49824.300000 stopDistance=200.000000 step=20.000000 spread=2.000000 minStop=0.100000
+3977:US30       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=50004.300000 stopLevel≈49824.300000 stopDistance=180.000000 step=20.000000 spread=2.000000 minStop=0.100000
+3981:US30       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=49984.300000 stopLevel≈49824.300000 stopDistance=160.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4020:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=97.450000 stopLevel≈99.450000 stopDistance=2.001000 step=0.200000 spread=0.040000 minStop=1.500000
+4027:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=97.650000 stopLevel≈99.450000 stopDistance=1.801000 step=0.200000 spread=0.040000 minStop=1.500000
+4034:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=97.850000 stopLevel≈99.450000 stopDistance=1.601000 step=0.200000 spread=0.040000 minStop=1.500000
+4236:MARGIN_GUARD | margin_cfd=2280.15 max=3100.0 available=1229.56 min_available=0.0 block=False reasons=
+4237:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4465:MARGIN_GUARD | margin_cfd=2280.8599999999997 max=3100.0 available=1229.78 min_available=0.0 block=False reasons=
+4466:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4491:USDJPY     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=158.081000 stopLevel≈157.681000 stopDistance=0.400000 step=0.040000 spread=0.012000 minStop=0.100000
+4498:USDJPY     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=158.041000 stopLevel≈157.681000 stopDistance=0.360000 step=0.040000 spread=0.012000 minStop=0.100000
+4505:USDJPY     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=158.001000 stopLevel≈157.681000 stopDistance=0.320000 step=0.040000 spread=0.012000 minStop=0.100000
+4692:MARGIN_GUARD | margin_cfd=1112.0 max=3100.0 available=2398.99 min_available=0.0 block=False reasons=
+4693:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4703:US100      | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=29674.300000 stopLevel≈29794.300000 stopDistance=120.000000 step=12.000000 spread=1.800000 minStop=0.100000
+4707:US100      | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=29686.300000 stopLevel≈29794.300000 stopDistance=108.000000 step=12.000000 spread=1.800000 minStop=0.100000
+4711:US100      | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=29698.300000 stopLevel≈29794.300000 stopDistance=96.000000 step=12.000000 spread=1.800000 minStop=0.100000
+4741:BTCUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=81746.210000 stopLevel≈82226.210000 stopDistance=480.000000 step=40.000000 spread=50.000000 minStop=0.500000
+4748:BTCUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=81786.210000 stopLevel≈82226.210000 stopDistance=440.000000 step=40.000000 spread=50.000000 minStop=0.500000
+4757:BTCUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=81826.210000 stopLevel≈82226.210000 stopDistance=400.000000 step=40.000000 spread=50.000000 minStop=0.500000
+4940:MARGIN_GUARD | margin_cfd=1016.1800000000003 max=3100.0 available=2494.74 min_available=0.0 block=False reasons=
+4941:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4955:US30       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=50019.600000 stopLevel≈49819.600000 stopDistance=200.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4959:US30       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=49999.600000 stopLevel≈49819.600000 stopDistance=180.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4963:US30       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=49979.600000 stopLevel≈49819.600000 stopDistance=160.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4972:DE40       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=24391.300000 stopLevel≈24271.300000 stopDistance=120.000000 step=12.000000 spread=1.500000 minStop=0.100000
+4976:DE40       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=24379.300000 stopLevel≈24271.300000 stopDistance=108.000000 step=12.000000 spread=1.500000 minStop=0.100000
+4980:DE40       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=24367.300000 stopLevel≈24271.300000 stopDistance=96.000000 step=12.000000 spread=1.500000 minStop=0.100000
+4993:GBPUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=1.342970 stopLevel≈1.242410 stopDistance=0.100560 step=0.000280 spread=0.000130 minStop=0.100000
+4997:GBPUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=1.342690 stopLevel≈1.242410 stopDistance=0.100280 step=0.000280 spread=0.000130 minStop=0.100000
+5001:GBPUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=1.342410 stopLevel≈1.242410 stopDistance=0.100010 step=0.000280 spread=0.000130 minStop=0.100000
+5021:ETHUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=2317.300000 stopLevel≈2357.300000 stopDistance=40.000000 step=4.000000 spread=1.750000 minStop=0.500000
+5028:ETHUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=2321.300000 stopLevel≈2357.300000 stopDistance=36.000000 step=4.000000 spread=1.750000 minStop=0.500000
+5035:ETHUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=2325.300000 stopLevel≈2357.300000 stopDistance=32.000000 step=4.000000 spread=1.750000 minStop=0.500000
+5226:MARGIN_GUARD | margin_cfd=2679.03 max=3100.0 available=832.08 min_available=0.0 block=False reasons=
+5227:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+5235:US500      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=7496.800000 stopLevel≈7456.800000 stopDistance=40.000000 step=4.000000 spread=0.400000 minStop=0.100000
+5239:US500      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=7492.800000 stopLevel≈7456.800000 stopDistance=36.000000 step=4.000000 spread=0.400000 minStop=0.100000
+5243:US500      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=7488.800000 stopLevel≈7456.800000 stopDistance=32.000000 step=4.000000 spread=0.400000 minStop=0.100000
+5278:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=96.820000 stopLevel≈94.820000 stopDistance=2.000000 step=0.200000 spread=0.040000 minStop=1.500000
+5285:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=96.620000 stopLevel≈94.820000 stopDistance=1.800000 step=0.200000 spread=0.040000 minStop=1.500000
+5292:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=96.420000 stopLevel≈94.820000 stopDistance=1.600000 step=0.200000 spread=0.040000 minStop=1.500000
+5487:MARGIN_GUARD | margin_cfd=2481.1499999999996 max=3100.0 available=1030.14 min_available=0.0 block=False reasons=
+5488:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+5513:GOLD       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=4691.000000 stopLevel≈4731.000000 stopDistance=40.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5522:GOLD       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=4695.000000 stopLevel≈4731.000000 stopDistance=36.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5531:GOLD       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=4699.000000 stopLevel≈4731.000000 stopDistance=32.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5723:MARGIN_GUARD | margin_cfd=2106.6 max=3100.0 available=1404.67 min_available=0.0 block=False reasons=
+5724:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+5923:MARGIN_GUARD | margin_cfd=531.98 max=3100.0 available=2979.23 min_available=0.0 block=False reasons=
+5924:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+5932:US500      | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=7496.900000 stopLevel≈7456.900000 stopDistance=40.000000 step=4.000000 spread=0.400000 minStop=0.100000
+5936:US500      | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=7492.900000 stopLevel≈7456.900000 stopDistance=36.000000 step=4.000000 spread=0.400000 minStop=0.100000
+5940:US500      | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=7488.900000 stopLevel≈7456.900000 stopDistance=32.000000 step=4.000000 spread=0.400000 minStop=0.100000
+5950:US30       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=50017.800000 stopLevel≈49817.800000 stopDistance=200.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5954:US30       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=49997.800000 stopLevel≈49817.800000 stopDistance=180.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5958:US30       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=49977.800000 stopLevel≈49817.800000 stopDistance=160.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5977:EURUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=1.167940 stopLevel≈1.418420 stopDistance=0.250480 step=0.000240 spread=0.000070 minStop=0.250000
+5981:EURUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=1.168180 stopLevel≈1.418420 stopDistance=0.250240 step=0.000240 spread=0.000070 minStop=0.250000
+5985:EURUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=1.168420 stopLevel≈1.418420 stopDistance=0.250000 step=0.000240 spread=0.000070 minStop=0.250000
+6001:USDJPY     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=158.078000 stopLevel≈157.678000 stopDistance=0.400000 step=0.040000 spread=0.012000 minStop=0.100000
+6008:USDJPY     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=158.038000 stopLevel≈157.678000 stopDistance=0.360000 step=0.040000 spread=0.012000 minStop=0.100000
+6015:USDJPY     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=157.998000 stopLevel≈157.678000 stopDistance=0.320000 step=0.040000 spread=0.012000 minStop=0.100000
+6039:ETHUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=2280.000000 stopLevel≈2240.000000 stopDistance=40.000000 step=4.000000 spread=1.750000 minStop=0.500000
+6046:ETHUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=2276.000000 stopLevel≈2240.000000 stopDistance=36.000000 step=4.000000 spread=1.750000 minStop=0.500000
+6053:ETHUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=2272.000000 stopLevel≈2240.000000 stopDistance=32.000000 step=4.000000 spread=1.750000 minStop=0.500000
+6243:MARGIN_GUARD | margin_cfd=2146.7400000000002 max=3100.0 available=1363.29 min_available=0.0 block=False reasons=
+6244:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+6291:EURJPY     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=184.590000 stopLevel≈184.110000 stopDistance=0.481000 step=0.048000 spread=0.022000 minStop=0.100000
+6298:EURJPY     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=184.542000 stopLevel≈184.110000 stopDistance=0.433000 step=0.048000 spread=0.022000 minStop=0.100000
+6305:EURJPY     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=184.494000 stopLevel≈184.110000 stopDistance=0.385000 step=0.048000 spread=0.022000 minStop=0.100000
+6319:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=96.840000 stopLevel≈94.840000 stopDistance=2.001000 step=0.200000 spread=0.040000 minStop=1.500000
+6326:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=96.640000 stopLevel≈94.840000 stopDistance=1.801000 step=0.200000 spread=0.040000 minStop=1.500000
+6333:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=96.440000 stopLevel≈94.840000 stopDistance=1.601000 step=0.200000 spread=0.040000 minStop=1.500000
+6537:MARGIN_GUARD | margin_cfd=2379.8 max=3100.0 available=1131.07 min_available=0.0 block=False reasons=
+6538:STORM_GUARD | mode=LOCAL alerts=1 assets=BTCUSD systemic=False
+6579:GOLD       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=4689.700000 stopLevel≈4729.700000 stopDistance=40.000000 step=4.000000 spread=0.500000 minStop=1.000000
+6588:GOLD       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=4693.700000 stopLevel≈4729.700000 stopDistance=36.000000 step=4.000000 spread=0.500000 minStop=1.000000
+6597:GOLD       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=4697.700000 stopLevel≈4729.700000 stopDistance=32.000000 step=4.000000 spread=0.500000 minStop=1.000000
+6614:BTCUSD     | BASKET_REJECT_STORM_GUARD | 1-3 | SELL | 0.001800   | TRADEABLE | FAST_MOVE:117.05>=100
+6803:MARGIN_GUARD | margin_cfd=2504.2 max=3100.0 available=1008.63 min_available=0.0 block=False reasons=
+6804:STORM_GUARD | mode=LOCAL alerts=1 assets=BTCUSD systemic=False
+6817:US100      | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=29672.600000 stopLevel≈29792.600000 stopDistance=120.000000 step=12.000000 spread=1.800000 minStop=0.100000
+6821:US100      | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=29684.600000 stopLevel≈29792.600000 stopDistance=108.000000 step=12.000000 spread=1.800000 minStop=0.100000
+6825:US100      | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=29696.600000 stopLevel≈29792.600000 stopDistance=96.000000 step=12.000000 spread=1.800000 minStop=0.100000
+6854:BTCUSD     | BASKET_REJECT_STORM_GUARD | 1-3 | SELL | 0.001800   | TRADEABLE | FAST_RANGE:158.25>=120

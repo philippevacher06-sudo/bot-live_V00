@@ -1,0 +1,93 @@
+{
+  "assets": {
+    "US30": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "cycle_id": "9a82d654-16c",
+        "asset": "US30",
+        "direction": "BUY",
+        "level": 2,
+        "status": "OPEN",
+        "entry_price": 49653.7,
+        "entry_utc": "2026-05-11T19:51:27+00:00",
+        "entry_ts": 1778529087.588671,
+        "size": 0.02,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "levels_done": [
+          {
+            "level": 1,
+            "direction": "BUY",
+            "entry_price": 49650.9,
+            "exit_price": 49653.7,
+            "size": 0.01,
+            "tp_eur": 0.1,
+            "pnl_eur": 0.027999999999956345,
+            "entry_utc": "2026-05-11T19:45:54+00:00",
+            "exit_utc": "2026-05-11T19:51:27+00:00",
+            "close_reason": "TIMEOUT_120S_SIM"
+          }
+        ],
+        "source": "05C3_TIMEOUT_SIM"
+      }
+    },
+    "DE40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_completed_cycle": {
+        "cycle_id": "9425ca6e-760",
+        "asset": "DE40",
+        "direction": "BUY",
+        "result": "TP_SUCCESS",
+        "final_level": 1,
+        "completed_utc": "2026-05-11T19:50:10+00:00",
+        "levels_done": [
+          {
+            "level": 1,
+            "direction": "BUY",
+            "entry_price": 24244.45,
+            "exit_price": 24258.95,
+            "size": 0.01,
+            "tp_eur": 0.1,
+            "pnl_eur": 0.145,
+            "entry_utc": "2026-05-11T19:45:54+00:00",
+            "exit_utc": "2026-05-11T19:50:10+00:00",
+            "close_reason": "TP_HIT_SIM"
+          }
+        ]
+      }
+    },
+    "OIL_CRUDE": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "cycle_id": "85757aaa-d88",
+        "asset": "OIL_CRUDE",
+        "direction": "SELL",
+        "level": 2,
+        "status": "OPEN",
+        "entry_price": 95.649,
+        "entry_utc": "2026-05-11T19:51:27+00:00",
+        "entry_ts": 1778529087.588965,
+        "size": 0.02,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "levels_done": [
+          {
+            "level": 1,
+            "direction": "SELL",
+            "entry_price": 95.67599999999999,
+            "exit_price": 95.649,
+            "size": 0.01,
+            "tp_eur": 0.1,
+            "pnl_eur": 0.0002699999999998681,
+            "entry_utc": "2026-05-11T19:45:54+00:00",
+            "exit_utc": "2026-05-11T19:51:27+00:00",
+            "close_reason": "TIMEOUT_120S_SIM"
+          }
+        ],
+        "source": "05C3_TIMEOUT_SIM"
+      }
+    }
+  },
+  "updated_utc": "2026-05-11T19:53:43+00:00"
+}

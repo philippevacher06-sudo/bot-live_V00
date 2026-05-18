@@ -1,0 +1,87 @@
+{
+  "instrument": {
+    "epic": "FR40",
+    "symbol": "FR40",
+    "expiry": "-",
+    "name": "France 40",
+    "lotSize": 1,
+    "type": "INDICES",
+    "guaranteedStopAllowed": true,
+    "streamingPricesAvailable": true,
+    "currency": "EUR",
+    "marginFactor": 100,
+    "marginFactorUnit": "PERCENTAGE",
+    "openingHours": {
+      "mon": [
+        "00:15 - 20:00"
+      ],
+      "tue": [
+        "00:15 - 20:00"
+      ],
+      "wed": [
+        "00:15 - 20:00"
+      ],
+      "thu": [
+        "00:15 - 20:00"
+      ],
+      "fri": [
+        "00:15 - 20:00"
+      ],
+      "sat": [],
+      "sun": [],
+      "zone": "UTC"
+    },
+    "country": "France",
+    "overnightFee": {
+      "longRate": -0.0165989,
+      "shortRate": -0.0056233,
+      "swapChargeTimestamp": 1778965200000,
+      "swapChargeInterval": 1440
+    }
+  },
+  "dealingRules": {
+    "minStepDistance": {
+      "unit": "POINTS",
+      "value": 0.1
+    },
+    "minDealSize": {
+      "unit": "POINTS",
+      "value": 0.01
+    },
+    "maxDealSize": {
+      "unit": "POINTS",
+      "value": 325
+    },
+    "minSizeIncrement": {
+      "unit": "POINTS",
+      "value": 0.01
+    },
+    "minGuaranteedStopDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.25
+    },
+    "minStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.01
+    },
+    "maxStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 100
+    },
+    "marketOrderPreference": "AVAILABLE_DEFAULT_ON",
+    "trailingStopsPreference": "NOT_AVAILABLE"
+  },
+  "snapshot": {
+    "marketStatus": "CLOSED",
+    "percentageChange": 0.03,
+    "updateTime": "2026-05-15T21:59:56.776",
+    "delayTime": 0,
+    "bid": 7927.3,
+    "offer": 7928.6,
+    "decimalPlacesFactor": 1,
+    "scalingFactor": 1,
+    "marketModes": [
+      "REGULAR"
+    ]
+  }
+}

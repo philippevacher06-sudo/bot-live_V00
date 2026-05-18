@@ -1,0 +1,209 @@
+{
+  "updated_utc": "2026-05-12T07:44:29+00:00",
+  "assets": {
+    "US500": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "US100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "CLOSE_TP",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "US30": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "US30",
+        "cycle_id": "0b423c9f-51b",
+        "level": 4,
+        "direction": "SELL",
+        "entry_price": 49674.8,
+        "size": 0.08,
+        "tp_eur": 0.8,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:44:29+00:00",
+        "opened_utc": "2026-05-12T07:44:29+00:00",
+        "level_open_utc": "2026-05-12T07:44:29+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "DE40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "CLOSE_TP",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "FR40": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "FR40",
+        "cycle_id": "14e31f6b-efb",
+        "level": 5,
+        "direction": "SELL",
+        "entry_price": 8016.799999999999,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:36:12+00:00",
+        "opened_utc": "2026-05-12T07:36:12+00:00",
+        "level_open_utc": "2026-05-12T07:36:12+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:36:12+00:00"
+    },
+    "UK100": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "UK100",
+        "cycle_id": "8b33c038-52f",
+        "level": 5,
+        "direction": "SELL",
+        "entry_price": 10213.0,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:42:25+00:00",
+        "opened_utc": "2026-05-12T07:42:25+00:00",
+        "level_open_utc": "2026-05-12T07:42:25+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:42:25+00:00"
+    },
+    "J225": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "EURUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "EURUSD",
+        "cycle_id": "9e1c6ffd-e63",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 1.174805,
+        "size": 1600.0,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:38:17+00:00",
+        "opened_utc": "2026-05-12T07:38:17+00:00",
+        "level_open_utc": "2026-05-12T07:38:17+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:38:17+00:00"
+    },
+    "GBPUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "USDJPY": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "USDJPY",
+        "cycle_id": "6ba70fab-7fd",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 157.502,
+        "size": 100.0,
+        "tp_eur": 0.1,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:44:29+00:00",
+        "opened_utc": "2026-05-12T07:44:29+00:00",
+        "level_open_utc": "2026-05-12T07:44:29+00:00"
+      },
+      "last_event": "OPEN_L1",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "EURJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "GOLD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "GOLD",
+        "cycle_id": "b83ba669-6d8",
+        "level": 5,
+        "direction": "SELL",
+        "entry_price": 4697.92,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:29:57+00:00",
+        "opened_utc": "2026-05-12T07:29:57+00:00",
+        "level_open_utc": "2026-05-12T07:29:57+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:29:57+00:00"
+    },
+    "SILVER": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "SILVER",
+        "cycle_id": "bf3578e9-8ed",
+        "level": 2,
+        "direction": "SELL",
+        "entry_price": 84.334,
+        "size": 2.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:44:29+00:00",
+        "opened_utc": "2026-05-12T07:44:29+00:00",
+        "level_open_utc": "2026-05-12T07:44:29+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T07:44:29+00:00"
+    },
+    "BTCUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "BTCUSD",
+        "cycle_id": "b8dde43d-6a9",
+        "level": 5,
+        "direction": "SELL",
+        "entry_price": 81005.15,
+        "size": 0.016,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:32:02+00:00",
+        "opened_utc": "2026-05-12T07:32:02+00:00",
+        "level_open_utc": "2026-05-12T07:32:02+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:32:02+00:00"
+    },
+    "ETHUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "ETHUSD",
+        "cycle_id": "2234b990-3ac",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 2299.235,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T07:38:17+00:00",
+        "opened_utc": "2026-05-12T07:38:17+00:00",
+        "level_open_utc": "2026-05-12T07:38:17+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T07:38:17+00:00"
+    }
+  }
+}

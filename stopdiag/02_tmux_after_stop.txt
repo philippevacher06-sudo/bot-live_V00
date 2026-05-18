@@ -1,0 +1,38 @@
+==============================================================================================================
+============================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==============================================================================================================
+====================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==============================================================================================================
+====================
+US500      | IDLE         | aucun signal
+US100      | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+US30       | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+DE40       | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+FR40       | IDLE         | aucun signal
+UK100      | IDLE         | aucun signal
+J225       | IDLE         | aucun signal
+EURUSD     | IDLE         | aucun signal
+GBPUSD     | V24_RELAXED_VWAP_OK | signal SELL autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=BUY | t
+rigger_M1:+1; zone_resistance:+1; micro_rejet:+1; vwap_contre:-2; phase_range:+1
+GBPUSD     | OPEN_L1      | SELL | entry=1.352280 | size=1200.000000 | tp=0.2000
+USDJPY     | IDLE         | aucun signal
+EURJPY     | IDLE         | aucun signal
+GOLD       | OPEN_L1      | BUY  | entry=4687.110000 | size=0.270000 | tp=0.2000
+SILVER     | IDLE         | aucun signal
+OIL_CRUDE  | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-3 | phase=TREND_UP | vwap=BUY | trigge
+r_M1:+1; zone_resistance:+1; micro_rejet:+1; vwap_contre:-2; PHASE_VETO_sell_contre_trend_up:-4
+BTCUSD     | IDLE         | aucun signal
+ETHUSD     | IDLE         | aucun signal
+==============================================================================================================
+====================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+^C
+(venv) philippe_vacher06@bot-rsi:~/bot-pivot/live$ ^C
+(venv) philippe_vacher06@bot-rsi:~/bot-pivot/live$

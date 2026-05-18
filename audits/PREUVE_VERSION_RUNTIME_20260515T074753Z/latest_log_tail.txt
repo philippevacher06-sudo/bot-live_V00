@@ -1,0 +1,500 @@
+Fichier ticks utilisé : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260515.jsonl
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 7463.900000  | 100.0 | 3.800000    | 0.600000 | 0.600000 | True  | 1.0   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+US100      | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 29358.300000 | 67.8  | 31.400000   | 1.800000 | 1.800000 | True  | 1.0   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49890.600000 | 84.6  | 20.100000   | 2.000000 | 2.000000 | True  | 1.1   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+DE40       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 24269.450000 | 77.0  | 25.600000   | 1.500000 | 1.500000 | True  | 1.1   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+FR40       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 8033.900000  | 32.8  | 6.700000    | 0.800000 | 0.800000 | True  | 1.1   | LOCAL:support            | True      | False      | range_pas_assez_bas
+UK100      | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 10311.800000 | 57.3  | 7.500000    | 1.000000 | 1.000000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+J225       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 61977.900000 | 27.1  | 68.900000   | 10.000000 | 10.000000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.164225     | 6.8   | 0.000740    | 0.000070 | 0.000070 | True  | 1.1   | --                       | True      | False      | hors_zone
+GBPUSD     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 1.337255     | 63.0  | 0.000810    | 0.000130 | 0.000130 | True  | 1.2   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 158.383000   | 44.8  | 0.067000    | 0.012000 | 0.012000 | True  | 1.2   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+EURJPY     | BUY      |     2 | SELL     | RANGE      | NONE                 | 184.389500   | 0.6   | 0.081500    | 0.021000 | 0.022000 | True  | 1.2   | MAJOR+PSYCHO:active:184. | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4581.470000  | 25.2  | 8.775000    | 0.500000 | 0.500000 | True  | 1.2   | --                       | False     | True       | hors_zone
+SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 79.221000    | 65.1  | 0.390000    | 0.080000 | 0.050000 | True  | 1.2   | --                       | True      | False      | hors_zone
+OIL_CRUDE  | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 99.200000    | 84.3  | 0.172000    | 0.040000 | 0.040000 | True  | 3.3   | --                       | False     | True       | hors_zone
+BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 80897.100000 | 49.9  | 192.950000  | 50.000000 | 50.000000 | True  | 1.3   | --                       | True      | False      | hors_zone
+ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2266.435000  | 47.8  | 8.410000    | 1.750000 | 1.750000 | True  | 1.3   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | IDLE         | aucun signal
+US100      | IDLE         | aucun signal
+US30       | IDLE         | aucun signal
+DE40       | IDLE         | aucun signal
+FR40       | IDLE         | aucun signal
+UK100      | IDLE         | aucun signal
+J225       | IDLE         | aucun signal
+EURUSD     | IDLE         | aucun signal
+GBPUSD     | IDLE         | aucun signal
+USDJPY     | IDLE         | aucun signal
+EURJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+GOLD       | IDLE         | aucun signal
+SILVER     | IDLE         | aucun signal
+OIL_CRUDE  | IDLE         | aucun signal
+BTCUSD     | IDLE         | aucun signal
+ETHUSD     | IDLE         | aucun signal
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 1
+- EURJPY     L1 BUY size=1800.0 cycle=a6c705ab-7d0
+Deals réels DEMO suivis : 3
+- EURJPY     L1 BUY size=1800.0 dealId=None
+- EURJPY     L2 BUY size=3600.0 dealId=None
+- EURJPY     L3 BUY size=5400.0 dealId=None
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3500.0 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+US100      | IDLE         | --  | --   | --         | --        | aucun cycle
+US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+GBPUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+BTCUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+ETHUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 11 — 2026-05-15T07:30:19Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 558s / seuil 7200s
+- zones age   : 523s / seuil 43200s
+- history age : 524s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-15 07:30:19,896 - INFO - ============================================================
+2026-05-15 07:30:19,896 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-15 07:30:19,896 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-15 07:30:19,896 - INFO - Nb actifs    : 16
+2026-05-15 07:30:19,896 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-15 07:30:19,896 - INFO - Durée test   : 45 sec
+2026-05-15 07:30:19,896 - INFO - ============================================================
+2026-05-15 07:30:19,999 - INFO - [SUBSCRIBE] envoyé
+2026-05-15 07:30:20,027 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2026-05-15 07:31:04,919 - INFO - Durée de test atteinte.
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    31 | 7462.900000  | 7463.500000  | 7463.200000  | 0.600000     | 0.600000     | 1.0s
+US100      |   123 | 29356.500000 | 29358.300000 | 29357.400000 | 1.800000     | 1.800000     | 1.0s
+US30       |    29 | 49889.000000 | 49891.000000 | 49890.000000 | 2.000000     | 2.000000     | 1.0s
+DE40       |    95 | 24264.000000 | 24265.500000 | 24264.750000 | 1.500000     | 1.500000     | 1.0s
+FR40       |    43 | 8030.500000  | 8031.300000  | 8030.900000  | 0.800000     | 0.800000     | 1.0s
+UK100      |    28 | 10311.500000 | 10312.500000 | 10312.000000 | 1.000000     | 1.000000     | 1.0s
+J225       |    18 | 61968.300000 | 61978.300000 | 61973.300000 | 10.000000    | 10.000000    | 4.0s
+EURUSD     |    43 | 1.164220     | 1.164290     | 1.164255     | 0.000070     | 0.000070     | 3.0s
+GBPUSD     |    29 | 1.337080     | 1.337210     | 1.337145     | 0.000130     | 0.000130     | 1.0s
+USDJPY     |    47 | 158.370000   | 158.382000   | 158.376000   | 0.012000     | 0.012000     | 1.0s
+EURJPY     |    71 | 184.375000   | 184.396000   | 184.385500   | 0.021000     | 0.021000     | 1.0s
+GOLD       |   140 | 4581.860000  | 4582.360000  | 4582.110000  | 0.500000     | 0.500000     | 1.0s
+SILVER     |    64 | 79.131000    | 79.181000    | 79.156000    | 0.050000     | 0.050000     | 1.0s
+OIL_CRUDE  |    29 | 99.128000    | 99.168000    | 99.148000    | 0.040000     | 0.040000     | 1.0s
+BTCUSD     |    90 | 80865.400000 | 80915.400000 | 80890.400000 | 50.000000    | 50.000000    | 1.0s
+ETHUSD     |   129 | 2265.270000  | 2267.020000  | 2266.145000  | 1.750000     | 1.750000     | 1.0s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260515.jsonl
+======================================================================================================================
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    46 | 7462.700000  | 7463.300000  | 7463.000000  | 0.600000     | 0.600000     | 0.9s
+US100      |   192 | 29352.300000 | 29354.100000 | 29353.200000 | 1.800000     | 1.800000     | 0.9s
+US30       |    52 | 49889.300000 | 49891.300000 | 49890.300000 | 2.000000     | 2.000000     | 0.9s
+DE40       |   130 | 24263.800000 | 24265.300000 | 24264.550000 | 1.500000     | 1.500000     | 0.9s
+FR40       |    60 | 8030.000000  | 8030.800000  | 8030.400000  | 0.800000     | 0.800000     | 0.9s
+UK100      |    46 | 10309.900000 | 10310.900000 | 10310.400000 | 1.000000     | 1.000000     | 0.9s
+J225       |    31 | 61957.900000 | 61967.900000 | 61962.900000 | 10.000000    | 10.000000    | 0.9s
+EURUSD     |    71 | 1.164160     | 1.164230     | 1.164195     | 0.000070     | 0.000070     | 0.9s
+GBPUSD     |    60 | 1.336900     | 1.337030     | 1.336965     | 0.000130     | 0.000130     | 0.9s
+USDJPY     |    65 | 158.373000   | 158.385000   | 158.379000   | 0.012000     | 0.012000     | 0.9s
+EURJPY     |   119 | 184.373000   | 184.393000   | 184.383000   | 0.020000     | 0.020000     | 0.9s
+GOLD       |   249 | 4580.720000  | 4581.220000  | 4580.970000  | 0.500000     | 0.500000     | 0.9s
+SILVER     |   116 | 79.118000    | 79.168000    | 79.143000    | 0.050000     | 0.050000     | 0.9s
+OIL_CRUDE  |    40 | 99.143000    | 99.183000    | 99.163000    | 0.040000     | 0.040000     | 0.9s
+BTCUSD     |   126 | 80862.850000 | 80912.850000 | 80887.850000 | 50.000000    | 50.000000    | 0.9s
+ETHUSD     |   187 | 2265.070000  | 2266.820000  | 2265.945000  | 1.750000     | 1.750000     | 0.9s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260515.jsonl
+======================================================================================================================
+
+MODULE 04 — SIGNAUX
+Fichier ticks utilisé : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260515.jsonl
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 7463.000000  | 65.9  | 4.400000    | 0.600000 | 0.600000 | True  | 1.2   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+US100      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 29353.200000 | 51.6  | 31.400000   | 1.800000 | 1.800000 | True  | 1.2   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49890.300000 | 76.3  | 21.900000   | 2.000000 | 2.000000 | True  | 1.3   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+DE40       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 24264.550000 | 54.0  | 27.400000   | 1.500000 | 1.500000 | True  | 1.3   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+FR40       | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 8030.400000  | 2.4   | 8.200000    | 0.800000 | 0.800000 | True  | 1.3   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+UK100      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 10310.400000 | 38.7  | 7.500000    | 1.000000 | 1.000000 | True  | 1.3   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+J225       | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 61962.900000 | 5.4   | 68.900000   | 10.000000 | 10.000000 | True  | 1.3   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.164195     | 2.7   | 0.000740    | 0.000070 | 0.000070 | True  | 1.4   | --                       | False     | True       | hors_zone
+GBPUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 1.336965     | 27.2  | 0.000810    | 0.000130 | 0.000130 | True  | 1.4   | --                       | False     | True       | hors_zone
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 158.379000   | 38.8  | 0.067000    | 0.012000 | 0.012000 | True  | 1.4   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+EURJPY     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 184.383000   | 5.4   | 0.092500    | 0.020000 | 0.022000 | True  | 1.4   | MAJOR+PSYCHO:active:184. | False     | True       | range_pas_assez_haut, pas_micro_rebond
+GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4580.970000  | 19.5  | 8.775000    | 0.500000 | 0.500000 | True  | 1.4   | --                       | False     | True       | hors_zone
+SILVER     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 79.143000    | 45.1  | 0.390000    | 0.050000 | 0.050000 | True  | 1.5   | --                       | False     | True       | hors_zone
+OIL_CRUDE  | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 99.163000    | 62.8  | 0.172000    | 0.040000 | 0.040000 | True  | 1.5   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 80887.850000 | 45.1  | 192.950000  | 50.000000 | 50.000000 | True  | 1.5   | --                       | True      | False      | hors_zone
+ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2265.945000  | 42.0  | 8.410000    | 1.750000 | 1.750000 | True  | 1.5   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | IDLE         | aucun signal
+US100      | IDLE         | aucun signal
+US30       | IDLE         | aucun signal
+DE40       | IDLE         | aucun signal
+FR40       | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+UK100      | IDLE         | aucun signal
+J225       | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+EURUSD     | IDLE         | aucun signal
+GBPUSD     | IDLE         | aucun signal
+USDJPY     | IDLE         | aucun signal
+EURJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+GOLD       | IDLE         | aucun signal
+SILVER     | IDLE         | aucun signal
+OIL_CRUDE  | IDLE         | aucun signal
+BTCUSD     | IDLE         | aucun signal
+ETHUSD     | IDLE         | aucun signal
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 1
+- EURJPY     L1 BUY size=1800.0 cycle=a6c705ab-7d0
+Deals réels DEMO suivis : 3
+- EURJPY     L1 BUY size=1800.0 dealId=None
+- EURJPY     L2 BUY size=3600.0 dealId=None
+- EURJPY     L3 BUY size=5400.0 dealId=None
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3500.0 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+US100      | IDLE         | --  | --   | --         | --        | aucun cycle
+US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+GBPUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=314.6s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+BTCUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+ETHUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 12 — 2026-05-15T07:31:12Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 611s / seuil 7200s
+- zones age   : 576s / seuil 43200s
+- history age : 577s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-15 07:31:12,763 - INFO - ============================================================
+2026-05-15 07:31:12,763 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-15 07:31:12,763 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-15 07:31:12,763 - INFO - Nb actifs    : 16
+2026-05-15 07:31:12,763 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-15 07:31:12,763 - INFO - Durée test   : 45 sec
+2026-05-15 07:31:12,763 - INFO - ============================================================
+2026-05-15 07:31:12,873 - INFO - [SUBSCRIBE] envoyé
+2026-05-15 07:31:12,904 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2026-05-15 07:31:57,792 - INFO - Durée de test atteinte.
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    28 | 7463.900000  | 7464.500000  | 7464.200000  | 0.600000     | 0.600000     | 5.9s
+US100      |   127 | 29358.700000 | 29360.500000 | 29359.600000 | 1.800000     | 1.800000     | 0.9s
+US30       |    27 | 49890.800000 | 49892.800000 | 49891.800000 | 2.000000     | 2.000000     | 0.9s
+DE40       |    91 | 24261.900000 | 24263.400000 | 24262.650000 | 1.500000     | 1.500000     | 1.9s
+FR40       |    46 | 8029.500000  | 8030.300000  | 8029.900000  | 0.800000     | 0.800000     | 0.9s
+UK100      |    36 | 10307.000000 | 10308.000000 | 10307.500000 | 1.000000     | 1.000000     | 0.9s
+J225       |    25 | 61976.800000 | 61986.800000 | 61981.800000 | 10.000000    | 10.000000    | 0.9s
+EURUSD     |    67 | 1.164100     | 1.164170     | 1.164135     | 0.000070     | 0.000070     | 0.9s
+GBPUSD     |    71 | 1.336680     | 1.336810     | 1.336745     | 0.000130     | 0.000130     | 0.9s
+USDJPY     |    36 | 158.377000   | 158.389000   | 158.383000   | 0.012000     | 0.012000     | 0.9s
+EURJPY     |   107 | 184.365000   | 184.385000   | 184.375000   | 0.020000     | 0.021000     | 0.9s
+GOLD       |   181 | 4579.560000  | 4580.060000  | 4579.810000  | 0.500000     | 0.500000     | 0.9s
+SILVER     |    93 | 79.114000    | 79.164000    | 79.139000    | 0.050000     | 0.050000     | 0.9s
+OIL_CRUDE  |    20 | 99.144000    | 99.176000    | 99.160000    | 0.032000     | 0.040000     | 0.9s
+BTCUSD     |   173 | 80868.950000 | 80918.950000 | 80893.950000 | 50.000000    | 50.000000    | 0.9s
+ETHUSD     |   157 | 2265.570000  | 2267.320000  | 2266.445000  | 1.750000     | 1.750000     | 0.9s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260515.jsonl
+======================================================================================================================
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    53 | 7463.400000  | 7464.000000  | 7463.700000  | 0.600000     | 0.600000     | 2.8s
+US100      |   198 | 29355.100000 | 29356.900000 | 29356.000000 | 1.800000     | 1.800000     | 0.8s
+US30       |    55 | 49886.800000 | 49888.800000 | 49887.800000 | 2.000000     | 2.000000     | 0.8s
+DE40       |   124 | 24253.400000 | 24254.900000 | 24254.150000 | 1.500000     | 1.500000     | 0.8s
+FR40       |    69 | 8026.000000  | 8026.800000  | 8026.400000  | 0.800000     | 0.800000     | 0.8s
+UK100      |    48 | 10303.500000 | 10304.500000 | 10304.000000 | 1.000000     | 1.000000     | 0.8s
+J225       |    34 | 61975.300000 | 61985.300000 | 61980.300000 | 10.000000    | 10.000000    | 1.8s
+EURUSD     |    89 | 1.164030     | 1.164100     | 1.164065     | 0.000070     | 0.000070     | 0.8s
+GBPUSD     |   107 | 1.336390     | 1.336520     | 1.336455     | 0.000130     | 0.000130     | 0.8s
+USDJPY     |    59 | 158.385000   | 158.397000   | 158.391000   | 0.012000     | 0.012000     | 0.8s
+EURJPY     |   143 | 184.367000   | 184.387000   | 184.377000   | 0.020000     | 0.021000     | 0.8s
+GOLD       |   274 | 4578.440000  | 4578.940000  | 4578.690000  | 0.500000     | 0.500000     | 0.8s
+SILVER     |   132 | 79.085000    | 79.135000    | 79.110000    | 0.050000     | 0.050000     | 0.8s
+OIL_CRUDE  |    25 | 99.154000    | 99.194000    | 99.174000    | 0.040000     | 0.040000     | 5.8s
+BTCUSD     |   264 | 80823.750000 | 80873.750000 | 80848.750000 | 50.000000    | 50.000000    | 0.8s
+ETHUSD     |   227 | 2264.740000  | 2266.490000  | 2265.615000  | 1.750000     | 1.750000     | 0.8s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260515.jsonl
+======================================================================================================================
+
+MODULE 04 — SIGNAUX
+Fichier ticks utilisé : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260515.jsonl
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | SELL     |     4 | NEUTRAL  | RANGE      | NONE                 | 7463.700000  | 81.8  | 4.400000    | 0.600000 | 0.600000 | True  | 3.1   | LOCAL:active             | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+US100      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 29356.000000 | 60.5  | 31.400000   | 1.800000 | 1.800000 | True  | 1.1   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49887.800000 | 64.8  | 21.900000   | 2.000000 | 2.000000 | True  | 1.2   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+DE40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 24254.150000 | 16.1  | 27.400000   | 1.500000 | 1.500000 | True  | 1.2   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_haut, pas_micro_rebond
+FR40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 8026.400000  | 0.0   | 12.000000   | 0.800000 | 0.800000 | True  | 1.2   | LOCAL:support            | False     | True       | pas_micro_rebond
+UK100      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 10304.000000 | 0.0   | 11.000000   | 1.000000 | 1.000000 | True  | 1.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+J225       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 61980.300000 | 34.2  | 72.600000   | 10.000000 | 10.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.164065     | 0.0   | 0.000850    | 0.000070 | 0.000070 | True  | 1.3   | --                       | False     | True       | hors_zone
+GBPUSD     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 1.336455     | 0.0   | 0.001100    | 0.000130 | 0.000130 | True  | 1.3   | --                       | False     | True       | hors_zone
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 158.391000   | 56.7  | 0.067000    | 0.012000 | 0.012000 | True  | 1.3   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+EURJPY     | BUY      |     2 | SELL     | RANGE      | NONE                 | 184.377000   | 2.1   | 0.095500    | 0.020000 | 0.022000 | True  | 1.3   | MAJOR+PSYCHO:active:184. | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4578.690000  | 0.7   | 9.410000    | 0.500000 | 0.500000 | True  | 1.3   | --                       | True      | False      | hors_zone
+SILVER     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 79.110000    | 36.7  | 0.390000    | 0.050000 | 0.050000 | True  | 1.4   | --                       | True      | False      | hors_zone
+OIL_CRUDE  | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 99.174000    | 69.2  | 0.172000    | 0.040000 | 0.040000 | True  | 6.4   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+BTCUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 80848.750000 | 24.8  | 192.950000  | 50.000000 | 50.000000 | True  | 1.4   | --                       | False     | True       | hors_zone
+ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 2265.615000  | 38.0  | 8.410000    | 1.750000 | 1.750000 | True  | 1.4   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | OPEN_L1      | SELL | entry=7463.400000 | size=0.150000 | tp=0.2000
+US100      | IDLE         | aucun signal
+US30       | IDLE         | aucun signal
+DE40       | IDLE         | aucun signal
+FR40       | IDLE         | aucun signal
+UK100      | IDLE         | aucun signal
+J225       | IDLE         | aucun signal
+EURUSD     | IDLE         | aucun signal
+GBPUSD     | IDLE         | aucun signal
+USDJPY     | IDLE         | aucun signal
+EURJPY     | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+EURJPY     | OPEN_L1      | BUY  | entry=184.387000 | size=1800.000000 | tp=0.2000
+GOLD       | IDLE         | aucun signal
+SILVER     | IDLE         | aucun signal
+OIL_CRUDE  | IDLE         | aucun signal
+BTCUSD     | IDLE         | aucun signal
+ETHUSD     | IDLE         | aucun signal
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 2
+- US500      L1 SELL size=0.15 cycle=359df59f-4c3
+- EURJPY     L1 BUY size=1800.0 cycle=fa39615c-8f9
+Deals réels DEMO suivis : 0
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3500.0 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=LOCAL alerts=1 assets=GBPUSD systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=23.73368 required=10.00000 ratio=2.373 ok=True abs_min=10.00000 spread_min=1.80000
+US500      | PRICE_AUDIT | SELL | stream_bid=7463.4 stream_ask=7464.0 snapshot_bid=7463.7 snapshot_ask=7464.3 BB_LOW=7444.878159645466 BB_MID=7456.745000000001 BB_HIGH=7468.611840354535 L1=7469.0 L2=7473.0 L3=7477.0 dist=4.699999999999818
+US500      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=7469.0 L2=7473.0 L3=7477.0 | market_bid=7463.4 market_ask=7464.0 | distance=5.0000000000 max_dist=3.2000000000
+US500      | BASKET_REJECT | 1-3 | SELL | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+US100      | IDLE         | --  | --   | --         | --        | aucun cycle
+US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+GBPUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=0.39398 required=0.10000 ratio=3.940 ok=True abs_min=0.10000 spread_min=0.06600
+EURJPY     | PRICE_AUDIT | BUY  | stream_bid=184.367 stream_ask=184.387 snapshot_bid=184.439 snapshot_ask=184.461 BB_LOW=184.29041050789448 BB_MID=184.48740000000004 BB_HIGH=184.6843894921056 L1=184.289 L2=184.241 L3=184.193 dist=0.15000000000000568
+EURJPY     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=184.29041 BB_MID=184.48740 BB_HIGH=184.68439 width=0.39398 required=0.10000 L1=184.289 L2=184.241 L3=184.193 dist=0.0780000000 max_dist=0.1800000000 dist_ratio=0.433
+EURJPY     | BOLLINGER_M5 | BUY  | BB_LOW=184.29041 | BB_MID=184.48740 | BB_HIGH=184.68439 | L1=184.289 | L2=184.241 | L3=184.193 | BUFFER=0.0012000000000000001 | STEP=0.048
+EURJPY     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=184.289000 stopLevel≈183.809000 stopDistance=0.480000 step=0.048000 spread=0.022000 minStop=0.010000
+EURJPY     | LIMIT_REQUEST | 1   | BUY  | 1800.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 1800.0, "guaranteedStop": true, "stopDistance": 0.48, "type": "LIMIT", "level": 184.289}
+EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.289
+EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.48
+EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_b8719e3f-217c-40a9-a9da-3c8cda2db3ae'}
+EURJPY     | LIMIT_OK      | 1   | BUY  | 1800.000000 | TRADEABLE | ref=o_b871...b3ae limit=184.289
+EURJPY     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=184.241000 stopLevel≈183.809000 stopDistance=0.432000 step=0.048000 spread=0.022000 minStop=0.010000
+EURJPY     | LIMIT_REQUEST | 2   | BUY  | 3600.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.432, "type": "LIMIT", "level": 184.241}
+EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.241
+EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.432
+EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_f243df90-b632-4f32-bed5-c67925caff51'}
+EURJPY     | LIMIT_OK      | 2   | BUY  | 3600.000000 | TRADEABLE | ref=o_f243...ff51 limit=184.241
+EURJPY     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=184.193000 stopLevel≈183.809000 stopDistance=0.384000 step=0.048000 spread=0.022000 minStop=0.010000
+EURJPY     | LIMIT_REQUEST | 3   | BUY  | 5400.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 5400.0, "guaranteedStop": true, "stopDistance": 0.384, "type": "LIMIT", "level": 184.193}
+EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.193
+EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.384
+EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_4035f761-3843-42db-b457-d86b3ebdc898'}
+EURJPY     | LIMIT_OK      | 3   | BUY  | 5400.000000 | TRADEABLE | ref=o_4035...c898 limit=184.193
+EURJPY     | BASKET_NEW  | 1-3 | BUY  | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+BTCUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+ETHUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 13 — 2026-05-15T07:32:05Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 664s / seuil 7200s
+- zones age   : 629s / seuil 43200s
+- history age : 630s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-15 07:32:06,386 - INFO - ============================================================
+2026-05-15 07:32:06,386 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-15 07:32:06,386 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-15 07:32:06,386 - INFO - Nb actifs    : 16
+2026-05-15 07:32:06,386 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-15 07:32:06,386 - INFO - Durée test   : 45 sec
+2026-05-15 07:32:06,386 - INFO - ============================================================
+2026-05-15 07:32:06,493 - INFO - [SUBSCRIBE] envoyé
+2026-05-15 07:32:06,524 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+============================================================================================================
+V2436 CLEANUP PENDING ON SIGINT — 2026-05-15T07:32:28Z
+============================================================================================================
+{"event": "V2436_EXIT_CLEANUP_BEFORE", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 3}
+EURJPY     | V2436_EXIT_PENDING_CLEANUP | count=3
+{"event": "V2436_EXIT_CLEANUP_AFTER", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "results": [{"asset": "US500", "results": []}, {"asset": "US100", "results": []}, {"asset": "US30", "results": []}, {"asset": "DE40", "results": []}, {"asset": "FR40", "results": []}, {"asset": "UK100", "results": []}, {"asset": "J225", "results": []}, {"asset": "EURUSD", "results": []}, {"asset": "GBPUSD", "results": []}, {"asset": "USDJPY", "results": []}, {"asset": "EURJPY", "results": [{"working_id": "00005552-0029-065e-0000-000080aa07ea", "ok": true, "info": {"ok": true, "asset": "EURJPY", "working_id": "00005552-0029-065e-0000-000080aa07ea", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "EURJPY", "direction": "BUY", "size": 1800.0, "limit_price": 184.289, "workingDealId": "00005552-0029-065e-0000-000080aa07ea"}, "delete_status": 200, "delete_response": {"dealReference": "o_b8719e3f-217c-40a9-a9da-3c8cda2db3ae"}, "dry_run": false}}, {"working_id": "00005552-0029-065e-0000-000080aa07eb", "ok": true, "info": {"ok": true, "asset": "EURJPY", "working_id": "00005552-0029-065e-0000-000080aa07eb", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "EURJPY", "direction": "BUY", "size": 3600.0, "limit_price": 184.241, "workingDealId": "00005552-0029-065e-0000-000080aa07eb"}, "delete_status": 200, "delete_response": {"dealReference": "o_f243df90-b632-4f32-bed5-c67925caff51"}, "dry_run": false}}, {"working_id": "00005552-0029-065e-0000-000080aa07ec", "ok": true, "info": {"ok": true, "asset": "EURJPY", "working_id": "00005552-0029-065e-0000-000080aa07ec", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "EURJPY", "direction": "BUY", "size": 5400.0, "limit_price": 184.193, "workingDealId": "00005552-0029-065e-0000-000080aa07ec"}, "delete_status": 200, "delete_response": {"dealReference": "o_4035f761-3843-42db-b457-d86b3ebdc898"}, "dry_run": false}}]}, {"asset": "GOLD", "results": []}, {"asset": "SILVER", "results": []}, {"asset": "OIL_CRUDE", "results": []}, {"asset": "BTCUSD", "results": []}, {"asset": "ETHUSD", "results": []}]}

@@ -1,0 +1,1936 @@
+{
+  "active": {
+    "DE40": {
+      "asset": "DE40",
+      "cycle_id": "18781dd2-51f",
+      "level": 2,
+      "direction": "BUY",
+      "size": 0.02,
+      "dealReference": "o_403b7f47-b397-4f4a-b23e-be677ef3e902",
+      "confirmDealId": "07101627-0015-549e-0000-000081092da8",
+      "dealId": "07101627-0015-549e-0000-000081092da9",
+      "brokerDealId": "07101627-0015-549e-0000-000081092da9",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:56:30.100",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "DE40",
+        "dealReference": "o_403b7f47-b397-4f4a-b23e-be677ef3e902",
+        "dealId": "07101627-0015-549e-0000-000081092da8",
+        "affectedDeals": [
+          {
+            "dealId": "07101627-0015-549e-0000-000081092da9",
+            "status": "OPENED"
+          }
+        ],
+        "level": 24120.8,
+        "size": 0.02,
+        "direction": "BUY",
+        "stopDistance": -29.0,
+        "profitDistance": 2.7,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:56:31+00:00",
+      "dry_run": false
+    },
+    "BTCUSD": {
+      "asset": "BTCUSD",
+      "cycle_id": "9d6a62a7-5fd",
+      "level": 1,
+      "direction": "BUY",
+      "size": 0.001,
+      "dealReference": "o_c77e2d53-4da4-4327-a614-f0ff5f0184e3",
+      "confirmDealId": "000940dd-0055-311e-0000-000083427483",
+      "dealId": "000940dd-0055-311e-0000-000083427484",
+      "brokerDealId": "000940dd-0055-311e-0000-000083427484",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:56:31.336",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "BTCUSD",
+        "dealReference": "o_c77e2d53-4da4-4327-a614-f0ff5f0184e3",
+        "dealId": "000940dd-0055-311e-0000-000083427483",
+        "affectedDeals": [
+          {
+            "dealId": "000940dd-0055-311e-0000-000083427484",
+            "status": "OPENED"
+          }
+        ],
+        "level": 80839.75,
+        "size": 0.001,
+        "direction": "BUY",
+        "stopDistance": -485.6,
+        "profitDistance": 8.95,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:56:32+00:00",
+      "dry_run": false
+    },
+    "ETHUSD": {
+      "asset": "ETHUSD",
+      "cycle_id": "27fea58d-67a",
+      "level": 5,
+      "direction": "BUY",
+      "size": 0.16,
+      "dealReference": "o_8b5be5c9-4ae8-42e3-a30d-57d69b33c80f",
+      "confirmDealId": "0015421d-0055-311e-0000-0000820b20f3",
+      "dealId": "0015421d-0055-311e-0000-0000820b20f4",
+      "brokerDealId": "0015421d-0055-311e-0000-0000820b20f4",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:56:33.755",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "ETHUSD",
+        "dealReference": "o_8b5be5c9-4ae8-42e3-a30d-57d69b33c80f",
+        "dealId": "0015421d-0055-311e-0000-0000820b20f3",
+        "affectedDeals": [
+          {
+            "dealId": "0015421d-0055-311e-0000-0000820b20f4",
+            "status": "OPENED"
+          }
+        ],
+        "level": 2286.63,
+        "size": 0.16,
+        "direction": "BUY",
+        "stopDistance": -13.75,
+        "profitDistance": 0.26,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:56:34+00:00",
+      "dry_run": false
+    }
+  },
+  "closed": [
+    {
+      "asset": "EURJPY",
+      "cycle_id": "f38df359-254",
+      "level": 1,
+      "direction": "BUY",
+      "size": 100.0,
+      "dealReference": "o_d008a1a6-4ad0-40ba-8c12-2b457a6af958",
+      "confirmDealId": "00005552-0029-065e-0000-000080aa035c",
+      "dealId": "00005552-0029-065e-0000-000080aa035d",
+      "brokerDealId": "00005552-0029-065e-0000-000080aa035d",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:43:38.392",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "EURJPY",
+        "dealReference": "o_d008a1a6-4ad0-40ba-8c12-2b457a6af958",
+        "dealId": "00005552-0029-065e-0000-000080aa035c",
+        "affectedDeals": [
+          {
+            "dealId": "00005552-0029-065e-0000-000080aa035d",
+            "status": "OPENED"
+          }
+        ],
+        "level": 185.099,
+        "size": 100.0,
+        "direction": "BUY",
+        "stopDistance": -0.223,
+        "profitDistance": 0.021,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:43:39+00:00",
+      "dry_run": false,
+      "closed_reason": "CYCLE_IDLE",
+      "closed_utc": "2026-05-12T08:45:44+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "EURJPY",
+        "dealId": "00005552-0029-065e-0000-000080aa035d",
+        "close_reason": "CYCLE_IDLE",
+        "old_exec": {
+          "asset": "EURJPY",
+          "cycle_id": "f38df359-254",
+          "level": 1,
+          "direction": "BUY",
+          "size": 100.0,
+          "dealReference": "o_d008a1a6-4ad0-40ba-8c12-2b457a6af958",
+          "confirmDealId": "00005552-0029-065e-0000-000080aa035c",
+          "dealId": "00005552-0029-065e-0000-000080aa035d",
+          "brokerDealId": "00005552-0029-065e-0000-000080aa035d",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:43:38.392",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "EURJPY",
+            "dealReference": "o_d008a1a6-4ad0-40ba-8c12-2b457a6af958",
+            "dealId": "00005552-0029-065e-0000-000080aa035c",
+            "affectedDeals": [
+              {
+                "dealId": "00005552-0029-065e-0000-000080aa035d",
+                "status": "OPENED"
+              }
+            ],
+            "level": 185.099,
+            "size": 100.0,
+            "direction": "BUY",
+            "stopDistance": -0.223,
+            "profitDistance": 0.021,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:43:39+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_00005552-0029-065e-0000-000080aa035d"
+        },
+        "dealReference": "p_00005552-0029-065e-0000-000080aa035d",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:45:43.042",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "EURJPY",
+          "dealReference": "p_00005552-0029-065e-0000-000080aa035d",
+          "dealId": "00005552-0029-065e-0000-000080aa035d",
+          "affectedDeals": [
+            {
+              "dealId": "00005552-0029-065e-0000-000080aa035d",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 185.105,
+          "size": 100.0,
+          "direction": "SELL",
+          "stopLevel": 184.876,
+          "profitLevel": 185.12,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": 1,
+          "profitCurrency": "JPY"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "EURUSD",
+      "cycle_id": "6018b98f-860",
+      "level": 1,
+      "direction": "SELL",
+      "size": 100.0,
+      "dealReference": "o_42833195-5298-4238-a112-40cf0b38f4e1",
+      "confirmDealId": "00005552-0055-311e-0000-000081ea23db",
+      "dealId": "00005552-0055-311e-0000-000081ea23dc",
+      "brokerDealId": "00005552-0055-311e-0000-000081ea23dc",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:45:41.880",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "EURUSD",
+        "dealReference": "o_42833195-5298-4238-a112-40cf0b38f4e1",
+        "dealId": "00005552-0055-311e-0000-000081ea23db",
+        "affectedDeals": [
+          {
+            "dealId": "00005552-0055-311e-0000-000081ea23dc",
+            "status": "OPENED"
+          }
+        ],
+        "level": 1.17463,
+        "size": 100.0,
+        "direction": "SELL",
+        "stopDistance": 0.00353,
+        "profitDistance": -0.00013,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:45:42+00:00",
+      "dry_run": false,
+      "closed_reason": "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL",
+      "closed_utc": "2026-05-12T08:47:48+00:00"
+    },
+    {
+      "asset": "GOLD",
+      "cycle_id": "2d804642-bbf",
+      "level": 1,
+      "direction": "SELL",
+      "size": 0.01,
+      "dealReference": "o_cab247d0-4e2f-4e9a-b3fd-82e4914e2ff3",
+      "confirmDealId": "00601567-0055-311e-0000-000084aa166f",
+      "dealId": "00601567-0055-311e-0000-000084aa1670",
+      "brokerDealId": "00601567-0055-311e-0000-000084aa1670",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:45:44.255",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "GOLD",
+        "dealReference": "o_cab247d0-4e2f-4e9a-b3fd-82e4914e2ff3",
+        "dealId": "00601567-0055-311e-0000-000084aa166f",
+        "affectedDeals": [
+          {
+            "dealId": "00601567-0055-311e-0000-000084aa1670",
+            "status": "OPENED"
+          }
+        ],
+        "level": 4703.26,
+        "size": 0.01,
+        "direction": "SELL",
+        "stopDistance": 56.41,
+        "profitDistance": -0.06,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:45:45+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 2,
+      "closed_utc": "2026-05-12T08:47:49+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "GOLD",
+        "dealId": "00601567-0055-311e-0000-000084aa1670",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "GOLD",
+          "cycle_id": "2d804642-bbf",
+          "level": 1,
+          "direction": "SELL",
+          "size": 0.01,
+          "dealReference": "o_cab247d0-4e2f-4e9a-b3fd-82e4914e2ff3",
+          "confirmDealId": "00601567-0055-311e-0000-000084aa166f",
+          "dealId": "00601567-0055-311e-0000-000084aa1670",
+          "brokerDealId": "00601567-0055-311e-0000-000084aa1670",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:45:44.255",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "GOLD",
+            "dealReference": "o_cab247d0-4e2f-4e9a-b3fd-82e4914e2ff3",
+            "dealId": "00601567-0055-311e-0000-000084aa166f",
+            "affectedDeals": [
+              {
+                "dealId": "00601567-0055-311e-0000-000084aa1670",
+                "status": "OPENED"
+              }
+            ],
+            "level": 4703.26,
+            "size": 0.01,
+            "direction": "SELL",
+            "stopDistance": 56.41,
+            "profitDistance": -0.06,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:45:45+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_00601567-0055-311e-0000-000084aa1670"
+        },
+        "dealReference": "p_00601567-0055-311e-0000-000084aa1670",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:47:48.821",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "GOLD",
+          "dealReference": "p_00601567-0055-311e-0000-000084aa1670",
+          "dealId": "00601567-0055-311e-0000-000084aa1670",
+          "affectedDeals": [
+            {
+              "dealId": "00601567-0055-311e-0000-000084aa1670",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 4704.74,
+          "size": 0.01,
+          "direction": "BUY",
+          "stopLevel": 4759.67,
+          "profitLevel": 4703.2,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.01,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "BTCUSD",
+      "cycle_id": "1c924b29-691",
+      "level": 1,
+      "direction": "SELL",
+      "size": 0.001,
+      "dealReference": "o_2b301170-4063-4769-86a5-8d0460effb72",
+      "confirmDealId": "000940dd-0055-311e-0000-000083427467",
+      "dealId": "000940dd-0055-311e-0000-000083427468",
+      "brokerDealId": "000940dd-0055-311e-0000-000083427468",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:45:45.465",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "BTCUSD",
+        "dealReference": "o_2b301170-4063-4769-86a5-8d0460effb72",
+        "dealId": "000940dd-0055-311e-0000-000083427467",
+        "affectedDeals": [
+          {
+            "dealId": "000940dd-0055-311e-0000-000083427468",
+            "status": "OPENED"
+          }
+        ],
+        "level": 80898.75,
+        "size": 0.001,
+        "direction": "SELL",
+        "stopDistance": 485.6,
+        "profitDistance": -8.95,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:45:46+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 2,
+      "closed_utc": "2026-05-12T08:47:54+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "BTCUSD",
+        "dealId": "000940dd-0055-311e-0000-000083427468",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "BTCUSD",
+          "cycle_id": "1c924b29-691",
+          "level": 1,
+          "direction": "SELL",
+          "size": 0.001,
+          "dealReference": "o_2b301170-4063-4769-86a5-8d0460effb72",
+          "confirmDealId": "000940dd-0055-311e-0000-000083427467",
+          "dealId": "000940dd-0055-311e-0000-000083427468",
+          "brokerDealId": "000940dd-0055-311e-0000-000083427468",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:45:45.465",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "BTCUSD",
+            "dealReference": "o_2b301170-4063-4769-86a5-8d0460effb72",
+            "dealId": "000940dd-0055-311e-0000-000083427467",
+            "affectedDeals": [
+              {
+                "dealId": "000940dd-0055-311e-0000-000083427468",
+                "status": "OPENED"
+              }
+            ],
+            "level": 80898.75,
+            "size": 0.001,
+            "direction": "SELL",
+            "stopDistance": 485.6,
+            "profitDistance": -8.95,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:45:46+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_000940dd-0055-311e-0000-000083427468"
+        },
+        "dealReference": "p_000940dd-0055-311e-0000-000083427468",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:47:53.702",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "BTCUSD",
+          "dealReference": "p_000940dd-0055-311e-0000-000083427468",
+          "dealId": "000940dd-0055-311e-0000-000083427468",
+          "affectedDeals": [
+            {
+              "dealId": "000940dd-0055-311e-0000-000083427468",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 80931,
+          "size": 0.001,
+          "direction": "BUY",
+          "stopLevel": 81384.35,
+          "profitLevel": 80889.8,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.03,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "GOLD",
+      "cycle_id": "2d804642-bbf",
+      "level": 2,
+      "direction": "SELL",
+      "size": 0.02,
+      "dealReference": "o_8fd22dbb-927d-4590-b6a9-adccccdd572c",
+      "confirmDealId": "00601567-0055-311e-0000-000084aa16bc",
+      "dealId": "00601567-0055-311e-0000-000084aa16bd",
+      "brokerDealId": "00601567-0055-311e-0000-000084aa16bd",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:47:50.055",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "GOLD",
+        "dealReference": "o_8fd22dbb-927d-4590-b6a9-adccccdd572c",
+        "dealId": "00601567-0055-311e-0000-000084aa16bc",
+        "affectedDeals": [
+          {
+            "dealId": "00601567-0055-311e-0000-000084aa16bd",
+            "status": "OPENED"
+          }
+        ],
+        "level": 4704.06,
+        "size": 0.02,
+        "direction": "SELL",
+        "stopDistance": 56.41,
+        "profitDistance": -0.06,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:47:51+00:00",
+      "dry_run": false,
+      "closed_reason": "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL",
+      "closed_utc": "2026-05-12T08:49:59+00:00"
+    },
+    {
+      "asset": "SILVER",
+      "cycle_id": "b4061418-fb2",
+      "level": 1,
+      "direction": "SELL",
+      "size": 1.0,
+      "dealReference": "o_8c1bcc3f-0274-4bb1-90e7-8f0667ff2600",
+      "confirmDealId": "006011e7-0055-311e-0000-000081562c82",
+      "dealId": "006011e7-0055-311e-0000-000081562c83",
+      "brokerDealId": "006011e7-0055-311e-0000-000081562c83",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:47:51.276",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "SILVER",
+        "dealReference": "o_8c1bcc3f-0274-4bb1-90e7-8f0667ff2600",
+        "dealId": "006011e7-0055-311e-0000-000081562c82",
+        "affectedDeals": [
+          {
+            "dealId": "006011e7-0055-311e-0000-000081562c83",
+            "status": "OPENED"
+          }
+        ],
+        "level": 84.265,
+        "size": 1.0,
+        "direction": "SELL",
+        "stopDistance": 1.01,
+        "profitDistance": -0.01,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:47:52+00:00",
+      "dry_run": false,
+      "closed_reason": "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL",
+      "closed_utc": "2026-05-12T08:49:59+00:00"
+    },
+    {
+      "asset": "OIL_CRUDE",
+      "cycle_id": "c6024ea5-783",
+      "level": 1,
+      "direction": "BUY",
+      "size": 1.0,
+      "dealReference": "o_d3e13689-68b6-4628-8be4-0af26c3bc869",
+      "confirmDealId": "00018509-0055-311e-0000-0000826a3f2a",
+      "dealId": "00018509-0055-311e-0000-0000826a3f2b",
+      "brokerDealId": "00018509-0055-311e-0000-0000826a3f2b",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:47:52.526",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "OIL_CRUDE",
+        "dealReference": "o_d3e13689-68b6-4628-8be4-0af26c3bc869",
+        "dealId": "00018509-0055-311e-0000-0000826a3f2a",
+        "affectedDeals": [
+          {
+            "dealId": "00018509-0055-311e-0000-0000826a3f2b",
+            "status": "OPENED"
+          }
+        ],
+        "level": 98.235,
+        "size": 1.0,
+        "direction": "BUY",
+        "stopDistance": -1.768,
+        "profitDistance": 0.011,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:47:53+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 2,
+      "closed_utc": "2026-05-12T08:50:00+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "OIL_CRUDE",
+        "dealId": "00018509-0055-311e-0000-0000826a3f2b",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "OIL_CRUDE",
+          "cycle_id": "c6024ea5-783",
+          "level": 1,
+          "direction": "BUY",
+          "size": 1.0,
+          "dealReference": "o_d3e13689-68b6-4628-8be4-0af26c3bc869",
+          "confirmDealId": "00018509-0055-311e-0000-0000826a3f2a",
+          "dealId": "00018509-0055-311e-0000-0000826a3f2b",
+          "brokerDealId": "00018509-0055-311e-0000-0000826a3f2b",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:47:52.526",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "OIL_CRUDE",
+            "dealReference": "o_d3e13689-68b6-4628-8be4-0af26c3bc869",
+            "dealId": "00018509-0055-311e-0000-0000826a3f2a",
+            "affectedDeals": [
+              {
+                "dealId": "00018509-0055-311e-0000-0000826a3f2b",
+                "status": "OPENED"
+              }
+            ],
+            "level": 98.235,
+            "size": 1.0,
+            "direction": "BUY",
+            "stopDistance": -1.768,
+            "profitDistance": 0.011,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:47:53+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_00018509-0055-311e-0000-0000826a3f2b"
+        },
+        "dealReference": "p_00018509-0055-311e-0000-0000826a3f2b",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:49:59.328",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "OIL_CRUDE",
+          "dealReference": "p_00018509-0055-311e-0000-0000826a3f2b",
+          "dealId": "00018509-0055-311e-0000-0000826a3f2b",
+          "affectedDeals": [
+            {
+              "dealId": "00018509-0055-311e-0000-0000826a3f2b",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 98.164,
+          "size": 1.0,
+          "direction": "SELL",
+          "stopLevel": 96.467,
+          "profitLevel": 98.246,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.07,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "BTCUSD",
+      "cycle_id": "1c924b29-691",
+      "level": 2,
+      "direction": "SELL",
+      "size": 0.002,
+      "dealReference": "o_b8170ef9-2a69-4fd1-b53d-40c1bc893327",
+      "confirmDealId": "000940dd-0055-311e-0000-00008342746e",
+      "dealId": "000940dd-0055-311e-0000-00008342746f",
+      "brokerDealId": "000940dd-0055-311e-0000-00008342746f",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:47:54.909",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "BTCUSD",
+        "dealReference": "o_b8170ef9-2a69-4fd1-b53d-40c1bc893327",
+        "dealId": "000940dd-0055-311e-0000-00008342746e",
+        "affectedDeals": [
+          {
+            "dealId": "000940dd-0055-311e-0000-00008342746f",
+            "status": "OPENED"
+          }
+        ],
+        "level": 80881.6,
+        "size": 0.002,
+        "direction": "SELL",
+        "stopDistance": 485.6,
+        "profitDistance": -8.95,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:47:55+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 3,
+      "closed_utc": "2026-05-12T08:50:02+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "BTCUSD",
+        "dealId": "000940dd-0055-311e-0000-00008342746f",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "BTCUSD",
+          "cycle_id": "1c924b29-691",
+          "level": 2,
+          "direction": "SELL",
+          "size": 0.002,
+          "dealReference": "o_b8170ef9-2a69-4fd1-b53d-40c1bc893327",
+          "confirmDealId": "000940dd-0055-311e-0000-00008342746e",
+          "dealId": "000940dd-0055-311e-0000-00008342746f",
+          "brokerDealId": "000940dd-0055-311e-0000-00008342746f",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:47:54.909",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "BTCUSD",
+            "dealReference": "o_b8170ef9-2a69-4fd1-b53d-40c1bc893327",
+            "dealId": "000940dd-0055-311e-0000-00008342746e",
+            "affectedDeals": [
+              {
+                "dealId": "000940dd-0055-311e-0000-00008342746f",
+                "status": "OPENED"
+              }
+            ],
+            "level": 80881.6,
+            "size": 0.002,
+            "direction": "SELL",
+            "stopDistance": 485.6,
+            "profitDistance": -8.95,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:47:55+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_000940dd-0055-311e-0000-00008342746f"
+        },
+        "dealReference": "p_000940dd-0055-311e-0000-00008342746f",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:50:01.732",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "BTCUSD",
+          "dealReference": "p_000940dd-0055-311e-0000-00008342746f",
+          "dealId": "000940dd-0055-311e-0000-00008342746f",
+          "affectedDeals": [
+            {
+              "dealId": "000940dd-0055-311e-0000-00008342746f",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 80930.55,
+          "size": 0.002,
+          "direction": "BUY",
+          "stopLevel": 81367.2,
+          "profitLevel": 80872.65,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.1,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "ETHUSD",
+      "cycle_id": "27fea58d-67a",
+      "level": 1,
+      "direction": "BUY",
+      "size": 0.01,
+      "dealReference": "o_5031968f-2ad8-4be4-8a2c-507e6d6774ae",
+      "confirmDealId": "0015421d-0055-311e-0000-0000820b20e3",
+      "dealId": "0015421d-0055-311e-0000-0000820b20e4",
+      "brokerDealId": "0015421d-0055-311e-0000-0000820b20e4",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:47:56.143",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "ETHUSD",
+        "dealReference": "o_5031968f-2ad8-4be4-8a2c-507e6d6774ae",
+        "dealId": "0015421d-0055-311e-0000-0000820b20e3",
+        "affectedDeals": [
+          {
+            "dealId": "0015421d-0055-311e-0000-0000820b20e4",
+            "status": "OPENED"
+          }
+        ],
+        "level": 2290.45,
+        "size": 0.01,
+        "direction": "BUY",
+        "stopDistance": -13.75,
+        "profitDistance": 0.26,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:47:57+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 2,
+      "closed_utc": "2026-05-12T08:50:05+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "ETHUSD",
+        "dealId": "0015421d-0055-311e-0000-0000820b20e4",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "ETHUSD",
+          "cycle_id": "27fea58d-67a",
+          "level": 1,
+          "direction": "BUY",
+          "size": 0.01,
+          "dealReference": "o_5031968f-2ad8-4be4-8a2c-507e6d6774ae",
+          "confirmDealId": "0015421d-0055-311e-0000-0000820b20e3",
+          "dealId": "0015421d-0055-311e-0000-0000820b20e4",
+          "brokerDealId": "0015421d-0055-311e-0000-0000820b20e4",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:47:56.143",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "ETHUSD",
+            "dealReference": "o_5031968f-2ad8-4be4-8a2c-507e6d6774ae",
+            "dealId": "0015421d-0055-311e-0000-0000820b20e3",
+            "affectedDeals": [
+              {
+                "dealId": "0015421d-0055-311e-0000-0000820b20e4",
+                "status": "OPENED"
+              }
+            ],
+            "level": 2290.45,
+            "size": 0.01,
+            "direction": "BUY",
+            "stopDistance": -13.75,
+            "profitDistance": 0.26,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:47:57+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20e4"
+        },
+        "dealReference": "p_0015421d-0055-311e-0000-0000820b20e4",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:50:04.128",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "ETHUSD",
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20e4",
+          "dealId": "0015421d-0055-311e-0000-0000820b20e4",
+          "affectedDeals": [
+            {
+              "dealId": "0015421d-0055-311e-0000-0000820b20e4",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 2288.28,
+          "size": 0.01,
+          "direction": "SELL",
+          "stopLevel": 2276.7,
+          "profitLevel": 2290.71,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.02,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "OIL_CRUDE",
+      "cycle_id": "c6024ea5-783",
+      "level": 2,
+      "direction": "BUY",
+      "size": 2.0,
+      "dealReference": "o_530adc3e-b73e-4faf-8959-77413c669e2f",
+      "confirmDealId": "00018509-0055-311e-0000-0000826a3f3c",
+      "dealId": "00018509-0055-311e-0000-0000826a3f3d",
+      "brokerDealId": "00018509-0055-311e-0000-0000826a3f3d",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:50:00.563",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "OIL_CRUDE",
+        "dealReference": "o_530adc3e-b73e-4faf-8959-77413c669e2f",
+        "dealId": "00018509-0055-311e-0000-0000826a3f3c",
+        "affectedDeals": [
+          {
+            "dealId": "00018509-0055-311e-0000-0000826a3f3d",
+            "status": "OPENED"
+          }
+        ],
+        "level": 98.203,
+        "size": 2.0,
+        "direction": "BUY",
+        "stopDistance": -1.768,
+        "profitDistance": 0.011,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:50:01+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 3,
+      "closed_utc": "2026-05-12T08:52:12+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "OIL_CRUDE",
+        "dealId": "00018509-0055-311e-0000-0000826a3f3d",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "OIL_CRUDE",
+          "cycle_id": "c6024ea5-783",
+          "level": 2,
+          "direction": "BUY",
+          "size": 2.0,
+          "dealReference": "o_530adc3e-b73e-4faf-8959-77413c669e2f",
+          "confirmDealId": "00018509-0055-311e-0000-0000826a3f3c",
+          "dealId": "00018509-0055-311e-0000-0000826a3f3d",
+          "brokerDealId": "00018509-0055-311e-0000-0000826a3f3d",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:50:00.563",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "OIL_CRUDE",
+            "dealReference": "o_530adc3e-b73e-4faf-8959-77413c669e2f",
+            "dealId": "00018509-0055-311e-0000-0000826a3f3c",
+            "affectedDeals": [
+              {
+                "dealId": "00018509-0055-311e-0000-0000826a3f3d",
+                "status": "OPENED"
+              }
+            ],
+            "level": 98.203,
+            "size": 2.0,
+            "direction": "BUY",
+            "stopDistance": -1.768,
+            "profitDistance": 0.011,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:50:01+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_00018509-0055-311e-0000-0000826a3f3d"
+        },
+        "dealReference": "p_00018509-0055-311e-0000-0000826a3f3d",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:52:11.178",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "OIL_CRUDE",
+          "dealReference": "p_00018509-0055-311e-0000-0000826a3f3d",
+          "dealId": "00018509-0055-311e-0000-0000826a3f3d",
+          "affectedDeals": [
+            {
+              "dealId": "00018509-0055-311e-0000-0000826a3f3d",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 98.138,
+          "size": 2.0,
+          "direction": "SELL",
+          "stopLevel": 96.435,
+          "profitLevel": 98.214,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.13,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "BTCUSD",
+      "cycle_id": "1c924b29-691",
+      "level": 3,
+      "direction": "SELL",
+      "size": 0.004,
+      "dealReference": "o_94d5b380-493c-4cde-a16c-790161cae2e5",
+      "confirmDealId": "000940dd-0055-311e-0000-000083427474",
+      "dealId": "000940dd-0055-311e-0000-000083427475",
+      "brokerDealId": "000940dd-0055-311e-0000-000083427475",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:50:02.957",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "BTCUSD",
+        "dealReference": "o_94d5b380-493c-4cde-a16c-790161cae2e5",
+        "dealId": "000940dd-0055-311e-0000-000083427474",
+        "affectedDeals": [
+          {
+            "dealId": "000940dd-0055-311e-0000-000083427475",
+            "status": "OPENED"
+          }
+        ],
+        "level": 80880.3,
+        "size": 0.004,
+        "direction": "SELL",
+        "stopDistance": 485.6,
+        "profitDistance": -8.95,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:50:03+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 4,
+      "closed_utc": "2026-05-12T08:52:14+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "BTCUSD",
+        "dealId": "000940dd-0055-311e-0000-000083427475",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "BTCUSD",
+          "cycle_id": "1c924b29-691",
+          "level": 3,
+          "direction": "SELL",
+          "size": 0.004,
+          "dealReference": "o_94d5b380-493c-4cde-a16c-790161cae2e5",
+          "confirmDealId": "000940dd-0055-311e-0000-000083427474",
+          "dealId": "000940dd-0055-311e-0000-000083427475",
+          "brokerDealId": "000940dd-0055-311e-0000-000083427475",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:50:02.957",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "BTCUSD",
+            "dealReference": "o_94d5b380-493c-4cde-a16c-790161cae2e5",
+            "dealId": "000940dd-0055-311e-0000-000083427474",
+            "affectedDeals": [
+              {
+                "dealId": "000940dd-0055-311e-0000-000083427475",
+                "status": "OPENED"
+              }
+            ],
+            "level": 80880.3,
+            "size": 0.004,
+            "direction": "SELL",
+            "stopDistance": 485.6,
+            "profitDistance": -8.95,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:50:03+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_000940dd-0055-311e-0000-000083427475"
+        },
+        "dealReference": "p_000940dd-0055-311e-0000-000083427475",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:52:13.600",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "BTCUSD",
+          "dealReference": "p_000940dd-0055-311e-0000-000083427475",
+          "dealId": "000940dd-0055-311e-0000-000083427475",
+          "affectedDeals": [
+            {
+              "dealId": "000940dd-0055-311e-0000-000083427475",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 80931.9,
+          "size": 0.004,
+          "direction": "BUY",
+          "stopLevel": 81365.9,
+          "profitLevel": 80871.35,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.21,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "ETHUSD",
+      "cycle_id": "27fea58d-67a",
+      "level": 2,
+      "direction": "BUY",
+      "size": 0.02,
+      "dealReference": "o_939bb66a-61cd-4711-b430-985ef0e7cbaa",
+      "confirmDealId": "0015421d-0055-311e-0000-0000820b20e6",
+      "dealId": "0015421d-0055-311e-0000-0000820b20e7",
+      "brokerDealId": "0015421d-0055-311e-0000-0000820b20e7",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:50:05.376",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "ETHUSD",
+        "dealReference": "o_939bb66a-61cd-4711-b430-985ef0e7cbaa",
+        "dealId": "0015421d-0055-311e-0000-0000820b20e6",
+        "affectedDeals": [
+          {
+            "dealId": "0015421d-0055-311e-0000-0000820b20e7",
+            "status": "OPENED"
+          }
+        ],
+        "level": 2290.11,
+        "size": 0.02,
+        "direction": "BUY",
+        "stopDistance": -13.75,
+        "profitDistance": 0.26,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:50:06+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 3,
+      "closed_utc": "2026-05-12T08:52:17+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "ETHUSD",
+        "dealId": "0015421d-0055-311e-0000-0000820b20e7",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "ETHUSD",
+          "cycle_id": "27fea58d-67a",
+          "level": 2,
+          "direction": "BUY",
+          "size": 0.02,
+          "dealReference": "o_939bb66a-61cd-4711-b430-985ef0e7cbaa",
+          "confirmDealId": "0015421d-0055-311e-0000-0000820b20e6",
+          "dealId": "0015421d-0055-311e-0000-0000820b20e7",
+          "brokerDealId": "0015421d-0055-311e-0000-0000820b20e7",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:50:05.376",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "ETHUSD",
+            "dealReference": "o_939bb66a-61cd-4711-b430-985ef0e7cbaa",
+            "dealId": "0015421d-0055-311e-0000-0000820b20e6",
+            "affectedDeals": [
+              {
+                "dealId": "0015421d-0055-311e-0000-0000820b20e7",
+                "status": "OPENED"
+              }
+            ],
+            "level": 2290.11,
+            "size": 0.02,
+            "direction": "BUY",
+            "stopDistance": -13.75,
+            "profitDistance": 0.26,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:50:06+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20e7"
+        },
+        "dealReference": "p_0015421d-0055-311e-0000-0000820b20e7",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:52:15.978",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "ETHUSD",
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20e7",
+          "dealId": "0015421d-0055-311e-0000-0000820b20e7",
+          "affectedDeals": [
+            {
+              "dealId": "0015421d-0055-311e-0000-0000820b20e7",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 2288.93,
+          "size": 0.02,
+          "direction": "SELL",
+          "stopLevel": 2276.36,
+          "profitLevel": 2290.37,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.02,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "US500",
+      "cycle_id": "ca58d0a6-883",
+      "level": 1,
+      "direction": "BUY",
+      "size": 0.01,
+      "dealReference": "o_fa7d86a8-5480-4f89-af7c-278e81b99492",
+      "confirmDealId": "004d0627-0055-311e-0000-000081773377",
+      "dealId": "004d0627-0055-311e-0000-000081773378",
+      "brokerDealId": "004d0627-0055-311e-0000-000081773378",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:52:08.792",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "US500",
+        "dealReference": "o_fa7d86a8-5480-4f89-af7c-278e81b99492",
+        "dealId": "004d0627-0055-311e-0000-000081773377",
+        "affectedDeals": [
+          {
+            "dealId": "004d0627-0055-311e-0000-000081773378",
+            "status": "OPENED"
+          }
+        ],
+        "level": 7382.3,
+        "size": 0.01,
+        "direction": "BUY",
+        "stopDistance": -8.9,
+        "profitDistance": 0.9,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:52:09+00:00",
+      "dry_run": false,
+      "closed_reason": "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL",
+      "closed_utc": "2026-05-12T08:54:20+00:00"
+    },
+    {
+      "asset": "US30",
+      "cycle_id": "42dc596f-d1d",
+      "level": 1,
+      "direction": "BUY",
+      "size": 0.01,
+      "dealReference": "o_856bf9c8-dd10-4cef-963e-f95457b604c8",
+      "confirmDealId": "174f8d67-0055-311e-0000-0000819b1ffe",
+      "dealId": "174f8d67-0055-311e-0000-0000819b1fff",
+      "brokerDealId": "174f8d67-0055-311e-0000-0000819b1fff",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:52:10.023",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "US30",
+        "dealReference": "o_856bf9c8-dd10-4cef-963e-f95457b604c8",
+        "dealId": "174f8d67-0055-311e-0000-0000819b1ffe",
+        "affectedDeals": [
+          {
+            "dealId": "174f8d67-0055-311e-0000-0000819b1fff",
+            "status": "OPENED"
+          }
+        ],
+        "level": 49660.7,
+        "size": 0.01,
+        "direction": "BUY",
+        "stopDistance": -59.7,
+        "profitDistance": 5.5,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:52:11+00:00",
+      "dry_run": false,
+      "closed_reason": "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL",
+      "closed_utc": "2026-05-12T08:54:20+00:00"
+    },
+    {
+      "asset": "OIL_CRUDE",
+      "cycle_id": "c6024ea5-783",
+      "level": 3,
+      "direction": "BUY",
+      "size": 4.0,
+      "dealReference": "o_122f4224-4716-42cb-9b6e-f9b5a7258018",
+      "confirmDealId": "00018509-0055-311e-0000-0000826a3f4d",
+      "dealId": "00018509-0055-311e-0000-0000826a3f4e",
+      "brokerDealId": "00018509-0055-311e-0000-0000826a3f4e",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:52:12.409",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "OIL_CRUDE",
+        "dealReference": "o_122f4224-4716-42cb-9b6e-f9b5a7258018",
+        "dealId": "00018509-0055-311e-0000-0000826a3f4d",
+        "affectedDeals": [
+          {
+            "dealId": "00018509-0055-311e-0000-0000826a3f4e",
+            "status": "OPENED"
+          }
+        ],
+        "level": 98.178,
+        "size": 4.0,
+        "direction": "BUY",
+        "stopDistance": -1.768,
+        "profitDistance": 0.011,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:52:13+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 4,
+      "closed_utc": "2026-05-12T08:54:22+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "OIL_CRUDE",
+        "dealId": "00018509-0055-311e-0000-0000826a3f4e",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "OIL_CRUDE",
+          "cycle_id": "c6024ea5-783",
+          "level": 3,
+          "direction": "BUY",
+          "size": 4.0,
+          "dealReference": "o_122f4224-4716-42cb-9b6e-f9b5a7258018",
+          "confirmDealId": "00018509-0055-311e-0000-0000826a3f4d",
+          "dealId": "00018509-0055-311e-0000-0000826a3f4e",
+          "brokerDealId": "00018509-0055-311e-0000-0000826a3f4e",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:52:12.409",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "OIL_CRUDE",
+            "dealReference": "o_122f4224-4716-42cb-9b6e-f9b5a7258018",
+            "dealId": "00018509-0055-311e-0000-0000826a3f4d",
+            "affectedDeals": [
+              {
+                "dealId": "00018509-0055-311e-0000-0000826a3f4e",
+                "status": "OPENED"
+              }
+            ],
+            "level": 98.178,
+            "size": 4.0,
+            "direction": "BUY",
+            "stopDistance": -1.768,
+            "profitDistance": 0.011,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:52:13+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_00018509-0055-311e-0000-0000826a3f4e"
+        },
+        "dealReference": "p_00018509-0055-311e-0000-0000826a3f4e",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:54:21.882",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "OIL_CRUDE",
+          "dealReference": "p_00018509-0055-311e-0000-0000826a3f4e",
+          "dealId": "00018509-0055-311e-0000-0000826a3f4e",
+          "affectedDeals": [
+            {
+              "dealId": "00018509-0055-311e-0000-0000826a3f4e",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 98.061,
+          "size": 4.0,
+          "direction": "SELL",
+          "stopLevel": 96.41,
+          "profitLevel": 98.189,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.47,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "BTCUSD",
+      "cycle_id": "1c924b29-691",
+      "level": 4,
+      "direction": "SELL",
+      "size": 0.008,
+      "dealReference": "o_56f209f2-c8c2-450b-8c1c-8f86d3f38dc9",
+      "confirmDealId": "000940dd-0055-311e-0000-000083427479",
+      "dealId": "000940dd-0055-311e-0000-00008342747a",
+      "brokerDealId": "000940dd-0055-311e-0000-00008342747a",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:52:14.803",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "BTCUSD",
+        "dealReference": "o_56f209f2-c8c2-450b-8c1c-8f86d3f38dc9",
+        "dealId": "000940dd-0055-311e-0000-000083427479",
+        "affectedDeals": [
+          {
+            "dealId": "000940dd-0055-311e-0000-00008342747a",
+            "status": "OPENED"
+          }
+        ],
+        "level": 80881.9,
+        "size": 0.008,
+        "direction": "SELL",
+        "stopDistance": 485.6,
+        "profitDistance": -8.95,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:52:15+00:00",
+      "dry_run": false,
+      "closed_reason": "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL",
+      "closed_utc": "2026-05-12T08:54:24+00:00"
+    },
+    {
+      "asset": "ETHUSD",
+      "cycle_id": "27fea58d-67a",
+      "level": 3,
+      "direction": "BUY",
+      "size": 0.04,
+      "dealReference": "o_7ca40511-ad1a-4308-ab6a-ee056d57b1d9",
+      "confirmDealId": "0015421d-0055-311e-0000-0000820b20eb",
+      "dealId": "0015421d-0055-311e-0000-0000820b20ec",
+      "brokerDealId": "0015421d-0055-311e-0000-0000820b20ec",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:52:17.202",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "ETHUSD",
+        "dealReference": "o_7ca40511-ad1a-4308-ab6a-ee056d57b1d9",
+        "dealId": "0015421d-0055-311e-0000-0000820b20eb",
+        "affectedDeals": [
+          {
+            "dealId": "0015421d-0055-311e-0000-0000820b20ec",
+            "status": "OPENED"
+          }
+        ],
+        "level": 2290.55,
+        "size": 0.04,
+        "direction": "BUY",
+        "stopDistance": -13.75,
+        "profitDistance": 0.26,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:52:18+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 4,
+      "closed_utc": "2026-05-12T08:54:25+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "ETHUSD",
+        "dealId": "0015421d-0055-311e-0000-0000820b20ec",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "ETHUSD",
+          "cycle_id": "27fea58d-67a",
+          "level": 3,
+          "direction": "BUY",
+          "size": 0.04,
+          "dealReference": "o_7ca40511-ad1a-4308-ab6a-ee056d57b1d9",
+          "confirmDealId": "0015421d-0055-311e-0000-0000820b20eb",
+          "dealId": "0015421d-0055-311e-0000-0000820b20ec",
+          "brokerDealId": "0015421d-0055-311e-0000-0000820b20ec",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:52:17.202",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "ETHUSD",
+            "dealReference": "o_7ca40511-ad1a-4308-ab6a-ee056d57b1d9",
+            "dealId": "0015421d-0055-311e-0000-0000820b20eb",
+            "affectedDeals": [
+              {
+                "dealId": "0015421d-0055-311e-0000-0000820b20ec",
+                "status": "OPENED"
+              }
+            ],
+            "level": 2290.55,
+            "size": 0.04,
+            "direction": "BUY",
+            "stopDistance": -13.75,
+            "profitDistance": 0.26,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:52:18+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20ec"
+        },
+        "dealReference": "p_0015421d-0055-311e-0000-0000820b20ec",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:54:24.285",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "ETHUSD",
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20ec",
+          "dealId": "0015421d-0055-311e-0000-0000820b20ec",
+          "affectedDeals": [
+            {
+              "dealId": "0015421d-0055-311e-0000-0000820b20ec",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 2286.39,
+          "size": 0.04,
+          "direction": "SELL",
+          "stopLevel": 2276.8,
+          "profitLevel": 2290.81,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.17,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "DE40",
+      "cycle_id": "18781dd2-51f",
+      "level": 1,
+      "direction": "BUY",
+      "size": 0.01,
+      "dealReference": "o_8e84be07-3488-451c-86e4-32b30db90d2e",
+      "confirmDealId": "07101627-0015-549e-0000-000081092d8c",
+      "dealId": "07101627-0015-549e-0000-000081092d8d",
+      "brokerDealId": "07101627-0015-549e-0000-000081092d8d",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:54:20.695",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "DE40",
+        "dealReference": "o_8e84be07-3488-451c-86e4-32b30db90d2e",
+        "dealId": "07101627-0015-549e-0000-000081092d8c",
+        "affectedDeals": [
+          {
+            "dealId": "07101627-0015-549e-0000-000081092d8d",
+            "status": "OPENED"
+          }
+        ],
+        "level": 24141.3,
+        "size": 0.01,
+        "direction": "BUY",
+        "stopDistance": -29.0,
+        "profitDistance": 2.7,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:54:21+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 2,
+      "closed_utc": "2026-05-12T08:56:29+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "DE40",
+        "dealId": "07101627-0015-549e-0000-000081092d8d",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "DE40",
+          "cycle_id": "18781dd2-51f",
+          "level": 1,
+          "direction": "BUY",
+          "size": 0.01,
+          "dealReference": "o_8e84be07-3488-451c-86e4-32b30db90d2e",
+          "confirmDealId": "07101627-0015-549e-0000-000081092d8c",
+          "dealId": "07101627-0015-549e-0000-000081092d8d",
+          "brokerDealId": "07101627-0015-549e-0000-000081092d8d",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:54:20.695",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "DE40",
+            "dealReference": "o_8e84be07-3488-451c-86e4-32b30db90d2e",
+            "dealId": "07101627-0015-549e-0000-000081092d8c",
+            "affectedDeals": [
+              {
+                "dealId": "07101627-0015-549e-0000-000081092d8d",
+                "status": "OPENED"
+              }
+            ],
+            "level": 24141.3,
+            "size": 0.01,
+            "direction": "BUY",
+            "stopDistance": -29.0,
+            "profitDistance": 2.7,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:54:21+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_07101627-0015-549e-0000-000081092d8d"
+        },
+        "dealReference": "p_07101627-0015-549e-0000-000081092d8d",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:56:28.884",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "DE40",
+          "dealReference": "p_07101627-0015-549e-0000-000081092d8d",
+          "dealId": "07101627-0015-549e-0000-000081092d8d",
+          "affectedDeals": [
+            {
+              "dealId": "07101627-0015-549e-0000-000081092d8d",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 24120.3,
+          "size": 0.01,
+          "direction": "SELL",
+          "stopLevel": 24112.3,
+          "profitLevel": 24144.0,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.21,
+          "profitCurrency": "EUR"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    },
+    {
+      "asset": "OIL_CRUDE",
+      "cycle_id": "c6024ea5-783",
+      "level": 4,
+      "direction": "BUY",
+      "size": 8.0,
+      "dealReference": "o_1101653f-bd59-41ca-80f0-fc96e6663051",
+      "confirmDealId": "00018509-0055-311e-0000-0000826a3f5f",
+      "dealId": "00018509-0055-311e-0000-0000826a3f60",
+      "brokerDealId": "00018509-0055-311e-0000-0000826a3f60",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:54:23.098",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "OIL_CRUDE",
+        "dealReference": "o_1101653f-bd59-41ca-80f0-fc96e6663051",
+        "dealId": "00018509-0055-311e-0000-0000826a3f5f",
+        "affectedDeals": [
+          {
+            "dealId": "00018509-0055-311e-0000-0000826a3f60",
+            "status": "OPENED"
+          }
+        ],
+        "level": 98.096,
+        "size": 8.0,
+        "direction": "BUY",
+        "stopDistance": -1.768,
+        "profitDistance": 0.011,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:54:24+00:00",
+      "dry_run": false,
+      "closed_reason": "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL",
+      "closed_utc": "2026-05-12T08:56:31+00:00"
+    },
+    {
+      "asset": "ETHUSD",
+      "cycle_id": "27fea58d-67a",
+      "level": 4,
+      "direction": "BUY",
+      "size": 0.08,
+      "dealReference": "o_7291e6da-dacc-4135-878b-ad6350aa0481",
+      "confirmDealId": "0015421d-0055-311e-0000-0000820b20f0",
+      "dealId": "0015421d-0055-311e-0000-0000820b20f1",
+      "brokerDealId": "0015421d-0055-311e-0000-0000820b20f1",
+      "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+      "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+      "open_status": 200,
+      "confirm_status": 200,
+      "confirm": {
+        "date": "2026-05-12T08:54:25.511",
+        "status": "OPEN",
+        "dealStatus": "ACCEPTED",
+        "epic": "ETHUSD",
+        "dealReference": "o_7291e6da-dacc-4135-878b-ad6350aa0481",
+        "dealId": "0015421d-0055-311e-0000-0000820b20f0",
+        "affectedDeals": [
+          {
+            "dealId": "0015421d-0055-311e-0000-0000820b20f1",
+            "status": "OPENED"
+          }
+        ],
+        "level": 2288.15,
+        "size": 0.08,
+        "direction": "BUY",
+        "stopDistance": -13.75,
+        "profitDistance": 0.26,
+        "guaranteedStop": true,
+        "trailingStop": false
+      },
+      "opened_utc": "2026-05-12T08:54:26+00:00",
+      "dry_run": false,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 5,
+      "closed_utc": "2026-05-12T08:56:33+00:00",
+      "close_info": {
+        "ok": true,
+        "asset": "ETHUSD",
+        "dealId": "0015421d-0055-311e-0000-0000820b20f1",
+        "close_reason": "LEVEL_CHANGED",
+        "old_exec": {
+          "asset": "ETHUSD",
+          "cycle_id": "27fea58d-67a",
+          "level": 4,
+          "direction": "BUY",
+          "size": 0.08,
+          "dealReference": "o_7291e6da-dacc-4135-878b-ad6350aa0481",
+          "confirmDealId": "0015421d-0055-311e-0000-0000820b20f0",
+          "dealId": "0015421d-0055-311e-0000-0000820b20f1",
+          "brokerDealId": "0015421d-0055-311e-0000-0000820b20f1",
+          "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+          "resolve_reason": "NEW_BROKER_DEAL_UNIQUE",
+          "open_status": 200,
+          "confirm_status": 200,
+          "confirm": {
+            "date": "2026-05-12T08:54:25.511",
+            "status": "OPEN",
+            "dealStatus": "ACCEPTED",
+            "epic": "ETHUSD",
+            "dealReference": "o_7291e6da-dacc-4135-878b-ad6350aa0481",
+            "dealId": "0015421d-0055-311e-0000-0000820b20f0",
+            "affectedDeals": [
+              {
+                "dealId": "0015421d-0055-311e-0000-0000820b20f1",
+                "status": "OPENED"
+              }
+            ],
+            "level": 2288.15,
+            "size": 0.08,
+            "direction": "BUY",
+            "stopDistance": -13.75,
+            "profitDistance": 0.26,
+            "guaranteedStop": true,
+            "trailingStop": false
+          },
+          "opened_utc": "2026-05-12T08:54:26+00:00",
+          "dry_run": false
+        },
+        "delete_status": 200,
+        "delete_response": {
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20f1"
+        },
+        "dealReference": "p_0015421d-0055-311e-0000-0000820b20f1",
+        "confirm_status": 200,
+        "confirm": {
+          "date": "2026-05-12T08:56:32.513",
+          "status": "CLOSED",
+          "dealStatus": "ACCEPTED",
+          "epic": "ETHUSD",
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b20f1",
+          "dealId": "0015421d-0055-311e-0000-0000820b20f1",
+          "affectedDeals": [
+            {
+              "dealId": "0015421d-0055-311e-0000-0000820b20f1",
+              "status": "FULLY_CLOSED"
+            }
+          ],
+          "level": 2284.9,
+          "size": 0.08,
+          "direction": "SELL",
+          "stopLevel": 2274.4,
+          "profitLevel": 2288.41,
+          "guaranteedStop": true,
+          "trailingStop": false,
+          "profit": -0.26,
+          "profitCurrency": "USD"
+        },
+        "verify_status": 200,
+        "verified_closed": true,
+        "remaining_ids_for_asset": [],
+        "dry_run": false
+      }
+    }
+  ],
+  "rejected": [],
+  "reset_utc": "2026-05-12T08:33:18+00:00",
+  "reset_reason": "RESET_STALE_INTERNAL_STATE_BROKER_ZERO_POSITION"
+}

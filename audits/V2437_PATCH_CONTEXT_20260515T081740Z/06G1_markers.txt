@@ -1,0 +1,32 @@
+3:# V24.3.1 - pending-aware : positions broker + working orders broker
+30:        return data.get("workingOrders") or data.get("workingorders") or data.get("orders") or []
+36:    return x.get("workingOrderData") or x.get("workingOrder") or x or {}
+57:    return d.get("dealId") or d.get("workingOrderId") or (x.get("dealId") if isinstance(x, dict) else None)
+67:    pending_n = 0
+75:            pending_n += 1
+79:    return open_n, pending_n, other_n
+84:    open_n, pending_n, other_n = local_exec_counts(e)
+87:    return f"{direction} open={open_n} pending={pending_n} other={other_n} cycle={cycle}"
+96:    print("BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE")
+104:    status, positions, _ = B.broker_positions(headers)
+107:        wo_status, wo_raw = B.api_get(headers, "/api/v1/workingorders")
+108:        working_orders = items(wo_raw)
+111:        working_orders = []
+112:        print("GET /workingorders erreur :", e)
+119:    for p in positions:
+125:    for w in working_orders:
+130:    print("GET /positions     :", status)
+131:    print("Total positions    :", len(positions))
+132:    print("GET /workingorders :", wo_status)
+133:    print("Total pending      :", len(working_orders))
+145:        local_open, local_pending, local_other = local_exec_counts(e)
+155:            anomalies.append("LOCAL_ACTIVE_SANS_BROKER")
+158:        if local_pending > 0 and not bpend:
+159:            anomalies.append("LOCAL_PENDING_ABSENT_BROKER")
+169:            local_working_ids = []
+174:                    if rec.get("workingDealId"):
+175:                        local_working_ids.append(rec.get("workingDealId"))
+180:            broker_pending_deals = [wo_deal(x) for x in bpend]
+186:            for wid in local_working_ids:
+187:                if wid and wid not in broker_pending_deals:
+205:                f"broker pending  -> {wo_dir(w)} size={wo_size(w)} level={wo_level(w)} deal={short(wo_deal(w))}"

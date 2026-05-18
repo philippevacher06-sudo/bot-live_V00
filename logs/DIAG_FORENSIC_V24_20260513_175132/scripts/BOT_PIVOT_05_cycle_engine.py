@@ -1,0 +1,975 @@
+# BOT_PIVOT_05_cycle_engine.py
+# Cycle engine BOT-PIVOT — simulation
+# Sécurité ajoutée :
+# - aucune décision de cycle si le tick est trop vieux
+# - pas de CLOSE_TP sur vieux prix
+# - pas de NEXT_LEVEL sur vieux prix
+# - pas d'ouverture de niveau sur vieux prix
+
+import json
+import uuid
+import argparse
+from pathlib import Path
+from datetime import datetime, timezone
+
+import BOT_PIVOT_00_config as CFG
+import BOT_PIVOT_00B_pnl_eur as PNL
+
+
+# V24 Basket Limit — mode démo :
+# On relâche légèrement les entrées pour tester réellement les paniers LIMIT.
+# Les vrais PHASE_VETO contre-tendance restent bloquants.
+V24_DEMO_RELAXED_ENTRY = True
+V24_DEMO_MIN_SCORE_RANGE = 2
+V24_DEMO_MIN_SCORE_TREND_ALIGNED = 3
+
+
+SIGNALS_FILE = CFG.DATA_DIR / "ticks" / "signals_latest.json"
+STATE_FILE = CFG.DATA_DIR / "cycles" / "cycle_state.json"
+
+MAX_TICK_AGE_SEC = float(getattr(CFG, "MAX_TICK_AGE_SEC", 12.0))
+MAX_LEVEL = int(getattr(CFG, "MAX_LEVEL", 5))
+MAX_LIFE_SEC = float(getattr(CFG, "MAX_POSITION_LIFE_SEC_LEVEL_1_TO_4", 120.0))
+BASE_TP_EUR = float(getattr(CFG, "BASE_TP_EUR", 0.10))
+NEXT_LEVEL_MIN_LOSS_EUR = float(getattr(CFG, "NEXT_LEVEL_MIN_LOSS_EUR", 0.10))
+MIN_CONTEXT_SCORE_ENTRY = int(getattr(CFG, "MIN_CONTEXT_SCORE_ENTRY", 3))
+MIN_CONTEXT_SCORE_NEXT_LEVEL = int(getattr(CFG, "MIN_CONTEXT_SCORE_NEXT_LEVEL", 3))
+MIN_CONTEXT_SCORE_KEEP = int(getattr(CFG, "MIN_CONTEXT_SCORE_KEEP", 2))
+CLOSE_WEAK_CONTEXT_AFTER_SEC = float(getattr(CFG, "CLOSE_WEAK_CONTEXT_AFTER_SEC", 300))
+EARLY_INVALIDATION_LOSS_EUR = float(getattr(CFG, "EARLY_INVALIDATION_LOSS_EUR", 0.50))
+EARLY_WEAK_LOSS_EUR = float(getattr(CFG, "EARLY_WEAK_LOSS_EUR", 0.80))
+TP_EUR_BY_LEVEL = getattr(CFG, "TP_EUR_BY_LEVEL", {})
+REF_DRIFT_PCT = float(getattr(CFG, "REF_DRIFT_PCT", 0.002))
+DRIFT_COEFF_MIN = float(getattr(CFG, "DRIFT_COEFF_MIN", 1.0))
+DRIFT_COEFF_MAX = float(getattr(CFG, "DRIFT_COEFF_MAX", 2.5))
+
+# V24.1 — Application SAFETY_EXIT_CURSOR
+# 0.5 à 0.9 : laisse plus respirer le panier.
+# 1.0       : réglage normal.
+# 1.1 à 1.5 : coupe plus vite si le contexte se retourne.
+def _v241_safety_cursor():
+    import os
+    try:
+        raw = float(os.environ.get("SAFETY_EXIT_CURSOR", "1.0"))
+    except Exception:
+        raw = 1.0
+    raw = max(0.5, min(1.5, raw))
+    return round(raw, 1)
+
+SAFETY_EXIT_CURSOR_EFFECTIVE = _v241_safety_cursor()
+
+# Temps : plus le curseur est élevé, plus on coupe tôt.
+CLOSE_WEAK_CONTEXT_AFTER_SEC = CLOSE_WEAK_CONTEXT_AFTER_SEC / SAFETY_EXIT_CURSOR_EFFECTIVE
+
+# Pertes : plus le curseur est élevé, plus la perte tolérée avant garde-fou est faible.
+EARLY_INVALIDATION_LOSS_EUR = EARLY_INVALIDATION_LOSS_EUR / SAFETY_EXIT_CURSOR_EFFECTIVE
+EARLY_WEAK_LOSS_EUR = EARLY_WEAK_LOSS_EUR / SAFETY_EXIT_CURSOR_EFFECTIVE
+
+# Scores : plus le curseur est élevé, plus le contexte demandé est strict.
+MIN_CONTEXT_SCORE_NEXT_LEVEL = max(1, int(round(MIN_CONTEXT_SCORE_NEXT_LEVEL * SAFETY_EXIT_CURSOR_EFFECTIVE)))
+MIN_CONTEXT_SCORE_KEEP = max(1, int(round(MIN_CONTEXT_SCORE_KEEP * SAFETY_EXIT_CURSOR_EFFECTIVE)))
+
+
+
+# ============================================================
+# V24.1 — Curseur individuel d'entrée tendance
+# ============================================================
+# TREND_ENTRY_CURSOR :
+#   0.5 à 0.9 = plus permissif contre tendance
+#   1.0       = comportement prudent de base
+#   1.1 à 1.5 = plus strict / défensif
+# ============================================================
+
+def v241_env_float(name, default):
+    import os
+    raw = os.environ.get(name, str(default))
+    try:
+        return float(raw)
+    except Exception:
+        return float(default)
+
+
+def v241_clamp(value, min_value, max_value):
+    return max(float(min_value), min(float(max_value), float(value)))
+
+
+def v241_cursor(name, default=1.0, min_value=0.5, max_value=1.5):
+    raw = v241_clamp(v241_env_float(name, default), min_value, max_value)
+    return round(raw, 1)
+
+
+def v241_trend_entry_cursor():
+    return v241_cursor("TREND_ENTRY_CURSOR", 1.0, 0.5, 1.5)
+
+
+def v241_effective_entry_min_score():
+    cursor = v241_trend_entry_cursor()
+    return max(1, int(round(float(MIN_CONTEXT_SCORE_ENTRY) * cursor)))
+
+
+def utc():
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def parse_dt(value):
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except Exception:
+        return None
+
+
+def age_sec_from(value):
+    dt = parse_dt(value)
+    if not dt:
+        return 0.0
+    now = datetime.now(timezone.utc)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return max(0.0, (now - dt).total_seconds())
+
+
+def load_json(path, default):
+    if not Path(path).exists():
+        return default
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except Exception:
+        return default
+
+
+def save_json(path, data):
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    Path(path).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def assets_list(raw):
+    if not raw or raw.upper() == "ALL":
+        return list(CFG.ASSETS)
+    return [x.strip().upper() for x in raw.replace(";", ",").split(",") if x.strip()]
+
+
+def default_state():
+    return {
+        "updated_utc": utc(),
+        "assets": {
+            asset: {
+                "status": "IDLE",
+                "cycle": None,
+                "last_event": "INIT",
+                "last_event_utc": utc(),
+            }
+            for asset in CFG.ASSETS
+        },
+    }
+
+
+def normalize_state(state):
+    if not isinstance(state, dict):
+        state = default_state()
+
+    state.setdefault("assets", {})
+
+    for asset in CFG.ASSETS:
+        state["assets"].setdefault(
+            asset,
+            {
+                "status": "IDLE",
+                "cycle": None,
+                "last_event": "INIT",
+                "last_event_utc": utc(),
+            },
+        )
+
+    return state
+
+
+def load_signals():
+    raw = load_json(SIGNALS_FILE, {})
+
+    if isinstance(raw, dict):
+        if isinstance(raw.get("signals"), dict):
+            return raw["signals"]
+        if isinstance(raw.get("signals"), list):
+            return {
+                str(x.get("asset") or x.get("epic")).upper(): x
+                for x in raw["signals"]
+                if isinstance(x, dict)
+            }
+        if isinstance(raw.get("assets"), dict):
+            return raw["assets"]
+
+        # Cas où les actifs sont directement à la racine du JSON
+        direct = {}
+        for k, v in raw.items():
+            if str(k).upper() in CFG.ASSETS and isinstance(v, dict):
+                direct[str(k).upper()] = v
+        if direct:
+            return direct
+
+    if isinstance(raw, list):
+        return {
+            str(x.get("asset") or x.get("epic")).upper(): x
+            for x in raw
+            if isinstance(x, dict)
+        }
+
+    return {}
+
+
+def val(d, keys, default=None):
+    if not isinstance(d, dict):
+        return default
+    for k in keys:
+        if k in d and d[k] is not None:
+            return d[k]
+    return default
+
+
+def signal_decision(sig):
+    return str(val(sig, ["decision", "signal", "action"], "WAIT")).upper()
+
+
+def signal_mid(sig):
+    x = val(sig, ["mid", "price", "current_price", "last_mid"], None)
+    try:
+        return float(x)
+    except Exception:
+        return None
+
+
+def signal_bid(sig):
+    x = val(sig, ["bid", "BID", "last_bid"], None)
+    try:
+        return float(x)
+    except Exception:
+        return None
+
+
+def signal_ask(sig):
+    x = val(sig, ["ask", "ASK", "last_ask"], None)
+    try:
+        return float(x)
+    except Exception:
+        return None
+
+
+def real_entry_price(direction, sig):
+    """
+    Prix réel d'entrée théorique broker :
+    - BUY  entre à l'ASK
+    - SELL entre au BID
+    Fallback MID uniquement si bid/ask indisponibles.
+    """
+    d = str(direction).upper()
+    bid = signal_bid(sig)
+    ask = signal_ask(sig)
+    mid = signal_mid(sig)
+
+    if d == "BUY" and ask is not None:
+        return ask
+    if d == "SELL" and bid is not None:
+        return bid
+    return mid
+
+
+def real_exit_price(direction, sig):
+    """
+    Prix réel de sortie théorique broker :
+    - BUY  sort au BID
+    - SELL sort à l'ASK
+    Fallback MID uniquement si bid/ask indisponibles.
+    """
+    d = str(direction).upper()
+    bid = signal_bid(sig)
+    ask = signal_ask(sig)
+    mid = signal_mid(sig)
+
+    if d == "BUY" and bid is not None:
+        return bid
+    if d == "SELL" and ask is not None:
+        return ask
+    return mid
+
+
+def signal_age(sig):
+    x = val(sig, ["age", "age_sec", "tick_age_sec", "last_tick_age_sec"], None)
+    try:
+        return float(x)
+    except Exception:
+        return None
+
+
+def as_bool(x):
+    if isinstance(x, bool):
+        return x
+    if isinstance(x, str):
+        return x.strip().lower() in ("true", "1", "yes", "ok")
+    return None
+
+
+def signal_reason(sig):
+    return str(val(sig, ["reason", "raison", "why"], ""))
+
+
+def signal_context_score(sig):
+    x = val(sig, ["context_score", "score_confluence", "score"], 0)
+    try:
+        return float(x)
+    except Exception:
+        return 0.0
+
+
+def signal_context_summary(sig):
+    return str(val(sig, ["context_summary", "context", "score_reason"], ""))
+
+
+def signal_context_phase(sig):
+    return str(val(sig, ["phase"], "UNKNOWN"))
+
+
+def signal_context_vwap(sig):
+    return str(val(sig, ["vwap_bias"], "UNKNOWN"))
+
+
+def signal_spread_ok(sig):
+    x = val(sig, ["spr_ok", "SprOK", "spread_ok", "spreadOK", "spread_allowed"], None)
+    b = as_bool(x)
+    if b is not None:
+        return b
+
+    reason = signal_reason(sig)
+    if "SPREAD_TOO_HIGH" in reason:
+        return False
+    if "spread=LEARNING" in reason:
+        return False
+
+    return True
+
+
+def is_fresh(sig):
+    if not sig:
+        return False, "signal_absent"
+
+    age = signal_age(sig)
+    mid = signal_mid(sig)
+
+    if mid is None:
+        return False, "prix_indisponible"
+
+    if age is None:
+        return False, "age_tick_indisponible"
+
+    if age > MAX_TICK_AGE_SEC:
+        return False, f"tick_trop_ancien_{age:.1f}s>{MAX_TICK_AGE_SEC:.1f}s"
+
+    if not signal_spread_ok(sig):
+        reason = signal_reason(sig)
+        if "SPREAD_TOO_HIGH" in reason:
+            return False, "spread_trop_eleve"
+        if "spread=LEARNING" in reason:
+            return False, "spread_learning_insuffisant"
+        return False, "spread_non_valide"
+
+    return True, "tick_et_spread_ok"
+
+
+def level_multiplier(level):
+    multipliers = getattr(CFG, "LEVEL_MULTIPLIERS", {})
+    try:
+        return float(multipliers.get(int(level), 2 ** (int(level) - 1)))
+    except Exception:
+        return float(2 ** (int(level) - 1))
+
+
+def base_size(asset):
+    if hasattr(CFG, "get_base_size"):
+        return float(CFG.get_base_size(asset))
+
+    if hasattr(CFG, "BASE_SIZES"):
+        return float(CFG.BASE_SIZES[asset])
+
+    if hasattr(CFG, "ASSET_BASE_SIZE"):
+        return float(CFG.ASSET_BASE_SIZE[asset])
+
+    raise RuntimeError(f"Taille de base introuvable pour {asset}")
+
+
+def size_for(asset, level):
+    return float(base_size(asset) * level_multiplier(level))
+
+
+def tp_for(level, coeff=1.0):
+    level = int(level)
+    if isinstance(TP_EUR_BY_LEVEL, dict) and level in TP_EUR_BY_LEVEL:
+        return float(TP_EUR_BY_LEVEL[level])
+    return float(BASE_TP_EUR * level_multiplier(level))
+
+
+def pnl_eur(direction, entry_price, current_price, size):
+    if direction == "BUY":
+        return (current_price - entry_price) * size
+    return (entry_price - current_price) * size
+
+
+def adverse_drift(direction, entry_price, close_price):
+    if direction == "BUY":
+        return max(0.0, entry_price - close_price)
+    return max(0.0, close_price - entry_price)
+
+
+def drift_coeff(direction, entry_price, close_price):
+    drift = adverse_drift(direction, entry_price, close_price)
+    if entry_price <= 0:
+        return 1.0
+
+    pct = drift / entry_price
+    raw = pct / REF_DRIFT_PCT if REF_DRIFT_PCT > 0 else 1.0
+    return max(DRIFT_COEFF_MIN, min(DRIFT_COEFF_MAX, raw))
+
+
+def level_open_utc(cycle):
+    return (
+        cycle.get("level_open_utc")
+        or cycle.get("opened_utc")
+        or cycle.get("open_utc")
+        or cycle.get("created_utc")
+    )
+
+
+def cycle_age_sec(cycle):
+    return age_sec_from(level_open_utc(cycle))
+
+
+def new_cycle(asset, direction, price, level=1, coeff=1.0, cycle_id=None):
+    now = utc()
+    return {
+        "asset": asset,
+        "cycle_id": cycle_id or str(uuid.uuid4())[:12],
+        "level": int(level),
+        "direction": direction,
+        "entry_price": float(price),
+        "size": float(size_for(asset, level)),
+        "tp_eur": float(tp_for(level, coeff)),
+        "drift_coeff": float(coeff),
+        "created_utc": now,
+        "opened_utc": now,
+        "level_open_utc": now,
+
+        # V24.1 :
+        # Le moteur 05 crée seulement l'autorisation d'entrée.
+        # Toute la vie réelle du panier broker L1/L2/L3 est pilotée par 06G2.
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+    }
+
+
+def set_idle(state, asset, event):
+    state["assets"][asset] = {
+        "status": "IDLE",
+        "cycle": None,
+        "last_event": event,
+        "last_event_utc": utc(),
+    }
+
+
+def set_position(state, asset, cycle, event):
+    state["assets"][asset] = {
+        "status": "IN_POSITION",
+        "cycle": cycle,
+        "last_event": event,
+        "last_event_utc": utc(),
+    }
+
+
+def show_status(state, assets):
+    print()
+    print("=" * 130)
+    print("BOT_PIVOT_05 — STATUS CYCLE ENGINE")
+    print("=" * 130)
+
+    for asset in assets:
+        slot = state["assets"].get(asset, {})
+        cycle = slot.get("cycle")
+
+        if slot.get("status") != "IN_POSITION" or not cycle:
+            print(f"{asset:10s} | IDLE")
+            continue
+
+        age = cycle_age_sec(cycle)
+        print(
+            f"{asset:10s} | IN_POSITION "
+            f"L{int(cycle['level'])} "
+            f"{cycle['direction']} "
+            f"entry={float(cycle['entry_price']):.6f} "
+            f"size={float(cycle['size']):.6f} "
+            f"tp={float(cycle['tp_eur']):.4f} "
+            f"age={age:.1f}s"
+        )
+
+    print("=" * 130)
+
+
+def run_engine(assets, capital):
+    state = normalize_state(load_json(STATE_FILE, default_state()))
+    signals = load_signals()
+
+    print()
+    print("=" * 130)
+    print("BOT_PIVOT_05 — CYCLE ENGINE SIMULATION")
+    print("=" * 130)
+
+    for asset in assets:
+        slot = state["assets"].get(asset, {})
+        cycle = slot.get("cycle")
+        status = slot.get("status", "IDLE")
+        sig = signals.get(asset, {})
+
+        fresh, fresh_reason = is_fresh(sig)
+        decision = signal_decision(sig)
+        current_price = signal_mid(sig)
+
+        # 1. Pas de position active
+        if status != "IN_POSITION" or not cycle:
+            if decision in ("BUY", "SELL"):
+                if not fresh:
+                    print(f"{asset:10s} | IDLE_UNSAFE  | signal {decision} ignoré | {fresh_reason}")
+                    set_idle(state, asset, "IDLE_STALE")
+                    continue
+
+                ctx_score = signal_context_score(sig)
+                ctx_summary = signal_context_summary(sig)
+                ctx_phase = signal_context_phase(sig).upper()
+                ctx_vwap = signal_context_vwap(sig).upper()
+
+                # V24.1 — filtre de tendance paramétrable.
+                # Avant : phase contraire = veto brutal.
+                # Maintenant :
+                #   TREND_ENTRY_CURSOR < 1.0  -> contre-tendance possible si score suffisant.
+                #   TREND_ENTRY_CURSOR >= 1.0 -> veto prudent conservé.
+                trend_entry_cursor = v241_trend_entry_cursor()
+                min_context_entry_effective = v241_effective_entry_min_score()
+
+                phase_veto_entry = (
+                    (decision == "BUY" and ctx_phase == "TREND_DOWN") or
+                    (decision == "SELL" and ctx_phase == "TREND_UP")
+                )
+
+                if phase_veto_entry:
+                    if trend_entry_cursor >= 1.0:
+                        print(
+                            f"{asset:10s} | IDLE_PHASE_VETO | "
+                            f"signal {decision} ignoré | "
+                            f"cursor={trend_entry_cursor:.1f} | "
+                            f"score={ctx_score:.0f} | "
+                            f"phase={ctx_phase} | vwap={ctx_vwap} | "
+                            f"{ctx_summary}"
+                        )
+                        set_idle(state, asset, "IDLE_PHASE_VETO")
+                        continue
+
+                    if ctx_score < min_context_entry_effective:
+                        print(
+                            f"{asset:10s} | IDLE_PHASE_CURSOR_WEAK | "
+                            f"signal {decision} ignoré | "
+                            f"cursor={trend_entry_cursor:.1f} | "
+                            f"score={ctx_score:.0f}<{min_context_entry_effective} | "
+                            f"phase={ctx_phase} | vwap={ctx_vwap} | "
+                            f"{ctx_summary}"
+                        )
+                        set_idle(state, asset, "IDLE_PHASE_CURSOR_WEAK")
+                        continue
+
+                    print(
+                        f"{asset:10s} | V24_TREND_CURSOR_CONTRA_OK | "
+                        f"signal {decision} autorisé contre phase | "
+                        f"cursor={trend_entry_cursor:.1f} | "
+                        f"score={ctx_score:.0f}>={min_context_entry_effective} | "
+                        f"phase={ctx_phase} | vwap={ctx_vwap} | "
+                        f"{ctx_summary}"
+                    )
+
+                # V23.2 — VWAP contraire : score minimum renforcé
+                # BUY avec vwap_bias=SELL ou SELL avec vwap_bias=BUY
+                vwap_against = (
+                    (decision == "BUY" and ctx_vwap == "SELL") or
+                    (decision == "SELL" and ctx_vwap == "BUY")
+                )
+
+                min_vwap_against_base = float(globals().get("MIN_CONTEXT_SCORE_ENTRY_VWAP_AGAINST", 4))
+                min_vwap_against = max(1.0, min_vwap_against_base * trend_entry_cursor)
+
+                # V24 Basket Limit — mode démo moins frileux.
+                # On garde PHASE_VETO bloquant, mais on autorise certains signaux
+                # avec VWAP contraire pour tester réellement les paniers LIMIT.
+                v24_relaxed_entry = bool(globals().get("V24_DEMO_RELAXED_ENTRY", False))
+                v24_min_range = float(globals().get("V24_DEMO_MIN_SCORE_RANGE", 2))
+                v24_min_trend_aligned = float(globals().get("V24_DEMO_MIN_SCORE_TREND_ALIGNED", 3))
+
+                v24_trend_aligned = (
+                    (decision == "BUY" and ctx_phase == "TREND_UP") or
+                    (decision == "SELL" and ctx_phase == "TREND_DOWN")
+                )
+
+                v24_relaxed_allow = (
+                    v24_relaxed_entry and (
+                        (ctx_phase == "RANGE" and ctx_score >= v24_min_range) or
+                        (v24_trend_aligned and ctx_score >= v24_min_trend_aligned)
+                    )
+                )
+
+                if vwap_against and ctx_score < min_vwap_against:
+                    if v24_relaxed_allow:
+                        print(
+                            f"{asset:10s} | V24_RELAXED_VWAP_OK | "
+                            f"signal {decision} autorisé | "
+                            f"score={ctx_score:.0f}<{min_vwap_against:.0f} mais démo V24 | "
+                            f"phase={ctx_phase} | vwap={ctx_vwap} | "
+                            f"{ctx_summary}"
+                        )
+
+                        # Forçage contrôlé uniquement en mode démo V24 :
+                        # évite que le bloc IDLE_CONTEXT_WEAK rejette juste après.
+                        ctx_score = max(float(ctx_score), float(min_context_entry_effective))
+                    else:
+                        print(
+                            f"{asset:10s} | IDLE_VWAP_AGAINST_WEAK | "
+                            f"signal {decision} ignoré | "
+                            f"score={ctx_score:.0f}<{min_vwap_against:.0f} | "
+                            f"phase={ctx_phase} | vwap={ctx_vwap} | "
+                            f"{ctx_summary}"
+                        )
+                        set_idle(state, asset, "IDLE_VWAP_AGAINST_WEAK")
+                        continue
+
+                if ctx_score < min_context_entry_effective:
+                    print(
+                        f"{asset:10s} | IDLE_CONTEXT_WEAK | "
+                        f"signal {decision} ignoré | "
+                        f"cursor={trend_entry_cursor:.1f} | "
+                        f"score={ctx_score:.0f}<{min_context_entry_effective} | "
+                        f"phase={ctx_phase} | vwap={ctx_vwap} | "
+                        f"{ctx_summary}"
+                    )
+                    set_idle(state, asset, "IDLE_CONTEXT_WEAK")
+                    continue
+
+                entry_price = real_entry_price(decision, sig)
+                if entry_price is None:
+                    print(f"{asset:10s} | IDLE_UNSAFE  | signal {decision} ignoré | prix_entree_indisponible")
+                    set_idle(state, asset, "IDLE_NO_ENTRY_PRICE")
+                    continue
+
+                c = new_cycle(asset, decision, entry_price, level=1)
+                set_position(state, asset, c, "OPEN_L1")
+                print(
+                    f"{asset:10s} | OPEN_L1      | "
+                    f"{decision:4s} | "
+                    f"entry={entry_price:.6f} | "
+                    f"size={float(c['size']):.6f} | "
+                    f"tp={float(c['tp_eur']):.4f}"
+                )
+            else:
+                print(f"{asset:10s} | IDLE         | aucun signal")
+                set_idle(state, asset, "IDLE")
+            continue
+
+        # 2. Position active mais tick non exploitable
+        level = int(cycle["level"])
+        direction = cycle["direction"]
+        entry = float(cycle["entry_price"])
+        size = float(cycle["size"])
+        tp = float(cycle["tp_eur"])
+
+        # V24.1 :
+        # Si le cycle est un panier broker V24.1, le moteur 05 ne doit plus
+        # déclencher CLOSE_TP / CLOSE_CONTEXT / NEXT_LEVEL.
+        # Le 06G2 devient la seule source de vérité pour open/pending/close.
+        if (
+            cycle.get("basket_mode") == "V24_BASKET_LIMIT"
+            or cycle.get("execution_owner") == "BOT_PIVOT_06G2"
+        ):
+            print(
+                f"{asset:10s} | HOLD_BASKET_EXEC_OWNER | "
+                f"L{level} | {direction:4s} | "
+                f"pilotage panier délégué à 06G2"
+            )
+            set_position(state, asset, cycle, "BASKET_EXEC_OWNER_06G2")
+            continue
+
+        if not fresh:
+            print(
+                f"{asset:10s} | HOLD_UNSAFE_TICK | "
+                f"L{level} | {direction:4s} | "
+                f"aucune décision | {fresh_reason}"
+            )
+            # On ne modifie pas le cycle
+            continue
+
+        exit_price = real_exit_price(direction, sig)
+        if exit_price is None:
+            print(
+                f"{asset:10s} | HOLD_UNSAFE_TICK | "
+                f"L{level} | {direction:4s} | "
+                f"aucune décision | prix_sortie_indisponible"
+            )
+            continue
+
+        # PnL réel broker :
+        # - BUY  valorisé au BID
+        # - SELL valorisé à l'ASK
+        current_price = exit_price
+        pnl = PNL.pnl_eur(asset, direction, entry, current_price, size)
+        age = cycle_age_sec(cycle)
+
+        # 3. TP sur tous niveaux, y compris L5
+        if pnl >= tp:
+            print(
+                f"{asset:10s} | CLOSE_TP     | "
+                f"L{level} | {direction:4s} | "
+                f"pnl={pnl:.4f} | tp={tp:.4f}"
+            )
+            set_idle(state, asset, "CLOSE_TP")
+            continue
+
+        # 4. Niveau 5 : pas de timeout, seulement TP ou stop sécurité
+        if level >= MAX_LEVEL:
+            stop_loss = float(capital) * 0.01
+            if pnl <= -stop_loss:
+                print(
+                    f"{asset:10s} | CLOSE_STOP_1PCT | "
+                    f"L{level} | {direction:4s} | "
+                    f"pnl={pnl:.4f} | stop=-{stop_loss:.2f}"
+                )
+                set_idle(state, asset, "CLOSE_STOP_1PCT")
+            else:
+                print(
+                    f"{asset:10s} | HOLD_L5      | "
+                    f"L{level} | {direction:4s} | "
+                    f"pnl={pnl:.4f} | pas de timeout"
+                )
+            continue
+
+        # 5. Niveaux 1 à 4 : timeout après 120 secondes
+        # Nouvelle règle :
+        # - TP atteint : déjà traité plus haut
+        # - PnL positif : on ne renforce pas
+        # - petite perte : on ne renforce pas
+        # - perte réelle >= NEXT_LEVEL_MIN_LOSS_EUR : NEXT_LEVEL
+        if age >= MAX_LIFE_SEC:
+            ctx_score = signal_context_score(sig)
+            ctx_summary = signal_context_summary(sig)
+            ctx_phase = signal_context_phase(sig)
+            ctx_vwap = signal_context_vwap(sig)
+            same_direction_signal = decision == direction
+
+            phase_opposite = (
+                (direction == "BUY" and ctx_phase == "TREND_DOWN") or
+                (direction == "SELL" and ctx_phase == "TREND_UP")
+            )
+
+            # V23.1 — sortie rapide si la position est invalidée
+            if pnl is not None and pnl < 0 and ctx_score < MIN_CONTEXT_SCORE_NEXT_LEVEL:
+                if phase_opposite and pnl <= -EARLY_INVALIDATION_LOSS_EUR:
+                    print(
+                        f"{asset:10s} | CLOSE_EARLY_INVALIDATION | "
+                        f"L{level} | {direction:4s} | "
+                        f"pnl={pnl:.4f} | score={ctx_score:.0f}<{MIN_CONTEXT_SCORE_NEXT_LEVEL} | "
+                        f"phase={ctx_phase} | vwap={ctx_vwap} | age={age:.1f}s | "
+                        f"phase opposée + perte >= {EARLY_INVALIDATION_LOSS_EUR:.2f}"
+                    )
+                    set_idle(state, asset, "CLOSE_EARLY_INVALIDATION")
+                    continue
+
+                if decision == "WAIT" and pnl <= -EARLY_WEAK_LOSS_EUR:
+                    print(
+                        f"{asset:10s} | CLOSE_EARLY_WEAK | "
+                        f"L{level} | {direction:4s} | "
+                        f"pnl={pnl:.4f} | score={ctx_score:.0f}<{MIN_CONTEXT_SCORE_NEXT_LEVEL} | "
+                        f"signal=WAIT | phase={ctx_phase} | vwap={ctx_vwap} | age={age:.1f}s | "
+                        f"contexte faible + perte >= {EARLY_WEAK_LOSS_EUR:.2f}"
+                    )
+                    set_idle(state, asset, "CLOSE_EARLY_WEAK")
+                    continue
+
+            if pnl >= 0:
+                if age >= CLOSE_WEAK_CONTEXT_AFTER_SEC and ctx_score < MIN_CONTEXT_SCORE_KEEP:
+                    print(
+                        f"{asset:10s} | CLOSE_TIME_POSITIVE | "
+                        f"L{level} | {direction:4s} | "
+                        f"pnl={pnl:.4f} | score={ctx_score:.0f}<{MIN_CONTEXT_SCORE_KEEP} | "
+                        f"age={age:.1f}s | sortie scalp temps/contexte"
+                    )
+                    set_idle(state, asset, "CLOSE_TIME_POSITIVE")
+                    continue
+
+                print(
+                    f"{asset:10s} | HOLD_POSITIVE | "
+                    f"L{level} | {direction:4s} | "
+                    f"pnl={pnl:.4f} | "
+                    f"tp={tp:.4f} | "
+                    f"score={ctx_score:.0f} | "
+                    f"age={age:.1f}s | pas de renforcement"
+                )
+                continue
+
+            if pnl > -NEXT_LEVEL_MIN_LOSS_EUR:
+                if age >= CLOSE_WEAK_CONTEXT_AFTER_SEC and ctx_score < MIN_CONTEXT_SCORE_KEEP:
+                    print(
+                        f"{asset:10s} | CLOSE_SMALL_LOSS_TIMEOUT | "
+                        f"L{level} | {direction:4s} | "
+                        f"pnl={pnl:.4f} | score={ctx_score:.0f}<{MIN_CONTEXT_SCORE_KEEP} | "
+                        f"age={age:.1f}s | petite perte + contexte faible"
+                    )
+                    set_idle(state, asset, "CLOSE_SMALL_LOSS_TIMEOUT")
+                    continue
+
+                print(
+                    f"{asset:10s} | HOLD_SMALL_LOSS | "
+                    f"L{level} | {direction:4s} | "
+                    f"pnl={pnl:.4f} | "
+                    f"seuil_next=-{NEXT_LEVEL_MIN_LOSS_EUR:.4f} | "
+                    f"score={ctx_score:.0f} | "
+                    f"age={age:.1f}s | perte trop faible"
+                )
+                continue
+
+            if (not same_direction_signal) or ctx_score < MIN_CONTEXT_SCORE_NEXT_LEVEL:
+                if age >= CLOSE_WEAK_CONTEXT_AFTER_SEC:
+                    print(
+                        f"{asset:10s} | CLOSE_CONTEXT_WEAK_TIMEOUT | "
+                        f"L{level} | {direction:4s} | "
+                        f"pnl={pnl:.4f} | score={ctx_score:.0f}<{MIN_CONTEXT_SCORE_NEXT_LEVEL} | "
+                        f"signal={decision} | age={age:.1f}s | pas de renforcement, sortie scalp"
+                    )
+                    set_idle(state, asset, "CLOSE_CONTEXT_WEAK_TIMEOUT")
+                    continue
+
+                print(
+                    f"{asset:10s} | HOLD_CONTEXT_WEAK | "
+                    f"L{level} | {direction:4s} | "
+                    f"pnl={pnl:.4f} | score={ctx_score:.0f}<{MIN_CONTEXT_SCORE_NEXT_LEVEL} | "
+                    f"signal={decision} | age={age:.1f}s | {ctx_summary}"
+                )
+                continue
+
+            next_level = level + 1
+
+            # V24 Basket Limit :
+            # Si un niveau panier est déjà demandé mais pas encore traité par l'exécution,
+            # on ne répète pas la demande à chaque boucle.
+            existing_basket = cycle.get("basket", {}) if isinstance(cycle.get("basket", {}), dict) else {}
+            pending_level = existing_basket.get("pending_next_level") or cycle.get("basket_pending_level")
+            try:
+                pending_level = int(pending_level) if pending_level is not None else None
+            except Exception:
+                pending_level = None
+
+            if pending_level is not None and pending_level >= next_level:
+                print(
+                    f"{asset:10s} | HOLD_BASKET_PENDING | "
+                    f"L{level}->L{pending_level} | "
+                    f"{direction:4s} | "
+                    f"pnl={pnl:.4f} | attente exécution panier"
+                )
+                continue
+
+            if next_level > MAX_LEVEL:
+                print(
+                    f"{asset:10s} | HOLD_MAX     | "
+                    f"L{level} | {direction:4s} | "
+                    f"pnl={pnl:.4f}"
+                )
+                continue
+
+            coeff = drift_coeff(direction, entry, current_price)
+            next_entry_price = real_entry_price(direction, sig)
+            if next_entry_price is None:
+                print(
+                    f"{asset:10s} | HOLD_NO_NEXT_ENTRY_PRICE | "
+                    f"L{level} | {direction:4s} | "
+                    f"pnl={pnl:.4f}"
+                )
+                continue
+
+            # V24 Basket Limit - étape 1 :
+            # Ne plus remplacer L1 par L2.
+            # On conserve le cycle courant et on marque seulement le niveau suivant
+            # comme demandé pour construction future du panier.
+            next_size = float(size_for(asset, next_level))
+            next_tp = float(tp_for(next_level, coeff))
+
+            basket = cycle.setdefault("basket", {})
+            basket["mode"] = "BASKET_LIMIT"
+            basket["keep_existing_levels"] = True
+            basket["pending_next_level"] = int(next_level)
+            basket["pending_next_entry_price"] = float(next_entry_price)
+            basket["pending_next_size"] = float(next_size)
+            basket["pending_next_tp_eur"] = float(next_tp)
+            basket["pending_reason"] = "NEXT_LEVEL_PENDING_BASKET"
+            basket["last_pnl_at_request"] = float(pnl)
+            basket["last_context_score_at_request"] = float(ctx_score)
+            basket["last_coeff_at_request"] = float(coeff)
+
+            cycle["basket_mode"] = True
+            cycle["basket_pending_level"] = int(next_level)
+
+            set_position(state, asset, cycle, "NEXT_LEVEL_PENDING_BASKET")
+
+            print(
+                f"{asset:10s} | NEXT_LEVEL_PENDING_BASKET | "
+                f"L{level}->L{next_level} | "
+                f"{direction:4s} | KEEP_L{level} | "
+                f"pnl={pnl:.4f} | "
+                f"seuil_next=-{NEXT_LEVEL_MIN_LOSS_EUR:.4f} | "
+                f"score={ctx_score:.0f} | "
+                f"coeff={coeff:.3f} | "
+                f"next_size={next_size:.6f} | "
+                f"next_tp={next_tp:.4f}"
+            )
+            continue
+
+        # 6. Maintien normal
+        print(
+            f"{asset:10s} | HOLD         | "
+            f"L{level} | {direction:4s} | "
+            f"pnl={pnl:.4f} | "
+            f"tp={tp:.4f} | "
+            f"age={age:.1f}s"
+        )
+
+    state["updated_utc"] = utc()
+    save_json(STATE_FILE, state)
+
+    print("=" * 130)
+    print("État :", STATE_FILE)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--reset", action="store_true")
+    parser.add_argument("--status", action="store_true")
+    parser.add_argument("--assets", default="ALL")
+    parser.add_argument("--capital", type=float, default=3500.0)
+    args = parser.parse_args()
+
+    assets = assets_list(args.assets)
+
+    if args.reset:
+        state = default_state()
+        save_json(STATE_FILE, state)
+        print("Cycle state réinitialisé :", STATE_FILE)
+        return
+
+    state = normalize_state(load_json(STATE_FILE, default_state()))
+
+    if args.status:
+        show_status(state, assets)
+        return
+
+    run_engine(assets, args.capital)
+
+
+if __name__ == "__main__":
+    main()

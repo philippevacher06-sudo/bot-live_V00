@@ -1,0 +1,780 @@
+BOT_PIVOT_00Z_SCALP_ACTIVE_GUARD.py:42:    if not env_bool('V24_MARGIN_SELECTION_ENABLED', True):
+BOT_PIVOT_00Z_SCALP_ACTIVE_GUARD.py:56:    max_pending = env_int('V24_MAX_BROKER_PENDING_ORDERS', 18)
+BOT_PIVOT_00Z_SCALP_ACTIVE_GUARD.py:57:    orphan_age = env_float('V24_ORPHAN_PENDING_MAX_AGE_SEC', 0)
+BOT_PIVOT_00Z_SCALP_ACTIVE_GUARD.py:72:            r['reason'] = 'SCALP_ACTIVE_ORPHAN_PENDING_CLEANUP'
+BOT_PIVOT_00Z_SCALP_ACTIVE_GUARD.py:78:            r['reason'] = 'SCALP_ACTIVE_PENDING_PRESSURE_OLDEST_WEAK'
+BOT_PIVOT_00_config.py:14:BOT_VERSION = "0.1"
+BOT_PIVOT_00_config.py:110:# V24.3 demo : 20s est plus cohérent avec une collecte ticks de 45s,
+BOT_PIVOT_00_config.py:193:    "EURUSD": 450,   # V24.3.4: cible marge L1 ≈100€ après mesure réelle 1500=>321€
+BOT_PIVOT_00_config.py:200:    # V24.2: OIL was too heavy for a ~3.5k EUR demo account.
+BOT_PIVOT_00_config.py:355:    print(f"{BOT_NAME} {BOT_VERSION}")
+BOT_PIVOT_00_config.py:394:    # V24.1 — TP logiciel panier : 0,20 € par jambe ouverte.
+BOT_PIVOT_03_tick_stream.py:40:log = logging.getLogger("BOT_PIVOT_03_TICK_STREAM")
+BOT_PIVOT_03_tick_stream.py:324:    log.info("BOT_PIVOT_03_TICK_STREAM")
+BOT_PIVOT_03_tick_stream.py:343:    recv_timeout_sec = max(1.0, float(os.environ.get("TICK_STREAM_RECV_TIMEOUT_SEC", "30")))
+BOT_PIVOT_03_tick_stream.py:368:                            "[STREAM_TIMEOUT] aucun message WebSocket avant la fin "
+BOT_PIVOT_03_tick_stream.py:374:                        f"[STREAM_TIMEOUT] aucun message WebSocket depuis {timeout:.1f}s ; "
+BOT_PIVOT_05_cycle_engine.py:19:# V24 Basket Limit — mode démo :
+BOT_PIVOT_05_cycle_engine.py:22:V24_DEMO_RELAXED_ENTRY = True
+BOT_PIVOT_05_cycle_engine.py:23:V24_DEMO_MIN_SCORE_RANGE = 2
+BOT_PIVOT_05_cycle_engine.py:24:V24_DEMO_MIN_SCORE_TREND_ALIGNED = 3
+BOT_PIVOT_05_cycle_engine.py:46:# V24.1 — Application SAFETY_EXIT_CURSOR
+BOT_PIVOT_05_cycle_engine.py:75:# V24.1 — Curseur individuel d'entrée tendance
+BOT_PIVOT_05_cycle_engine.py:110:V242_MIN_BB_WIDTH_BY_ASSET = {
+BOT_PIVOT_05_cycle_engine.py:154:    required_raw = os.environ.get(f"V242_MIN_BB_WIDTH_{asset}") or os.environ.get("V242_MIN_BB_WIDTH")
+BOT_PIVOT_05_cycle_engine.py:156:        required = float(required_raw) if required_raw not in (None, "") else float(V242_MIN_BB_WIDTH_BY_ASSET.get(asset, 0.0))
+BOT_PIVOT_05_cycle_engine.py:158:        required = float(V242_MIN_BB_WIDTH_BY_ASSET.get(asset, 0.0))
+BOT_PIVOT_05_cycle_engine.py:161:        return False, "BOLLINGER_WIDTH_TOO_SMALL_EARLY", width, required
+BOT_PIVOT_05_cycle_engine.py:163:    return True, "BOLLINGER_WIDTH_OK_EARLY", width, required
+BOT_PIVOT_05_cycle_engine.py:516:        # V24.1 :
+BOT_PIVOT_05_cycle_engine.py:519:        "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_05_cycle_engine.py:612:                # V24.1 — filtre de tendance paramétrable.
+BOT_PIVOT_05_cycle_engine.py:651:                        f"{asset:10s} | V24_TREND_CURSOR_CONTRA_OK | "
+BOT_PIVOT_05_cycle_engine.py:669:                # V24 Basket Limit — mode démo moins frileux.
+BOT_PIVOT_05_cycle_engine.py:672:                v24_relaxed_entry = bool(globals().get("V24_DEMO_RELAXED_ENTRY", False))
+BOT_PIVOT_05_cycle_engine.py:673:                v24_min_range = float(globals().get("V24_DEMO_MIN_SCORE_RANGE", 2))
+BOT_PIVOT_05_cycle_engine.py:674:                v24_min_trend_aligned = float(globals().get("V24_DEMO_MIN_SCORE_TREND_ALIGNED", 3))
+BOT_PIVOT_05_cycle_engine.py:691:                            f"{asset:10s} | V24_RELAXED_VWAP_OK | "
+BOT_PIVOT_05_cycle_engine.py:693:                            f"score={ctx_score:.0f}<{min_vwap_against:.0f} mais démo V24 | "
+BOT_PIVOT_05_cycle_engine.py:698:                        # Forçage contrôlé uniquement en mode démo V24 :
+BOT_PIVOT_05_cycle_engine.py:740:                # V24.3.5I_DEMO_SIGNAL_SAMPLER:
+BOT_PIVOT_05_cycle_engine.py:743:                demo_sampler = str(__import__("os").getenv("V2435I_DEMO_SIGNAL_SAMPLER", "0")).lower() in (
+BOT_PIVOT_05_cycle_engine.py:775:                    low_thr = float(__import__("os").getenv("V2435I_DEMO_RPOS_LOW", "25"))
+BOT_PIVOT_05_cycle_engine.py:776:                    high_thr = float(__import__("os").getenv("V2435I_DEMO_RPOS_HIGH", "75"))
+BOT_PIVOT_05_cycle_engine.py:791:                        c["demo_sample_version"] = "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+BOT_PIVOT_05_cycle_engine.py:819:        # V24.1 :
+BOT_PIVOT_05_cycle_engine.py:820:        # Si le cycle est un panier broker V24.1, le moteur 05 ne doit plus
+BOT_PIVOT_05_cycle_engine.py:824:            cycle.get("basket_mode") == "V24_BASKET_LIMIT"
+BOT_PIVOT_05_cycle_engine.py:993:            # V24 Basket Limit :
+BOT_PIVOT_05_cycle_engine.py:1005:                    f"{asset:10s} | HOLD_BASKET_PENDING | "
+BOT_PIVOT_05_cycle_engine.py:1030:            # V24 Basket Limit - étape 1 :
+BOT_PIVOT_05_cycle_engine.py:1044:            basket["pending_reason"] = "NEXT_LEVEL_PENDING_BASKET"
+BOT_PIVOT_05_cycle_engine.py:1052:            set_position(state, asset, cycle, "NEXT_LEVEL_PENDING_BASKET")
+BOT_PIVOT_05_cycle_engine.py:1055:                f"{asset:10s} | NEXT_LEVEL_PENDING_BASKET | "
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:19:# V24 Basket Limit — mode démo :
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:22:V24_DEMO_RELAXED_ENTRY = True
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:23:V24_DEMO_MIN_SCORE_RANGE = 2
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:24:V24_DEMO_MIN_SCORE_TREND_ALIGNED = 3
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:48:# V24.1 — Curseur individuel d'entrée tendance
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:513:                # V24.1 — filtre de tendance paramétrable.
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:552:                        f"{asset:10s} | V24_TREND_CURSOR_CONTRA_OK | "
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:570:                # V24 Basket Limit — mode démo moins frileux.
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:573:                v24_relaxed_entry = bool(globals().get("V24_DEMO_RELAXED_ENTRY", False))
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:574:                v24_min_range = float(globals().get("V24_DEMO_MIN_SCORE_RANGE", 2))
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:575:                v24_min_trend_aligned = float(globals().get("V24_DEMO_MIN_SCORE_TREND_ALIGNED", 3))
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:592:                            f"{asset:10s} | V24_RELAXED_VWAP_OK | "
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:594:                            f"score={ctx_score:.0f}<{min_vwap_against:.0f} mais démo V24 | "
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:599:                        # Forçage contrôlé uniquement en mode démo V24 :
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:810:            # V24 Basket Limit :
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:822:                    f"{asset:10s} | HOLD_BASKET_PENDING | "
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:847:            # V24 Basket Limit - étape 1 :
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:861:            basket["pending_reason"] = "NEXT_LEVEL_PENDING_BASKET"
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:869:            set_position(state, asset, cycle, "NEXT_LEVEL_PENDING_BASKET")
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:872:                f"{asset:10s} | NEXT_LEVEL_PENDING_BASKET | "
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:19:# V24 Basket Limit — mode démo :
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:22:V24_DEMO_RELAXED_ENTRY = True
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:23:V24_DEMO_MIN_SCORE_RANGE = 2
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:24:V24_DEMO_MIN_SCORE_TREND_ALIGNED = 3
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:505:                # V24 Basket Limit — mode démo moins frileux.
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:508:                v24_relaxed_entry = bool(globals().get("V24_DEMO_RELAXED_ENTRY", False))
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:509:                v24_min_range = float(globals().get("V24_DEMO_MIN_SCORE_RANGE", 2))
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:510:                v24_min_trend_aligned = float(globals().get("V24_DEMO_MIN_SCORE_TREND_ALIGNED", 3))
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:527:                            f"{asset:10s} | V24_RELAXED_VWAP_OK | "
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:529:                            f"score={ctx_score:.0f}<{min_vwap_against:.0f} mais démo V24 | "
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:534:                        # Forçage contrôlé uniquement en mode démo V24 :
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:744:            # V24 Basket Limit :
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:756:                    f"{asset:10s} | HOLD_BASKET_PENDING | "
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:781:            # V24 Basket Limit - étape 1 :
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:795:            basket["pending_reason"] = "NEXT_LEVEL_PENDING_BASKET"
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:803:            set_position(state, asset, cycle, "NEXT_LEVEL_PENDING_BASKET")
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:806:                f"{asset:10s} | NEXT_LEVEL_PENDING_BASKET | "
+BOT_PIVOT_06G1_reconcile_broker.py:3:# V24.3.1 - pending-aware : positions broker + working orders broker
+BOT_PIVOT_06G1_reconcile_broker.py:74:        elif st.startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G1_reconcile_broker.py:96:    print("BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE")
+BOT_PIVOT_06G1_reconcile_broker.py:153:            anomalies.append("BROKER_PENDING_NON_SUIVI")
+BOT_PIVOT_06G1_reconcile_broker.py:159:            anomalies.append("LOCAL_PENDING_ABSENT_BROKER")
+BOT_PIVOT_06G1_reconcile_broker.py:163:            anomalies.append("BROKER_PENDING_ALORS_CYCLE_IDLE")
+BOT_PIVOT_06G1_reconcile_broker.py:188:                    anomalies.append("LOCAL_WORKING_ID_ABSENT_PENDING")
+BOT_PIVOT_06G2_execution_secure.py:19:V242_VERSION_TAG = "BOT_PIVOT_V24_3_DEMO_STORM_TUNING_REPORT"
+BOT_PIVOT_06G2_execution_secure.py:20:_V2436_RUNTIME_HEADERS = None
+BOT_PIVOT_06G2_execution_secure.py:21:_V2436_RUNTIME_ASSETS = []
+BOT_PIVOT_06G2_execution_secure.py:22:_V2436_CLEANUP_RUNNING = False
+BOT_PIVOT_06G2_execution_secure.py:326:    # V24.1 : aucune sortie par TP broker individuel.
+BOT_PIVOT_06G2_execution_secure.py:391:    V24 Basket Limit robuste.
+BOT_PIVOT_06G2_execution_secure.py:452:# V24.1 BOT-PIVOT BOLLINGER
+BOT_PIVOT_06G2_execution_secure.py:456:V24_BOLLINGER_CACHE = {}
+BOT_PIVOT_06G2_execution_secure.py:458:BOLLINGER_BASKET_CONFIG = {
+BOT_PIVOT_06G2_execution_secure.py:487:# V24.1 — CURSEURS INDIVIDUELS PARAMÉTRABLES
+BOT_PIVOT_06G2_execution_secure.py:489:# BOLLINGER_CURSOR :
+BOT_PIVOT_06G2_execution_secure.py:529:    Curseur V24.1 réglable par paliers de 0.1 :
+BOT_PIVOT_06G2_execution_secure.py:544:    return v241_cursor("BOLLINGER_CURSOR", 1.0, 0.5, 1.5)
+BOT_PIVOT_06G2_execution_secure.py:548:    # V24.3.5D_BUFFER_ONLY_CURSOR
+BOT_PIVOT_06G2_execution_secure.py:551:    return v241_cursor("BOLLINGER_BUFFER_CURSOR", 1.0, 0.0, 1.5)
+BOT_PIVOT_06G2_execution_secure.py:578:# V24.2 -- PRICE_AUDIT + Bollinger level guard
+BOT_PIVOT_06G2_execution_secure.py:678:        "version": V242_VERSION_TAG,
+BOT_PIVOT_06G2_execution_secure.py:729:        f"V242_MARKETABLE_MIN_DISTANCE_{asset}",
+BOT_PIVOT_06G2_execution_secure.py:731:        "V242_MARKETABLE_MIN_DISTANCE",
+BOT_PIVOT_06G2_execution_secure.py:756:    raw = os.environ.get(f"V242_LEVEL_MIN_STEP_{asset}") or os.environ.get("V242_LEVEL_MIN_STEP")
+BOT_PIVOT_06G2_execution_secure.py:763:    ratio_raw = os.environ.get("V242_LEVEL_MIN_STEP_RATIO", "0.95")
+BOT_PIVOT_06G2_execution_secure.py:774:    return str(os.environ.get("V242_REJECT_BOLLINGER_TOO_FAR", "1")).strip().lower() in (
+BOT_PIVOT_06G2_execution_secure.py:801:    # V24.3.5H_STREAM_PRICE_GUARD:
+BOT_PIVOT_06G2_execution_secure.py:815:        use_stream_guard = str(__import__("os").getenv("V2435H_USE_STREAM_PRICE_GUARD", "0")).lower() in (
+BOT_PIVOT_06G2_execution_secure.py:869:    # V24.3.6:
+BOT_PIVOT_06G2_execution_secure.py:873:    demo_force_samples = str(os.getenv("V2435F_DEMO_FORCE_ENTRY_SAMPLES", "0")).lower() in (
+BOT_PIVOT_06G2_execution_secure.py:876:    hard_distance_guard = v2436_env_bool("V2436_HARD_BOLLINGER_DISTANCE_GUARD", True)
+BOT_PIVOT_06G2_execution_secure.py:899:            reason = "BASKET_REJECT_BOLLINGER_TOO_FAR"
+BOT_PIVOT_06G2_execution_secure.py:943:    if not v2436_env_bool("V2436_REQUIRE_STREAM_SIGNAL_FOR_LIMIT", True):
+BOT_PIVOT_06G2_execution_secure.py:958:        reason = "BASKET_REJECT_STREAM_NO_ENTRY"
+BOT_PIVOT_06G2_execution_secure.py:960:        reason = "BASKET_REJECT_STREAM_OPPOSED"
+BOT_PIVOT_06G2_execution_secure.py:962:        reason = "BASKET_REJECT_STREAM_OPPOSED"
+BOT_PIVOT_06G2_execution_secure.py:1021:    cached = V24_BOLLINGER_CACHE.get(cache_key)
+BOT_PIVOT_06G2_execution_secure.py:1037:                "event": "V24_BOLLINGER_M5_FETCH_FAIL",
+BOT_PIVOT_06G2_execution_secure.py:1052:        V24_BOLLINGER_CACHE[cache_key] = {
+BOT_PIVOT_06G2_execution_secure.py:1061:            "event": "V24_BOLLINGER_M5_EXCEPTION",
+BOT_PIVOT_06G2_execution_secure.py:1086:    conf = BOLLINGER_BASKET_CONFIG.get(asset_key, BOLLINGER_BASKET_CONFIG["_DEFAULT"])
+BOT_PIVOT_06G2_execution_secure.py:1095:    # V24.3.5D_BUFFER_ONLY_CURSOR :
+BOT_PIVOT_06G2_execution_secure.py:1096:    # BOLLINGER_CURSOR continue de piloter le step.
+BOT_PIVOT_06G2_execution_secure.py:1097:    # BOLLINGER_BUFFER_CURSOR rapproche uniquement L1 de la bande Bollinger.
+BOT_PIVOT_06G2_execution_secure.py:1130:# V24.2 -- ancien clamp scalp Bollinger L1 neutralise
+BOT_PIVOT_06G2_execution_secure.py:1132:# Objectif V24.2 :
+BOT_PIVOT_06G2_execution_secure.py:1135:# - rejeter proprement via BASKET_REJECT_BOLLINGER_TOO_FAR si besoin
+BOT_PIVOT_06G2_execution_secure.py:1137:# BOLLINGER_CURSOR < 1.0 : plus agressif, L1 plus proche
+BOT_PIVOT_06G2_execution_secure.py:1138:# BOLLINGER_CURSOR = 1.0 : réglage normal
+BOT_PIVOT_06G2_execution_secure.py:1139:# BOLLINGER_CURSOR > 1.0 : plus défensif, L1 plus éloigné
+BOT_PIVOT_06G2_execution_secure.py:1142:V241_MAX_L1_DISTANCE_BY_ASSET = {
+BOT_PIVOT_06G2_execution_secure.py:1146:    "US30": 24.3,  # V24.3 demo: +35% sur rejet borderline.
+BOT_PIVOT_06G2_execution_secure.py:1153:    "EURUSD": 0.000243,  # V24.3 demo: +35% sur rejet borderline.
+BOT_PIVOT_06G2_execution_secure.py:1156:    "EURJPY": 0.0405,  # V24.3 demo: +35% sur rejet borderline.
+BOT_PIVOT_06G2_execution_secure.py:1164:    "ETHUSD": 10.8,  # V24.3 demo: +35% sur rejet borderline.
+BOT_PIVOT_06G2_execution_secure.py:1167:V241_LEVEL_DECIMALS_BY_ASSET = {
+BOT_PIVOT_06G2_execution_secure.py:1195:    base = float(V241_MAX_L1_DISTANCE_BY_ASSET.get(asset, 0.0))
+BOT_PIVOT_06G2_execution_secure.py:1198:        f"V241_MAX_L1_DISTANCE_{asset}",
+BOT_PIVOT_06G2_execution_secure.py:1200:        f"V24_MAX_L1_DISTANCE_{asset}",
+BOT_PIVOT_06G2_execution_secure.py:1213:    return int(V241_LEVEL_DECIMALS_BY_ASSET.get(str(asset).upper(), 5))
+BOT_PIVOT_06G2_execution_secure.py:1216:    # V24.2: clamp neutralise. On ne rapproche plus un niveau Bollinger
+BOT_PIVOT_06G2_execution_secure.py:1217:    # vers le prix courant. La validation V24.2 rejette le panier si L1 est
+BOT_PIVOT_06G2_execution_secure.py:1235:            "event": "V24_BOLLINGER_M5_UNAVAILABLE",
+BOT_PIVOT_06G2_execution_secure.py:1259:    # V24.1 — filtre Bollinger trop serrée.
+BOT_PIVOT_06G2_execution_secure.py:1274:    # V24.3.1 - Bollinger width observe only.
+BOT_PIVOT_06G2_execution_secure.py:1276:    if v24_bool_env("V243_BOLLINGER_OBSERVE_LOG", True):
+BOT_PIVOT_06G2_execution_secure.py:1282:                f"{asset:10s} | BOLLINGER_WIDTH_OBSERVE | --  | {str(enriched.get('direction', '--')):4s} | "
+BOT_PIVOT_06G2_execution_secure.py:1290:            print(f"{asset:10s} | BOLLINGER_WIDTH_OBSERVE_ERROR | --  | ---- | --         | FILTER    | err={_e}")
+BOT_PIVOT_06G2_execution_secure.py:1294:            f"{asset:10s} | BOLLINGER_WIDTH_TOO_SMALL | --  | {str(enriched.get('direction', '--')):4s} | "
+BOT_PIVOT_06G2_execution_secure.py:1301:            "event": "V24_BOLLINGER_WIDTH_TOO_SMALL",
+BOT_PIVOT_06G2_execution_secure.py:1315:            f"BOLLINGER_WIDTH_TOO_SMALL {asset}: "
+BOT_PIVOT_06G2_execution_secure.py:1359:    # V24.3.1 - Bollinger entry observe only.
+BOT_PIVOT_06G2_execution_secure.py:1361:    if v24_bool_env("V243_BOLLINGER_ENTRY_OBSERVE_LOG", True):
+BOT_PIVOT_06G2_execution_secure.py:1403:                f"{asset:10s} | BOLLINGER_ENTRY_OBSERVE | --  | {str(enriched.get('direction', '--')):4s} | "
+BOT_PIVOT_06G2_execution_secure.py:1411:            print(f"{asset:10s} | BOLLINGER_ENTRY_OBSERVE_ERROR | --  | ---- | --         | OBSERVE   | err={_e}")
+BOT_PIVOT_06G2_execution_secure.py:1415:        "event": "V24_BOLLINGER_LIMIT_LEVELS",
+BOT_PIVOT_06G2_execution_secure.py:1432:        f"{asset:10s} | BOLLINGER_M5 | "
+BOT_PIVOT_06G2_execution_secure.py:1441:    # V24.3.3_TARGETED_LIMIT_ARMING_DISTANCE
+BOT_PIVOT_06G2_execution_secure.py:1448:            _v2433_os.getenv("V2433_LIMIT_ARMING_ENABLED", "1")
+BOT_PIVOT_06G2_execution_secure.py:1452:            _v2433_os.getenv("V2433_LIMIT_ARMING_STEP_MULT", "1.5")
+BOT_PIVOT_06G2_execution_secure.py:1514:        if v2436_env_bool("V2436_ARMING_CHECK_FAIL_CLOSED", True):
+BOT_PIVOT_06G2_execution_secure.py:1533:# V24.1 — Filtre largeur Bollinger minimale par actif
+BOT_PIVOT_06G2_execution_secure.py:1536:V241_MIN_BB_WIDTH_BY_ASSET = {
+BOT_PIVOT_06G2_execution_secure.py:1582:    return float(V241_MIN_BB_WIDTH_BY_ASSET.get(asset, 0.0))
+BOT_PIVOT_06G2_execution_secure.py:1620:# V24.1 — Stop broker airbag global panier
+BOT_PIVOT_06G2_execution_secure.py:1645:            "V24_DISABLE_GUARANTEED_STOP_ASSETS",
+BOT_PIVOT_06G2_execution_secure.py:1760:            "event": "V24_GLOBAL_AIRBAG_STOP",
+BOT_PIVOT_06G2_execution_secure.py:1781:    Payload V24 LIMIT :
+BOT_PIVOT_06G2_execution_secure.py:1792:    # En V24, le TP est panier global, pas TP broker individuel par jambe.
+BOT_PIVOT_06G2_execution_secure.py:1811:    # V24.1 — stop broker airbag global panier.
+BOT_PIVOT_06G2_execution_secure.py:1821:    # V24.1 BOT-PIVOT BOLLINGER :
+BOT_PIVOT_06G2_execution_secure.py:1851:            "BOLLINGER_WIDTH_TOO_SMALL",
+BOT_PIVOT_06G2_execution_secure.py:1852:            "BASKET_REJECT_BOLLINGER_TOO_FAR",
+BOT_PIVOT_06G2_execution_secure.py:1856:            "BASKET_REJECT_STREAM_NO_ENTRY",
+BOT_PIVOT_06G2_execution_secure.py:1857:            "BASKET_REJECT_STREAM_OPPOSED",
+BOT_PIVOT_06G2_execution_secure.py:1882:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+BOT_PIVOT_06G2_execution_secure.py:1939:            "status": "PENDING_LIMIT_DRY_RUN",
+BOT_PIVOT_06G2_execution_secure.py:2019:        "status": "PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure.py:2022:        "workingDealId_source": "PENDING_RESOLVE_FROM_GET_WORKINGORDERS",
+BOT_PIVOT_06G2_execution_secure.py:2456:def v24_cancel_broker_pending_for_asset(headers, asset, direction=None, reason="V24_BROKER_PENDING_CLEANUP"):
+BOT_PIVOT_06G2_execution_secure.py:2475:                "reason": "NO_WORKING_ID_FOR_BROKER_PENDING_CLEANUP",
+BOT_PIVOT_06G2_execution_secure.py:2540:    V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure.py:2709:    Pose les 3 LIMIT V24.2 apres validation globale du panier.
+BOT_PIVOT_06G2_execution_secure.py:2716:        if reason.startswith("BOLLINGER_WIDTH_TOO_SMALL"):
+BOT_PIVOT_06G2_execution_secure.py:2717:            reason = "BOLLINGER_WIDTH_TOO_SMALL"
+BOT_PIVOT_06G2_execution_secure.py:2720:            or reason == "BOLLINGER_WIDTH_TOO_SMALL"
+BOT_PIVOT_06G2_execution_secure.py:2725:            "event": "V24_BASKET_PRECHECK_REJECT",
+BOT_PIVOT_06G2_execution_secure.py:2747:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+BOT_PIVOT_06G2_execution_secure.py:2760:        # V24.3.5_L123_ATOMIC_BASKET:
+BOT_PIVOT_06G2_execution_secure.py:2882:                "reason": "V2435_L123_ATOMIC_INCOMPLETE_AFTER_LOOP",
+BOT_PIVOT_06G2_execution_secure.py:2894:        "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_06G2_execution_secure.py:2902:        "event": "V24_BASKET_LIMIT_CREATED",
+BOT_PIVOT_06G2_execution_secure.py:3016:    Audit PnL V24.1.
+BOT_PIVOT_06G2_execution_secure.py:3104:# V24_BROKER_UPL_TP_PATCH_V1
+BOT_PIVOT_06G2_execution_secure.py:3258:    if open_count > 0 and v24_bool_env("V24_PNL_AUDIT", True):
+BOT_PIVOT_06G2_execution_secure.py:3288:                "event": "V24_BASKET_PNL_AUDIT",
+BOT_PIVOT_06G2_execution_secure.py:3301:# V24.1 — sécurité anti-jambe orpheline après panier partiel rejeté
+BOT_PIVOT_06G2_execution_secure.py:3330:        event({"event": "V24_FETCH_POSITIONS_FOR_ORPHAN_FAILED", **info})
+BOT_PIVOT_06G2_execution_secure.py:3372:            "event": "V24_BASKET_REJECT_ORPHAN_SCAN",
+BOT_PIVOT_06G2_execution_secure.py:3436:                "V24_BASKET_REJECT_ORPHAN_CLOSE_OK"
+BOT_PIVOT_06G2_execution_secure.py:3438:                else "V24_BASKET_REJECT_ORPHAN_CLOSE_FAILED"
+BOT_PIVOT_06G2_execution_secure.py:3516:        elif str(status).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure.py:3571:        "event": "V24_BASKET_CLOSE_DONE" if ok_all else "V24_BASKET_CLOSE_PARTIAL_FAIL",
+BOT_PIVOT_06G2_execution_secure.py:3581:# V24.1 — garde-fous paniers LIMIT ratés / vides
+BOT_PIVOT_06G2_execution_secure.py:3594:    return max(30.0, v241_env_float("PENDING_BASKET_MAX_AGE_SEC", 180.0))
+BOT_PIVOT_06G2_execution_secure.py:3600:    return max(0.0, v241_env_float("V24_TP_SAFETY_MARGIN_EUR", 0.0))
+BOT_PIVOT_06G2_execution_secure.py:3604:# V24.2 -- global margin guard
+BOT_PIVOT_06G2_execution_secure.py:3609:    raw = os.environ.get("MAX_MARGIN_CFD_EUR") or os.environ.get("V242_MAX_MARGIN_CFD_EUR") or "3000"
+BOT_PIVOT_06G2_execution_secure.py:3618:    raw = os.environ.get("MIN_AVAILABLE_TO_TRADE_EUR") or os.environ.get("V242_MIN_AVAILABLE_TO_TRADE_EUR") or "500"
+BOT_PIVOT_06G2_execution_secure.py:3769:# V24.3 -- sélection marge uniquement au-dessus du seuil 3100
+BOT_PIVOT_06G2_execution_secure.py:3773:    return v243_bool_env("V243_MARGIN_SELECTOR_ENABLED", True)
+BOT_PIVOT_06G2_execution_secure.py:3777:    return v243_env_float("V243_MARGIN_SELECTOR_THRESHOLD_EUR", 3100.0)
+BOT_PIVOT_06G2_execution_secure.py:3781:    return max(0.0, v243_env_float("V243_MARGIN_SELECTOR_COOLDOWN_SEC", 45.0))
+BOT_PIVOT_06G2_execution_secure.py:3811:        if isinstance(rec, dict) and str(rec.get("status", "")).startswith("PENDING_LIMIT")
+BOT_PIVOT_06G2_execution_secure.py:3863:        if not isinstance(rec, dict) or rec.get("basket_mode") != "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure.py:3931:# V24.2.1 -- STORM GUARD / PANIC GUARD
+BOT_PIVOT_06G2_execution_secure.py:3974:    return v243_bool_env("V243_STORM_GUARD_ENABLED", True)
+BOT_PIVOT_06G2_execution_secure.py:4032:        lookback_sec = v243_env_float("V243_STORM_LOOKBACK_SEC", 90.0)
+BOT_PIVOT_06G2_execution_secure.py:4034:        max_lines = v243_env_int("V243_STORM_TICK_TAIL_LINES", 20000)
+BOT_PIVOT_06G2_execution_secure.py:4074:    cfg = BOLLINGER_BASKET_CONFIG.get(asset) or BOLLINGER_BASKET_CONFIG.get("_DEFAULT", {})
+BOT_PIVOT_06G2_execution_secure.py:4095:        spread_mult = v243_asset_env_float("V243_STORM_SPREAD_MULT", asset, 3.0)
+BOT_PIVOT_06G2_execution_secure.py:4109:            move_mult = v243_asset_env_float("V243_STORM_MOVE_STEP_MULT", asset, 2.5)
+BOT_PIVOT_06G2_execution_secure.py:4110:            range_mult = v243_asset_env_float("V243_STORM_RANGE_STEP_MULT", asset, 3.0)
+BOT_PIVOT_06G2_execution_secure.py:4155:    global_count = v243_env_int("V243_STORM_GLOBAL_ALERT_COUNT", 4)
+BOT_PIVOT_06G2_execution_secure.py:4215:    return v243_bool_env("V243_STORM_EMERGENCY_CLOSE_ENABLED", True)
+BOT_PIVOT_06G2_execution_secure.py:4219:    per_leg = v243_env_float("V243_STORM_MAX_LOSS_PER_OPEN_LEG_EUR", 0.60)
+BOT_PIVOT_06G2_execution_secure.py:4220:    minimum = v243_env_float("V243_STORM_MAX_LOSS_MIN_EUR", 0.80)
+BOT_PIVOT_06G2_execution_secure.py:4225:    return v243_bool_env("V243_MAX_LOSS_GUARD_ENABLED", True)
+BOT_PIVOT_06G2_execution_secure.py:4232:        1: v243_env_float("V243_MAX_LOSS_1_OPEN_EUR", 1.50),
+BOT_PIVOT_06G2_execution_secure.py:4233:        2: v243_env_float("V243_MAX_LOSS_2_OPEN_EUR", 3.00),
+BOT_PIVOT_06G2_execution_secure.py:4234:        3: v243_env_float("V243_MAX_LOSS_3_OPEN_EUR", 5.00),
+BOT_PIVOT_06G2_execution_secure.py:4238:    # Si l'utilisateur force V243_MAX_LOSS_PER_OPEN_LEG_EUR, il reprend la main.
+BOT_PIVOT_06G2_execution_secure.py:4240:    if os.environ.get("V243_MAX_LOSS_PER_OPEN_LEG_EUR") not in (None, ""):
+BOT_PIVOT_06G2_execution_secure.py:4241:        per_leg = v243_env_float("V243_MAX_LOSS_PER_OPEN_LEG_EUR", 1.50)
+BOT_PIVOT_06G2_execution_secure.py:4242:        minimum = v243_env_float("V243_MAX_LOSS_MIN_EUR", 1.50)
+BOT_PIVOT_06G2_execution_secure.py:4252:        if not str(rec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure.py:4270:                    rec["status"] = "CANCELLED_PENDING_LIMIT"
+BOT_PIVOT_06G2_execution_secure.py:4271:                    rec["cancel_reason"] = "GHOST_PENDING_NO_BROKER_WORKING_ORDER"
+BOT_PIVOT_06G2_execution_secure.py:4277:                        "reason": "GHOST_PENDING_NO_BROKER_WORKING_ORDER",
+BOT_PIVOT_06G2_execution_secure.py:4303:        rec["status"] = "CANCELLED_PENDING_LIMIT" if ok_cancel else "CANCEL_FAILED_PENDING_LIMIT"
+BOT_PIVOT_06G2_execution_secure.py:4318:# V24.1 — invalidation panier ouvert quand le signal est mort
+BOT_PIVOT_06G2_execution_secure.py:4388:    return max(30.0, v241_env_float("V24_OPEN_SIGNAL_LOST_GRACE_SEC", 120.0))
+BOT_PIVOT_06G2_execution_secure.py:4393:    return max(0.0, v241_env_float("V24_SIGNAL_LOST_MIN_LOSS_EUR", 0.20))
+BOT_PIVOT_06G2_execution_secure.py:4398:    return max(0.0, v241_env_float("V24_OPPOSITE_SIGNAL_MIN_LOSS_EUR", 0.10))
+BOT_PIVOT_06G2_execution_secure.py:4403:    return max(0.0, v241_env_float("V24_BREAKOUT_MIN_LOSS_EUR", 0.20))
+BOT_PIVOT_06G2_execution_secure.py:4408:    return max(5.0, v241_env_float("V24_INVALIDATION_MAX_SIGNAL_AGE_SEC", 20.0))
+BOT_PIVOT_06G2_execution_secure.py:4481:            "V24_OPEN_BASKET_OPPOSITE_SIGNAL_CLOSE"
+BOT_PIVOT_06G2_execution_secure.py:4487:            "V24_OPEN_BASKET_PHASE_VWAP_AGAINST_CLOSE"
+BOT_PIVOT_06G2_execution_secure.py:4493:            "V24_OPEN_BASKET_BREAKOUT_AGAINST_CLOSE"
+BOT_PIVOT_06G2_execution_secure.py:4499:            "V24_OPEN_BASKET_SIGNAL_LOST_CLOSE"
+BOT_PIVOT_06G2_execution_secure.py:4508:# V24_SCALP_ACTIVE_GLOBAL_HELPERS_V3
+BOT_PIVOT_06G2_execution_secure.py:4624:    mult = v24sa_env_float("V24_LIMIT_GUARD_SPREAD_MULT", 1.5)
+BOT_PIVOT_06G2_execution_secure.py:4636:    # V24.2: do not move a LIMIT automatically after validation.
+BOT_PIVOT_06G2_execution_secure.py:4647:        print(f"{asset:10s} | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | {direction:4s} | level={level}")
+BOT_PIVOT_06G2_execution_secure.py:4655:    V24 SCALP ACTIVE — STOP GUARD COMPLET
+BOT_PIVOT_06G2_execution_secure.py:4670:        "V24_FORCE_GUARANTEED_STOP_ASSETS",
+BOT_PIVOT_06G2_execution_secure.py:4675:        "V24_DISABLE_GUARANTEED_STOP_ASSETS",
+BOT_PIVOT_06G2_execution_secure.py:4685:                f"{asset:10s} | V24_STOP_GUARD_FORCE | "
+BOT_PIVOT_06G2_execution_secure.py:4696:                f"{asset:10s} | V24_STOP_GUARD | "
+BOT_PIVOT_06G2_execution_secure.py:4719:    return v2436_env_float(f"V2436_MAX_STOP_DISTANCE_{asset}", default)
+BOT_PIVOT_06G2_execution_secure.py:4752:            f"{str(info.get('asset') or ''):10s} | V2436_STOP_TOO_WIDE_BLOCK | "
+BOT_PIVOT_06G2_execution_secure.py:4844:            f"{asset:10s} | V24_DYNAMIC_STOP_DISTANCE | {direction:4s} | "
+BOT_PIVOT_06G2_execution_secure.py:4872:    if not err or not v24sa_env_bool("V24_LIMIT_STOP_RETRY", True):
+BOT_PIVOT_06G2_execution_secure.py:4892:        force_retry = v24sa_env_csv_set("V24_FORCE_GUARANTEED_STOP_ASSETS", "GOLD")
+BOT_PIVOT_06G2_execution_secure.py:4907:            "event": "V2436_STOP_TOO_WIDE_RETRY_BLOCKED",
+BOT_PIVOT_06G2_execution_secure.py:4917:        print(f"{asset:10s} | V24_WORKING_ORDER_RETRY | {direction:4s} | reason={reason} old_error={err}")
+BOT_PIVOT_06G2_execution_secure.py:4924:            print(f"V24_WORKING_ORDER_RETRY_EXCEPTION | {exc}")
+BOT_PIVOT_06G2_execution_secure.py:4930:    # V24 SCALP ACTIVE — deuxième tentative si le broker donne enfin
+BOT_PIVOT_06G2_execution_secure.py:4939:                    "event": "V2436_STOP_TOO_WIDE_SECOND_RETRY_BLOCKED",
+BOT_PIVOT_06G2_execution_secure.py:4950:                    f"{asset2:10s} | V24_WORKING_ORDER_SECOND_RETRY | {direction2:4s} | "
+BOT_PIVOT_06G2_execution_secure.py:4955:                    f"{asset2:10s} | V24_WORKING_ORDER_SECOND_RETRY_RESULT | {direction2:4s} | "
+BOT_PIVOT_06G2_execution_secure.py:4961:                    print(f"V24_WORKING_ORDER_SECOND_RETRY_EXCEPTION | {exc}")
+BOT_PIVOT_06G2_execution_secure.py:4965:    if int(retry_status) in (400, 403) and "error.invalid.stoploss" in retry_err and v24sa_env_bool("V24_ALLOW_NO_STOP_LAST_RETRY", False):
+BOT_PIVOT_06G2_execution_secure.py:4972:            print(f"{asset:10s} | V24_STOP_GUARD_LAST_RETRY_NO_STOP | {direction:4s} | old_error={retry_err}")
+BOT_PIVOT_06G2_execution_secure.py:4980:        print(f"{asset:10s} | V24_WORKING_ORDER_RETRY_RESULT | {direction:4s} | HTTP={retry_status} data={retry_data}")
+BOT_PIVOT_06G2_execution_secure.py:4986:# FIN V24_SCALP_ACTIVE_GLOBAL_HELPERS_V3
+BOT_PIVOT_06G2_execution_secure.py:4992:    Gestion complète du panier V24 :
+BOT_PIVOT_06G2_execution_secure.py:5003:        if str(rec.get("status", "")).startswith("PENDING_LIMIT") and not rec.get("workingDealId"):
+BOT_PIVOT_06G2_execution_secure.py:5018:                    "event": "V24_BASKET_WORKING_ID_RESOLVED",
+BOT_PIVOT_06G2_execution_secure.py:5045:            if not str(rec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure.py:5082:                "event": "V24_BASKET_LEVEL_FILLED",
+BOT_PIVOT_06G2_execution_secure.py:5122:    # V24.3.1 - TP LADDER AUDIT LOG ONLY
+BOT_PIVOT_06G2_execution_secure.py:5125:    if open_count > 0 and v24_bool_env("V243_TP_LADDER_CHECK_LOG", True):
+BOT_PIVOT_06G2_execution_secure.py:5166:        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+BOT_PIVOT_06G2_execution_secure.py:5169:    # V24.3.5J - TP broker close proof.
+BOT_PIVOT_06G2_execution_secure.py:5173:        and v24_bool_env("V2435J_TP_MATRIX_CLOSE_PROOF", True)
+BOT_PIVOT_06G2_execution_secure.py:5189:            tp_reason = "V2435J_TP_BROKER_CLOSE_PROOF"
+BOT_PIVOT_06G2_execution_secure.py:5231:                        reason=tp_reason + "_CANCEL_PENDING",
+BOT_PIVOT_06G2_execution_secure.py:5241:                        reason=tp_reason + "_BROKER_PENDING_SWEEP",
+BOT_PIVOT_06G2_execution_secure.py:5381:    # V24.3 -- anti-zombie local : jambes OPEN localement mais disparues côté broker.
+BOT_PIVOT_06G2_execution_secure.py:5387:            reason = "V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET"
+BOT_PIVOT_06G2_execution_secure.py:5394:                    reason=reason + "_PENDING_SWEEP",
+BOT_PIVOT_06G2_execution_secure.py:5454:        reason = "V243_STORM_GUARD_CANCEL_PENDING"
+BOT_PIVOT_06G2_execution_secure.py:5479:            "event": "STORM_GUARD_CANCEL_PENDING",
+BOT_PIVOT_06G2_execution_secure.py:5491:            f"{asset:10s} | STORM_GUARD_CANCEL_PENDING | 1-3 | {direction:4s} | "
+BOT_PIVOT_06G2_execution_secure.py:5523:                reason="V243_STORM_GUARD_EMERGENCY_CLOSE",
+BOT_PIVOT_06G2_execution_secure.py:5534:                    "closed_reason": "V243_STORM_GUARD_EMERGENCY_CLOSE",
+BOT_PIVOT_06G2_execution_secure.py:5540:                reset_cycle_idle(asset, "V243_STORM_GUARD_EMERGENCY_CLOSE")
+BOT_PIVOT_06G2_execution_secure.py:5586:                    reason="V243_BASKET_MAX_LOSS_CANCEL_PENDING",
+BOT_PIVOT_06G2_execution_secure.py:5596:                reason="V243_BASKET_MAX_LOSS_BROKER_UPL",
+BOT_PIVOT_06G2_execution_secure.py:5607:                    "closed_reason": "V243_BASKET_MAX_LOSS_BROKER_UPL",
+BOT_PIVOT_06G2_execution_secure.py:5613:                reset_cycle_idle(asset, "V243_BASKET_MAX_LOSS_BROKER_UPL")
+BOT_PIVOT_06G2_execution_secure.py:5699:                    "event": "V24_OPEN_BASKET_INVALIDATION_CLOSE_OK",
+BOT_PIVOT_06G2_execution_secure.py:5735:            reason="V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure.py:5746:                    reason="V24_BASKET_GLOBAL_TP_CANCEL_REMAINING_PENDING",
+BOT_PIVOT_06G2_execution_secure.py:5754:                "closed_reason": "V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure.py:5760:            reset_cycle_idle(asset, "V24_BASKET_GLOBAL_TP")
+BOT_PIVOT_06G2_execution_secure.py:5780:                reason="V24_BASKET_TP_FAIL_CANCEL_PENDING_TO_FREE_MARGIN",
+BOT_PIVOT_06G2_execution_secure.py:5817:        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+BOT_PIVOT_06G2_execution_secure.py:5827:    # V24.3 DEMO -- si marge >= 3100, on ne coupe qu'un mauvais panier pending-only.
+BOT_PIVOT_06G2_execution_secure.py:5847:            reason = "V243_MARGIN_SELECTOR_CANCEL_WORST_PENDING"
+BOT_PIVOT_06G2_execution_secure.py:5910:    # V24.2 -- pression marge globale : on garde les positions ouvertes,
+BOT_PIVOT_06G2_execution_secure.py:5913:        reason = "V24_MARGIN_GUARD_PRESSURE_CANCEL_PENDING"
+BOT_PIVOT_06G2_execution_secure.py:5939:            "event": "MARGIN_GUARD_CANCEL_PENDING",
+BOT_PIVOT_06G2_execution_secure.py:5951:            f"{asset:10s} | MARGIN_GUARD_CANCEL_PENDING | 1-3 | {direction:4s} | "
+BOT_PIVOT_06G2_execution_secure.py:5972:    # V24.1 SCALP ACTIVE — panier partiel :
+BOT_PIVOT_06G2_execution_secure.py:5975:    # V24.3.5B_KEEP_REINFORCEMENTS:
+BOT_PIVOT_06G2_execution_secure.py:5980:        reason = "V24_3_5B_KEEP_REINFORCEMENTS_NO_AUTO_CANCEL"
+BOT_PIVOT_06G2_execution_secure.py:5991:            "event": "BASKET_PARTIAL_PENDING_KEEP",
+BOT_PIVOT_06G2_execution_secure.py:6002:            f"{asset:10s} | BASKET_PARTIAL_PENDING_KEEP | 1-3 | {direction:4s} | "
+BOT_PIVOT_06G2_execution_secure.py:6010:    # V24.1 — panier vide localement.
+BOT_PIVOT_06G2_execution_secure.py:6026:            reason = "V24_BASKET_EMPTY_RESET_BLOCKED_BROKER_NOT_EMPTY"
+BOT_PIVOT_06G2_execution_secure.py:6034:                    reason="V24_ORPHAN_WORKING_ORDER_CLEANUP_BEFORE_RESET",
+BOT_PIVOT_06G2_execution_secure.py:6056:        reason = "V24_BASKET_EMPTY_RESET"
+BOT_PIVOT_06G2_execution_secure.py:6072:    # V24.1 — panier raté : aucune jambe ouverte, ordres LIMIT encore en attente.
+BOT_PIVOT_06G2_execution_secure.py:6081:            reason = "V24_PENDING_BASKET_SIGNAL_LOST_CANCEL" if cycle_missing else "V24_PENDING_BASKET_EXPIRED_CANCEL"
+BOT_PIVOT_06G2_execution_secure.py:6115:                f"{asset:10s} | BASKET_PENDING_CANCEL | 1-3 | {direction:4s} | "
+BOT_PIVOT_06G2_execution_secure.py:6128:        "event": "V24_BASKET_HOLD",
+BOT_PIVOT_06G2_execution_secure.py:6184:                # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure.py:6188:                if active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure.py:6228:                # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure.py:6231:                if str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure.py:6233:                    reason = "CYCLE_IDLE_CANCEL_PENDING_LIMIT"
+BOT_PIVOT_06G2_execution_secure.py:6258:                                "event": "CANCEL_PENDING_LIMIT_BLOCKED_WORKING_ID_NOT_RESOLVED",
+BOT_PIVOT_06G2_execution_secure.py:6368:        # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure.py:6371:        if active_exec and str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure.py:6375:            # V24 : si le vrai workingDealId n'est pas encore connu,
+BOT_PIVOT_06G2_execution_secure.py:6425:                    "event": "HOLD_PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure.py:6518:                "event": "PENDING_LIMIT_AMBIGUOUS_BROKER_POSITIONS",
+BOT_PIVOT_06G2_execution_secure.py:6527:        # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure.py:6530:        if active_exec and active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure.py:6689:            # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure.py:6799:                    "reason": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure.py:6807:                reset_cycle_idle(asset, "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT")
+BOT_PIVOT_06G2_execution_secure.py:6927:                    f"{asset:10s} | V2436_EXIT_PENDING_CLEANUP | --  | ---- | "
+BOT_PIVOT_06G2_execution_secure.py:6935:            "event": "V2436_EXIT_PENDING_CLEANUP_DONE",
+BOT_PIVOT_06G2_execution_secure.py:6946:    global _V2436_CLEANUP_RUNNING
+BOT_PIVOT_06G2_execution_secure.py:6947:    if _V2436_CLEANUP_RUNNING:
+BOT_PIVOT_06G2_execution_secure.py:6950:    _V2436_CLEANUP_RUNNING = True
+BOT_PIVOT_06G2_execution_secure.py:6951:    reason = f"V2436_SIGNAL_{int(signum)}_CLEANUP"
+BOT_PIVOT_06G2_execution_secure.py:6953:        print(f"V2436_SIGNAL_HANDLER | signal={signum} | cleanup pending broker orders")
+BOT_PIVOT_06G2_execution_secure.py:6955:            headers=_V2436_RUNTIME_HEADERS,
+BOT_PIVOT_06G2_execution_secure.py:6956:            assets=_V2436_RUNTIME_ASSETS,
+BOT_PIVOT_06G2_execution_secure.py:6975:    global _V2436_RUNTIME_HEADERS, _V2436_RUNTIME_ASSETS
+BOT_PIVOT_06G2_execution_secure.py:6976:    _V2436_RUNTIME_ASSETS = list(assets)
+BOT_PIVOT_06G2_execution_secure.py:6984:    _V2436_RUNTIME_HEADERS = headers
+BOT_PIVOT_06G2_execution_secure.py:6986:    if v2436_env_bool("V2436_CLEANUP_PENDING_ON_SIGNAL", True):
+BOT_PIVOT_06G2_execution_secure.py:6996:        if v2436_env_bool("V2436_CLEANUP_PENDING_ON_EXIT", False):
+BOT_PIVOT_06G2_execution_secure.py:7000:                reason="V2436_NORMAL_EXIT_PENDING_CLEANUP",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:307:    # V24.1 : aucune sortie par TP broker individuel.
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:372:    V24 Basket Limit robuste.
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:433:# V24.1 BOT-PIVOT BOLLINGER
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:437:V24_BOLLINGER_CACHE = {}
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:439:BOLLINGER_BASKET_CONFIG = {
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:508:    cached = V24_BOLLINGER_CACHE.get(cache_key)
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:524:                "event": "V24_BOLLINGER_M5_FETCH_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:539:        V24_BOLLINGER_CACHE[cache_key] = {
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:548:            "event": "V24_BOLLINGER_M5_EXCEPTION",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:573:    conf = BOLLINGER_BASKET_CONFIG.get(asset_key, BOLLINGER_BASKET_CONFIG["_DEFAULT"])
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:611:            "event": "V24_BOLLINGER_M5_UNAVAILABLE",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:635:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:646:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:657:            "event": "V24_BOLLINGER_SIDE_CHECK_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:672:        "event": "V24_BOLLINGER_LIMIT_LEVELS",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:687:        f"{asset:10s} | BOLLINGER_M5 | "
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:701:    Payload V24 LIMIT :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:712:    # En V24, le TP est panier global, pas TP broker individuel par jambe.
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:731:    # V24.1 BOT-PIVOT BOLLINGER :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:759:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:813:            "status": "PENDING_LIMIT_DRY_RUN",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:860:        "status": "PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:863:        "workingDealId_source": "PENDING_RESOLVE_FROM_GET_WORKINGORDERS",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1253:    V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1422:    Pose directement les 3 LIMIT V24 :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1451:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1472:                    reason="V24_BASKET_PARTIAL_REJECT_CANCEL",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1489:            "event": "V24_BASKET_PARTIAL_REJECT_CANCELLED",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1505:            "reason": "V24_BASKET_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1518:        "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1526:        "event": "V24_BASKET_LIMIT_CREATED",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1623:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1703:        elif str(status).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1758:        "event": "V24_BASKET_CLOSE_DONE" if ok_all else "V24_BASKET_CLOSE_PARTIAL_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1767:    Gestion complète du panier V24 :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1778:        if str(rec.get("status", "")).startswith("PENDING_LIMIT") and not rec.get("workingDealId"):
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1793:                    "event": "V24_BASKET_WORKING_ID_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1820:            if not str(rec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1857:                "event": "V24_BASKET_LEVEL_FILLED",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1885:            reason="V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1891:                "closed_reason": "V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1897:            reset_cycle_idle(asset, "V24_BASKET_GLOBAL_TP")
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1918:        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1928:        "event": "V24_BASKET_HOLD",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1980:                # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:1984:                if active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2014:                # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2017:                if str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2019:                    reason = "CYCLE_IDLE_CANCEL_PENDING_LIMIT"
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2044:                                "event": "CANCEL_PENDING_LIMIT_BLOCKED_WORKING_ID_NOT_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2154:        # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2157:        if active_exec and str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2161:            # V24 : si le vrai workingDealId n'est pas encore connu,
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2211:                    "event": "HOLD_PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2304:                "event": "PENDING_LIMIT_AMBIGUOUS_BROKER_POSITIONS",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2313:        # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2316:        if active_exec and active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2473:            # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2510:                    "reason": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2518:                reset_cycle_idle(asset, "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT")
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:307:    # V24.1 : aucune sortie par TP broker individuel.
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:372:    V24 Basket Limit robuste.
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:433:# V24.1 BOT-PIVOT BOLLINGER
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:437:V24_BOLLINGER_CACHE = {}
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:439:BOLLINGER_BASKET_CONFIG = {
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:468:# V24.1 — CURSEURS INDIVIDUELS PARAMÉTRABLES
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:470:# BOLLINGER_CURSOR :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:513:    return v241_cursor("BOLLINGER_CURSOR", 1.0, 0.5, 1.5)
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:573:    cached = V24_BOLLINGER_CACHE.get(cache_key)
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:589:                "event": "V24_BOLLINGER_M5_FETCH_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:604:        V24_BOLLINGER_CACHE[cache_key] = {
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:613:            "event": "V24_BOLLINGER_M5_EXCEPTION",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:638:    conf = BOLLINGER_BASKET_CONFIG.get(asset_key, BOLLINGER_BASKET_CONFIG["_DEFAULT"])
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:684:            "event": "V24_BOLLINGER_M5_UNAVAILABLE",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:708:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:719:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:730:            "event": "V24_BOLLINGER_SIDE_CHECK_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:745:        "event": "V24_BOLLINGER_LIMIT_LEVELS",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:760:        f"{asset:10s} | BOLLINGER_M5 | "
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:774:    Payload V24 LIMIT :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:785:    # En V24, le TP est panier global, pas TP broker individuel par jambe.
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:804:    # V24.1 BOT-PIVOT BOLLINGER :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:832:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:886:            "status": "PENDING_LIMIT_DRY_RUN",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:933:        "status": "PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:936:        "workingDealId_source": "PENDING_RESOLVE_FROM_GET_WORKINGORDERS",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1326:    V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1495:    Pose directement les 3 LIMIT V24 :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1524:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1545:                    reason="V24_BASKET_PARTIAL_REJECT_CANCEL",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1562:            "event": "V24_BASKET_PARTIAL_REJECT_CANCELLED",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1578:            "reason": "V24_BASKET_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1591:        "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1599:        "event": "V24_BASKET_LIMIT_CREATED",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1696:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1776:        elif str(status).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1831:        "event": "V24_BASKET_CLOSE_DONE" if ok_all else "V24_BASKET_CLOSE_PARTIAL_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1840:    Gestion complète du panier V24 :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1851:        if str(rec.get("status", "")).startswith("PENDING_LIMIT") and not rec.get("workingDealId"):
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1866:                    "event": "V24_BASKET_WORKING_ID_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1893:            if not str(rec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1930:                "event": "V24_BASKET_LEVEL_FILLED",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1958:            reason="V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1964:                "closed_reason": "V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1970:            reset_cycle_idle(asset, "V24_BASKET_GLOBAL_TP")
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:1991:        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2001:        "event": "V24_BASKET_HOLD",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2053:                # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2057:                if active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2087:                # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2090:                if str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2092:                    reason = "CYCLE_IDLE_CANCEL_PENDING_LIMIT"
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2117:                                "event": "CANCEL_PENDING_LIMIT_BLOCKED_WORKING_ID_NOT_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2227:        # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2230:        if active_exec and str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2234:            # V24 : si le vrai workingDealId n'est pas encore connu,
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2284:                    "event": "HOLD_PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2377:                "event": "PENDING_LIMIT_AMBIGUOUS_BROKER_POSITIONS",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2386:        # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2389:        if active_exec and active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2546:            # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2583:                    "reason": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2591:                reset_cycle_idle(asset, "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT")
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:307:    # V24.1 : aucune sortie par TP broker individuel.
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:372:    V24 Basket Limit robuste.
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:433:# V24.1 BOT-PIVOT BOLLINGER
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:437:V24_BOLLINGER_CACHE = {}
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:439:BOLLINGER_BASKET_CONFIG = {
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:508:    cached = V24_BOLLINGER_CACHE.get(cache_key)
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:524:                "event": "V24_BOLLINGER_M5_FETCH_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:539:        V24_BOLLINGER_CACHE[cache_key] = {
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:548:            "event": "V24_BOLLINGER_M5_EXCEPTION",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:573:    conf = BOLLINGER_BASKET_CONFIG.get(asset_key, BOLLINGER_BASKET_CONFIG["_DEFAULT"])
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:611:            "event": "V24_BOLLINGER_M5_UNAVAILABLE",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:635:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:646:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:657:            "event": "V24_BOLLINGER_SIDE_CHECK_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:672:        "event": "V24_BOLLINGER_LIMIT_LEVELS",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:687:        f"{asset:10s} | BOLLINGER_M5 | "
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:701:    Payload V24 LIMIT :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:712:    # En V24, le TP est panier global, pas TP broker individuel par jambe.
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:731:    # V24.1 BOT-PIVOT BOLLINGER :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:759:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:813:            "status": "PENDING_LIMIT_DRY_RUN",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:860:        "status": "PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:863:        "workingDealId_source": "PENDING_RESOLVE_FROM_GET_WORKINGORDERS",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1253:    V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1422:    Pose directement les 3 LIMIT V24 :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1451:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1472:                    reason="V24_BASKET_PARTIAL_REJECT_CANCEL",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1489:            "event": "V24_BASKET_PARTIAL_REJECT_CANCELLED",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1505:            "reason": "V24_BASKET_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1518:        "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1526:        "event": "V24_BASKET_LIMIT_CREATED",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1623:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1703:        elif str(status).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1758:        "event": "V24_BASKET_CLOSE_DONE" if ok_all else "V24_BASKET_CLOSE_PARTIAL_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1767:    Gestion complète du panier V24 :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1778:        if str(rec.get("status", "")).startswith("PENDING_LIMIT") and not rec.get("workingDealId"):
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1793:                    "event": "V24_BASKET_WORKING_ID_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1820:            if not str(rec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1857:                "event": "V24_BASKET_LEVEL_FILLED",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1885:            reason="V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1891:                "closed_reason": "V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1897:            reset_cycle_idle(asset, "V24_BASKET_GLOBAL_TP")
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1918:        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1928:        "event": "V24_BASKET_HOLD",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1980:                # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:1984:                if active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2014:                # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2017:                if str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2019:                    reason = "CYCLE_IDLE_CANCEL_PENDING_LIMIT"
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2044:                                "event": "CANCEL_PENDING_LIMIT_BLOCKED_WORKING_ID_NOT_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2154:        # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2157:        if active_exec and str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2161:            # V24 : si le vrai workingDealId n'est pas encore connu,
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2211:                    "event": "HOLD_PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2304:                "event": "PENDING_LIMIT_AMBIGUOUS_BROKER_POSITIONS",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2313:        # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2316:        if active_exec and active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2473:            # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2510:                    "reason": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2518:                reset_cycle_idle(asset, "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT")
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:367:    V24 Basket Limit robuste.
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:428:# V24.1 BOT-PIVOT BOLLINGER
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:432:V24_BOLLINGER_CACHE = {}
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:434:BOLLINGER_BASKET_CONFIG = {
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:503:    cached = V24_BOLLINGER_CACHE.get(cache_key)
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:519:                "event": "V24_BOLLINGER_M5_FETCH_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:534:        V24_BOLLINGER_CACHE[cache_key] = {
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:543:            "event": "V24_BOLLINGER_M5_EXCEPTION",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:568:    conf = BOLLINGER_BASKET_CONFIG.get(asset_key, BOLLINGER_BASKET_CONFIG["_DEFAULT"])
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:606:            "event": "V24_BOLLINGER_M5_UNAVAILABLE",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:630:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:641:                "event": "V24_BOLLINGER_L1_WRONG_SIDE",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:652:            "event": "V24_BOLLINGER_SIDE_CHECK_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:667:        "event": "V24_BOLLINGER_LIMIT_LEVELS",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:682:        f"{asset:10s} | BOLLINGER_M5 | "
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:696:    Payload V24 LIMIT :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:707:    # En V24, le TP est panier global, pas TP broker individuel par jambe.
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:726:    # V24.1 BOT-PIVOT BOLLINGER :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:754:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:808:            "status": "PENDING_LIMIT_DRY_RUN",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:855:        "status": "PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:858:        "workingDealId_source": "PENDING_RESOLVE_FROM_GET_WORKINGORDERS",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1248:    V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1417:    Pose directement les 3 LIMIT V24 :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1446:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1467:                    reason="V24_BASKET_PARTIAL_REJECT_CANCEL",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1484:            "event": "V24_BASKET_PARTIAL_REJECT_CANCELLED",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1500:            "reason": "V24_BASKET_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1513:        "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1521:        "event": "V24_BASKET_LIMIT_CREATED",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1618:    # V24 sécurité :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1698:        elif str(status).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1753:        "event": "V24_BASKET_CLOSE_DONE" if ok_all else "V24_BASKET_CLOSE_PARTIAL_FAIL",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1762:    Gestion complète du panier V24 :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1773:        if str(rec.get("status", "")).startswith("PENDING_LIMIT") and not rec.get("workingDealId"):
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1788:                    "event": "V24_BASKET_WORKING_ID_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1815:            if not str(rec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1852:                "event": "V24_BASKET_LEVEL_FILLED",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1880:            reason="V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1886:                "closed_reason": "V24_BASKET_GLOBAL_TP",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1892:            reset_cycle_idle(asset, "V24_BASKET_GLOBAL_TP")
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1913:        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1923:        "event": "V24_BASKET_HOLD",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1975:                # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:1979:                if active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2009:                # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2012:                if str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2014:                    reason = "CYCLE_IDLE_CANCEL_PENDING_LIMIT"
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2039:                                "event": "CANCEL_PENDING_LIMIT_BLOCKED_WORKING_ID_NOT_RESOLVED",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2149:        # V24 Basket Limit :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2152:        if active_exec and str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2156:            # V24 : si le vrai workingDealId n'est pas encore connu,
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2206:                    "event": "HOLD_PENDING_LIMIT",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2299:                "event": "PENDING_LIMIT_AMBIGUOUS_BROKER_POSITIONS",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2308:        # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2311:        if active_exec and active_exec.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2468:            # V24 Basket Limit complet :
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2505:                    "reason": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2513:                reset_cycle_idle(asset, "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT")
+BOT_PIVOT_06G_execution_from_cycle_state.py:95:    Compatibilité V24.1 :
+BOT_PIVOT_06H_execution_demo_guarded.py:83:    V24 Basket-aware :
+BOT_PIVOT_06H_execution_demo_guarded.py:84:    On lit le fichier EXEC utilisé par 06G2 et on considère qu'un panier V24 actif
+BOT_PIVOT_06H_execution_demo_guarded.py:101:        # V24 : panier actif avec niveaux L1/L2/L3.
+BOT_PIVOT_06H_execution_demo_guarded.py:102:        if deal.get("basket_mode") == "V24_BASKET_LIMIT":
+BOT_PIVOT_06H_execution_demo_guarded.py:120:                        "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_06H_execution_demo_guarded.py:130:                    "basket_mode": "V24_BASKET_LIMIT",
+BOT_PIVOT_99_LOG_DASHBOARD.py:36:    r"BOLLINGER_ENTRY_OBSERVE.*\|\s+(BUY|SELL)\s+\|.*"
+BOT_PIVOT_99_LOG_DASHBOARD.py:82:        "BASKET_ARMING_DELAYED", "BOLLINGER_ENTRY_OBSERVE",
+BOT_PIVOT_99_LOG_DASHBOARD.py:83:        "BASKET_PARTIAL_PENDING_CANCEL", "BASKET_PARTIAL_PENDING_KEEP",
+BOT_PIVOT_99_LOG_DASHBOARD.py:84:        "BASKET_PENDING_CANCEL"
+BOT_PIVOT_99_LOG_DASHBOARD.py:185:    "BASKET_PARTIAL_PENDING_KEEP",
+BOT_PIVOT_99_LOG_DASHBOARD.py:186:    "BASKET_PARTIAL_PENDING_CANCEL",
+BOT_PIVOT_99_LOG_DASHBOARD.py:187:    "BASKET_PENDING_CANCEL",
+BOT_PIVOT_99_LOG_DASHBOARD.py:190:    "BOLLINGER_ENTRY_OBSERVE",
+BOT_PIVOT_99_LOG_DASHBOARD.py:223:        f"{block:5d} {c['BOLLINGER_ENTRY_OBSERVE']:4d} {c['BASKET_ARMING_DELAYED']:4d} "
+BOT_PIVOT_99_LOG_DASHBOARD.py:224:        f"{lrej:5d} {l123:5d} {c['BASKET_PARTIAL_PENDING_CANCEL']:5d}"
+BOT_PIVOT_99_LOG_DASHBOARD.py:229:print("BOLLINGER — DERNIERES OBSERVATIONS")
+BOT_PIVOT_99_TOTAL_FLATTEN_BROKER.py:252:            print(f"PENDING  dealId={short_id(deal_id)} | {order_text(row)}")
+BOT_PIVOT_99_TOTAL_FLATTEN_BROKER.py:315:        print(f"REMAINING_PENDING dealId={short_id(order_deal_id(row))} | {order_text(row)}")
+BOT_PIVOT_99_cancel_gold_pending.py:179:    print("BOT_PIVOT_99_cancel_gold_pending.py — ANNULATION FORCÉE DES PENDING GOLD")
+BOT_PIVOT_99_cancel_gold_pending.py:220:            "GOLD_PENDING",
+BOT_PIVOT_99_reset_gold_local_state.py:46:        state["manual_reset_reason"] = "MANUAL_GOLD_PENDING_CANCELLED_BEFORE_V2432_PATCH"
+BOT_PIVOT_99_reset_gold_local_state.py:65:            "reason": "MANUAL_GOLD_PENDING_CANCELLED_BEFORE_V2432_PATCH",
+BOT_PIVOT_99_reset_gold_local_state.py:73:    data["reset_reason"] = "MANUAL_GOLD_PENDING_CANCELLED_BEFORE_V2432_PATCH"
+BOT_PIVOT_99_v243_audit_log.py:5:Audit log non invasif pour BOT-PIVOT / Bot Pivot Bollinger V24.3.x.
+BOT_PIVOT_99_v243_audit_log.py:30:    "BOLLINGER_WIDTH_OBSERVE",
+BOT_PIVOT_99_v243_audit_log.py:31:    "BOLLINGER_ENTRY_OBSERVE",
+BOT_PIVOT_99_v243_audit_log.py:40:    "BOLLINGER_M5",
+BOT_PIVOT_99_v243_audit_log.py:41:    "BOLLINGER_WIDTH_OBSERVE",
+BOT_PIVOT_99_v243_audit_log.py:42:    "BOLLINGER_ENTRY_OBSERVE",
+BOT_PIVOT_99_v243_audit_log.py:43:    "BOLLINGER_TOO_FAR",
+BOT_PIVOT_99_v243_audit_log.py:44:    "BOLLINGER_WIDTH_TOO_SMALL",
+BOT_PIVOT_99_v243_audit_log.py:54:    "BASKET_PENDING_CANCEL",
+BOT_PIVOT_99_v243_audit_log.py:169:        or stats["BOLLINGER_TOO_FAR"] > 0
+BOT_PIVOT_99_v243_audit_log.py:170:        or stats["BOLLINGER_WIDTH_TOO_SMALL"] > 0
+BOT_PIVOT_99_v243_audit_log.py:184:    report.section("AUDIT BOT-PIVOT V24.3.x - LOG")
+BOT_PIVOT_99_v243_audit_log.py:239:            if "BOLLINGER_WIDTH_OBSERVE" in line:
+BOT_PIVOT_99_v243_audit_log.py:242:            if "BOLLINGER_ENTRY_OBSERVE" in line:
+BOT_PIVOT_99_v243_audit_log.py:260:    report.subsection("Présence des microtouches V24.3.1")
+BOT_PIVOT_99_v243_audit_log.py:310:            f"{s['BOLLINGER_TOO_FAR']:7d} | "
+BOT_PIVOT_99_v243_audit_log.py:311:            f"{s['BOLLINGER_WIDTH_TOO_SMALL']:7d} | "
+BOT_PIVOT_99_v243_audit_log.py:313:            f"{s['BASKET_PENDING_CANCEL']:8d} | "
+BOT_PIVOT_99_v243_audit_log.py:340:        "BASKET_PENDING_CANCEL",
+BOT_PIVOT_99_v243_audit_log.py:342:        "BOLLINGER_TOO_FAR",
+BOT_PIVOT_99_v243_audit_log.py:343:        "BOLLINGER_WIDTH_TOO_SMALL",
+BOT_PIVOT_99_v243_audit_log.py:350:    report.subsection("Simulation V24.3.2 - LIMIT_ARMING_DISTANCE sur BOLLINGER_ENTRY_OBSERVE")
+BOT_PIVOT_99_v243_audit_log.py:352:    report.emit("Lecture : si dist/step > curseur, le panier aurait été retardé en V24.3.2.")
+BOT_PIVOT_99_v243_audit_log.py:358:        f"{'STEP':>12s} | {'DIST':>12s} | {'DIST/STEP':>10s} | {'DECISION V24.3.2':>18s}"
+BOT_PIVOT_99_v243_audit_log.py:390:        report.emit("Aucun BOLLINGER_ENTRY_OBSERVE trouvé sur ce log.")
+BOT_PIVOT_99_v243_audit_log.py:408:        report.emit("Aucun BOLLINGER_WIDTH_OBSERVE trouvé sur ce log.")
+BOT_PIVOT_99_v243_audit_logs.py:7:Lanceur non invasif pour BOT-PIVOT / Bot Pivot Bollinger V24.3.x.
+BOT_PIVOT_99_v243_audit_logs.py:184:    parser.add_argument("--arm-mult", type=float, default=1.5, help="Curseur simulé V24.3.2 LIMIT_ARMING_DISTANCE.")
+BOT_PIVOT_99_v243_audit_logs.py:205:        out = reports_dir / f"BOT_PIVOT_AUDIT_V243_{stamp}.txt"
+BOT_PIVOT_V2432_entry_quality_report.py:3:V24.3.2 - ENTRY QUALITY REPORT
+BOT_PIVOT_V2432_entry_quality_report.py:54:    "BOLLINGER",
+BOT_PIVOT_V2432_entry_quality_report.py:83:    "PENDING",
+BOT_PIVOT_V2432_entry_quality_report.py:105:    "BOLLINGER_WIDTH_OBSERVE",
+BOT_PIVOT_V2432_entry_quality_report.py:106:    "BOLLINGER_ENTRY_OBSERVE",
+BOT_PIVOT_V2432_entry_quality_report.py:109:    "BASKET_REJECT_BOLLINGER_TOO_FAR",
+BOT_PIVOT_V2432_entry_quality_report.py:111:    "BOLLINGER_WIDTH_TOO_SMALL",
+BOT_PIVOT_V2432_entry_quality_report.py:112:    "BASKET_PENDING_CANCEL",
+BOT_PIVOT_V2432_entry_quality_report.py:150:        description="Build V24.3.2 ENTRY QUALITY REPORT from Bot Pivot logs."
+BOT_PIVOT_V2432_entry_quality_report.py:345:    if "BASKET_REJECT_BOLLINGER_TOO_FAR" in upper or "BOLLINGER_TOO_FAR" in upper:
+BOT_PIVOT_V2432_entry_quality_report.py:346:        return "BOLLINGER_TOO_FAR"
+BOT_PIVOT_V2432_entry_quality_report.py:349:    if "BOLLINGER_WIDTH_TOO_SMALL" in upper or "WIDTH TOO SMALL" in upper:
+BOT_PIVOT_V2432_entry_quality_report.py:350:        return "BOLLINGER_WIDTH_TOO_SMALL"
+BOT_PIVOT_V2432_entry_quality_report.py:401:    if "BASKET_PENDING_CANCEL" in upper:
+BOT_PIVOT_V2432_entry_quality_report.py:402:        stats.counts["BASKET_PENDING_CANCEL"] += 1
+BOT_PIVOT_V2432_entry_quality_report.py:408:    if "BOLLINGER_ENTRY_OBSERVE" in upper:
+BOT_PIVOT_V2432_entry_quality_report.py:409:        stats.counts["BOLLINGER_ENTRY_OBSERVE"] += 1
+BOT_PIVOT_V2432_entry_quality_report.py:418:    if "BOLLINGER_WIDTH_OBSERVE" in upper:
+BOT_PIVOT_V2432_entry_quality_report.py:419:        stats.counts["BOLLINGER_WIDTH_OBSERVE"] += 1
+BOT_PIVOT_V2432_entry_quality_report.py:432:            stats.counts["BOLLINGER_WIDTH_TOO_SMALL"] += 1
+BOT_PIVOT_V2432_entry_quality_report.py:437:        or "BOLLINGER_WIDTH_TOO_SMALL" in upper
+BOT_PIVOT_V2432_entry_quality_report.py:438:        or "BOLLINGER TOO SMALL" in upper
+BOT_PIVOT_V2432_entry_quality_report.py:445:        if reason == "BOLLINGER_TOO_FAR":
+BOT_PIVOT_V2432_entry_quality_report.py:446:            stats.counts["BASKET_REJECT_BOLLINGER_TOO_FAR"] += 1
+BOT_PIVOT_V2432_entry_quality_report.py:449:        elif reason == "BOLLINGER_WIDTH_TOO_SMALL":
+BOT_PIVOT_V2432_entry_quality_report.py:450:            stats.counts["BOLLINGER_WIDTH_TOO_SMALL"] += 1
+BOT_PIVOT_V2432_entry_quality_report.py:495:                "BASKET_PENDING_CANCEL": stats.counts["BASKET_PENDING_CANCEL"],
+BOT_PIVOT_V2432_entry_quality_report.py:498:                "BASKET_REJECT_BOLLINGER_TOO_FAR": stats.counts[
+BOT_PIVOT_V2432_entry_quality_report.py:499:                    "BASKET_REJECT_BOLLINGER_TOO_FAR"
+BOT_PIVOT_V2432_entry_quality_report.py:504:                "BOLLINGER_WIDTH_TOO_SMALL": stats.counts[
+BOT_PIVOT_V2432_entry_quality_report.py:505:                    "BOLLINGER_WIDTH_TOO_SMALL"
+BOT_PIVOT_V2432_entry_quality_report.py:527:    lines.append("# V24.3.2 - ENTRY QUALITY REPORT")
+BOT_PIVOT_V2432_entry_quality_report.py:565:            str(row["BASKET_PENDING_CANCEL"]),
+BOT_PIVOT_V2432_entry_quality_report.py:571:            str(row["BASKET_REJECT_BOLLINGER_TOO_FAR"]),
+BOT_PIVOT_V2432_entry_quality_report.py:573:            str(row["BOLLINGER_WIDTH_TOO_SMALL"]),
+BOT_PIVOT_V2432_entry_quality_report.py:648:        "BASKET_PENDING_CANCEL",
+BOT_PIVOT_V2432_entry_quality_report.py:651:        "BASKET_REJECT_BOLLINGER_TOO_FAR",
+BOT_PIVOT_V2432_entry_quality_report.py:653:        "BOLLINGER_WIDTH_TOO_SMALL",
+run_BOT_PIVOT_07D_24_7_DEMO.sh:2:# V24.1 — Chargement robuste .env + curseurs de test démo
+run_BOT_PIVOT_07D_24_7_DEMO.sh:13:# Curseurs individuels V24.1
+run_BOT_PIVOT_07D_24_7_DEMO.sh:14:export BOLLINGER_CURSOR="${BOLLINGER_CURSOR:-1.0}"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:29:TICK_SECONDS="${TICK_STREAM_DURATION_SEC:-45}"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:44:CLEANUP_DONE=0
+run_BOT_PIVOT_07D_24_7_DEMO.sh:48:  if [ "$CLEANUP_DONE" = "1" ]; then
+run_BOT_PIVOT_07D_24_7_DEMO.sh:51:  CLEANUP_DONE=1
+run_BOT_PIVOT_07D_24_7_DEMO.sh:55:  echo "V2436 CLEANUP PENDING ON ${why} — $(date -u '+%Y-%m-%dT%H:%M:%SZ')" | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:65:reason = "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:77:        "event": "V2436_EXIT_CLEANUP_BEFORE",
+run_BOT_PIVOT_07D_24_7_DEMO.sh:93:            print(f"{asset:10s} | V2436_EXIT_PENDING_CLEANUP | count={len(res)}")
+run_BOT_PIVOT_07D_24_7_DEMO.sh:100:        "event": "V2436_EXIT_CLEANUP_AFTER",
+run_BOT_PIVOT_07D_24_7_DEMO.sh:109:        "event": "V2436_EXIT_CLEANUP_ERROR",
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:2:# V24.1 — Chargement robuste des variables Capital.com
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:2:export V2435I_DEMO_RPOS_HIGH="75"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:3:export V2435I_DEMO_RPOS_LOW="25"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:4:export V2435I_DEMO_SIGNAL_SAMPLER="0"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:5:export V2435F_DEMO_FORCE_ENTRY_SAMPLES="0"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:6:export V2435H_USE_STREAM_PRICE_GUARD="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:7:export V2435J_TP_MATRIX_CLOSE_PROOF="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:8:export BOLLINGER_BUFFER_CURSOR=${BOLLINGER_BUFFER_CURSOR:-0.10}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:9:export V2433_LIMIT_ARMING_STEP_MULT="3.0"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:14:export V24_SCALP_ACTIVE=true
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:15:export V24_TARGET_TRADES_MIN=${V24_TARGET_TRADES_MIN:-50}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:16:export V24_TARGET_TRADES_MAX=${V24_TARGET_TRADES_MAX:-100}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:17:export V24_MARGIN_BUDGET_EUR=${V24_MARGIN_BUDGET_EUR:-3000}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:19:export V243_STORM_GUARD_ENABLED=${V243_STORM_GUARD_ENABLED:-true}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:20:export V243_STORM_SPREAD_MULT=${V243_STORM_SPREAD_MULT:-3.0}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:21:export V243_STORM_MOVE_STEP_MULT=${V243_STORM_MOVE_STEP_MULT:-2.5}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:22:export V243_STORM_RANGE_STEP_MULT=${V243_STORM_RANGE_STEP_MULT:-3.0}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:23:export V243_STORM_GLOBAL_ALERT_COUNT=${V243_STORM_GLOBAL_ALERT_COUNT:-4}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:24:export V243_STORM_EMERGENCY_CLOSE_ENABLED=${V243_STORM_EMERGENCY_CLOSE_ENABLED:-true}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:25:export V243_STORM_MAX_LOSS_MIN_EUR=${V243_STORM_MAX_LOSS_MIN_EUR:-0.80}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:26:export V243_STORM_MAX_LOSS_PER_OPEN_LEG_EUR=${V243_STORM_MAX_LOSS_PER_OPEN_LEG_EUR:-0.60}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:27:export V243_MAX_LOSS_GUARD_ENABLED=${V243_MAX_LOSS_GUARD_ENABLED:-true}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:28:export V243_MAX_LOSS_1_OPEN_EUR=${V243_MAX_LOSS_1_OPEN_EUR:-1.50}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:29:export V243_MAX_LOSS_2_OPEN_EUR=${V243_MAX_LOSS_2_OPEN_EUR:-3.00}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:30:export V243_MAX_LOSS_3_OPEN_EUR=${V243_MAX_LOSS_3_OPEN_EUR:-5.00}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:35:export TICK_STREAM_DURATION_SEC=${TICK_STREAM_DURATION_SEC:-45}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:40:export BOLLINGER_CURSOR=${BOLLINGER_CURSOR:-0.8}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:41:# V24.3 DEMO ACTIVE -- Bollinger max_dist elargi pour obtenir des LIMIT
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:42:# Avec BOLLINGER_CURSOR=0.8, le max_dist final affiche environ 80% de ces valeurs.
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:43:export V241_MAX_L1_DISTANCE_ETHUSD=${V241_MAX_L1_DISTANCE_ETHUSD:-35.0}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:44:export V241_MAX_L1_DISTANCE_EURUSD=${V241_MAX_L1_DISTANCE_EURUSD:-0.00125}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:45:export V241_MAX_L1_DISTANCE_EURJPY=${V241_MAX_L1_DISTANCE_EURJPY:-0.225}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:46:export V241_MAX_L1_DISTANCE_OIL_CRUDE=${V241_MAX_L1_DISTANCE_OIL_CRUDE:-0.625}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:47:export V241_MAX_L1_DISTANCE_DE40=${V241_MAX_L1_DISTANCE_DE40:-56.25}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:48:export V241_MAX_L1_DISTANCE_GBPUSD=${V241_MAX_L1_DISTANCE_GBPUSD:-0.00150}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:49:export V241_MAX_L1_DISTANCE_UK100=${V241_MAX_L1_DISTANCE_UK100:-35.0}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:50:export V241_MAX_L1_DISTANCE_GOLD=${V241_MAX_L1_DISTANCE_GOLD:-27.5}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:52:export PENDING_BASKET_MAX_AGE_SEC="300"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:53:export PARTIAL_BASKET_PENDING_MAX_AGE_SEC="300"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:58:export V24_PNL_AUDIT=true
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:59:export V24_TP_SAFETY_MARGIN_EUR=${V24_TP_SAFETY_MARGIN_EUR:-0}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:61:export V24_LIMIT_STOP_RETRY=${V24_LIMIT_STOP_RETRY:-true}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:62:export V24_LIMIT_GUARD_SPREAD_MULT=${V24_LIMIT_GUARD_SPREAD_MULT:-1.5}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:63:export V24_DISABLE_GUARANTEED_STOP_ASSETS="EURUSD,GBPUSD,EURJPY,USDJPY,OIL_CRUDE,OIL_BRENT,BTCUSD,ETHUSD,J225,SILVER"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:64:export V24_FORCE_GUARANTEED_STOP_ASSETS="GOLD"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:65:export V2436_HARD_BOLLINGER_DISTANCE_GUARD="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:66:export V2436_REQUIRE_STREAM_SIGNAL_FOR_LIMIT="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:67:export V2436_ARMING_CHECK_FAIL_CLOSED="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:68:export V2436_CLEANUP_PENDING_ON_SIGNAL="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:69:export V2436_MAX_STOP_DISTANCE_EURUSD="0.012"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:70:export V2436_MAX_STOP_DISTANCE_GBPUSD="0.012"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:72:export V24_MARGIN_SELECTION_ENABLED=${V24_MARGIN_SELECTION_ENABLED:-true}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:73:export V24_MAX_BROKER_PENDING_ORDERS=${V24_MAX_BROKER_PENDING_ORDERS:-18}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:74:export V24_MARGIN_BUDGET_EUR=${V24_MARGIN_BUDGET_EUR:-3100}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:76:export V242_MAX_MARGIN_CFD_EUR=${V242_MAX_MARGIN_CFD_EUR:-3100}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:77:export V242_MIN_AVAILABLE_TO_TRADE_EUR=${V242_MIN_AVAILABLE_TO_TRADE_EUR:-0}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:79:export V243_PENDING_SELECTOR_ENABLED=${V243_PENDING_SELECTOR_ENABLED:-false}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:80:export V243_MARGIN_SELECTOR_ENABLED=${V243_MARGIN_SELECTOR_ENABLED:-true}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:81:export V243_MARGIN_SELECTOR_THRESHOLD_EUR=${V243_MARGIN_SELECTOR_THRESHOLD_EUR:-3100}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:82:export V243_MARGIN_SELECTOR_COOLDOWN_SEC=${V243_MARGIN_SELECTOR_COOLDOWN_SEC:-45}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:84:export V24_ORPHAN_PENDING_MAX_AGE_SEC=${V24_ORPHAN_PENDING_MAX_AGE_SEC:-0}

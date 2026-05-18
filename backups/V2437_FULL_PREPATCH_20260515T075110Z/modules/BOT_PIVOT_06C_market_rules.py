@@ -1,0 +1,185 @@
+# BOT_PIVOT_06C_market_rules.py
+# Module 06C — lecture des règles de marché par actif
+# Aucun ordre réel. Lecture uniquement.
+
+import os
+import json
+import requests
+from pathlib import Path
+
+import BOT_PIVOT_00_config as CFG
+
+ENV_FILE = Path(".env")
+
+class RateLimitError(RuntimeError):
+    pass
+
+def load_env():
+    if not ENV_FILE.exists():
+        raise FileNotFoundError(".env introuvable")
+
+    for line in ENV_FILE.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, v = line.split("=", 1)
+        os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+def login():
+    api_key = os.environ.get("CAPITAL_API_KEY")
+    identifier = (
+        os.environ.get("CAPITAL_IDENTIFIER")
+        or os.environ.get("CAPITAL_LOGIN")
+        or os.environ.get("CAPITAL_EMAIL")
+    )
+    password = os.environ.get("CAPITAL_PASSWORD")
+
+    if not api_key or not identifier or not password:
+        raise RuntimeError("Variables .env manquantes")
+
+    r = requests.post(
+        f"{CFG.BASE_URL}/api/v1/session",
+        headers={
+            "X-CAP-API-KEY": api_key,
+            "Content-Type": "application/json",
+        },
+        json={
+            "identifier": identifier,
+            "password": password,
+            "encryptedPassword": False,
+        },
+        timeout=15,
+    )
+
+    if r.status_code == 429:
+        raise RateLimitError(f"Login refuse HTTP 429 : {r.text[:300]}")
+
+    if r.status_code not in (200, 201):
+        raise RuntimeError(f"Login refusé HTTP {r.status_code} : {r.text[:300]}")
+
+    return {
+        "X-CAP-API-KEY": api_key,
+        "CST": r.headers.get("CST"),
+        "X-SECURITY-TOKEN": r.headers.get("X-SECURITY-TOKEN"),
+        "Content-Type": "application/json",
+    }
+
+def get_market(headers, epic):
+    r = requests.get(
+        f"{CFG.BASE_URL}/api/v1/markets/{epic}",
+        headers=headers,
+        timeout=15,
+    )
+
+    try:
+        data = r.json()
+    except Exception:
+        data = {"raw": r.text[:500]}
+
+    return r.status_code, data
+
+def pick(data, *keys):
+    cur = data
+    for k in keys:
+        if not isinstance(cur, dict):
+            return None
+        cur = cur.get(k)
+    return cur
+
+def fmt(x):
+    if x is None:
+        return "--"
+    return str(x)
+
+def parse_assets(raw):
+    return [x.strip().upper() for x in raw.replace(";", ",").split(",") if x.strip()]
+
+def main():
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--assets",
+        default="US30,OIL_CRUDE,GOLD,GBPUSD,DE40,US500",
+        help="Actifs séparés par virgule",
+    )
+    args = parser.parse_args()
+
+    assets = parse_assets(args.assets)
+
+    load_env()
+
+    try:
+        headers = login()
+    except RateLimitError as e:
+        print()
+        print("=" * 120)
+        print("REFRESH_06C_RATE_LIMIT | HTTP 429 | contexte marche conserve | aucun ordre envoye")
+        print(str(e)[:500])
+        print("=" * 120)
+        return
+
+    print()
+    print("=" * 150)
+    print("06C — RÈGLES DE MARCHÉ / CONTRAINTES ACTIFS")
+    print("=" * 150)
+    print("ACTIF      | HTTP | STATUS     | BID          | ASK          | MIN SIZE   | MAX SIZE   | LOT SIZE   | CURRENCY")
+    print("-" * 150)
+
+    raw_dir = CFG.DATA_DIR / "markets"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+
+    for epic in assets:
+        status, data = get_market(headers, epic)
+
+        market = data.get("market", data)
+        snapshot = market.get("snapshot", {}) if isinstance(market, dict) else {}
+        instrument = market.get("instrument", {}) if isinstance(market, dict) else {}
+        dealing_rules = market.get("dealingRules", {}) if isinstance(market, dict) else {}
+
+        bid = snapshot.get("bid")
+        ask = snapshot.get("offer") or snapshot.get("ofr") or snapshot.get("ask")
+
+        market_status = (
+            snapshot.get("marketStatus")
+            or market.get("marketStatus")
+            or instrument.get("marketStatus")
+        )
+
+        min_size = (
+            pick(dealing_rules, "minDealSize", "value")
+            or dealing_rules.get("minDealSize")
+            or instrument.get("minDealSize")
+        )
+
+        max_size = (
+            pick(dealing_rules, "maxDealSize", "value")
+            or dealing_rules.get("maxDealSize")
+            or instrument.get("maxDealSize")
+        )
+
+        lot_size = instrument.get("lotSize")
+        currency = instrument.get("currencies") or instrument.get("currency") or instrument.get("profitAndLossCurrency")
+
+        raw_file = raw_dir / f"market_{epic}.json"
+        raw_file.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        print(
+            f"{epic:10s} | "
+            f"{status:<4} | "
+            f"{fmt(market_status)[:10]:10s} | "
+            f"{fmt(bid)[:12]:12s} | "
+            f"{fmt(ask)[:12]:12s} | "
+            f"{fmt(min_size)[:10]:10s} | "
+            f"{fmt(max_size)[:10]:10s} | "
+            f"{fmt(lot_size)[:10]:10s} | "
+            f"{fmt(currency)[:20]}"
+        )
+
+    print("=" * 150)
+    print(f"JSON complets écrits dans : {raw_dir}")
+    print("06C VALIDÉ si les marchés répondent en HTTP 200.")
+    print("Aucun ordre n'a été envoyé.")
+
+if __name__ == "__main__":
+    main()

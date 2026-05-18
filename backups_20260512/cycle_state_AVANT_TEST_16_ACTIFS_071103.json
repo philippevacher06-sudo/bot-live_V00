@@ -1,0 +1,101 @@
+{
+  "updated_utc": "2026-05-12T06:59:47+00:00",
+  "assets": {
+    "US500": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "US100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "US30": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "DE40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "FR40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "UK100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "J225": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "EURUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "GBPUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "USDJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "EURJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "GOLD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "SILVER": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "BTCUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    },
+    "ETHUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "RESET_APRES_REJETS_CAPITAL_GUARANTEED_STOP_REQUIRED",
+      "last_event_utc": "2026-05-12T06:59:47+00:00"
+    }
+  }
+}

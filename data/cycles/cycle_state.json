@@ -1,0 +1,114 @@
+{
+  "updated_utc": "2026-05-16T08:33:15+00:00",
+  "assets": {
+    "US500": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "US100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "US30": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "DE40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "FR40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "UK100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "J225": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "EURUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "GBPUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "USDJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "EURJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "GOLD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "GOLD",
+        "cycle_id": "47592845-99a",
+        "level": 1,
+        "direction": "BUY",
+        "entry_price": 4542.53,
+        "size": 0.27,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-15T20:03:38+00:00",
+        "opened_utc": "2026-05-15T20:03:38+00:00",
+        "level_open_utc": "2026-05-15T20:03:38+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=4.8<=25.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "SILVER": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-16T08:33:14+00:00"
+    },
+    "BTCUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+      "last_event_utc": "2026-05-16T08:33:15+00:00"
+    }
+  },
+  "manual_reset_utc": "2026-05-15T11:08:50.380230+00:00",
+  "manual_reset_reason": "FORCE_RESET_ALL_LIVE_BROKER_FLAT"
+}

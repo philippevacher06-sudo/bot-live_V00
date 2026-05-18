@@ -1,0 +1,93 @@
+{
+  "instrument": {
+    "epic": "J225",
+    "symbol": "J225",
+    "expiry": "-",
+    "name": "Japan 225",
+    "lotSize": 1,
+    "type": "INDICES",
+    "guaranteedStopAllowed": true,
+    "streamingPricesAvailable": true,
+    "currency": "JPY",
+    "marginFactor": 100,
+    "marginFactorUnit": "PERCENTAGE",
+    "openingHours": {
+      "mon": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "tue": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "wed": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "thu": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "fri": [
+        "00:00 - 21:00"
+      ],
+      "sat": [],
+      "sun": [
+        "22:00 - 00:00"
+      ],
+      "zone": "UTC"
+    },
+    "country": "Japan",
+    "overnightFee": {
+      "longRate": -0.0130494,
+      "shortRate": -0.0091729,
+      "swapChargeTimestamp": 1778965200000,
+      "swapChargeInterval": 1440
+    }
+  },
+  "dealingRules": {
+    "minStepDistance": {
+      "unit": "POINTS",
+      "value": 0.1
+    },
+    "minDealSize": {
+      "unit": "POINTS",
+      "value": 0.1
+    },
+    "maxDealSize": {
+      "unit": "POINTS",
+      "value": 80000
+    },
+    "minSizeIncrement": {
+      "unit": "POINTS",
+      "value": 0.01
+    },
+    "minGuaranteedStopDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.5
+    },
+    "minStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.01
+    },
+    "maxStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 100
+    },
+    "marketOrderPreference": "AVAILABLE_DEFAULT_ON",
+    "trailingStopsPreference": "NOT_AVAILABLE"
+  },
+  "snapshot": {
+    "marketStatus": "CLOSED",
+    "percentageChange": 0.17,
+    "updateTime": "2026-05-15T22:59:57.507",
+    "delayTime": 0,
+    "bid": 61778.4,
+    "offer": 61788.4,
+    "decimalPlacesFactor": 1,
+    "scalingFactor": 1,
+    "marketModes": [
+      "REGULAR"
+    ]
+  }
+}

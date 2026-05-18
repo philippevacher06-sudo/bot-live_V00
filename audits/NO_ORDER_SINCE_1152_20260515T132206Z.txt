@@ -1,0 +1,53 @@
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260515_104845.log
+SINCE_PARIS=2026-05-15 11:52
+SINCE_UTC=2026-05-15 09:52
+START_LINE=4713
+
+=== ORDRES DEPUIS 11H52 ===
+
+=== BLOQUAGES COMPTES ===
+BASKET_REJECT_STORM_GUARD                0
+BASKET_REJECT_BOLLINGER_TOO_FAR          0
+BASKET_REJECT_MARKETABLE_LIMIT           0
+BASKET_ARMING_DELAYED                    0
+NO_SIGNAL                                0
+IDLE                                     1
+MARGIN_GUARD.*block=True                 0
+HTTP 429                                 0
+Traceback|RuntimeError                   0
+
+=== DERNIERS BLOQUAGES ===
+71:CYCLE_STATE: tous les actifs -> IDLE
+
+=== EURJPY DETAIL ===
+
+=== BROKER/LOCAL NOW ===
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | --                         | --                                             | OK
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | --                         | --                                             | OK
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | --                         | --                                             | OK
+EURUSD     |   0 |    0 | --                         | --                                             | OK
+GBPUSD     |   0 |    0 | --                         | --                                             | OK
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | --                         | --                                             | OK
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | --                         | --                                             | OK
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | --                         | --                                             | OK
+============================================================================================================================================

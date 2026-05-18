@@ -1,0 +1,179 @@
+{
+  "active_bias": "BUY",
+  "sequence_count": 0,
+  "last_signal_ts": "2026-05-17T18:15:46Z",
+  "last_traded_bar_ts": "2026-05-17T18:00:00",
+  "opens": [
+    {
+      "ts": 1779038146.2174037,
+      "asset": "ETHUSD",
+      "side": "SELL",
+      "size": 0.01,
+      "reason": "V2442_M15_VWAP_BTC_NETTING_ORDER",
+      "extra": {
+        "stage": "OPEN_CONFIRMED_AND_VISIBLE",
+        "dealReference": "o_9557fbce-c537-4350-b828-032eaca9c883",
+        "real_deal_id": "0015421d-0055-311e-0000-0000820b81c1",
+        "confirm": {
+          "date": "2026-05-17T17:15:35.562",
+          "status": "OPEN",
+          "dealStatus": "ACCEPTED",
+          "epic": "ETHUSD",
+          "dealReference": "o_9557fbce-c537-4350-b828-032eaca9c883",
+          "dealId": "0015421d-0055-311e-0000-0000820b81c0",
+          "affectedDeals": [
+            {
+              "dealId": "0015421d-0055-311e-0000-0000820b81c1",
+              "status": "OPENED"
+            }
+          ],
+          "level": 2177.52,
+          "size": 0.01,
+          "direction": "SELL",
+          "stopDistance": 25.0,
+          "guaranteedStop": true,
+          "trailingStop": false
+        },
+        "position": {
+          "epic": "ETHUSD",
+          "dealId": "0015421d-0055-311e-0000-0000820b81c1",
+          "dealReference": "p_0015421d-0055-311e-0000-0000820b81c1",
+          "workingOrderId": "0015421d-0055-311e-0000-0000820b81c0",
+          "size": 0.01,
+          "direction": "SELL",
+          "level": 2177.52,
+          "upl": -0.02,
+          "leverage": 2.0,
+          "guaranteedStop": true,
+          "createdDateUTC": "2026-05-17T17:15:35.574",
+          "createdDate": "2026-05-17T19:15:35.574",
+          "raw": {
+            "position": {
+              "contractSize": 1,
+              "createdDate": "2026-05-17T19:15:35.574",
+              "createdDateUTC": "2026-05-17T17:15:35.574",
+              "dealId": "0015421d-0055-311e-0000-0000820b81c1",
+              "dealReference": "p_0015421d-0055-311e-0000-0000820b81c1",
+              "workingOrderId": "0015421d-0055-311e-0000-0000820b81c0",
+              "size": 0.01,
+              "leverage": 2,
+              "upl": -0.02,
+              "direction": "SELL",
+              "level": 2177.52,
+              "currency": "USD",
+              "guaranteedStop": true,
+              "stopLevel": 2202.52,
+              "trailingStop": false
+            },
+            "market": {
+              "instrumentName": "Ethereum/USD",
+              "instrumentId": 5983666832495812,
+              "expiry": "-",
+              "epic": "ETHUSD",
+              "symbol": "ETH/USD",
+              "instrumentType": "CRYPTOCURRENCIES",
+              "marketStatus": "TRADEABLE",
+              "lotSize": 1,
+              "high": 2196.48,
+              "low": 2165.95,
+              "percentageChange": -0.09,
+              "netChange": -36.79,
+              "bid": 2177.56,
+              "offer": 2179.31,
+              "updateTime": "2026-05-17T19:15:41.003",
+              "updateTimeUTC": "2026-05-17T17:15:41.003",
+              "delayTime": 0,
+              "streamingPricesAvailable": true,
+              "scalingFactor": 1,
+              "marketModes": [
+                "REGULAR"
+              ],
+              "pipPosition": 0,
+              "tickSize": 0.01
+            }
+          }
+        },
+        "positions_before": [],
+        "positions_after": [
+          {
+            "epic": "ETHUSD",
+            "dealId": "0015421d-0055-311e-0000-0000820b81c1",
+            "dealReference": "p_0015421d-0055-311e-0000-0000820b81c1",
+            "workingOrderId": "0015421d-0055-311e-0000-0000820b81c0",
+            "size": 0.01,
+            "direction": "SELL",
+            "level": 2177.52,
+            "upl": -0.02,
+            "leverage": 2.0,
+            "guaranteedStop": true,
+            "createdDateUTC": "2026-05-17T17:15:35.574",
+            "createdDate": "2026-05-17T19:15:35.574",
+            "raw": {
+              "position": {
+                "contractSize": 1,
+                "createdDate": "2026-05-17T19:15:35.574",
+                "createdDateUTC": "2026-05-17T17:15:35.574",
+                "dealId": "0015421d-0055-311e-0000-0000820b81c1",
+                "dealReference": "p_0015421d-0055-311e-0000-0000820b81c1",
+                "workingOrderId": "0015421d-0055-311e-0000-0000820b81c0",
+                "size": 0.01,
+                "leverage": 2,
+                "upl": -0.02,
+                "direction": "SELL",
+                "level": 2177.52,
+                "currency": "USD",
+                "guaranteedStop": true,
+                "stopLevel": 2202.52,
+                "trailingStop": false
+              },
+              "market": {
+                "instrumentName": "Ethereum/USD",
+                "instrumentId": 5983666832495812,
+                "expiry": "-",
+                "epic": "ETHUSD",
+                "symbol": "ETH/USD",
+                "instrumentType": "CRYPTOCURRENCIES",
+                "marketStatus": "TRADEABLE",
+                "lotSize": 1,
+                "high": 2196.48,
+                "low": 2165.95,
+                "percentageChange": -0.09,
+                "netChange": -36.79,
+                "bid": 2177.55,
+                "offer": 2179.3,
+                "updateTime": "2026-05-17T19:15:45.604",
+                "updateTimeUTC": "2026-05-17T17:15:45.604",
+                "delayTime": 0,
+                "streamingPricesAvailable": true,
+                "scalingFactor": 1,
+                "marketModes": [
+                  "REGULAR"
+                ],
+                "pipPosition": 0,
+                "tickSize": 0.01
+              }
+            }
+          }
+        ],
+        "net_after": -0.01,
+        "resolve_debug": {
+          "attempt": 1,
+          "candidate_ids": [
+            "0015421d-0055-311e-0000-0000820b81c0",
+            "0015421d-0055-311e-0000-0000820b81c1"
+          ],
+          "visible_ids": [
+            "0015421d-0055-311e-0000-0000820b81c1"
+          ]
+        },
+        "payload": {
+          "epic": "ETHUSD",
+          "direction": "SELL",
+          "size": 0.01,
+          "guaranteedStop": true,
+          "stopDistance": 25.0
+        }
+      }
+    }
+  ]
+}

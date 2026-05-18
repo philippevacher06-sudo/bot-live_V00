@@ -1,0 +1,1002 @@
+========================================================================================================================
+BOT_PIVOT_07D — DEMO 24/7
+Début UTC       : 2026-05-14 17:39:38
+Ordres          : DEMO Capital.com uniquement
+Actifs          : US500,US100,US30,DE40,FR40,UK100,J225,EURUSD,GBPUSD,USDJPY,EURJPY,GOLD,SILVER,OIL_CRUDE,BTCUSD,ETHUSD
+Max cycles      : 999999
+Ticks secondes  : 45
+Pause secondes  : 5
+Refresh markets : 7200s
+Refresh zones   : 43200s
+Refresh history : 86400s
+Log             : logs/BOT_PIVOT_07D_24_7_DEMO_20260514_173938.log
+========================================================================================================================
+
+============================================================================================================
+REFRESH CONTEXTE — 06C MARKET RULES — 2026-05-14T17:39:39Z
+============================================================================================================
+
+======================================================================================================================================================
+06C — RÈGLES DE MARCHÉ / CONTRAINTES ACTIFS
+======================================================================================================================================================
+ACTIF      | HTTP | STATUS     | BID          | ASK          | MIN SIZE   | MAX SIZE   | LOT SIZE   | CURRENCY
+------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | 200  | TRADEABLE  | 7498.4       | 7498.8       | 0.01       | 2250       | 1          | USD
+US100      | 200  | TRADEABLE  | 29584.1      | 29585.9      | 0.001      | 1250       | 1          | USD
+US30       | 200  | TRADEABLE  | 50062.1      | 50064.1      | 0.001      | 500        | 1          | USD
+DE40       | 200  | TRADEABLE  | 24350.0      | 24351.5      | 0.001      | 1000       | 1          | EUR
+FR40       | 200  | TRADEABLE  | 8055.1       | 8056.4       | 0.01       | 325        | 1          | EUR
+UK100      | 200  | TRADEABLE  | 10396.9      | 10398.9      | 0.01       | 1250       | 1          | GBP
+J225       | 200  | TRADEABLE  | 62867.6      | 62877.6      | 0.1        | 80000      | 1          | JPY
+EURUSD     | 200  | TRADEABLE  | 1.16802      | 1.16809      | 100        | 45000000   | 1          | USD
+GBPUSD     | 200  | TRADEABLE  | 1.34214      | 1.34227      | 100        | 40000000   | 1          | USD
+USDJPY     | 200  | TRADEABLE  | 158.16       | 158.172      | 100        | 50000000   | 1          | JPY
+EURJPY     | 200  | TRADEABLE  | 184.736      | 184.755      | 100        | 22500000   | 1          | JPY
+GOLD       | 200  | TRADEABLE  | 4678.68      | 4679.18      | 0.01       | 50000      | 1          | USD
+SILVER     | 200  | TRADEABLE  | 84.716       | 84.766       | 1          | 100000     | 1          | USD
+OIL_CRUDE  | 200  | TRADEABLE  | 97.836       | 97.876       | 1          | 125000     | 1          | USD
+BTCUSD     | 200  | TRADEABLE  | 81567.4      | 81617.4      | 0.0001     | 50         | 1          | USD
+ETHUSD     | 200  | TRADEABLE  | 2305.08      | 2306.83      | 0.001      | 1000       | 1          | USD
+======================================================================================================================================================
+JSON complets écrits dans : /home/philippe_vacher06/bot-pivot/live/data/markets
+06C VALIDÉ si les marchés répondent en HTTP 200.
+Aucun ordre n'a été envoyé.
+REFRESH 06C OK
+
+============================================================================================================
+REFRESH CONTEXTE — 01 HISTORICAL M15 30D — 2026-05-14T17:39:42Z
+============================================================================================================
+2026-05-14 17:39:42,767 - INFO - ============================================================
+2026-05-14 17:39:42,767 - INFO - BOT_PIVOT_01_HISTORICAL
+2026-05-14 17:39:42,767 - INFO - Rôle : historique pour calcul des zones
+2026-05-14 17:39:42,767 - INFO - Base URL   : https://demo-api-capital.backend-capital.com
+2026-05-14 17:39:42,767 - INFO - Actifs     : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 17:39:42,767 - INFO - Résolution : MINUTE_15
+2026-05-14 17:39:42,768 - INFO - Jours      : 30
+2026-05-14 17:39:42,768 - INFO - Sortie     : /home/philippe_vacher06/bot-pivot/live/data/history
+2026-05-14 17:39:42,768 - INFO - ============================================================
+2026-05-14 17:39:42,768 - INFO - US500 : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:42,768 - INFO - Connexion Capital.com démo...
+2026-05-14 17:39:43,013 - INFO - Connexion OK.
+2026-05-14 17:39:43,955 - INFO - US500 : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:44,296 - INFO - US500 : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:44,662 - INFO - US500 : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:45,002 - INFO - [OK] US500 : 2096 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/US500_MINUTE_15_30d.json
+2026-05-14 17:39:45,254 - INFO - US100 : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:46,071 - INFO - US100 : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:46,368 - INFO - US100 : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:46,671 - INFO - US100 : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:46,990 - INFO - [OK] US100 : 2096 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/US100_MINUTE_15_30d.json
+2026-05-14 17:39:47,242 - INFO - US30 : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:47,816 - INFO - US30 : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:48,105 - INFO - US30 : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:48,431 - INFO - US30 : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:48,745 - INFO - [OK] US30 : 2096 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/US30_MINUTE_15_30d.json
+2026-05-14 17:39:48,997 - INFO - DE40 : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:49,710 - INFO - DE40 : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:49,988 - INFO - DE40 : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:50,272 - INFO - DE40 : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:50,574 - INFO - [OK] DE40 : 2096 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/DE40_MINUTE_15_30d.json
+2026-05-14 17:39:50,827 - INFO - FR40 : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:51,954 - INFO - FR40 : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:52,212 - INFO - FR40 : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:52,511 - INFO - FR40 : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:52,793 - INFO - [OK] FR40 : 1636 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/FR40_MINUTE_15_30d.json
+2026-05-14 17:39:53,045 - INFO - UK100 : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:54,111 - INFO - UK100 : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:54,412 - INFO - UK100 : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:54,689 - INFO - UK100 : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:55,012 - INFO - [OK] UK100 : 2096 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/UK100_MINUTE_15_30d.json
+2026-05-14 17:39:55,265 - INFO - J225 : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:56,433 - INFO - J225 : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:56,697 - INFO - J225 : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:56,977 - INFO - J225 : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:57,283 - INFO - [OK] J225 : 2096 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/J225_MINUTE_15_30d.json
+2026-05-14 17:39:57,535 - INFO - EURUSD : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:58,419 - INFO - EURUSD : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:39:58,680 - INFO - EURUSD : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:39:58,961 - INFO - EURUSD : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:39:59,265 - INFO - [OK] EURUSD : 2112 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/EURUSD_MINUTE_15_30d.json
+2026-05-14 17:39:59,518 - INFO - GBPUSD : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+2026-05-14 17:39:59,818 - INFO - GBPUSD : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+2026-05-14 17:40:00,101 - INFO - GBPUSD : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+2026-05-14 17:40:00,428 - INFO - GBPUSD : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+2026-05-14 17:40:00,778 - INFO - [OK] GBPUSD : 2112 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/GBPUSD_MINUTE_15_30d.json
+2026-05-14 17:40:01,031 - INFO - USDJPY : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+2026-05-14 17:40:02,095 - INFO - USDJPY : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+2026-05-14 17:40:02,360 - INFO - USDJPY : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+2026-05-14 17:40:02,653 - INFO - USDJPY : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+2026-05-14 17:40:02,961 - INFO - [OK] USDJPY : 2112 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/USDJPY_MINUTE_15_30d.json
+2026-05-14 17:40:03,214 - INFO - EURJPY : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+2026-05-14 17:40:03,992 - INFO - EURJPY : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+2026-05-14 17:40:04,273 - INFO - EURJPY : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+2026-05-14 17:40:04,547 - INFO - EURJPY : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+2026-05-14 17:40:04,860 - INFO - [OK] EURJPY : 2112 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/EURJPY_MINUTE_15_30d.json
+2026-05-14 17:40:05,113 - INFO - GOLD : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+2026-05-14 17:40:05,436 - INFO - GOLD : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+2026-05-14 17:40:05,709 - INFO - GOLD : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+2026-05-14 17:40:05,984 - INFO - GOLD : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+2026-05-14 17:40:06,295 - INFO - [OK] GOLD : 2024 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/GOLD_MINUTE_15_30d.json
+2026-05-14 17:40:06,548 - INFO - SILVER : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+2026-05-14 17:40:07,145 - INFO - SILVER : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+2026-05-14 17:40:07,417 - INFO - SILVER : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+2026-05-14 17:40:07,692 - INFO - SILVER : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+2026-05-14 17:40:07,993 - INFO - [OK] SILVER : 2024 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/SILVER_MINUTE_15_30d.json
+2026-05-14 17:40:08,245 - INFO - OIL_CRUDE : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+2026-05-14 17:40:09,166 - INFO - OIL_CRUDE : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+2026-05-14 17:40:09,427 - INFO - OIL_CRUDE : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+2026-05-14 17:40:09,700 - INFO - OIL_CRUDE : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+2026-05-14 17:40:10,006 - INFO - [OK] OIL_CRUDE : 2024 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/OIL_CRUDE_MINUTE_15_30d.json
+2026-05-14 17:40:10,259 - INFO - BTCUSD : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+2026-05-14 17:40:11,039 - INFO - BTCUSD : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+2026-05-14 17:40:11,330 - INFO - BTCUSD : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+2026-05-14 17:40:11,615 - INFO - BTCUSD : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+2026-05-14 17:40:11,986 - INFO - [OK] BTCUSD : 2848 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/BTCUSD_MINUTE_15_30d.json
+2026-05-14 17:40:12,239 - INFO - ETHUSD : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+2026-05-14 17:40:13,718 - INFO - ETHUSD : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+2026-05-14 17:40:13,991 - INFO - ETHUSD : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+2026-05-14 17:40:14,273 - INFO - ETHUSD : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+2026-05-14 17:40:14,615 - INFO - [OK] ETHUSD : 2848 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/ETHUSD_MINUTE_15_30d.json
+2026-05-14 17:40:14,868 - INFO - ============================================================
+2026-05-14 17:40:14,868 - INFO - TERMINÉ — OK: 16 | ERREURS: 0
+2026-05-14 17:40:14,868 - INFO - ============================================================
+REFRESH 01 OK
+
+============================================================================================================
+REFRESH CONTEXTE — 02 ZONES / PIVOTS — 2026-05-14T17:40:14Z
+============================================================================================================
+2026-05-14 17:40:14,986 - INFO - ============================================================
+2026-05-14 17:40:14,986 - INFO - BOT_PIVOT_02_ZONES v02.4 GLOBAL + LOCAL + PSYCHO
+2026-05-14 17:40:14,986 - INFO - Rôle : zones majeures 30j + locales 3j + prix psychologiques
+2026-05-14 17:40:14,986 - INFO - Actifs      : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 17:40:14,986 - INFO - Historique  : MINUTE_15 sur 30 jours
+2026-05-14 17:40:14,986 - INFO - Local       : 3 jours
+2026-05-14 17:40:14,986 - INFO - Zones max   : 14
+2026-05-14 17:40:14,986 - INFO - Sortie      : /home/philippe_vacher06/bot-pivot/live/data/zones
+2026-05-14 17:40:14,986 - INFO - ============================================================
+2026-05-14 17:40:15,023 - INFO - [OK] US500      | zones=10 | local=5 | major=3 | psycho=7 | confl=4 | S=6 R=3 A=1 | close=7498.8 | ATR local=6.436458 | psycho minor=50 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_US500.json
+2026-05-14 17:40:15,060 - INFO - [OK] US100      | zones= 9 | local=4 | major=4 | psycho=6 | confl=4 | S=6 R=3 A=0 | close=29587.9 | ATR local=44.389583 | psycho minor=500 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_US100.json
+2026-05-14 17:40:15,094 - INFO - [OK] US30       | zones=10 | local=6 | major=3 | psycho=5 | confl=3 | S=6 R=3 A=1 | close=50064.6 | ATR local=45.071875 | psycho minor=500 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_US30.json
+2026-05-14 17:40:15,128 - INFO - [OK] DE40       | zones=13 | local=8 | major=4 | psycho=6 | confl=3 | S=7 R=5 A=1 | close=24350.75 | ATR local=29.900521 | psycho minor=200 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_DE40.json
+2026-05-14 17:40:15,156 - INFO - [OK] FR40       | zones=10 | local=5 | major=4 | psycho=6 | confl=4 | S=5 R=4 A=1 | close=8055.75 | ATR local=10.407292 | psycho minor=100 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_FR40.json
+2026-05-14 17:40:15,188 - INFO - [OK] UK100      | zones= 9 | local=4 | major=4 | psycho=5 | confl=4 | S=6 R=2 A=1 | close=10397.9 | ATR local=10.215104 | psycho minor=100 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_UK100.json
+2026-05-14 17:40:15,222 - INFO - [OK] J225       | zones=13 | local=9 | major=3 | psycho=7 | confl=4 | S=6 R=6 A=1 | close=62873.3 | ATR local=110.976042 | psycho minor=1000 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_J225.json
+2026-05-14 17:40:15,256 - INFO - [OK] EURUSD     | zones= 9 | local=4 | major=4 | psycho=8 | confl=5 | S=3 R=5 A=1 | close=1.168055 | ATR local=0.000414 | psycho minor=0.002 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_EURUSD.json
+2026-05-14 17:40:15,292 - INFO - [OK] GBPUSD     | zones= 7 | local=0 | major=2 | psycho=7 | confl=2 | S=3 R=4 A=0 | close=1.342205 | ATR local=0.000681 | psycho minor=0.005 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_GBPUSD.json
+2026-05-14 17:40:15,328 - INFO - [OK] USDJPY     | zones=11 | local=5 | major=3 | psycho=6 | confl=3 | S=7 R=3 A=1 | close=158.167 | ATR local=0.066177 | psycho minor=0.5 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_USDJPY.json
+2026-05-14 17:40:15,362 - INFO - [OK] EURJPY     | zones= 9 | local=4 | major=3 | psycho=6 | confl=3 | S=4 R=5 A=0 | close=184.7405 | ATR local=0.074354 | psycho minor=0.5 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_EURJPY.json
+2026-05-14 17:40:15,396 - INFO - [OK] GOLD       | zones= 8 | local=3 | major=3 | psycho=6 | confl=3 | S=3 R=4 A=1 | close=4678.87 | ATR local=8.621042 | psycho minor=50 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_GOLD.json
+2026-05-14 17:40:15,429 - INFO - [OK] SILVER     | zones=10 | local=6 | major=3 | psycho=6 | confl=4 | S=3 R=6 A=1 | close=84.7405 | ATR local=0.447365 | psycho minor=5 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_SILVER.json
+2026-05-14 17:40:15,463 - INFO - [OK] OIL_CRUDE  | zones= 9 | local=5 | major=4 | psycho=7 | confl=4 | S=4 R=4 A=1 | close=97.89 | ATR local=0.401656 | psycho minor=2 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_OIL_CRUDE.json
+2026-05-14 17:40:15,507 - INFO - [OK] BTCUSD     | zones=11 | local=6 | major=3 | psycho=7 | confl=4 | S=7 R=3 A=1 | close=81587.05 | ATR local=196.998438 | psycho minor=2000 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_BTCUSD.json
+2026-05-14 17:40:15,549 - INFO - [OK] ETHUSD     | zones=12 | local=8 | major=4 | psycho=6 | confl=4 | S=6 R=5 A=1 | close=2305.565 | ATR local=6.760521 | psycho minor=50 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_ETHUSD.json
+2026-05-14 17:40:15,550 - INFO - ============================================================
+2026-05-14 17:40:15,550 - INFO - TERMINÉ — OK: 16 | ERREURS: 0
+2026-05-14 17:40:15,550 - INFO - ============================================================
+
+============================================================
+SYNTHÈSE DES ZONES — v02.4 GLOBAL + LOCAL + PSYCHO
+============================================================
+
+US500 | close=7498.8 | ATR local=6.436458 | psycho minor=50 medium=100 major=200 | zones=10 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR          | SUPPORT    |   7089.98173 -> 7104.785584  | centre=7097.383657  | larg=14.803854 | 2.3   ATR | force=982    | dist=-62.366 ATR | score=693.7   
+MAJOR+PSYCHO   | SUPPORT    |  7347.264505 -> 7358.088262  | centre=7351.264555  | larg=10.823757 | 1.6816 ATR | force=696    | dist=-22.9218 ATR | score=1393.6   | psycho=7350 MINOR
+PSYCHO         | SUPPORT    |  7395.977214 -> 7404.022786  | centre=7400         | larg=8.045573  | 1.25  ATR | force=900    | dist=-15.3501 ATR | score=1415.0   | psycho=7400 BIG
+LOCAL+PSYCHO+MAJOR | SUPPORT    |  7447.264505 -> 7459.672     | centre=7452.615618  | larg=12.407495 | 1.9277 ATR | force=1026   | dist=-7.1754 ATR | score=2270.6141 | psycho=7450 MINOR
+LOCAL          | SUPPORT    |   7459.22725 -> 7467.23275   | centre=7463.23      | larg=8.0055    | 1.2438 ATR | force=179    | dist=-5.5263 ATR | score=1224.4917
+LOCAL          | SUPPORT    |    7474.7935 -> 7479.241     | centre=7477.01725   | larg=4.4475    | 0.691 ATR | force=89     | dist=-3.3843 ATR | score=1246.5431
+LOCAL+PSYCHO   | ACTIVE     |    7489.0255 -> 7503.379141  | centre=7499.293275  | larg=14.353641 | 2.2301 ATR | force=764    | dist=0.0766  ATR | score=2515.4841 | psycho=7500 MAJOR
+LOCAL+PSYCHO   | RESISTANCE |     7500.589 -> 7506.37075   | centre=7503.479875  | larg=5.78175   | 0.8983 ATR | force=73     | dist=0.7271  ATR | score=2257.3728 | psycho=7500 MAJOR
+PSYCHO         | RESISTANCE |  7547.264505 -> 7552.735495  | centre=7550         | larg=5.47099   | 0.85  ATR | force=450    | dist=7.9547  ATR | score=1058.6329 | psycho=7550 MINOR
+PSYCHO         | RESISTANCE |  7595.977214 -> 7604.022786  | centre=7600         | larg=8.045573  | 1.25  ATR | force=900    | dist=15.7229 ATR | score=1415.0   | psycho=7600 BIG
+
+US100 | close=29587.9 | ATR local=44.389583 | psycho minor=500 medium=1000 major=2000 | zones=9 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR+PSYCHO   | SUPPORT    | 27971.353872 -> 28055.742873 | centre=28013.548373 | larg=84.389001 | 1.9011 ATR | force=92     | dist=-35.4667 ATR | score=1482.2   | psycho=28000 BIG
+MAJOR+PSYCHO   | SUPPORT    | 28465.698038 -> 28567.794079 | centre=28516.746058 | larg=102.096042 | 2.3   ATR | force=703    | dist=-24.1308 ATR | score=1396.05  | psycho=28500 MINOR
+MAJOR+PSYCHO   | SUPPORT    | 28976.695469 -> 29057.299367 | centre=29010.628915 | larg=80.603898 | 1.8158 ATR | force=1019   | dist=-13.0047 ATR | score=1650.0   | psycho=29000 MAJOR
+LOCAL          | SUPPORT    | 29299.697375 -> 29391.543625 | centre=29338.883076 | larg=91.84625  | 2.0691 ATR | force=543    | dist=-5.6098 ATR | score=1349.8049
+LOCAL+PSYCHO+MAJOR | SUPPORT    | 29481.134427 -> 29539.212682 | centre=29502.914473 | larg=58.078255 | 1.3084 ATR | force=780    | dist=-1.9145 ATR | score=2325.1366 | psycho=29500 MINOR
+LOCAL          | SUPPORT    |   29549.0835 -> 29585.6025   | centre=29567.343    | larg=36.519    | 0.8227 ATR | force=158    | dist=-0.4631 ATR | score=1343.7224
+LOCAL          | RESISTANCE |    29593.428 -> 29671.683    | centre=29632.044234 | larg=78.255    | 1.7629 ATR | force=125    | dist=0.9945  ATR | score=1318.8882
+PSYCHO         | RESISTANCE |  29972.25651 -> 30027.74349  | centre=30000        | larg=55.486979 | 1.25  ATR | force=900    | dist=9.2837  ATR | score=1482.9073 | psycho=30000 BIG
+PSYCHO         | RESISTANCE | 30481.134427 -> 30518.865573 | centre=30500        | larg=37.731146 | 0.85  ATR | force=450    | dist=20.5476 ATR | score=957.5    | psycho=30500 MINOR
+
+US30 | close=50064.6 | ATR local=45.071875 | psycho minor=500 medium=1000 major=2000 | zones=10 | confluences=3
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR+PSYCHO   | SUPPORT    | 48930.257746 -> 49023.662734 | centre=48983.676022 | larg=93.404988 | 2.0724 ATR | force=1192   | dist=-23.9822 ATR | score=1650.0   | psycho=49000 MAJOR
+MAJOR+PSYCHO   | SUPPORT    | 49465.419349 -> 49569.084661 | centre=49517.252005 | larg=103.665313 | 2.3   ATR | force=1164   | dist=-12.1439 ATR | score=1500.0   | psycho=49500 MINOR
+LOCAL          | SUPPORT    |    49745.026 -> 49825.792    | centre=49794.221536 | larg=80.766    | 1.7919 ATR | force=660    | dist=-5.9988 ATR | score=1381.0293
+LOCAL          | SUPPORT    |   49837.0095 -> 49888.61     | centre=49862.80975  | larg=51.6005   | 1.1448 ATR | force=190    | dist=-4.4771 ATR | score=1254.5731
+LOCAL          | SUPPORT    |   49899.8275 -> 49933.48     | centre=49916.65375  | larg=33.6525   | 0.7466 ATR | force=146    | dist=-3.2825 ATR | score=1269.0387
+LOCAL+PSYCHO+MAJOR | SUPPORT    | 49935.313279 -> 50038.978592 | centre=49987.145935 | larg=103.665313 | 2.3   ATR | force=1594   | dist=-1.7185 ATR | score=2707.0386 | psycho=50000 BIG
+LOCAL          | ACTIVE     |   50029.9505 -> 50093.950812 | centre=50065.285625 | larg=64.000313 | 1.42  ATR | force=178    | dist=0.0152  ATR | score=1361.9197
+LOCAL          | RESISTANCE | 50073.565281 -> 50177.230594 | centre=50125.397938 | larg=103.665313 | 2.3   ATR | force=341    | dist=1.3489  ATR | score=1385.6272
+PSYCHO         | RESISTANCE | 50480.844453 -> 50519.155547 | centre=50500        | larg=38.311094 | 0.85  ATR | force=450    | dist=9.6601  ATR | score=1015.9968 | psycho=50500 MINOR
+PSYCHO         | RESISTANCE | 50976.337266 -> 51023.662734 | centre=51000        | larg=47.325469 | 1.05  ATR | force=650    | dist=20.7535 ATR | score=1177.5   | psycho=51000 MAJOR
+
+DE40 | close=24350.75 | ATR local=29.900521 | psycho minor=200 medium=500 major=1000 | zones=13 | confluences=3
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    | 23787.292279 -> 23812.707721 | centre=23800        | larg=25.415443 | 0.85  ATR | force=450    | dist=-18.4194 ATR | score=957.5    | psycho=23800 MINOR
+PSYCHO         | SUPPORT    | 23981.312174 -> 24018.687826 | centre=24000        | larg=37.375651 | 1.25  ATR | force=900    | dist=-11.7306 ATR | score=1421.7359 | psycho=24000 BIG
+LOCAL          | SUPPORT    | 24041.176719 -> 24097.92625  | centre=24067.282953 | larg=56.749531 | 1.8979 ATR | force=609    | dist=-9.4803 ATR | score=1276.1415
+LOCAL          | SUPPORT    | 24098.226719 -> 24166.085781 | centre=24127.530134 | larg=67.859063 | 2.2695 ATR | force=1357   | dist=-7.4654 ATR | score=1463.3646
+LOCAL+PSYCHO+MAJOR | SUPPORT    | 24207.044347 -> 24254.938304 | centre=24230.260394 | larg=47.893957 | 1.6018 ATR | force=2276   | dist=-4.0297 ATR | score=2349.2579 | psycho=24200 MINOR
+LOCAL          | SUPPORT    |    24250.535 -> 24296.175    | centre=24273.355    | larg=45.64     | 1.5264 ATR | force=176    | dist=-2.5884 ATR | score=1296.8896
+MAJOR          | SUPPORT    |  24280.39193 -> 24329.772612 | centre=24303.435292 | larg=49.380683 | 1.6515 ATR | force=2817   | dist=-1.5824 ATR | score=960.4399
+LOCAL          | ACTIVE     |  24323.27375 -> 24354.65125  | centre=24338.9625   | larg=31.3775   | 1.0494 ATR | force=145    | dist=-0.3942 ATR | score=1340.8944
+LOCAL+PSYCHO+MAJOR | RESISTANCE | 24356.377969 -> 24416.580409 | centre=24395.503645 | larg=60.202441 | 2.0134 ATR | force=1340   | dist=1.4968  ATR | score=2412.5812 | psycho=24400 MINOR
+LOCAL          | RESISTANCE |     24415.98 -> 24458.7675   | centre=24440.803542 | larg=42.7875   | 1.431 ATR | force=609    | dist=3.0118  ATR | score=1437.8557
+LOCAL          | RESISTANCE |  24457.34125 -> 24481.5875   | centre=24469.464375 | larg=24.24625  | 0.8109 ATR | force=206    | dist=3.9703  ATR | score=1272.8422
+MAJOR+PSYCHO   | RESISTANCE | 24530.328558 -> 24590.196004 | centre=24560.262281 | larg=59.867446 | 2.0022 ATR | force=234    | dist=7.007   ATR | score=1356.7256 | psycho=24600 MINOR
+PSYCHO         | RESISTANCE | 24981.312174 -> 25018.687826 | centre=25000        | larg=37.375651 | 1.25  ATR | force=900    | dist=21.7137 ATR | score=1415.0   | psycho=25000 BIG
+
+FR40 | close=8055.75 | ATR local=10.407292 | psycho minor=100 medium=200 major=500 | zones=10 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    |  7794.536172 -> 7805.463828  | centre=7800         | larg=10.927656 | 1.05  ATR | force=650    | dist=-24.5741 ATR | score=1177.5   | psycho=7800 MAJOR
+PSYCHO         | SUPPORT    |  7895.576901 -> 7904.423099  | centre=7900         | larg=8.846198  | 0.85  ATR | force=450    | dist=-14.9655 ATR | score=957.5    | psycho=7900 MINOR
+LOCAL+PSYCHO+MAJOR | SUPPORT    |  7992.199311 -> 8016.136081  | centre=8004.167696  | larg=23.936771 | 2.3   ATR | force=2876   | dist=-4.9564 ATR | score=2626.091 | psycho=8000 BIG
+LOCAL          | SUPPORT    |  8020.633125 -> 8035.054375  | centre=8027.877609  | larg=14.42125  | 1.3857 ATR | force=322    | dist=-2.6782 ATR | score=1345.746
+LOCAL          | SUPPORT    |  8033.684375 -> 8051.595625  | centre=8042.64      | larg=17.91125  | 1.721 ATR | force=210    | dist=-1.2597 ATR | score=1342.0077
+LOCAL          | ACTIVE     |     8050.615 -> 8068.540625  | centre=8061.346251  | larg=17.925625 | 1.7224 ATR | force=611    | dist=0.5377  ATR | score=1500.4069
+LOCAL          | RESISTANCE |   8068.33875 -> 8077.294375  | centre=8072.816563  | larg=8.955625  | 0.8605 ATR | force=278    | dist=1.6399  ATR | score=1356.3034
+MAJOR+PSYCHO   | RESISTANCE |  8087.131166 -> 8104.831644  | centre=8098.415278  | larg=17.700478 | 1.7008 ATR | force=743    | dist=4.0996  ATR | score=1607.5611 | psycho=8100 MINOR
+MAJOR+PSYCHO   | RESISTANCE |  8194.536172 -> 8216.240535  | centre=8202.593335  | larg=21.704363 | 2.0855 ATR | force=967    | dist=14.1097 ATR | score=1638.45  | psycho=8200 MAJOR
+MAJOR+PSYCHO   | RESISTANCE |  8291.207266 -> 8306.825335  | centre=8299.554168  | larg=15.618069 | 1.5007 ATR | force=823    | dist=23.4263 ATR | score=1438.05  | psycho=8300 MINOR
+
+UK100 | close=10397.9 | ATR local=10.215104 | psycho minor=100 medium=200 major=500 | zones=9 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR+PSYCHO   | SUPPORT    | 10201.675391 -> 10225.170131 | centre=10213.422761 | larg=23.49474  | 2.3   ATR | force=568    | dist=-18.0593 ATR | score=1498.8   | psycho=10200 MAJOR
+MAJOR+PSYCHO   | SUPPORT    | 10295.658581 -> 10316.247761 | centre=10305.09604  | larg=20.58918  | 2.0156 ATR | force=1223   | dist=-9.085  ATR | score=1572.8756 | psycho=10300 MINOR
+LOCAL          | SUPPORT    | 10322.246969 -> 10328.376031 | centre=10325.3115   | larg=6.129063  | 0.6   ATR | force=185    | dist=-7.106  ATR | score=1187.1001
+LOCAL          | SUPPORT    |     10343.01 -> 10357.914    | centre=10350.653675 | larg=14.904    | 1.459 ATR | force=439    | dist=-4.6251 ATR | score=1338.0214
+LOCAL          | SUPPORT    |    10359.156 -> 10373.439    | centre=10366.2975   | larg=14.283    | 1.3982 ATR | force=183    | dist=-3.0937 ATR | score=1286.7074
+LOCAL          | SUPPORT    |    10375.923 -> 10390.206    | centre=10384.171593 | larg=14.283    | 1.3982 ATR | force=145    | dist=-1.3439 ATR | score=1317.1517
+PSYCHO         | ACTIVE     |  10394.63707 -> 10405.36293  | centre=10400        | larg=10.725859 | 1.05  ATR | force=650    | dist=0.2056  ATR | score=1472.3606 | psycho=10400 MAJOR
+MAJOR+PSYCHO   | RESISTANCE | 10492.226866 -> 10508.597015 | centre=10500.115343 | larg=16.370149 | 1.6025 ATR | force=1250   | dist=10.0063 ATR | score=1849.8426 | psycho=10500 BIG
+MAJOR+PSYCHO   | RESISTANCE | 10601.702239 -> 10619.095522 | centre=10610.398881 | larg=17.393284 | 1.7027 ATR | force=1870   | dist=20.8024 ATR | score=1650.0   | psycho=10600 MAJOR
+
+J225 | close=62873.3 | ATR local=110.976042 | psycho minor=1000 medium=2000 major=5000 | zones=13 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR+PSYCHO   | SUPPORT    | 59745.340927 -> 59967.518533 | centre=59856.42973  | larg=222.177606 | 2.002 ATR | force=709    | dist=-27.1849 ATR | score=1698.15  | psycho=60000 BIG
+PSYCHO         | SUPPORT    | 60952.835182 -> 61047.164818 | centre=61000        | larg=94.329635 | 0.85  ATR | force=450    | dist=-16.8802 ATR | score=957.5    | psycho=61000 MINOR
+LOCAL+PSYCHO+MAJOR | SUPPORT    |   61923.6255 -> 62100.423552 | centre=62002.985354 | larg=176.798052 | 1.5931 ATR | force=1129   | dist=-7.8424 ATR | score=2403.9409 | psycho=62000 MAJOR
+LOCAL          | SUPPORT    |    62228.862 -> 62327.1585   | centre=62278.01025  | larg=98.2965   | 0.8857 ATR | force=195    | dist=-5.3641 ATR | score=1234.1468
+LOCAL          | SUPPORT    |    62363.373 -> 62570.313    | centre=62503.122603 | larg=206.94    | 1.8647 ATR | force=596    | dist=-3.3357 ATR | score=1425.2087
+LOCAL          | SUPPORT    | 62565.474438 -> 62813.4675   | centre=62656.598814 | larg=247.993062 | 2.2347 ATR | force=1191   | dist=-1.9527 ATR | score=1601.1829
+MAJOR+PSYCHO+LOCAL | ACTIVE     |    62808.294 -> 63011.351737 | centre=62898.221839 | larg=203.057737 | 1.8297 ATR | force=972    | dist=0.2246  ATR | score=2434.5858 | psycho=63000 MINOR
+LOCAL+PSYCHO   | RESISTANCE | 62952.835182 -> 63175.6125   | centre=63038.736617 | larg=222.777318 | 2.0074 ATR | force=721    | dist=1.4907  ATR | score=2315.0815 | psycho=63000 MINOR
+LOCAL          | RESISTANCE |    63180.786 -> 63335.991    | centre=63258.3885   | larg=155.205   | 1.3985 ATR | force=331    | dist=3.47    ATR | score=1329.0996
+LOCAL          | RESISTANCE |   63330.8175 -> 63552.943063 | centre=63459.677683 | larg=222.125563 | 2.0016 ATR | force=336    | dist=5.2838  ATR | score=1285.5044
+LOCAL          | RESISTANCE |   63548.1045 -> 63749.871    | centre=63650.02823  | larg=201.7665  | 1.8181 ATR | force=179    | dist=6.9991  ATR | score=1187.6734
+PSYCHO         | RESISTANCE | 63941.737578 -> 64058.262422 | centre=64000        | larg=116.524844 | 1.05  ATR | force=650    | dist=10.1526 ATR | score=1223.684 | psycho=64000 MAJOR
+PSYCHO         | RESISTANCE | 64930.639974 -> 65069.360026 | centre=65000        | larg=138.720052 | 1.25  ATR | force=900    | dist=19.1636 ATR | score=1415.0   | psycho=65000 BIG
+
+EURUSD | close=1.168055 | ATR local=0.000414 | psycho minor=0.002 medium=0.005 major=0.01 | zones=9 | confluences=5
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    |     1.159741 -> 1.160259     | centre=1.16         | larg=0.000518  | 1.25  ATR | force=900    | dist=-19.4438 ATR | score=1415.0   | psycho=1.16 BIG
+PSYCHO         | SUPPORT    |     1.163824 -> 1.164176     | centre=1.164        | larg=0.000352  | 0.85  ATR | force=450    | dist=-9.7883 ATR | score=1012.7929 | psycho=1.164 MINOR
+PSYCHO         | SUPPORT    |     1.165824 -> 1.166176     | centre=1.166        | larg=0.000352  | 0.85  ATR | force=450    | dist=-4.9605 ATR | score=1133.4869 | psycho=1.166 MINOR
+LOCAL+PSYCHO   | ACTIVE     |       1.1673 -> 1.168176     | centre=1.167962     | larg=0.000876  | 2.1153 ATR | force=507    | dist=-0.2236 ATR | score=2271.8606 | psycho=1.168 MINOR
+MAJOR+PSYCHO   | RESISTANCE |     1.168078 -> 1.168825     | centre=1.168451     | larg=0.000747  | 1.803 ATR | force=678    | dist=0.9564  ATR | score=1663.3907 | psycho=1.168 MINOR
+LOCAL+PSYCHO+MAJOR | RESISTANCE |     1.169489 -> 1.170442     | centre=1.16998      | larg=0.000953  | 2.3   ATR | force=2125   | dist=4.6466  ATR | score=2633.8353 | psycho=1.17 BIG
+LOCAL          | RESISTANCE |     1.170488 -> 1.171102     | centre=1.170795     | larg=0.000614  | 1.4827 ATR | force=288    | dist=6.6143  ATR | score=1235.4417
+MAJOR+PSYCHO+LOCAL | RESISTANCE |     1.171073 -> 1.171937     | centre=1.171492     | larg=0.000864  | 2.0852 ATR | force=1216   | dist=8.2957  ATR | score=2242.6075 | psycho=1.172 MINOR
+MAJOR+PSYCHO   | RESISTANCE |     1.179697 -> 1.180526     | centre=1.180111     | larg=0.00083   | 2.0033 ATR | force=307    | dist=29.1029 ATR | score=1557.45  | psycho=1.18 BIG
+
+GBPUSD | close=1.342205 | ATR local=0.000681 | psycho minor=0.005 medium=0.01 major=0.02 | zones=7 | confluences=2
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    |     1.329643 -> 1.330357     | centre=1.33         | larg=0.000715  | 1.05  ATR | force=650    | dist=-17.9279 ATR | score=1177.5   | psycho=1.33 MAJOR
+PSYCHO         | SUPPORT    |     1.334711 -> 1.335289     | centre=1.335        | larg=0.000579  | 0.85  ATR | force=450    | dist=-10.5834 ATR | score=992.9143 | psycho=1.335 MINOR
+PSYCHO         | SUPPORT    |     1.339575 -> 1.340425     | centre=1.34         | larg=0.000851  | 1.25  ATR | force=900    | dist=-3.2389 ATR | score=1634.0269 | psycho=1.34 BIG
+PSYCHO         | RESISTANCE |     1.344711 -> 1.345289     | centre=1.345        | larg=0.000579  | 0.85  ATR | force=450    | dist=4.1056  ATR | score=1154.8606 | psycho=1.345 MINOR
+PSYCHO         | RESISTANCE |     1.349643 -> 1.350357     | centre=1.35         | larg=0.000715  | 1.05  ATR | force=650    | dist=11.4501 ATR | score=1191.248 | psycho=1.35 MAJOR
+MAJOR+PSYCHO   | RESISTANCE |     1.354642 -> 1.355296     | centre=1.354981     | larg=0.000653  | 0.9594 ATR | force=1122   | dist=18.7674 ATR | score=1500.0   | psycho=1.355 MINOR
+MAJOR+PSYCHO   | RESISTANCE |     1.358858 -> 1.359927     | centre=1.359393     | larg=0.001069  | 1.5699 ATR | force=610    | dist=25.2467 ATR | score=1663.5   | psycho=1.36 BIG
+
+USDJPY | close=158.167 | ATR local=0.066177 | psycho minor=0.5 medium=1.0 major=2 | zones=11 | confluences=3
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR+PSYCHO   | SUPPORT    |   156.965257 -> 157.115692   | centre=157.020306   | larg=0.150435  | 2.2732 ATR | force=1161   | dist=-17.3277 ATR | score=1650.0   | psycho=157.0 MAJOR
+PSYCHO         | SUPPORT    |   157.471875 -> 157.528125   | centre=157.5        | larg=0.056251  | 0.85  ATR | force=450    | dist=-10.079 ATR | score=1005.5246 | psycho=157.5 MINOR
+LOCAL          | SUPPORT    |   157.579988 -> 157.667288   | centre=157.623638   | larg=0.0873    | 1.3192 ATR | force=328    | dist=-8.2107 ATR | score=1209.5316
+LOCAL          | SUPPORT    |   157.670925 -> 157.75095    | centre=157.710938   | larg=0.080025  | 1.2093 ATR | force=721    | dist=-6.8915 ATR | score=1380.0613
+LOCAL          | SUPPORT    |    157.78005 -> 157.856437   | centre=157.818244   | larg=0.076387  | 1.1543 ATR | force=311    | dist=-5.27   ATR | score=1277.0989
+LOCAL          | SUPPORT    |   157.845678 -> 157.947375   | centre=157.890128   | larg=0.101697  | 1.5367 ATR | force=559    | dist=-4.1838 ATR | score=1391.055
+PSYCHO         | SUPPORT    |   157.958639 -> 158.041361   | centre=158.0        | larg=0.082721  | 1.25  ATR | force=900    | dist=-2.5235 ATR | score=1651.9117 | psycho=158.0 BIG
+LOCAL          | ACTIVE     |   158.096512 -> 158.198363   | centre=158.164423   | larg=0.10185   | 1.5391 ATR | force=227    | dist=-0.0389 ATR | score=1378.4765
+PSYCHO         | RESISTANCE |   158.471875 -> 158.528125   | centre=158.5        | larg=0.056251  | 0.85  ATR | force=450    | dist=5.032   ATR | score=1131.7012 | psycho=158.5 MINOR
+MAJOR+PSYCHO   | RESISTANCE |   158.904042 -> 159.056249   | centre=158.980146   | larg=0.152207  | 2.3   ATR | force=1310   | dist=12.2874 ATR | score=1650.0   | psycho=159.0 MAJOR
+MAJOR+PSYCHO   | RESISTANCE |   159.378027 -> 159.530234   | centre=159.454131   | larg=0.152207  | 2.3   ATR | force=1811   | dist=19.4498 ATR | score=1500.0   | psycho=159.5 MINOR
+
+EURJPY | close=184.7405 | ATR local=0.074354 | psycho minor=0.5 medium=1.0 major=2 | zones=9 | confluences=3
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    |   182.960964 -> 183.039036   | centre=183.0        | larg=0.078072  | 1.05  ATR | force=650    | dist=-23.4082 ATR | score=1177.5   | psycho=183.0 MAJOR
+MAJOR+PSYCHO   | SUPPORT    |   183.918742 -> 184.046471   | centre=183.99174    | larg=0.12773   | 1.7179 ATR | force=1452   | dist=-10.0702 ATR | score=1848.2455 | psycho=184.0 BIG
+MAJOR+PSYCHO   | SUPPORT    |   184.305766 -> 184.47678    | centre=184.391273   | larg=0.171015  | 2.3   ATR | force=399    | dist=-4.6968 ATR | score=1472.2299 | psycho=184.5 MINOR
+LOCAL          | SUPPORT    |   184.630555 -> 184.733287   | centre=184.678312   | larg=0.102733  | 1.3817 ATR | force=424    | dist=-0.8364 ATR | score=1427.4906
+LOCAL          | RESISTANCE |   184.755262 -> 184.874988   | centre=184.816282   | larg=0.119725  | 1.6102 ATR | force=474    | dist=1.0192  ATR | score=1440.4199
+LOCAL+PSYCHO+MAJOR | RESISTANCE |   184.876328 -> 185.047343   | centre=184.961835   | larg=0.171015  | 2.3   ATR | force=2644   | dist=2.9768  ATR | score=2525.5808 | psycho=185.0 MAJOR
+LOCAL          | RESISTANCE |     185.1761 -> 185.281655   | centre=185.221927   | larg=0.105555  | 1.4196 ATR | force=651    | dist=6.4748  ATR | score=1365.9806
+PSYCHO         | RESISTANCE |   185.468399 -> 185.531601   | centre=185.5        | larg=0.063201  | 0.85  ATR | force=450    | dist=10.2146 ATR | score=1002.1344 | psycho=185.5 MINOR
+PSYCHO         | RESISTANCE |   185.953529 -> 186.046471   | centre=186.0        | larg=0.092943  | 1.25  ATR | force=900    | dist=16.9392 ATR | score=1415.0   | psycho=186.0 BIG
+
+GOLD | close=4678.87 | ATR local=8.621042 | psycho minor=50 medium=100 major=200 | zones=8 | confluences=3
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    |  4495.473953 -> 4504.526047  | centre=4500         | larg=9.052094  | 1.05  ATR | force=650    | dist=-20.7481 ATR | score=1177.5   | psycho=4500 MAJOR
+MAJOR+PSYCHO   | SUPPORT    |  4586.416585 -> 4605.418049  | centre=4598.74379   | larg=19.001463 | 2.2041 ATR | force=1300   | dist=-9.2943 ATR | score=1867.6435 | psycho=4600 BIG
+PSYCHO         | SUPPORT    |  4646.336057 -> 4653.663943  | centre=4650         | larg=7.327885  | 0.85  ATR | force=450    | dist=-3.3488 ATR | score=1173.7804 | psycho=4650 MINOR
+LOCAL          | ACTIVE     |    4675.5675 -> 4682.67075   | centre=4679.119125  | larg=7.10325   | 0.8239 ATR | force=226    | dist=0.0289  ATR | score=1378.3776
+LOCAL+PSYCHO+MAJOR | RESISTANCE |  4686.659523 -> 4706.487919  | centre=4697.2873    | larg=19.828396 | 2.3   ATR | force=3121   | dist=2.1363  ATR | score=2546.592 | psycho=4700 MAJOR
+LOCAL          | RESISTANCE |     4711.422 -> 4730.364     | centre=4719.298536  | larg=18.942    | 2.1972 ATR | force=505    | dist=4.6895  ATR | score=1359.512
+PSYCHO         | RESISTANCE |  4746.336057 -> 4753.663943  | centre=4750         | larg=7.327885  | 0.85  ATR | force=450    | dist=8.2507  ATR | score=1051.2314 | psycho=4750 MINOR
+MAJOR+PSYCHO   | RESISTANCE |  4787.145292 -> 4806.973688  | centre=4797.05949   | larg=19.828396 | 2.3   ATR | force=1599   | dist=13.7094 ATR | score=1800.0   | psycho=4800 BIG
+
+SILVER | close=84.7405 | ATR local=0.447365 | psycho minor=5 medium=10 major=20 | zones=10 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR+PSYCHO   | SUPPORT    |    75.168728 -> 76.197667    | centre=75.683197    | larg=1.028939  | 2.3   ATR | force=754    | dist=-20.2459 ATR | score=1413.9   | psycho=75 MINOR
+MAJOR+PSYCHO   | SUPPORT    |    80.141906 -> 80.72445     | centre=80.433178    | larg=0.582545  | 1.3022 ATR | force=1245   | dist=-9.6282 ATR | score=1859.2946 | psycho=80 BIG
+LOCAL          | SUPPORT    |    83.514695 -> 84.543633    | centre=84.029164    | larg=1.028939  | 2.3   ATR | force=990    | dist=-1.5901 ATR | score=1606.7485
+LOCAL+PSYCHO+MAJOR | ACTIVE     |    84.443775 -> 85.19013     | centre=84.825884    | larg=0.746355  | 1.6683 ATR | force=1255   | dist=0.1909  ATR | score=2445.2285 | psycho=85 MINOR
+LOCAL+PSYCHO   | RESISTANCE |      85.1807 -> 85.829059    | centre=85.500038    | larg=0.648359  | 1.4493 ATR | force=350    | dist=1.6978  ATR | score=2180.0549 | psycho=85 MINOR
+LOCAL          | RESISTANCE |     85.92424 -> 86.24064     | centre=86.08244     | larg=0.3164    | 0.7073 ATR | force=779    | dist=2.9997  ATR | score=1497.6586
+LOCAL          | RESISTANCE |    86.272541 -> 87.157939    | centre=86.727837    | larg=0.885399  | 1.9791 ATR | force=2869   | dist=4.4423  ATR | score=1538.942
+LOCAL          | RESISTANCE |      87.7119 -> 88.01248     | centre=87.86219     | larg=0.30058   | 0.6719 ATR | force=459    | dist=6.978   ATR | score=1286.2011
+PSYCHO         | RESISTANCE |    89.765134 -> 90.234866    | centre=90           | larg=0.469733  | 1.05  ATR | force=650    | dist=11.7566 ATR | score=1183.5842 | psycho=90 MAJOR
+PSYCHO         | RESISTANCE |     94.80987 -> 95.19013     | centre=95           | larg=0.38026   | 0.85  ATR | force=450    | dist=22.9332 ATR | score=957.5    | psycho=95 MINOR
+
+OIL_CRUDE | close=97.89 | ATR local=0.401656 | psycho minor=2 medium=5 major=10 | zones=9 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    |    89.748965 -> 90.251035    | centre=90           | larg=0.50207   | 1.25  ATR | force=900    | dist=-19.6437 ATR | score=1415.0   | psycho=90 BIG
+PSYCHO         | SUPPORT    |    93.829296 -> 94.170704    | centre=94           | larg=0.341408  | 0.85  ATR | force=450    | dist=-9.6849 ATR | score=1015.3775 | psycho=94 MINOR
+LOCAL+PSYCHO+MAJOR | SUPPORT    |    95.551527 -> 95.913068    | centre=95.73006     | larg=0.361541  | 0.9001 ATR | force=1088   | dist=-5.3776 ATR | score=2315.5604 | psycho=96 MINOR
+LOCAL          | SUPPORT    |    96.680588 -> 97.356824    | centre=97.013585    | larg=0.676236  | 1.6836 ATR | force=680    | dist=-2.182  ATR | score=1483.4499
+LOCAL+PSYCHO+MAJOR | ACTIVE     |    97.284033 -> 98.207843    | centre=97.789293    | larg=0.923809  | 2.3   ATR | force=2637   | dist=-0.2507 ATR | score=2443.7318 | psycho=98 MINOR
+MAJOR+PSYCHO+LOCAL | RESISTANCE |    98.129672 -> 99.053481    | centre=98.570905    | larg=0.923809  | 2.3   ATR | force=3115   | dist=1.6952  ATR | score=2407.6189 | psycho=98 MINOR
+LOCAL          | RESISTANCE |    99.269368 -> 99.544258    | centre=99.406813    | larg=0.27489   | 0.6844 ATR | force=156    | dist=3.7764  ATR | score=1260.1901
+MAJOR+PSYCHO   | RESISTANCE |    99.468364 -> 100.392173   | centre=99.968097    | larg=0.923809  | 2.3   ATR | force=1659   | dist=5.1738  ATR | score=1970.6545 | psycho=100 BIG
+PSYCHO         | RESISTANCE |   101.829296 -> 102.170704   | centre=102          | larg=0.341408  | 0.85  ATR | force=450    | dist=10.2326 ATR | score=1001.6842 | psycho=102 MINOR
+
+BTCUSD | close=81587.05 | ATR local=196.998438 | psycho minor=2000 medium=5000 major=10000 | zones=11 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+MAJOR+PSYCHO   | SUPPORT    | 73877.890644 -> 74114.672349 | centre=73996.281497 | larg=236.781705 | 1.2019 ATR | force=368    | dist=-38.5321 ATR | score=1278.8   | psycho=74000 MINOR
+MAJOR+PSYCHO   | SUPPORT    | 75712.948857 -> 76097.623232 | centre=75942.214738 | larg=384.674375 | 1.9527 ATR | force=1335   | dist=-28.6542 ATR | score=1500.0   | psycho=76000 MINOR
+PSYCHO         | SUPPORT    | 77916.275664 -> 78083.724336 | centre=78000        | larg=167.448672 | 0.85  ATR | force=450    | dist=-18.2085 ATR | score=957.5    | psycho=78000 MINOR
+LOCAL+PSYCHO+MAJOR | SUPPORT    | 80053.946778 -> 80468.314761 | centre=80253.636074 | larg=414.367983 | 2.1034 ATR | force=784    | dist=-6.7687 ATR | score=2505.1837 | psycho=80000 BIG
+LOCAL          | SUPPORT    | 80400.518922 -> 80853.615329 | centre=80627.067126 | larg=453.096406 | 2.3   ATR | force=577    | dist=-4.873  ATR | score=1380.1238
+LOCAL          | SUPPORT    | 80859.539781 -> 80977.738844 | centre=80918.639313 | larg=118.199063 | 0.6   ATR | force=152    | dist=-3.393  ATR | score=1268.3756
+LOCAL          | SUPPORT    | 80939.994625 -> 81273.1375   | centre=81121.225134 | larg=333.142875 | 1.6911 ATR | force=435    | dist=-2.3646 ATR | score=1393.1347
+LOCAL          | ACTIVE     | 81294.329989 -> 81747.426395 | centre=81520.878192 | larg=453.096406 | 2.3   ATR | force=224    | dist=-0.3359 ATR | score=1370.0025
+LOCAL+PSYCHO   | RESISTANCE | 81674.617375 -> 82083.724336 | centre=81946.350865 | larg=409.106961 | 2.0767 ATR | force=663    | dist=1.8239  ATR | score=2286.4531 | psycho=82000 MINOR
+PSYCHO         | RESISTANCE | 83916.275664 -> 84083.724336 | centre=84000        | larg=167.448672 | 0.85  ATR | force=450    | dist=12.2486 ATR | score=957.5    | psycho=84000 MINOR
+PSYCHO         | RESISTANCE | 85916.275664 -> 86083.724336 | centre=86000        | larg=167.448672 | 0.85  ATR | force=450    | dist=22.4009 ATR | score=957.5    | psycho=86000 MINOR
+
+ETHUSD | close=2305.565 | ATR local=6.760521 | psycho minor=50 medium=100 major=200 | zones=12 | confluences=4
+----------------------------------------------------------------------------------------------------------------------------------------------
+PSYCHO         | SUPPORT    |  2147.126779 -> 2152.873221  | centre=2150         | larg=5.746443  | 0.85  ATR | force=450    | dist=-23.0108 ATR | score=957.5    | psycho=2150 MINOR
+PSYCHO         | SUPPORT    |  2195.774674 -> 2204.225326  | centre=2200         | larg=8.450651  | 1.25  ATR | force=900    | dist=-15.6149 ATR | score=1415.0   | psycho=2200 BIG
+LOCAL+PSYCHO   | SUPPORT    |  2247.126779 -> 2262.101219  | centre=2254.954647  | larg=14.97444  | 2.215 ATR | force=1487   | dist=-7.4862 ATR | score=2262.846 | psycho=2250 MINOR
+LOCAL          | SUPPORT    |  2260.004031 -> 2269.72875   | centre=2264.564641  | larg=9.724719  | 1.4385 ATR | force=505    | dist=-6.0647 ATR | score=1325.1331
+LOCAL          | SUPPORT    |    2272.5275 -> 2278.125     | centre=2275.32625   | larg=5.5975    | 0.828 ATR | force=439    | dist=-4.4728 ATR | score=1341.8289
+LOCAL+MAJOR    | SUPPORT    |  2277.592389 -> 2293.141586  | centre=2285.146327  | larg=15.549198 | 2.3   ATR | force=1582   | dist=-3.0203 ATR | score=1574.493
+LOCAL+PSYCHO   | ACTIVE     |  2296.450727 -> 2308.560469  | centre=2301.431188  | larg=12.109742 | 1.7912 ATR | force=1005   | dist=-0.6115 ATR | score=2584.7134 | psycho=2300 MAJOR
+LOCAL+MAJOR    | RESISTANCE |  2307.780064 -> 2323.329261  | centre=2315.246507  | larg=15.549198 | 2.3   ATR | force=2262   | dist=1.4321  ATR | score=1614.1984
+LOCAL          | RESISTANCE |    2317.3075 -> 2322.34525   | centre=2319.826375  | larg=5.03775   | 0.7452 ATR | force=50     | dist=2.1095  ATR | score=1264.7623
+LOCAL          | RESISTANCE |   2335.77925 -> 2341.9365    | centre=2338.857875  | larg=6.15725   | 0.9108 ATR | force=341    | dist=4.9246  ATR | score=1296.2349
+MAJOR+PSYCHO   | RESISTANCE |  2343.586075 -> 2353.443275  | centre=2348.681645  | larg=9.8572    | 1.4581 ATR | force=2363   | dist=6.3777  ATR | score=1640.5572 | psycho=2350 MINOR
+MAJOR+PSYCHO   | RESISTANCE |  2391.639925 -> 2404.225326  | centre=2398.933247  | larg=12.585401 | 1.8616 ATR | force=1306   | dist=13.8108 ATR | score=1800.0   | psycho=2400 BIG
+
+============================================================
+REFRESH 02 OK
+
+########################################################################################################################
+07D — CYCLE 1 — 2026-05-14T17:40:15Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 33s / seuil 7200s
+- zones age   : 0s / seuil 43200s
+- history age : 1s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-14 17:40:16,101 - INFO - ============================================================
+2026-05-14 17:40:16,101 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-14 17:40:16,101 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 17:40:16,101 - INFO - Nb actifs    : 16
+2026-05-14 17:40:16,101 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-14 17:40:16,101 - INFO - Durée test   : 45 sec
+2026-05-14 17:40:16,101 - INFO - ============================================================
+2026-05-14 17:40:16,256 - INFO - [SUBSCRIBE] envoyé
+2026-05-14 17:40:16,284 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2026-05-14 17:41:01,142 - INFO - Durée de test atteinte.
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    43 | 7499.400000  | 7499.800000  | 7499.600000  | 0.400000     | 0.400000     | 1.3s
+US100      |   197 | 29594.400000 | 29596.200000 | 29595.300000 | 1.800000     | 1.800000     | 1.3s
+US30       |    75 | 50056.000000 | 50058.000000 | 50057.000000 | 2.000000     | 2.000000     | 1.3s
+DE40       |    27 | 24348.000000 | 24349.500000 | 24348.750000 | 1.500000     | 1.500000     | 1.3s
+FR40       |     4 | 8055.600000  | 8056.900000  | 8056.250000  | 1.300000     | 1.300000     | 26.3s
+UK100      |    14 | 10394.300000 | 10396.300000 | 10395.300000 | 2.000000     | 2.000000     | 3.3s
+J225       |    47 | 62875.600000 | 62885.600000 | 62880.600000 | 10.000000    | 10.000000    | 1.3s
+EURUSD     |    40 | 1.167970     | 1.168040     | 1.168005     | 0.000070     | 0.000070     | 0.3s
+GBPUSD     |    41 | 1.342080     | 1.342210     | 1.342145     | 0.000130     | 0.000130     | 0.3s
+USDJPY     |    22 | 158.165000   | 158.177000   | 158.171000   | 0.012000     | 0.012000     | 4.3s
+EURJPY     |    56 | 184.734000   | 184.756000   | 184.745000   | 0.022000     | 0.021500     | 0.3s
+GOLD       |   133 | 4679.460000  | 4679.960000  | 4679.710000  | 0.500000     | 0.500000     | 0.3s
+SILVER     |    83 | 84.801000    | 84.851000    | 84.826000    | 0.050000     | 0.050000     | 1.3s
+OIL_CRUDE  |    30 | 97.897000    | 97.937000    | 97.917000    | 0.040000     | 0.040000     | 2.3s
+BTCUSD     |   120 | 81538.400000 | 81588.400000 | 81563.400000 | 50.000000    | 50.000000    | 1.3s
+ETHUSD     |   153 | 2304.510000  | 2306.260000  | 2305.385000  | 1.750000     | 1.750000     | 0.3s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    55 | 7498.800000  | 7499.200000  | 7499.000000  | 0.400000     | 0.400000     | 1.1s
+US100      |   289 | 29587.300000 | 29589.100000 | 29588.200000 | 1.800000     | 1.800000     | 0.1s
+US30       |   108 | 50053.200000 | 50055.200000 | 50054.200000 | 2.000000     | 2.000000     | 1.1s
+DE40       |    45 | 24347.000000 | 24348.500000 | 24347.750000 | 1.500000     | 1.500000     | 1.1s
+FR40       |     6 | 8055.900000  | 8057.200000  | 8056.550000  | 1.300000     | 1.300000     | 1.1s
+UK100      |    17 | 10395.800000 | 10397.800000 | 10396.800000 | 2.000000     | 2.000000     | 2.1s
+J225       |    60 | 62873.100000 | 62883.100000 | 62878.100000 | 10.000000    | 10.000000    | 1.1s
+EURUSD     |    66 | 1.167940     | 1.168010     | 1.167975     | 0.000070     | 0.000070     | 1.1s
+GBPUSD     |    60 | 1.341970     | 1.342100     | 1.342035     | 0.000130     | 0.000130     | 2.1s
+USDJPY     |    28 | 158.167000   | 158.179000   | 158.173000   | 0.012000     | 0.012000     | 1.1s
+EURJPY     |    86 | 184.729000   | 184.751000   | 184.740000   | 0.022000     | 0.021000     | 0.1s
+GOLD       |   190 | 4679.710000  | 4680.210000  | 4679.960000  | 0.500000     | 0.500000     | 1.1s
+SILVER     |   117 | 84.812000    | 84.862000    | 84.837000    | 0.050000     | 0.050000     | 1.1s
+OIL_CRUDE  |    37 | 97.927000    | 97.967000    | 97.947000    | 0.040000     | 0.040000     | 1.1s
+BTCUSD     |   165 | 81530.850000 | 81580.850000 | 81555.850000 | 50.000000    | 50.000000    | 0.1s
+ETHUSD     |   215 | 2304.050000  | 2305.800000  | 2304.925000  | 1.750000     | 1.750000     | 0.1s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+MODULE 04 — SIGNAUX
+Fichier ticks utilisé : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | SELL     |    -1 | NEUTRAL  | TREND_UP   | NONE                 | 7499.000000  | 86.7  | 15.000000   | 0.400000 | 0.400000 | True  | 6.3   | LOCAL+PSYCHO:active:7500 | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+US100      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 29588.200000 | 88.4  | 88.700000   | 1.800000 | 1.800000 | True  | 5.4   | --                       | False     | True       | hors_zone
+US30       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 50054.200000 | 84.7  | 71.700000   | 2.000000 | 2.000000 | True  | 6.5   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+DE40       | SELL     |     1 | SELL     | TREND_UP   | NONE                 | 24347.750000 | 88.7  | 48.500000   | 1.500000 | 1.500000 | True  | 6.5   | LOCAL:active             | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+FR40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 8056.550000  | 96.2  | 13.300000   | 1.300000 | 1.300000 | False | 6.6   | LOCAL:active             | False     | True       | spread=LEARNING_66/150, range_pas_assez_bas, pas_micro_rebond
+UK100      | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 10396.800000 | 92.0  | 20.000000   | 2.000000 | 2.000000 | False | 7.6   | PSYCHO:active:10400      | True      | False      | spread=LEARNING_101/150, range_pas_assez_bas, pas_micro_rejet
+J225       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 62878.100000 | 92.3  | 122.500000  | 10.000000 | 10.000000 | True  | 6.6   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+EURUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 1.167975     | 71.0  | 0.000310    | 0.000070 | 0.000070 | True  | 6.7   | LOCAL+PSYCHO:active:1.16 | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+GBPUSD     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 1.342035     | 0.0   | 0.000740    | 0.000130 | 0.000130 | True  | 7.7   | --                       | False     | True       | hors_zone
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 158.173000   | 78.9  | 0.019000    | 0.012000 | 0.012000 | False | 6.7   | LOCAL:active             | True      | False      | spread=LEARNING_124/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+EURJPY     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 184.740000   | 84.0  | 0.050000    | 0.022000 | 0.022000 | True  | 5.8   | --                       | False     | True       | hors_zone
+GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4679.960000  | 55.4  | 5.465000    | 0.500000 | 0.500000 | True  | 6.8   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+SILVER     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 84.837000    | 87.5  | 0.136000    | 0.050000 | 0.050000 | True  | 6.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+OIL_CRUDE  | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 97.947000    | 96.9  | 0.225000    | 0.040000 | 0.040000 | True  | 6.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 81555.850000 | 87.8  | 139.350000  | 50.000000 | 50.000000 | True  | 6.0   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+ETHUSD     | SELL     |     5 | NEUTRAL  | TREND_DOWN | NONE                 | 2304.925000  | 91.8  | 8.430000    | 1.750000 | 1.750000 | True  | 6.0   | LOCAL+PSYCHO:active:2300 | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-1 | phase=TREND_UP | vwap=NEUTRAL | trigger_M1:+1; zone_active:+1; micro_rejet:+1; vwap_NEUTRAL:0; PHASE_VETO_sell_contre_trend_up:-4
+US100      | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=88.4>=75.0
+US100      | OPEN_L1      | SELL | entry=29587.300000 | size=0.042000 | tp=0.2000
+US30       | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=84.7>=75.0
+US30       | OPEN_L1      | SELL | entry=50053.200000 | size=0.024000 | tp=0.2000
+DE40       | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=1 | phase=TREND_UP | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rejet:+1; vwap_ok:+2; PHASE_VETO_sell_contre_trend_up:-4
+FR40       | IDLE         | aucun signal
+UK100      | IDLE         | aucun signal
+J225       | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=92.3>=75.0
+J225       | OPEN_L1      | SELL | entry=62873.100000 | size=1.500000 | tp=0.2000
+EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+GBPUSD     | DEMO_SAMPLE_SIGNAL | BUY  | reason=rpos=0.0<=25.0
+GBPUSD     | OPEN_L1      | BUY  | entry=1.342100 | size=1200.000000 | tp=0.2000
+USDJPY     | IDLE         | aucun signal
+EURJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+GOLD       | IDLE         | aucun signal
+SILVER     | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=87.5>=75.0
+SILVER     | OPEN_L1      | SELL | entry=84.812000 | size=15.000000 | tp=0.2000
+OIL_CRUDE  | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-3 | phase=TREND_UP | vwap=BUY | trigger_M1:+1; zone_active:+1; micro_rejet:+1; vwap_contre:-2; PHASE_VETO_sell_contre_trend_up:-4
+BTCUSD     | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=87.8>=75.0
+BTCUSD     | OPEN_L1      | SELL | entry=81530.850000 | size=0.001800 | tp=0.2000
+ETHUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 9
+- US100      L1 SELL size=0.042 cycle=ff75749b-8f3
+- US30       L1 SELL size=0.024 cycle=011091c6-01b
+- J225       L1 SELL size=1.5 cycle=0d45c311-829
+- EURUSD     L1 SELL size=450.0 cycle=79292f6c-f20
+- GBPUSD     L1 BUY size=1200.0 cycle=a9e8b380-48b
+- EURJPY     L1 BUY size=1800.0 cycle=d7232e7f-220
+- SILVER     L1 SELL size=15.0 cycle=90c86614-92b
+- BTCUSD     L1 SELL size=0.0018 cycle=cf97c2bf-81b
+- ETHUSD     L1 SELL size=0.06 cycle=ab9c958f-dfe
+Deals réels DEMO suivis : 0
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3512.87 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+US100      | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=174.83303 required=30.00000 ratio=5.828 ok=True abs_min=30.00000 spread_min=5.40000
+US100      | PRICE_AUDIT | SELL | stream_bid=29587.3 stream_ask=29589.1 snapshot_bid=29584.1 snapshot_ask=29585.9 BB_LOW=29514.455982825046 BB_MID=29601.872500000005 BB_HIGH=29689.289017174964 L1=29689.7 L2=29701.7 L3=29713.7 dist=103.79999999999927
+US100      | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | SELL | L1=29689.7 L2=29701.7 L3=29713.7 | DEMO_SAMPLE | distance=100.6000000000 max_dist=6.4000000000 ordre autorise
+US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29514.45598 BB_MID=29601.87250 BB_HIGH=29689.28902 width=174.83303 required=30.00000 L1=29689.7 L2=29701.7 L3=29713.7 dist=100.6000000000 max_dist=6.4000000000 dist_ratio=15.719
+US100      | BOLLINGER_M5 | SELL | BB_LOW=29514.45598 | BB_MID=29601.87250 | BB_HIGH=29689.28902 | L1=29689.7 | L2=29701.7 | L3=29713.7 | BUFFER=0.4 | STEP=12.0
+US100      | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=29689.7 L2=29701.7 dist=100.6000000000 step=12.0000000000 max_allowed=96.0000000000 dist_step_ratio=8.383 mult=8.000 old_max_dist=6.4 aucun ordre envoye
+US30       | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=194.72929 required=50.00000 ratio=3.895 ok=True abs_min=50.00000 spread_min=6.00000
+US30       | PRICE_AUDIT | SELL | stream_bid=50053.2 stream_ask=50055.2 snapshot_bid=50062.1 snapshot_ask=50064.1 BB_LOW=49964.7903560064 BB_MID=50062.155 BB_HIGH=50159.5196439936 L1=50160.3 L2=50180.3 L3=50200.3 dist=96.20000000000437
+US30       | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | SELL | L1=50160.3 L2=50180.3 L3=50200.3 | DEMO_SAMPLE | distance=105.1000000000 max_dist=19.4400000000 ordre autorise
+US30       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=49964.79036 BB_MID=50062.15500 BB_HIGH=50159.51964 width=194.72929 required=50.00000 L1=50160.3 L2=50180.3 L3=50200.3 dist=105.1000000000 max_dist=19.4400000000 dist_ratio=5.406
+US30       | BOLLINGER_M5 | SELL | BB_LOW=49964.79036 | BB_MID=50062.15500 | BB_HIGH=50159.51964 | L1=50160.3 | L2=50180.3 | L3=50200.3 | BUFFER=0.8 | STEP=20.0
+US30       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=50160.300000 stopLevel≈50360.300000 stopDistance=200.000000 step=20.000000 spread=2.000000 minStop=0.100000
+US30       | LIMIT_REQUEST | 1   | SELL | 0.024000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.024, "guaranteedStop": true, "stopDistance": 200.0, "type": "LIMIT", "level": 50160.3}
+US30       | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=50160.3
+US30       | LIMIT_OK      | 1   | SELL | 0.024000   | TRADEABLE | ref=o_37bc...8526 limit=50160.3
+US30       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=50180.300000 stopLevel≈50360.300000 stopDistance=180.000000 step=20.000000 spread=2.000000 minStop=0.100000
+US30       | LIMIT_REQUEST | 2   | SELL | 0.048000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.048, "guaranteedStop": true, "stopDistance": 180.0, "type": "LIMIT", "level": 50180.3}
+US30       | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=50180.3
+US30       | LIMIT_OK      | 2   | SELL | 0.048000   | TRADEABLE | ref=o_5489...4685 limit=50180.3
+US30       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=50200.300000 stopLevel≈50360.300000 stopDistance=160.000000 step=20.000000 spread=2.000000 minStop=0.100000
+US30       | LIMIT_REQUEST | 3   | SELL | 0.072000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.07200000000000001, "guaranteedStop": true, "stopDistance": 160.0, "type": "LIMIT", "level": 50200.3}
+US30       | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=50200.3
+US30       | LIMIT_OK      | 3   | SELL | 0.072000   | TRADEABLE | ref=o_2ebe...f9bf limit=50200.3
+US30       | BASKET_NEW  | 1-3 | SELL | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=241.94957 required=100.00000 ratio=2.419 ok=True abs_min=100.00000 spread_min=30.00000
+J225       | PRICE_AUDIT | SELL | stream_bid=62873.1 stream_ask=62883.1 snapshot_bid=62867.6 snapshot_ask=62877.6 BB_LOW=62774.50521585058 BB_MID=62895.48 BB_HIGH=63016.45478414943 L1=63017.3 L2=63057.3 L3=63097.3 dist=139.70000000000437
+J225       | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | SELL | L1=63017.3 L2=63057.3 L3=63097.3 | DEMO_SAMPLE | distance=134.2000000000 max_dist=28.0000000000 ordre autorise
+J225       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=62774.50522 BB_MID=62895.48000 BB_HIGH=63016.45478 width=241.94957 required=100.00000 L1=63017.3 L2=63057.3 L3=63097.3 dist=134.2000000000 max_dist=28.0000000000 dist_ratio=4.793
+J225       | BOLLINGER_M5 | SELL | BB_LOW=62774.50522 | BB_MID=62895.48000 | BB_HIGH=63016.45478 | L1=63017.3 | L2=63057.3 | L3=63097.3 | BUFFER=0.8 | STEP=40.0
+J225       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=63017.300000 stopLevel≈63417.300000 stopDistance=400.000000 step=40.000000 spread=10.000000 minStop=0.500000
+J225       | LIMIT_REQUEST | 1   | SELL | 1.500000   | TRADEABLE | {"epic": "J225", "direction": "SELL", "size": 1.5, "guaranteedStop": true, "stopDistance": 400.0, "type": "LIMIT", "level": 63017.3}
+J225       | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=63017.3
+J225       | V24_STOP_GUARD | guaranteedStop=false | stopDistance=400.0
+J225       | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+J225       | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_75105b3e-dc1e-4a30-ac3c-5080d5344a69'}
+J225       | LIMIT_OK      | 1   | SELL | 1.500000   | TRADEABLE | ref=o_7510...4a69 limit=63017.3
+J225       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=63057.300000 stopLevel≈63417.300000 stopDistance=360.000000 step=40.000000 spread=10.000000 minStop=0.500000
+J225       | LIMIT_REQUEST | 2   | SELL | 3.000000   | TRADEABLE | {"epic": "J225", "direction": "SELL", "size": 3.0, "guaranteedStop": true, "stopDistance": 360.0, "type": "LIMIT", "level": 63057.3}
+J225       | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=63057.3
+J225       | V24_STOP_GUARD | guaranteedStop=false | stopDistance=360.0
+J225       | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+J225       | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_23b6e084-ffee-4da1-9fa8-3783fcfbcc94'}
+J225       | LIMIT_OK      | 2   | SELL | 3.000000   | TRADEABLE | ref=o_23b6...cc94 limit=63057.3
+J225       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=63097.300000 stopLevel≈63417.300000 stopDistance=320.000000 step=40.000000 spread=10.000000 minStop=0.500000
+J225       | LIMIT_REQUEST | 3   | SELL | 4.500000   | TRADEABLE | {"epic": "J225", "direction": "SELL", "size": 4.5, "guaranteedStop": true, "stopDistance": 320.0, "type": "LIMIT", "level": 63097.3}
+J225       | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=63097.3
+J225       | V24_STOP_GUARD | guaranteedStop=false | stopDistance=320.0
+J225       | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+J225       | V24_DYNAMIC_STOP_DISTANCE | SELL | old=320.0 new=355.4 required_level=63422.7 kind=minvalue extra=30.0
+J225       | V24_WORKING_ORDER_SECOND_RETRY | SELL | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.minvalue: 63422.7
+J225       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_c5b9dd93-f3c8-47bb-b45b-998b7c51852f'}
+J225       | LIMIT_OK      | 3   | SELL | 4.500000   | TRADEABLE | ref=o_c5b9...852f limit=63097.3
+J225       | BASKET_NEW  | 1-3 | SELL | 1.500000   | TRADEABLE | LIMITS posés=3 rejetés=0
+EURUSD     | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=0.00086 required=0.00040 ratio=2.149 ok=True abs_min=0.00040 spread_min=0.00021
+EURUSD     | PRICE_AUDIT | SELL | stream_bid=1.16794 stream_ask=1.16801 snapshot_bid=1.16802 snapshot_ask=1.16809 BB_LOW=1.1672491442102289 BB_MID=1.1676790000000001 BB_HIGH=1.1681088557897714 L1=1.16812 L2=1.16836 L3=1.1686 dist=2.999999999997449e-05
+EURUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.16725 BB_MID=1.16768 BB_HIGH=1.16811 width=0.00086 required=0.00040 L1=1.16812 L2=1.16836 L3=1.1686 dist=0.0001100000 max_dist=0.0010000000 dist_ratio=0.110
+EURUSD     | BOLLINGER_M5 | SELL | BB_LOW=1.16725 | BB_MID=1.16768 | BB_HIGH=1.16811 | L1=1.16812 | L2=1.16836 | L3=1.1686 | BUFFER=8.000000000000001e-06 | STEP=0.00023999999999999998
+EURUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=1.168120 stopLevel≈1.418600 stopDistance=0.250480 step=0.000240 spread=0.000070 minStop=0.250000
+EURUSD     | LIMIT_REQUEST | 1   | SELL | 450.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 450.0, "guaranteedStop": true, "stopDistance": 0.25048, "type": "LIMIT", "level": 1.16812}
+EURUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=1.16812
+EURUSD     | LIMIT_OK      | 1   | SELL | 450.000000 | TRADEABLE | ref=o_4326...80fb limit=1.16812
+EURUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=1.168360 stopLevel≈1.418600 stopDistance=0.250240 step=0.000240 spread=0.000070 minStop=0.250000
+EURUSD     | LIMIT_REQUEST | 2   | SELL | 900.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 900.0, "guaranteedStop": true, "stopDistance": 0.25024, "type": "LIMIT", "level": 1.16836}
+EURUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=1.16836
+EURUSD     | LIMIT_OK      | 2   | SELL | 900.000000 | TRADEABLE | ref=o_e41e...782a limit=1.16836
+EURUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=1.168600 stopLevel≈1.418600 stopDistance=0.250000 step=0.000240 spread=0.000070 minStop=0.250000
+EURUSD     | LIMIT_REQUEST | 3   | SELL | 1350.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 1350.0, "guaranteedStop": true, "stopDistance": 0.25, "type": "LIMIT", "level": 1.1686}
+EURUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=1.1686
+EURUSD     | LIMIT_OK      | 3   | SELL | 1350.000000 | TRADEABLE | ref=o_3bbf...4b0c limit=1.1686
+EURUSD     | BASKET_NEW  | 1-3 | SELL | 450.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+GBPUSD     | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=0.00525 required=0.00050 ratio=10.490 ok=True abs_min=0.00050 spread_min=0.00039
+GBPUSD     | PRICE_AUDIT | BUY  | stream_bid=1.34197 stream_ask=1.3421 snapshot_bid=1.34214 snapshot_ask=1.34227 BB_LOW=1.3412854432322638 BB_MID=1.3439080000000003 BB_HIGH=1.3465305567677368 L1=1.34128 L2=1.341 L3=1.34072 dist=0.0008600000000000829
+GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=1.34129 BB_MID=1.34391 BB_HIGH=1.34653 width=0.00525 required=0.00050 L1=1.34128 L2=1.341 L3=1.34072 dist=0.0006900000 max_dist=0.0012000000 dist_ratio=0.575
+GBPUSD     | BOLLINGER_M5 | BUY  | BB_LOW=1.34129 | BB_MID=1.34391 | BB_HIGH=1.34653 | L1=1.34128 | L2=1.341 | L3=1.34072 | BUFFER=9.600000000000001e-06 | STEP=0.00028000000000000003
+GBPUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=1.341280 stopLevel≈1.240720 stopDistance=0.100570 step=0.000280 spread=0.000130 minStop=0.100000
+GBPUSD     | LIMIT_REQUEST | 1   | BUY  | 1200.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 1200.0, "guaranteedStop": true, "stopDistance": 0.10057, "type": "LIMIT", "level": 1.34128}
+GBPUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.34128
+GBPUSD     | LIMIT_OK      | 1   | BUY  | 1200.000000 | TRADEABLE | ref=o_b40c...3d33 limit=1.34128
+GBPUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=1.341000 stopLevel≈1.240720 stopDistance=0.100290 step=0.000280 spread=0.000130 minStop=0.100000
+GBPUSD     | LIMIT_REQUEST | 2   | BUY  | 2400.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 2400.0, "guaranteedStop": true, "stopDistance": 0.10029, "type": "LIMIT", "level": 1.341}
+GBPUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.341
+GBPUSD     | LIMIT_OK      | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_2e62...d7df limit=1.341
+GBPUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=1.340720 stopLevel≈1.240720 stopDistance=0.100010 step=0.000280 spread=0.000130 minStop=0.100000
+GBPUSD     | LIMIT_REQUEST | 3   | BUY  | 3600.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.10001, "type": "LIMIT", "level": 1.34072}
+GBPUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.34072
+GBPUSD     | LIMIT_OK      | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_7ed9...1038 limit=1.34072
+GBPUSD     | BASKET_NEW  | 1-3 | BUY  | 1200.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=0.10996 required=0.10000 ratio=1.100 ok=True abs_min=0.10000 spread_min=0.05700
+EURJPY     | PRICE_AUDIT | BUY  | stream_bid=184.729 stream_ask=184.751 snapshot_bid=184.736 snapshot_ask=184.755 BB_LOW=184.6365427528651 BB_MID=184.69152499999996 BB_HIGH=184.74650724713482 L1=184.635 L2=184.587 L3=184.539 dist=0.10099999999999909
+EURJPY     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=184.63654 BB_MID=184.69152 BB_HIGH=184.74651 width=0.10996 required=0.10000 L1=184.635 L2=184.587 L3=184.539 dist=0.0940000000 max_dist=0.1800000000 dist_ratio=0.522
+EURJPY     | BOLLINGER_M5 | BUY  | BB_LOW=184.63654 | BB_MID=184.69152 | BB_HIGH=184.74651 | L1=184.635 | L2=184.587 | L3=184.539 | BUFFER=0.0012000000000000001 | STEP=0.048
+EURJPY     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=184.635000 stopLevel≈184.155000 stopDistance=0.481000 step=0.048000 spread=0.019000 minStop=0.100000
+EURJPY     | LIMIT_REQUEST | 1   | BUY  | 1800.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 1800.0, "guaranteedStop": true, "stopDistance": 0.481, "type": "LIMIT", "level": 184.635}
+EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.635
+EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.481
+EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_99d17626-264e-4d6a-9aaf-55fac72e6305'}
+EURJPY     | LIMIT_OK      | 1   | BUY  | 1800.000000 | TRADEABLE | ref=o_99d1...6305 limit=184.635
+EURJPY     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=184.587000 stopLevel≈184.155000 stopDistance=0.433000 step=0.048000 spread=0.019000 minStop=0.100000
+EURJPY     | LIMIT_REQUEST | 2   | BUY  | 3600.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.433, "type": "LIMIT", "level": 184.587}
+EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.587
+EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.433
+EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_d4031e97-84ec-464a-b245-4fdc4d49fa7a'}
+EURJPY     | LIMIT_OK      | 2   | BUY  | 3600.000000 | TRADEABLE | ref=o_d403...fa7a limit=184.587
+EURJPY     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=184.539000 stopLevel≈184.155000 stopDistance=0.385000 step=0.048000 spread=0.019000 minStop=0.100000
+EURJPY     | LIMIT_REQUEST | 3   | BUY  | 5400.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 5400.0, "guaranteedStop": true, "stopDistance": 0.385, "type": "LIMIT", "level": 184.539}
+EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.539
+EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.385
+EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_7fca996e-f190-4396-a636-32468e9fd870'}
+EURJPY     | LIMIT_OK      | 3   | BUY  | 5400.000000 | TRADEABLE | ref=o_7fca...d870 limit=184.539
+EURJPY     | BASKET_NEW  | 1-3 | BUY  | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+SILVER     | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=0.43538 required=1.00000 ratio=0.435 ok=False abs_min=1.00000 spread_min=0.15000
+SILVER     | BOLLINGER_WIDTH_TOO_SMALL | --  | SELL | --         | FILTER    | width=0.43538 required=1.00000 abs_min=1.00000 spread=0.05000
+SILVER     | BASKET_REJECT | 1-3 | SELL | 15.000000  | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+BTCUSD     | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=775.72178 required=150.00000 ratio=5.171 ok=True abs_min=150.00000 spread_min=150.00000
+BTCUSD     | PRICE_AUDIT | SELL | stream_bid=81530.85 stream_ask=81580.85 snapshot_bid=81567.4 snapshot_ask=81617.4 BB_LOW=81171.92160963465 BB_MID=81559.7825 BB_HIGH=81947.64339036535 L1=81948.44 L2=81988.44 L3=82028.44 dist=331.04000000000815
+BTCUSD     | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | SELL | L1=81948.44 L2=81988.44 L3=82028.44 | DEMO_SAMPLE | distance=367.5900000000 max_dist=40.0000000000 ordre autorise
+BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=81171.92161 BB_MID=81559.78250 BB_HIGH=81947.64339 width=775.72178 required=150.00000 L1=81948.44 L2=81988.44 L3=82028.44 dist=367.5900000000 max_dist=40.0000000000 dist_ratio=9.190
+BTCUSD     | BOLLINGER_M5 | SELL | BB_LOW=81171.92161 | BB_MID=81559.78250 | BB_HIGH=81947.64339 | L1=81948.44 | L2=81988.44 | L3=82028.44 | BUFFER=0.8 | STEP=40.0
+BTCUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=81948.44 L2=81988.44 dist=367.5900000000 step=40.0000000000 max_allowed=320.0000000000 dist_step_ratio=9.190 mult=8.000 old_max_dist=40.0 aucun ordre envoye
+ETHUSD     | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=21.66941 required=15.00000 ratio=1.445 ok=True abs_min=15.00000 spread_min=5.25000
+ETHUSD     | PRICE_AUDIT | SELL | stream_bid=2304.05 stream_ask=2305.8 snapshot_bid=2305.08 snapshot_ask=2306.83 BB_LOW=2295.6987959892763 BB_MID=2306.5335000000005 BB_HIGH=2317.3682040107246 L1=2317.77 L2=2321.77 L3=2325.77 dist=10.940000000000055
+ETHUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=2295.69880 BB_MID=2306.53350 BB_HIGH=2317.36820 width=21.66941 required=15.00000 L1=2317.77 L2=2321.77 L3=2325.77 dist=11.9700000000 max_dist=28.0000000000 dist_ratio=0.427
+ETHUSD     | BOLLINGER_M5 | SELL | BB_LOW=2295.69880 | BB_MID=2306.53350 | BB_HIGH=2317.36820 | L1=2317.77 | L2=2321.77 | L3=2325.77 | BUFFER=0.4 | STEP=4.0
+ETHUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=2317.770000 stopLevel≈2357.770000 stopDistance=40.000000 step=4.000000 spread=1.750000 minStop=0.500000
+ETHUSD     | LIMIT_REQUEST | 1   | SELL | 0.060000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.06, "guaranteedStop": true, "stopDistance": 40.0, "type": "LIMIT", "level": 2317.77}
+ETHUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=2317.77
+ETHUSD     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=40.0
+ETHUSD     | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+ETHUSD     | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_347f70f4-3aae-417a-8e3e-b19ce55362e6'}
+ETHUSD     | LIMIT_OK      | 1   | SELL | 0.060000   | TRADEABLE | ref=o_347f...62e6 limit=2317.77
+ETHUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=2321.770000 stopLevel≈2357.770000 stopDistance=36.000000 step=4.000000 spread=1.750000 minStop=0.500000
+ETHUSD     | LIMIT_REQUEST | 2   | SELL | 0.120000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.12, "guaranteedStop": true, "stopDistance": 36.0, "type": "LIMIT", "level": 2321.77}
+ETHUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=2321.77
+ETHUSD     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=36.0
+ETHUSD     | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+ETHUSD     | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_b18ccd5b-0d2a-4e59-853f-bff0df02ca7f'}
+ETHUSD     | LIMIT_OK      | 2   | SELL | 0.120000   | TRADEABLE | ref=o_b18c...ca7f limit=2321.77
+ETHUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=2325.770000 stopLevel≈2357.770000 stopDistance=32.000000 step=4.000000 spread=1.750000 minStop=0.500000
+ETHUSD     | LIMIT_REQUEST | 3   | SELL | 0.180000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.18, "guaranteedStop": true, "stopDistance": 32.0, "type": "LIMIT", "level": 2325.77}
+ETHUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=2325.77
+ETHUSD     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=32.0
+ETHUSD     | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+ETHUSD     | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_65ab5012-f50d-4e9e-9c98-a80c187608b4'}
+ETHUSD     | LIMIT_OK      | 3   | SELL | 0.180000   | TRADEABLE | ref=o_65ab...08b4 limit=2325.77
+ETHUSD     | BASKET_NEW  | 1-3 | SELL | 0.060000   | TRADEABLE | LIMITS posés=3 rejetés=0
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 2 — 2026-05-14T17:41:23Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 101s / seuil 7200s
+- zones age   : 68s / seuil 43200s
+- history age : 69s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-14 17:41:24,346 - INFO - ============================================================
+2026-05-14 17:41:24,347 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-14 17:41:24,347 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 17:41:24,347 - INFO - Nb actifs    : 16
+2026-05-14 17:41:24,347 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-14 17:41:24,347 - INFO - Durée test   : 45 sec
+2026-05-14 17:41:24,347 - INFO - ============================================================
+2026-05-14 17:41:24,514 - INFO - [SUBSCRIBE] envoyé
+2026-05-14 17:41:24,544 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2026-05-14 17:42:09,355 - INFO - Durée de test atteinte.
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    23 | 7498.600000  | 7499.000000  | 7498.800000  | 0.400000     | 0.400000     | 0.5s
+US100      |   181 | 29588.700000 | 29590.500000 | 29589.600000 | 1.800000     | 1.800000     | 0.5s
+US30       |    57 | 50047.500000 | 50049.500000 | 50048.500000 | 2.000000     | 2.000000     | 0.5s
+DE40       |    27 | 24340.500000 | 24342.000000 | 24341.250000 | 1.500000     | 1.500000     | 1.5s
+FR40       |    12 | 8054.900000  | 8056.200000  | 8055.550000  | 1.300000     | 1.300000     | 1.5s
+UK100      |    12 | 10396.100000 | 10398.100000 | 10397.100000 | 2.000000     | 2.000000     | 0.5s
+J225       |    10 | 62867.200000 | 62877.200000 | 62872.200000 | 10.000000    | 10.000000    | 2.5s
+EURUSD     |    45 | 1.167920     | 1.167990     | 1.167955     | 0.000070     | 0.000070     | 1.5s
+GBPUSD     |    51 | 1.341940     | 1.342070     | 1.342005     | 0.000130     | 0.000130     | 2.5s
+USDJPY     |     7 | 158.167000   | 158.179000   | 158.173000   | 0.012000     | 0.012000     | 2.5s
+EURJPY     |    46 | 184.727000   | 184.748000   | 184.737500   | 0.021000     | 0.021000     | 2.5s
+GOLD       |   120 | 4679.360000  | 4679.860000  | 4679.610000  | 0.500000     | 0.500000     | 0.5s
+SILVER     |    66 | 84.813000    | 84.863000    | 84.838000    | 0.050000     | 0.050000     | 1.5s
+OIL_CRUDE  |    22 | 97.908000    | 97.948000    | 97.928000    | 0.040000     | 0.032000     | 1.5s
+BTCUSD     |   155 | 81540.850000 | 81590.850000 | 81565.850000 | 50.000000    | 50.000000    | 0.5s
+ETHUSD     |   165 | 2303.620000  | 2305.370000  | 2304.495000  | 1.750000     | 1.750000     | 0.5s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    34 | 7498.300000  | 7498.700000  | 7498.500000  | 0.400000     | 0.400000     | 4.4s
+US100      |   263 | 29589.200000 | 29591.000000 | 29590.100000 | 1.800000     | 1.800000     | 0.4s
+US30       |    87 | 50047.900000 | 50049.900000 | 50048.900000 | 2.000000     | 2.000000     | 1.4s
+DE40       |    28 | 24340.000000 | 24341.500000 | 24340.750000 | 1.500000     | 1.500000     | 15.4s
+FR40       |    16 | 8054.900000  | 8056.200000  | 8055.550000  | 1.300000     | 1.300000     | 10.4s
+UK100      |    13 | 10395.800000 | 10397.800000 | 10396.800000 | 2.000000     | 2.000000     | 13.4s
+J225       |    26 | 62865.200000 | 62875.200000 | 62870.200000 | 10.000000    | 10.000000    | 2.4s
+EURUSD     |    55 | 1.167910     | 1.167980     | 1.167945     | 0.000070     | 0.000070     | 5.4s
+GBPUSD     |    59 | 1.341950     | 1.342080     | 1.342015     | 0.000130     | 0.000130     | 4.4s
+USDJPY     |    13 | 158.167000   | 158.179000   | 158.173000   | 0.012000     | 0.012000     | 6.4s
+EURJPY     |    66 | 184.727000   | 184.746000   | 184.736500   | 0.019000     | 0.021000     | 1.4s
+GOLD       |   172 | 4679.570000  | 4680.070000  | 4679.820000  | 0.500000     | 0.500000     | 0.4s
+SILVER     |    92 | 84.831000    | 84.881000    | 84.856000    | 0.050000     | 0.050000     | 0.4s
+OIL_CRUDE  |    39 | 97.961000    | 97.993000    | 97.977000    | 0.032000     | 0.040000     | 2.4s
+BTCUSD     |   232 | 81549.700000 | 81599.700000 | 81574.700000 | 50.000000    | 50.000000    | 0.4s
+ETHUSD     |   245 | 2304.070000  | 2305.820000  | 2304.945000  | 1.750000     | 1.750000     | 0.4s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+MODULE 04 — SIGNAUX
+Fichier ticks utilisé : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 7498.500000  | 81.9  | 13.800000   | 0.400000 | 0.400000 | True  | 9.2   | LOCAL+PSYCHO:active:7500 | True      | False      | range_pas_assez_bas, pas_micro_rejet
+US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29590.100000 | 89.1  | 76.800000   | 1.800000 | 1.800000 | True  | 5.3   | --                       | True      | False      | hors_zone
+US30       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 50048.900000 | 77.2  | 71.500000   | 2.000000 | 2.000000 | True  | 6.3   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+DE40       | WAIT     |    -- | --       | --         | --                   | 24340.750000 | 70.6  | 42.500000   | 1.500000 | 1.500000 | False | 20.4  | --                       | False     | False      | tick_trop_ancien_20.4s>20.0s
+FR40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 8055.550000  | 86.7  | 11.300000   | 1.300000 | 1.300000 | False | 15.4  | LOCAL:active             | True      | False      | spread=LEARNING_57/150, range_pas_assez_bas, pas_micro_rejet
+UK100      | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 10396.800000 | 89.8  | 17.700000   | 2.000000 | 2.000000 | False | 18.4  | PSYCHO:active:10400      | False     | True       | spread=LEARNING_81/150, range_pas_assez_bas, pas_micro_rebond
+J225       | SELL     |     6 | SELL     | RANGE      | NONE                 | 62870.200000 | 84.2  | 109.700000  | 10.000000 | 10.000000 | True  | 7.4   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+EURUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 1.167945     | 61.3  | 0.000310    | 0.000070 | 0.000070 | True  | 10.5  | LOCAL+PSYCHO:active:1.16 | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+GBPUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.342015     | 10.6  | 0.000850    | 0.000130 | 0.000130 | True  | 9.5   | --                       | True      | False      | hors_zone
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 158.173000   | 93.7  | 0.016000    | 0.012000 | 0.012000 | False | 11.5  | LOCAL:active             | True      | False      | spread=LEARNING_102/150, range_pas_assez_bas, pas_micro_rejet
+EURJPY     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 184.736500   | 77.0  | 0.050000    | 0.019000 | 0.021000 | True  | 6.5   | --                       | False     | False      | hors_zone
+GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4679.820000  | 52.9  | 5.465000    | 0.500000 | 0.500000 | True  | 5.6   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+SILVER     | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 84.856000    | 97.2  | 0.142000    | 0.050000 | 0.050000 | True  | 5.6   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 97.977000    | 100.0 | 0.248000    | 0.032000 | 0.040000 | True  | 7.7   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 81574.700000 | 99.1  | 141.000000  | 50.000000 | 50.000000 | True  | 5.7   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 2304.945000  | 92.1  | 8.430000    | 1.750000 | 1.750000 | True  | 5.8   | LOCAL+PSYCHO:active:2300 | True      | False      | range_pas_assez_bas, pas_micro_rejet
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=81.9>=75.0
+US500      | OPEN_L1      | SELL | entry=7498.300000 | size=0.150000 | tp=0.2000
+US100      | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=89.1>=75.0
+US100      | OPEN_L1      | SELL | entry=29589.200000 | size=0.042000 | tp=0.2000
+US30       | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+DE40       | IDLE         | aucun signal
+FR40       | IDLE         | aucun signal
+UK100      | IDLE         | aucun signal
+J225       | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+GBPUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+USDJPY     | IDLE         | aucun signal
+EURJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+GOLD       | IDLE         | aucun signal
+SILVER     | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-3 | phase=TREND_UP | vwap=BUY | trigger_M1:+1; zone_active:+1; micro_rejet:+1; vwap_contre:-2; PHASE_VETO_sell_contre_trend_up:-4
+OIL_CRUDE  | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=100.0>=75.0
+OIL_CRUDE  | OPEN_L1      | SELL | entry=97.961000 | size=4.000000 | tp=0.2000
+BTCUSD     | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=99.1>=75.0
+BTCUSD     | OPEN_L1      | SELL | entry=81549.700000 | size=0.001800 | tp=0.2000
+ETHUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 10
+- US500      L1 SELL size=0.15 cycle=f080370b-a2b
+- US100      L1 SELL size=0.042 cycle=f8aeed19-cc0
+- US30       L1 SELL size=0.024 cycle=011091c6-01b
+- J225       L1 SELL size=1.5 cycle=0d45c311-829
+- EURUSD     L1 SELL size=450.0 cycle=79292f6c-f20
+- GBPUSD     L1 BUY size=1200.0 cycle=a9e8b380-48b
+- EURJPY     L1 BUY size=1800.0 cycle=d7232e7f-220
+- OIL_CRUDE  L1 SELL size=4.0 cycle=ad41e3a0-10b
+- BTCUSD     L1 SELL size=0.0018 cycle=6d1195b4-e7a
+- ETHUSD     L1 SELL size=0.06 cycle=ab9c958f-dfe
+Deals réels DEMO suivis : 18
+- US30       L1 SELL size=0.024 dealId=None
+- US30       L2 SELL size=0.048 dealId=None
+- US30       L3 SELL size=0.07200000000000001 dealId=None
+- J225       L1 SELL size=1.5 dealId=None
+- J225       L2 SELL size=3.0 dealId=None
+- J225       L3 SELL size=4.5 dealId=None
+- EURUSD     L1 SELL size=450.0 dealId=None
+- EURUSD     L2 SELL size=900.0 dealId=None
+- EURUSD     L3 SELL size=1350.0 dealId=None
+- GBPUSD     L1 BUY size=1200.0 dealId=None
+- GBPUSD     L2 BUY size=2400.0 dealId=None
+- GBPUSD     L3 BUY size=3600.0 dealId=None
+- EURJPY     L1 BUY size=1800.0 dealId=None
+- EURJPY     L2 BUY size=3600.0 dealId=None
+- EURJPY     L3 BUY size=5400.0 dealId=None
+- ETHUSD     L1 SELL size=0.06 dealId=None
+- ETHUSD     L2 SELL size=0.12 dealId=None
+- ETHUSD     L3 SELL size=0.18 dealId=None
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=2361.31 max=3100.0 available=1151.56 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=29.33397 required=10.00000 ratio=2.933 ok=True abs_min=10.00000 spread_min=1.20000
+US500      | PRICE_AUDIT | SELL | stream_bid=7498.3 stream_ask=7498.7 snapshot_bid=7498.4 snapshot_ask=7498.8 BB_LOW=7485.163016670084 BB_MID=7499.829999999999 BB_HIGH=7514.496983329914 L1=7514.9 L2=7518.9 L3=7522.9 dist=16.099999999999454
+US500      | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | SELL | L1=7514.9 L2=7518.9 L3=7522.9 | DEMO_SAMPLE | distance=16.2000000000 max_dist=3.2000000000 ordre autorise
+US500      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=7485.16302 BB_MID=7499.83000 BB_HIGH=7514.49698 width=29.33397 required=10.00000 L1=7514.9 L2=7518.9 L3=7522.9 dist=16.2000000000 max_dist=3.2000000000 dist_ratio=5.062
+US500      | BOLLINGER_M5 | SELL | BB_LOW=7485.16302 | BB_MID=7499.83000 | BB_HIGH=7514.49698 | L1=7514.9 | L2=7518.9 | L3=7522.9 | BUFFER=0.4 | STEP=4.0
+US500      | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=7514.900000 stopLevel≈7554.900000 stopDistance=40.000000 step=4.000000 spread=0.400000 minStop=0.100000
+US500      | LIMIT_REQUEST | 1   | SELL | 0.150000   | TRADEABLE | {"epic": "US500", "direction": "SELL", "size": 0.15, "guaranteedStop": true, "stopDistance": 40.0, "type": "LIMIT", "level": 7514.9}
+US500      | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=7514.9
+US500      | LIMIT_OK      | 1   | SELL | 0.150000   | TRADEABLE | ref=o_9e3f...f49e limit=7514.9
+US500      | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=7518.900000 stopLevel≈7554.900000 stopDistance=36.000000 step=4.000000 spread=0.400000 minStop=0.100000
+US500      | LIMIT_REQUEST | 2   | SELL | 0.300000   | TRADEABLE | {"epic": "US500", "direction": "SELL", "size": 0.3, "guaranteedStop": true, "stopDistance": 36.0, "type": "LIMIT", "level": 7518.9}
+US500      | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=7518.9
+US500      | LIMIT_OK      | 2   | SELL | 0.300000   | TRADEABLE | ref=o_fd5a...5700 limit=7518.9
+US500      | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=7522.900000 stopLevel≈7554.900000 stopDistance=32.000000 step=4.000000 spread=0.400000 minStop=0.100000
+US500      | LIMIT_REQUEST | 3   | SELL | 0.450000   | TRADEABLE | {"epic": "US500", "direction": "SELL", "size": 0.44999999999999996, "guaranteedStop": true, "stopDistance": 32.0, "type": "LIMIT", "level": 7522.9}
+US500      | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=7522.9
+US500      | LIMIT_OK      | 3   | SELL | 0.450000   | TRADEABLE | ref=o_e56f...ac9f limit=7522.9
+US500      | BASKET_NEW  | 1-3 | SELL | 0.150000   | TRADEABLE | LIMITS posés=3 rejetés=0
+US100      | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=174.99590 required=30.00000 ratio=5.833 ok=True abs_min=30.00000 spread_min=5.40000
+US100      | PRICE_AUDIT | SELL | stream_bid=29589.2 stream_ask=29591.0 snapshot_bid=29584.1 snapshot_ask=29585.9 BB_LOW=29514.19204802397 BB_MID=29601.690000000002 BB_HIGH=29689.187951976033 L1=29689.6 L2=29701.6 L3=29713.6 dist=103.69999999999709
+US100      | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | SELL | L1=29689.6 L2=29701.6 L3=29713.6 | DEMO_SAMPLE | distance=98.6000000000 max_dist=6.4000000000 ordre autorise
+US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29514.19205 BB_MID=29601.69000 BB_HIGH=29689.18795 width=174.99590 required=30.00000 L1=29689.6 L2=29701.6 L3=29713.6 dist=98.6000000000 max_dist=6.4000000000 dist_ratio=15.406
+US100      | BOLLINGER_M5 | SELL | BB_LOW=29514.19205 | BB_MID=29601.69000 | BB_HIGH=29689.18795 | L1=29689.6 | L2=29701.6 | L3=29713.6 | BUFFER=0.4 | STEP=12.0
+US100      | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=29689.6 L2=29701.6 dist=98.6000000000 step=12.0000000000 max_allowed=96.0000000000 dist_step_ratio=8.217 mult=8.000 old_max_dist=6.4 aucun ordre envoye
+US30       | BASKET_ID_OK | 1   | SELL | 0.024000   | TRADEABLE | workingId=174f8d...66de
+US30       | BASKET_ID_OK | 2   | SELL | 0.048000   | TRADEABLE | workingId=174f8d...66df
+US30       | BASKET_ID_OK | 3   | SELL | 0.072000   | TRADEABLE | workingId=174f8d...66e0
+US30       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | BASKET_ID_OK | 1   | SELL | 1.500000   | TRADEABLE | workingId=002b7d...4ff9
+J225       | BASKET_ID_OK | 2   | SELL | 3.000000   | TRADEABLE | workingId=002b7d...4ffa
+J225       | BASKET_ID_OK | 3   | SELL | 4.500000   | TRADEABLE | workingId=002b7d...4ffb
+J225       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+EURUSD     | BASKET_ID_OK | 2   | SELL | 900.000000 | TRADEABLE | workingId=000055...753a
+EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+GBPUSD     | BASKET_ID_OK | 1   | BUY  | 1200.000000 | TRADEABLE | workingId=000070...212f
+GBPUSD     | BASKET_ID_OK | 2   | BUY  | 2400.000000 | TRADEABLE | workingId=000070...2130
+GBPUSD     | BASKET_ID_OK | 3   | BUY  | 3600.000000 | TRADEABLE | workingId=000070...2131
+GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | BASKET_ID_OK | 1   | BUY  | 1800.000000 | TRADEABLE | workingId=000055...06f5
+EURJPY     | BASKET_ID_OK | 2   | BUY  | 3600.000000 | TRADEABLE | workingId=000055...06f6
+EURJPY     | BASKET_ID_OK | 3   | BUY  | 5400.000000 | TRADEABLE | workingId=000055...06f7
+EURJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+OIL_CRUDE  | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=1.36536 required=0.50000 ratio=2.731 ok=True abs_min=0.50000 spread_min=0.12000
+OIL_CRUDE  | PRICE_AUDIT | SELL | stream_bid=97.961 stream_ask=97.993 snapshot_bid=97.836 snapshot_ask=97.876 BB_LOW=96.73586984795222 BB_MID=97.41855000000001 BB_HIGH=98.1012301520478 L1=98.11 L2=98.31 L3=98.51 dist=0.23399999999999466
+OIL_CRUDE  | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=96.73587 BB_MID=97.41855 BB_HIGH=98.10123 width=1.36536 required=0.50000 L1=98.11 L2=98.31 L3=98.51 dist=0.1170000000 max_dist=0.5000000000 dist_ratio=0.234
+OIL_CRUDE  | BOLLINGER_M5 | SELL | BB_LOW=96.73587 | BB_MID=97.41855 | BB_HIGH=98.10123 | L1=98.11 | L2=98.31 | L3=98.51 | BUFFER=0.008000000000000002 | STEP=0.2
+OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=98.110000 stopLevel≈100.110000 stopDistance=2.001000 step=0.200000 spread=0.040000 minStop=1.500000
+OIL_CRUDE  | LIMIT_REQUEST | 1   | SELL | 4.000000   | TRADEABLE | {"epic": "OIL_CRUDE", "direction": "SELL", "size": 4.0, "guaranteedStop": true, "stopDistance": 2.001, "type": "LIMIT", "level": 98.11}
+OIL_CRUDE  | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=98.11
+OIL_CRUDE  | V24_STOP_GUARD | guaranteedStop=false | stopDistance=2.001
+OIL_CRUDE  | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+OIL_CRUDE  | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_4be33d10-d121-4976-88fb-bffa6a9a9e24'}
+OIL_CRUDE  | LIMIT_OK      | 1   | SELL | 4.000000   | TRADEABLE | ref=o_4be3...9e24 limit=98.11
+OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=98.310000 stopLevel≈100.110000 stopDistance=1.801000 step=0.200000 spread=0.040000 minStop=1.500000
+OIL_CRUDE  | LIMIT_REQUEST | 2   | SELL | 8.000000   | TRADEABLE | {"epic": "OIL_CRUDE", "direction": "SELL", "size": 8.0, "guaranteedStop": true, "stopDistance": 1.801, "type": "LIMIT", "level": 98.31}
+OIL_CRUDE  | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=98.31
+OIL_CRUDE  | V24_STOP_GUARD | guaranteedStop=false | stopDistance=1.801
+OIL_CRUDE  | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+OIL_CRUDE  | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_1ff0f97f-080a-4eaa-9584-9a4a11909f67'}
+OIL_CRUDE  | LIMIT_OK      | 2   | SELL | 8.000000   | TRADEABLE | ref=o_1ff0...9f67 limit=98.31
+OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=98.510000 stopLevel≈100.110000 stopDistance=1.601000 step=0.200000 spread=0.040000 minStop=1.500000
+OIL_CRUDE  | LIMIT_REQUEST | 3   | SELL | 12.000000  | TRADEABLE | {"epic": "OIL_CRUDE", "direction": "SELL", "size": 12.0, "guaranteedStop": true, "stopDistance": 1.601, "type": "LIMIT", "level": 98.51}
+OIL_CRUDE  | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | SELL | level=98.51
+OIL_CRUDE  | V24_STOP_GUARD | guaranteedStop=false | stopDistance=1.601
+OIL_CRUDE  | V24_WORKING_ORDER_RETRY | SELL | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+OIL_CRUDE  | V24_WORKING_ORDER_RETRY_RESULT | SELL | HTTP=200 data={'dealReference': 'o_73b695dd-d6eb-474b-8ab2-d43596cfda53'}
+OIL_CRUDE  | LIMIT_OK      | 3   | SELL | 12.000000  | TRADEABLE | ref=o_73b6...da53 limit=98.51
+OIL_CRUDE  | BASKET_NEW  | 1-3 | SELL | 4.000000   | TRADEABLE | LIMITS posés=3 rejetés=0
+BTCUSD     | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=775.74105 required=150.00000 ratio=5.172 ok=True abs_min=150.00000 spread_min=150.00000
+BTCUSD     | PRICE_AUDIT | SELL | stream_bid=81549.7 stream_ask=81599.7 snapshot_bid=81567.4 snapshot_ask=81617.4 BB_LOW=81173.24197408317 BB_MID=81561.1125 BB_HIGH=81948.98302591684 L1=81949.78 L2=81989.78 L3=82029.78 dist=332.38000000000466
+BTCUSD     | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | SELL | L1=81949.78 L2=81989.78 L3=82029.78 | DEMO_SAMPLE | distance=350.0800000000 max_dist=40.0000000000 ordre autorise
+BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=81173.24197 BB_MID=81561.11250 BB_HIGH=81948.98303 width=775.74105 required=150.00000 L1=81949.78 L2=81989.78 L3=82029.78 dist=350.0800000000 max_dist=40.0000000000 dist_ratio=8.752
+BTCUSD     | BOLLINGER_M5 | SELL | BB_LOW=81173.24197 | BB_MID=81561.11250 | BB_HIGH=81948.98303 | L1=81949.78 | L2=81989.78 | L3=82029.78 | BUFFER=0.8 | STEP=40.0
+BTCUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=81949.78 L2=81989.78 dist=350.0800000000 step=40.0000000000 max_allowed=320.0000000000 dist_step_ratio=8.752 mult=8.000 old_max_dist=40.0 aucun ordre envoye
+ETHUSD     | BASKET_ID_OK | 1   | SELL | 0.060000   | TRADEABLE | workingId=001542...3b8e
+ETHUSD     | BASKET_ID_OK | 2   | SELL | 0.120000   | TRADEABLE | workingId=001542...3b8f
+ETHUSD     | BASKET_ID_OK | 3   | SELL | 0.180000   | TRADEABLE | workingId=001542...3b90
+ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 3 — 2026-05-14T17:42:33Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 171s / seuil 7200s
+- zones age   : 138s / seuil 43200s
+- history age : 139s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-14 17:42:33,734 - INFO - ============================================================
+2026-05-14 17:42:33,734 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-14 17:42:33,734 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 17:42:33,734 - INFO - Nb actifs    : 16
+2026-05-14 17:42:33,734 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-14 17:42:33,735 - INFO - Durée test   : 45 sec
+2026-05-14 17:42:33,735 - INFO - ============================================================
+2026-05-14 17:42:33,919 - INFO - [SUBSCRIBE] envoyé
+2026-05-14 17:42:33,947 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}

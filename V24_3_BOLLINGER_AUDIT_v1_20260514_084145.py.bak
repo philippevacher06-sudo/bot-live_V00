@@ -1,0 +1,434 @@
+#!/usr/bin/env python3
+# V24_3_BOLLINGER_AUDIT.py
+# Audit Bollinger : bot vs recalcul depuis bougies API Capital.com.
+# Lecture seule. Aucun ordre. Aucun fichier modifié.
+
+import json
+import re
+import sys
+import statistics
+from pathlib import Path
+from datetime import datetime, timezone
+
+import requests
+
+import BOT_PIVOT_06G_execution_from_cycle_state as B
+
+
+ASSETS = [
+    "US500", "US100", "US30", "DE40", "FR40", "UK100", "J225",
+    "EURUSD", "GBPUSD", "USDJPY", "EURJPY",
+    "GOLD", "SILVER", "OIL_CRUDE", "BTCUSD", "ETHUSD",
+]
+
+PERIOD = 20
+MULT = 2.0
+
+# 0.01 % du BB_MID
+TOLERANCE_PCT = 0.0001
+
+LOG_GLOB = "logs/BOT_PIVOT_07D_24_7_DEMO_*.log"
+
+PRICE_AUDIT_RE = re.compile(
+    r"^(?P<asset>\S+)\s+\|\s+PRICE_AUDIT\s+\|.*?"
+    r"BB_LOW=(?P<bb_low>[0-9eE\.\+\-]+)\s+"
+    r"BB_MID=(?P<bb_mid>[0-9eE\.\+\-]+)\s+"
+    r"BB_HIGH=(?P<bb_high>[0-9eE\.\+\-]+)"
+)
+
+
+def latest_log():
+    logs = sorted(
+        Path(".").glob(LOG_GLOB),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    return logs[0] if logs else None
+
+
+def last_price_audit_per_asset(log_path):
+    out = {}
+
+    if not log_path or not log_path.exists():
+        return out
+
+    with log_path.open("r", encoding="utf-8", errors="ignore") as f:
+        for line in f:
+            m = PRICE_AUDIT_RE.search(line)
+            if not m:
+                continue
+
+            asset = m.group("asset").upper()
+
+            try:
+                out[asset] = {
+                    "bb_low": float(m.group("bb_low")),
+                    "bb_mid": float(m.group("bb_mid")),
+                    "bb_high": float(m.group("bb_high")),
+                    "line": line.strip(),
+                }
+            except Exception:
+                pass
+
+    return out
+
+
+def extract_close(close_price_field):
+    """
+    Reproduit la logique attendue du bot :
+    - si closePrice contient bid + ask : close = mid
+    - sinon fallback bid, ask, lastTraded, mid, close
+    """
+
+    if isinstance(close_price_field, dict):
+        bid = close_price_field.get("bid")
+        ask = close_price_field.get("ask")
+
+        if bid is not None and ask is not None:
+            return (float(bid) + float(ask)) / 2.0, "mid_from_bid_ask"
+
+        if bid is not None:
+            return float(bid), "bid_only"
+
+        if ask is not None:
+            return float(ask), "ask_only"
+
+        for k in ("lastTraded", "mid", "close"):
+            if close_price_field.get(k) is not None:
+                return float(close_price_field[k]), f"field_{k}"
+
+        return None, "unknown_dict"
+
+    try:
+        return float(close_price_field), "scalar"
+    except Exception:
+        return None, "unparseable"
+
+
+def fetch_m5_candles(headers, base_url, asset, max_candles=30):
+    url = f"{base_url.rstrip('/')}/api/v1/prices/{asset}"
+    params = {
+        "resolution": "MINUTE_5",
+        "max": max_candles,
+    }
+
+    try:
+        r = requests.get(url, headers=headers, params=params, timeout=20)
+    except Exception as e:
+        return None, f"REQUEST_ERROR:{e}", None
+
+    if r.status_code != 200:
+        try:
+            txt = r.text[:300]
+        except Exception:
+            txt = ""
+        return None, f"HTTP_{r.status_code}:{txt}", None
+
+    try:
+        data = r.json()
+    except Exception as e:
+        return None, f"JSON_ERROR:{e}", None
+
+    prices = data.get("prices") or []
+
+    candles = []
+    source_seen = set()
+
+    for item in prices:
+        close_value, src = extract_close(item.get("closePrice"))
+
+        if close_value is None:
+            continue
+
+        t = item.get("snapshotTimeUTC") or item.get("snapshotTime") or ""
+
+        candles.append({
+            "time": t,
+            "close": close_value,
+            "src": src,
+        })
+
+        source_seen.add(src)
+
+    # Par sécurité : tri chronologique si le champ temps existe.
+    candles = sorted(candles, key=lambda x: x.get("time") or "")
+
+    closes = [c["close"] for c in candles]
+    last_time = candles[-1]["time"] if candles else None
+    src_label = ",".join(sorted(source_seen)) or "none"
+
+    return closes, src_label, last_time
+
+
+def bollinger(closes, period=20, mult=2.0, ddof=0):
+    if len(closes) < period:
+        return None
+
+    window = closes[-period:]
+    mid = sum(window) / period
+
+    if ddof == 0:
+        sd = statistics.pstdev(window)
+    else:
+        sd = statistics.stdev(window)
+
+    return mid - mult * sd, mid, mid + mult * sd
+
+
+def fmt(x, decimals=6):
+    if x is None:
+        return "--"
+    return f"{x:.{decimals}f}"
+
+
+def classify(bot, incl, excl, tol_pct):
+    if bot is None or (incl is None and excl is None):
+        return "NO_DATA"
+
+    bot_mid = bot["bb_mid"]
+
+    if bot_mid == 0:
+        return "NO_DATA"
+
+    tol = abs(bot_mid) * tol_pct
+
+    def match(bot_vals, audit_vals):
+        if audit_vals is None:
+            return False
+
+        bot_low = bot_vals["bb_low"]
+        bot_mid = bot_vals["bb_mid"]
+        bot_high = bot_vals["bb_high"]
+
+        audit_low, audit_mid, audit_high = audit_vals
+
+        return all(
+            abs(a - b) <= tol
+            for a, b in [
+                (audit_low, bot_low),
+                (audit_mid, bot_mid),
+                (audit_high, bot_high),
+            ]
+        )
+
+    incl_match = match(bot, incl)
+    excl_match = match(bot, excl)
+
+    if incl_match and not excl_match:
+        return "MATCH_INCL"
+
+    if excl_match and not incl_match:
+        return "MATCH_EXCL"
+
+    if incl_match and excl_match:
+        return "MATCH_BOTH"
+
+    return "MISMATCH"
+
+
+def max_abs_diff(bot, audit):
+    if bot is None or audit is None:
+        return None
+
+    audit_low, audit_mid, audit_high = audit
+
+    diffs = [
+        abs(bot["bb_low"] - audit_low),
+        abs(bot["bb_mid"] - audit_mid),
+        abs(bot["bb_high"] - audit_high),
+    ]
+
+    return max(diffs)
+
+
+def decimals_for(ref):
+    if ref is None:
+        return 6
+
+    ref = abs(float(ref))
+
+    if ref < 10:
+        return 6
+
+    if ref < 1000:
+        return 4
+
+    return 2
+
+
+def main():
+    print("=" * 120)
+    print("V24.3 BOLLINGER AUDIT — BOT vs recalcul depuis bougies API Capital.com")
+    print("Lecture seule : aucun ordre, aucune modification de fichier.")
+    print(f"UTC                : {datetime.now(timezone.utc).replace(microsecond=0).isoformat()}")
+    print(f"Période Bollinger  : {PERIOD}")
+    print(f"Multiplicateur     : {MULT}")
+    print(f"Tolérance MATCH    : {TOLERANCE_PCT * 100:.5f}% du BB_MID")
+    print("=" * 120)
+
+    B.load_env()
+    headers = B.login()
+    base_url = getattr(B, "BASE_URL", "https://demo-api-capital.backend-capital.com")
+
+    log_path = latest_log()
+    print(f"LOG utilisé        : {log_path}")
+
+    bot_audits = last_price_audit_per_asset(log_path)
+    print(f"PRICE_AUDIT trouvés: {len(bot_audits)} actif(s)")
+    print()
+
+    header = (
+        f"{'ACTIF':10s} "
+        f"{'src_close':18s} "
+        f"{'last_candle':22s} "
+        f"{'n':>3s} | "
+        f"{'BOT_LOW':>14s} {'INCL_LOW':>14s} {'EXCL_LOW':>14s} | "
+        f"{'BOT_MID':>14s} {'INCL_MID':>14s} {'EXCL_MID':>14s} | "
+        f"{'BOT_HIGH':>14s} {'INCL_HIGH':>14s} {'EXCL_HIGH':>14s} | "
+        f"{'diff_incl':>11s} {'diff_excl':>11s} | "
+        f"{'STATUS':>16s}"
+    )
+
+    print(header)
+    print("-" * len(header))
+
+    summary = {
+        "MATCH_INCL": 0,
+        "MATCH_EXCL": 0,
+        "MATCH_BOTH": 0,
+        "MISMATCH": 0,
+        "NO_DATA": 0,
+    }
+
+    detailed_statuses = []
+
+    for asset in ASSETS:
+        closes, src, last_time = fetch_m5_candles(
+            headers=headers,
+            base_url=base_url,
+            asset=asset,
+            max_candles=30,
+        )
+
+        if closes is None:
+            print(
+                f"{asset:10s} "
+                f"{src[:18]:18s} "
+                f"{'--':22s} "
+                f"{0:3d} | "
+                f"{'API_ERROR':>14s} {'--':>14s} {'--':>14s} | "
+                f"{'--':>14s} {'--':>14s} {'--':>14s} | "
+                f"{'--':>14s} {'--':>14s} {'--':>14s} | "
+                f"{'--':>11s} {'--':>11s} | "
+                f"{'NO_DATA':>16s}"
+            )
+            summary["NO_DATA"] += 1
+            detailed_statuses.append((asset, "NO_DATA", src))
+            continue
+
+        if len(closes) < PERIOD + 1:
+            print(
+                f"{asset:10s} "
+                f"{src[:18]:18s} "
+                f"{(last_time or '--')[:22]:22s} "
+                f"{len(closes):3d} | "
+                f"{'INSUFF_CANDLES':>14s} {'--':>14s} {'--':>14s} | "
+                f"{'--':>14s} {'--':>14s} {'--':>14s} | "
+                f"{'--':>14s} {'--':>14s} {'--':>14s} | "
+                f"{'--':>11s} {'--':>11s} | "
+                f"{'NO_DATA':>16s}"
+            )
+            summary["NO_DATA"] += 1
+            detailed_statuses.append((asset, "NO_DATA", "insufficient candles"))
+            continue
+
+        bot = bot_audits.get(asset)
+
+        # Population stddev : pstdev, ddof=0
+        incl_pop = bollinger(closes, PERIOD, MULT, ddof=0)
+        excl_pop = bollinger(closes[:-1], PERIOD, MULT, ddof=0)
+
+        status = classify(bot, incl_pop, excl_pop, TOLERANCE_PCT)
+
+        # Si mismatch avec pstdev, on teste stdev sample pour diagnostic.
+        sample_suffix = ""
+
+        if status == "MISMATCH" and bot is not None:
+            incl_sample = bollinger(closes, PERIOD, MULT, ddof=1)
+            excl_sample = bollinger(closes[:-1], PERIOD, MULT, ddof=1)
+            sample_status = classify(bot, incl_sample, excl_sample, TOLERANCE_PCT)
+
+            if sample_status.startswith("MATCH"):
+                status = sample_status
+                sample_suffix = "_SAMPLE"
+
+        if sample_suffix and not status.endswith("_SAMPLE"):
+            status = status + "_SAMPLE"
+
+        ref_mid = (
+            bot["bb_mid"]
+            if bot is not None
+            else incl_pop[1]
+            if incl_pop is not None
+            else None
+        )
+
+        dec = decimals_for(ref_mid)
+
+        bot_low = bot["bb_low"] if bot else None
+        bot_mid = bot["bb_mid"] if bot else None
+        bot_high = bot["bb_high"] if bot else None
+
+        incl_low, incl_mid, incl_high = incl_pop if incl_pop else (None, None, None)
+        excl_low, excl_mid, excl_high = excl_pop if excl_pop else (None, None, None)
+
+        diff_incl = max_abs_diff(bot, incl_pop)
+        diff_excl = max_abs_diff(bot, excl_pop)
+
+        print(
+            f"{asset:10s} "
+            f"{src[:18]:18s} "
+            f"{(last_time or '--')[:22]:22s} "
+            f"{len(closes):3d} | "
+            f"{fmt(bot_low, dec):>14s} {fmt(incl_low, dec):>14s} {fmt(excl_low, dec):>14s} | "
+            f"{fmt(bot_mid, dec):>14s} {fmt(incl_mid, dec):>14s} {fmt(excl_mid, dec):>14s} | "
+            f"{fmt(bot_high, dec):>14s} {fmt(incl_high, dec):>14s} {fmt(excl_high, dec):>14s} | "
+            f"{fmt(diff_incl, dec):>11s} {fmt(diff_excl, dec):>11s} | "
+            f"{status:>16s}"
+        )
+
+        key = status.replace("_SAMPLE", "")
+        summary[key] = summary.get(key, 0) + 1
+        detailed_statuses.append((asset, status, ""))
+
+    print("-" * len(header))
+    print()
+    print("RÉSUMÉ :")
+    for k, v in summary.items():
+        print(f"  {k:14s}: {v}")
+
+    print()
+    print("DÉTAIL STATUTS :")
+    for asset, status, note in detailed_statuses:
+        if note:
+            print(f"  {asset:10s}: {status} — {note}")
+        else:
+            print(f"  {asset:10s}: {status}")
+
+    print()
+    print("LECTURE RAPIDE :")
+    print("  MATCH_INCL  : le bot matche le calcul avec la dernière bougie M5 incluse.")
+    print("  MATCH_EXCL  : le bot matche le calcul avec la dernière bougie M5 exclue.")
+    print("  MATCH_BOTH  : les deux calculs sont équivalents dans la tolérance.")
+    print("  MISMATCH    : écart réel à analyser.")
+    print("  _SAMPLE     : match seulement avec écart-type sample ddof=1.")
+    print()
+    print("Note importante : si le dernier PRICE_AUDIT du log est ancien,")
+    print("la comparaison peut diverger simplement parce que les bougies API ont évolué depuis.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        sys.exit(130)

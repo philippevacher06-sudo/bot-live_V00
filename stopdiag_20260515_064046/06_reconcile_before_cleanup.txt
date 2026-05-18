@@ -1,0 +1,29 @@
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | L1 SELL size=0.15          | SELL open=0 pending=3 other=0 cycle=f080370b-a2b | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | L1 SELL size=0.024         | SELL open=0 pending=3 other=0 cycle=011091c6-01b | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER, LOCAL_WORKING_ID_ABSENT_PENDING
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | L1 SELL size=1.5           | SELL open=0 pending=3 other=0 cycle=0d45c311-829 | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER, LOCAL_WORKING_ID_ABSENT_PENDING
+EURUSD     |   0 |    0 | L1 SELL size=450.0         | SELL open=0 pending=3 other=0 cycle=79292f6c-f20 | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER, LOCAL_WORKING_ID_ABSENT_PENDING
+GBPUSD     |   0 |    0 | L1 BUY size=1200.0         | BUY open=0 pending=3 other=0 cycle=a9e8b380-48b | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER, LOCAL_WORKING_ID_ABSENT_PENDING
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | L1 BUY size=1800.0         | BUY open=0 pending=3 other=0 cycle=d7232e7f-220 | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER, LOCAL_WORKING_ID_ABSENT_PENDING
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | L1 SELL size=4.0           | SELL open=0 pending=3 other=0 cycle=ad41e3a0-10b | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | L1 SELL size=0.06          | SELL open=0 pending=3 other=0 cycle=ab9c958f-dfe | LOCAL_ACTIVE_SANS_BROKER, LOCAL_PENDING_ABSENT_BROKER, LOCAL_WORKING_ID_ABSENT_PENDING
+============================================================================================================================================

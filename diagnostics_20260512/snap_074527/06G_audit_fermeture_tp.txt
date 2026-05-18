@@ -1,0 +1,608 @@
+=== AUDIT 06G FERMETURE / OUVERTURE / TP ===
+
+=== GREP GLOBAL 06G ===
+32:def utc():
+35:def load_json(path, default):
+43:def save_json(path, data):
+48:def reset_cycle_after_reject(asset, reason, broker_response=None):
+51:    si Capital.com refuse l'ordre ou si aucun dealId n'est confirmé,
+74:def event(e):
+80:def load_env():
+91:def login():
+127:def api_get(headers, endpoint):
+134:def api_post(headers, endpoint, payload):
+148:def api_delete(headers, endpoint):
+161:def get_market(asset):
+164:        return {"status": "UNKNOWN", "min_size": None}
+174:        min_size = min_deal.get("value")
+176:        min_size = min_deal or instrument.get("minDealSize")
+187:        "min_size": float(min_size) if min_size is not None else None,
+190:def broker_positions(headers):
+191:    status, data = api_get(headers, "/api/v1/positions")
+192:    return status, data.get("positions", []), data
+194:def broker_position_epic(item):
+199:def broker_position_deal_id(item):
+201:    return p.get("dealId")
+203:def broker_has_asset(asset, positions):
+204:    for item in positions:
+209:def _rule_value(rule):
+222:def _round_up_to_step(value, step):
+238:def _market_json(asset):
+254:def _market_mid_price(market):
+272:def guaranteed_stop_distance(asset):
+277:    allowed = instrument.get("guaranteedStopAllowed")
+313:def build_open_payload(cycle):
+315:    direction = cycle["direction"]
+316:    size = float(cycle["size"])
+322:        "direction": direction,
+323:        "size": size,
+324:        "guaranteedStop": True,
+325:        "stopDistance": stop_distance,
+328:def parse_confirm(confirm):
+329:    if not isinstance(confirm, dict):
+333:        confirm.get("dealId")
+334:        or confirm.get("affectedDeals", [{}])[0].get("dealId")
+335:        if confirm.get("affectedDeals")
+339:def current_cycles():
+350:def execute_from_cycle(headers, assets):
+355:        status, positions, _ = broker_positions(headers)
+358:        positions = []
+378:                deal_id = active_exec.get("dealId")
+380:                    status, data = api_delete(headers, f"/api/v1/positions/{deal_id}")
+385:                        "dealId": deal_id,
+391:                    print(f"{asset:10s} | CLOSE_IDLE      | --  | --   | --         | --        | dealId={deal_id}")
+393:                    print(f"{asset:10s} | CLEAR_LOCAL     | --  | --   | --         | --        | actif sans cycle, dealId manquant")
+408:        direction = cycle["direction"]
+409:        size = float(cycle["size"])
+413:        min_size = market["min_size"]
+417:            print(f"{asset:10s} | SKIP_MARKET     | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | marché non tradeable")
+421:        if min_size is None or size < min_size:
+422:            print(f"{asset:10s} | SKIP_SIZE       | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | min broker={min_size}")
+431:                print(f"{asset:10s} | HOLD_EXECUTED   | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | niveau déjà exécuté")
+435:            old_deal_id = active_exec.get("dealId")
+438:                status, data = api_delete(headers, f"/api/v1/positions/{old_deal_id}")
+445:                    "dealId": old_deal_id,
+451:                print(f"{asset:10s} | CLOSE_OLD_LVL   | {active_exec.get('level')}->{level:<1} | {direction:4s} | {size:<10.6f} | {market_status:9s} | close dealId={old_deal_id}")
+453:                print(f"{asset:10s} | NEED_CLOSE      | {active_exec.get('level')}->{level:<1} | {direction:4s} | {size:<10.6f} | {market_status:9s} | ancien niveau sans dealId")
+465:        if broker_has_asset(asset, positions) and not active_exec:
+466:            print(f"{asset:10s} | SKIP_BROKERPOS  | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | position broker déjà présente")
+471:        status, data = api_post(headers, "/api/v1/positions", payload)
+474:            "event": "OPEN_FROM_CYCLE",
+478:            "direction": direction,
+479:            "size": size,
+487:            f"{asset:10s} | OPEN_FROM_CYC  | "
+489:            f"{direction:4s} | "
+490:            f"{size:<10.6f} | "
+496:        # En réel : dealReference + confirm.
+497:        # En DRY_RUN : faux dealId local pour éviter de rouvrir le même niveau à chaque boucle.
+499:            deal_ref = data.get("dealReference") if isinstance(data, dict) else None
+500:            confirm_status = None
+501:            confirm = None
+508:                    f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+517:                    "direction": direction,
+518:                    "size": size,
+530:                    "direction": direction,
+531:                    "size": size,
+547:                    f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+548:                    f"{market_status:9s} | pas de dealReference"
+556:                    "direction": direction,
+557:                    "size": size,
+569:                    "direction": direction,
+570:                    "size": size,
+582:            confirm_status, confirm = api_get(headers, f"/api/v1/confirms/{deal_ref}")
+583:            deal_id = parse_confirm(confirm)
+589:                    f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+590:                    f"{market_status:9s} | confirm sans dealId"
+598:                    "direction": direction,
+599:                    "size": size,
+604:                    "dealReference": deal_ref,
+605:                    "confirm_status": confirm_status,
+606:                    "confirm": confirm,
+614:                    "direction": direction,
+615:                    "size": size,
+617:                    "dealReference": deal_ref,
+618:                    "confirm_status": confirm_status,
+619:                    "confirm": confirm,
+626:                reset_cycle_after_reject(asset, reason, confirm)
+633:                "direction": direction,
+634:                "size": size,
+635:                "dealReference": deal_ref,
+636:                "dealId": deal_id,
+638:                "confirm_status": confirm_status,
+639:                "confirm": confirm,
+644:            dry_deal_id = f"DRY_{asset}_L{level}_{direction}_{cycle.get('cycle_id')}"
+649:                "direction": direction,
+650:                "size": size,
+651:                "dealReference": None,
+652:                "dealId": dry_deal_id,
+654:                "confirm_status": "DRY_RUN",
+655:                "confirm": {"DRY_RUN": True},
+669:def show_cycle_state(assets):
+688:            f"{c['direction']:4s} | "
+689:            f"{float(c['size']):<10.6f} | "
+691:            f"{float(c['tp_eur']):<8.4f} | "
+697:def parse_assets(raw):
+702:def main():
+
+=== EXTRAIT 06G LIGNES 250-380 : PAYLOAD OPEN ===
+   250	
+   251	    return market
+   252	
+   253	
+   254	def _market_mid_price(market):
+   255	    snapshot = market.get("snapshot", {}) if isinstance(market, dict) else {}
+   256	
+   257	    bid = snapshot.get("bid")
+   258	    ask = snapshot.get("offer") or snapshot.get("ask") or snapshot.get("ofr")
+   259	
+   260	    if bid is not None and ask is not None:
+   261	        return (float(bid) + float(ask)) / 2.0
+   262	
+   263	    if bid is not None:
+   264	        return float(bid)
+   265	
+   266	    if ask is not None:
+   267	        return float(ask)
+   268	
+   269	    raise RuntimeError("Prix bid/ask introuvable pour calcul stop garanti")
+   270	
+   271	
+   272	def guaranteed_stop_distance(asset):
+   273	    market = _market_json(asset)
+   274	    rules = market.get("dealingRules", {}) or {}
+   275	    instrument = market.get("instrument", {}) or {}
+   276	
+   277	    allowed = instrument.get("guaranteedStopAllowed")
+   278	    if allowed is False:
+   279	        raise RuntimeError(f"Stop garanti non autorisé pour {asset}")
+   280	
+   281	    min_rule = (
+   282	        rules.get("minGuaranteedStopDistance")
+   283	        or rules.get("minControlledRiskStopDistance")
+   284	        or rules.get("minStopOrProfitDistance")
+   285	    )
+   286	
+   287	    min_value, min_unit = _rule_value(min_rule)
+   288	
+   289	    if min_value is None:
+   290	        raise RuntimeError(f"Distance minimale de stop garanti introuvable pour {asset}")
+   291	
+   292	    price = _market_mid_price(market)
+   293	
+   294	    if "PERCENT" in min_unit:
+   295	        distance = price * float(min_value) / 100.0
+   296	    else:
+   297	        distance = float(min_value)
+   298	
+   299	    # Marge de sécurité pour éviter un rejet si le prix bouge entre calcul et ordre.
+   300	    safety_mult = float(getattr(CFG, "GUARANTEED_STOP_SAFETY_MULT", 1.20))
+   301	    distance *= safety_mult
+   302	
+   303	    step_value, step_unit = _rule_value(rules.get("minStepDistance"))
+   304	
+   305	    if step_value is not None:
+   306	        distance = _round_up_to_step(distance, float(step_value))
+   307	    else:
+   308	        distance = round(distance, 10)
+   309	
+   310	    return distance
+   311	
+   312	
+   313	def build_open_payload(cycle):
+   314	    asset = cycle["asset"]
+   315	    direction = cycle["direction"]
+   316	    size = float(cycle["size"])
+   317	
+   318	    stop_distance = guaranteed_stop_distance(asset)
+   319	
+   320	    return {
+   321	        "epic": asset,
+   322	        "direction": direction,
+   323	        "size": size,
+   324	        "guaranteedStop": True,
+   325	        "stopDistance": stop_distance,
+   326	    }
+   327	
+   328	def parse_confirm(confirm):
+   329	    if not isinstance(confirm, dict):
+   330	        return None
+   331	
+   332	    return (
+   333	        confirm.get("dealId")
+   334	        or confirm.get("affectedDeals", [{}])[0].get("dealId")
+   335	        if confirm.get("affectedDeals")
+   336	        else None
+   337	    )
+   338	
+   339	def current_cycles():
+   340	    state = load_json(STATE_FILE, {"assets": {}})
+   341	    out = {}
+   342	
+   343	    for asset, slot in state.get("assets", {}).items():
+   344	        cycle = slot.get("cycle")
+   345	        if slot.get("status") == "IN_POSITION" and cycle:
+   346	            out[asset] = cycle
+   347	
+   348	    return out
+   349	
+   350	def execute_from_cycle(headers, assets):
+   351	    cycles = current_cycles()
+   352	    exec_state = load_json(EXEC_STATE_FILE, {"active": {}, "closed": []})
+   353	
+   354	    if SEND_REAL_ORDERS:
+   355	        status, positions, _ = broker_positions(headers)
+   356	    else:
+   357	        status = "SKIPPED_DRY_RUN_NO_LOGIN"
+   358	        positions = []
+   359	
+   360	    print()
+   361	    print("=" * 160)
+   362	    mode_label = "ORDRES DEMO ACTIFS" if SEND_REAL_ORDERS else "DRY_RUN"
+   363	    print(f"06G — EXECUTION DEPUIS CYCLE_STATE — {mode_label}")
+   364	    print("=" * 160)
+   365	    print("SEND_REAL_ORDERS =", SEND_REAL_ORDERS)
+   366	    print("Positions broker HTTP :", status)
+   367	    print("-" * 160)
+   368	    print("ACTIF      | ACTION          | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD")
+   369	    print("-" * 160)
+   370	
+   371	    for asset in assets:
+   372	        cycle = cycles.get(asset)
+   373	        active_exec = exec_state.get("active", {}).get(asset)
+   374	
+   375	        # 1. Aucun cycle ouvert côté module 05
+   376	        if not cycle:
+   377	            if active_exec:
+   378	                deal_id = active_exec.get("dealId")
+   379	                if deal_id:
+   380	                    status, data = api_delete(headers, f"/api/v1/positions/{deal_id}")
+
+=== EXTRAIT 06G LIGNES 380-560 : OPEN / CONFIRM ===
+   380	                    status, data = api_delete(headers, f"/api/v1/positions/{deal_id}")
+   381	
+   382	                    event({
+   383	                        "event": "CLOSE_BECAUSE_CYCLE_IDLE",
+   384	                        "asset": asset,
+   385	                        "dealId": deal_id,
+   386	                        "dry_run": not SEND_REAL_ORDERS,
+   387	                        "status": status,
+   388	                        "response": data,
+   389	                    })
+   390	
+   391	                    print(f"{asset:10s} | CLOSE_IDLE      | --  | --   | --         | --        | dealId={deal_id}")
+   392	                else:
+   393	                    print(f"{asset:10s} | CLEAR_LOCAL     | --  | --   | --         | --        | actif sans cycle, dealId manquant")
+   394	
+   395	                exec_state.setdefault("closed", []).append({
+   396	                    **active_exec,
+   397	                    "closed_reason": "CYCLE_IDLE",
+   398	                    "closed_utc": utc(),
+   399	                    "dry_run": not SEND_REAL_ORDERS,
+   400	                })
+   401	                exec_state.setdefault("active", {}).pop(asset, None)
+   402	
+   403	            else:
+   404	                print(f"{asset:10s} | IDLE            | --  | --   | --         | --        | aucun cycle")
+   405	            continue
+   406	
+   407	        level = int(cycle["level"])
+   408	        direction = cycle["direction"]
+   409	        size = float(cycle["size"])
+   410	
+   411	        market = get_market(asset)
+   412	        market_status = market["status"]
+   413	        min_size = market["min_size"]
+   414	
+   415	        # 2. Marché non tradable
+   416	        if market_status != "TRADEABLE":
+   417	            print(f"{asset:10s} | SKIP_MARKET     | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | marché non tradeable")
+   418	            continue
+   419	
+   420	        # 3. Taille non valide
+   421	        if min_size is None or size < min_size:
+   422	            print(f"{asset:10s} | SKIP_SIZE       | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | min broker={min_size}")
+   423	            continue
+   424	
+   425	        # 4. Déjà exécuté au même niveau
+   426	        if active_exec:
+   427	            same_cycle = active_exec.get("cycle_id") == cycle.get("cycle_id")
+   428	            same_level = int(active_exec.get("level", -1)) == level
+   429	
+   430	            if same_cycle and same_level:
+   431	                print(f"{asset:10s} | HOLD_EXECUTED   | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | niveau déjà exécuté")
+   432	                continue
+   433	
+   434	            # Niveau changé : il faut fermer l'ancien niveau avant d'ouvrir le nouveau.
+   435	            old_deal_id = active_exec.get("dealId")
+   436	
+   437	            if old_deal_id:
+   438	                status, data = api_delete(headers, f"/api/v1/positions/{old_deal_id}")
+   439	
+   440	                event({
+   441	                    "event": "CLOSE_OLD_LEVEL",
+   442	                    "asset": asset,
+   443	                    "old_level": active_exec.get("level"),
+   444	                    "new_level": level,
+   445	                    "dealId": old_deal_id,
+   446	                    "dry_run": not SEND_REAL_ORDERS,
+   447	                    "status": status,
+   448	                    "response": data,
+   449	                })
+   450	
+   451	                print(f"{asset:10s} | CLOSE_OLD_LVL   | {active_exec.get('level')}->{level:<1} | {direction:4s} | {size:<10.6f} | {market_status:9s} | close dealId={old_deal_id}")
+   452	            else:
+   453	                print(f"{asset:10s} | NEED_CLOSE      | {active_exec.get('level')}->{level:<1} | {direction:4s} | {size:<10.6f} | {market_status:9s} | ancien niveau sans dealId")
+   454	
+   455	            exec_state.setdefault("closed", []).append({
+   456	                **active_exec,
+   457	                "closed_reason": "LEVEL_CHANGED",
+   458	                "new_level": level,
+   459	                "closed_utc": utc(),
+   460	                "dry_run": not SEND_REAL_ORDERS,
+   461	            })
+   462	            exec_state.setdefault("active", {}).pop(asset, None)
+   463	
+   464	        # 5. Sécurité : si une position broker existe déjà sur cet actif et n'est pas suivie par BOT-PIVOT
+   465	        if broker_has_asset(asset, positions) and not active_exec:
+   466	            print(f"{asset:10s} | SKIP_BROKERPOS  | {level:<3} | {direction:4s} | {size:<10.6f} | {market_status:9s} | position broker déjà présente")
+   467	            continue
+   468	
+   469	        # 6. Préparer ouverture du niveau courant
+   470	        payload = build_open_payload(cycle)
+   471	        status, data = api_post(headers, "/api/v1/positions", payload)
+   472	
+   473	        event({
+   474	            "event": "OPEN_FROM_CYCLE",
+   475	            "asset": asset,
+   476	            "cycle_id": cycle.get("cycle_id"),
+   477	            "level": level,
+   478	            "direction": direction,
+   479	            "size": size,
+   480	            "dry_run": not SEND_REAL_ORDERS,
+   481	            "status": status,
+   482	            "payload": payload,
+   483	            "response": data,
+   484	        })
+   485	
+   486	        print(
+   487	            f"{asset:10s} | OPEN_FROM_CYC  | "
+   488	            f"{level:<3} | "
+   489	            f"{direction:4s} | "
+   490	            f"{size:<10.6f} | "
+   491	            f"{market_status:9s} | "
+   492	            f"{json.dumps(payload, ensure_ascii=False)}"
+   493	        )
+   494	
+   495	        # 7. Stockage exécution
+   496	        # En réel : dealReference + confirm.
+   497	        # En DRY_RUN : faux dealId local pour éviter de rouvrir le même niveau à chaque boucle.
+   498	        if SEND_REAL_ORDERS:
+   499	            deal_ref = data.get("dealReference") if isinstance(data, dict) else None
+   500	            confirm_status = None
+   501	            confirm = None
+   502	            deal_id = None
+   503	
+   504	            if status not in (200, 201):
+   505	                reason = f"OPEN_REJECT_HTTP_{status}"
+   506	                print(
+   507	                    f"{asset:10s} | OPEN_REJECT   | "
+   508	                    f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+   509	                    f"{market_status:9s} | HTTP {status} | {json.dumps(data, ensure_ascii=False)[:200]}"
+   510	                )
+   511	
+   512	                event({
+   513	                    "event": "OPEN_REJECT",
+   514	                    "asset": asset,
+   515	                    "cycle_id": cycle.get("cycle_id"),
+   516	                    "level": level,
+   517	                    "direction": direction,
+   518	                    "size": size,
+   519	                    "dry_run": False,
+   520	                    "status": status,
+   521	                    "payload": payload,
+   522	                    "response": data,
+   523	                    "reason": reason,
+   524	                })
+   525	
+   526	                exec_state.setdefault("rejected", []).append({
+   527	                    "asset": asset,
+   528	                    "cycle_id": cycle.get("cycle_id"),
+   529	                    "level": level,
+   530	                    "direction": direction,
+   531	                    "size": size,
+   532	                    "open_status": status,
+   533	                    "response": data,
+   534	                    "rejected_utc": utc(),
+   535	                    "reason": reason,
+   536	                    "dry_run": False,
+   537	                })
+   538	
+   539	                exec_state.setdefault("active", {}).pop(asset, None)
+   540	                reset_cycle_after_reject(asset, reason, data)
+   541	                continue
+   542	
+   543	            if not deal_ref:
+   544	                reason = "OPEN_REJECT_NO_DEAL_REFERENCE"
+   545	                print(
+   546	                    f"{asset:10s} | OPEN_REJECT   | "
+   547	                    f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+   548	                    f"{market_status:9s} | pas de dealReference"
+   549	                )
+   550	
+   551	                event({
+   552	                    "event": "OPEN_REJECT",
+   553	                    "asset": asset,
+   554	                    "cycle_id": cycle.get("cycle_id"),
+   555	                    "level": level,
+   556	                    "direction": direction,
+   557	                    "size": size,
+   558	                    "dry_run": False,
+   559	                    "status": status,
+   560	                    "payload": payload,
+
+=== EXTRAIT 06G LIGNES 560-760 : CLOSE / TABLEAU ===
+   560	                    "payload": payload,
+   561	                    "response": data,
+   562	                    "reason": reason,
+   563	                })
+   564	
+   565	                exec_state.setdefault("rejected", []).append({
+   566	                    "asset": asset,
+   567	                    "cycle_id": cycle.get("cycle_id"),
+   568	                    "level": level,
+   569	                    "direction": direction,
+   570	                    "size": size,
+   571	                    "open_status": status,
+   572	                    "response": data,
+   573	                    "rejected_utc": utc(),
+   574	                    "reason": reason,
+   575	                    "dry_run": False,
+   576	                })
+   577	
+   578	                exec_state.setdefault("active", {}).pop(asset, None)
+   579	                reset_cycle_after_reject(asset, reason, data)
+   580	                continue
+   581	
+   582	            confirm_status, confirm = api_get(headers, f"/api/v1/confirms/{deal_ref}")
+   583	            deal_id = parse_confirm(confirm)
+   584	
+   585	            if not deal_id:
+   586	                reason = "OPEN_REJECT_NO_CONFIRMED_DEALID"
+   587	                print(
+   588	                    f"{asset:10s} | OPEN_REJECT   | "
+   589	                    f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+   590	                    f"{market_status:9s} | confirm sans dealId"
+   591	                )
+   592	
+   593	                event({
+   594	                    "event": "OPEN_REJECT",
+   595	                    "asset": asset,
+   596	                    "cycle_id": cycle.get("cycle_id"),
+   597	                    "level": level,
+   598	                    "direction": direction,
+   599	                    "size": size,
+   600	                    "dry_run": False,
+   601	                    "status": status,
+   602	                    "payload": payload,
+   603	                    "response": data,
+   604	                    "dealReference": deal_ref,
+   605	                    "confirm_status": confirm_status,
+   606	                    "confirm": confirm,
+   607	                    "reason": reason,
+   608	                })
+   609	
+   610	                exec_state.setdefault("rejected", []).append({
+   611	                    "asset": asset,
+   612	                    "cycle_id": cycle.get("cycle_id"),
+   613	                    "level": level,
+   614	                    "direction": direction,
+   615	                    "size": size,
+   616	                    "open_status": status,
+   617	                    "dealReference": deal_ref,
+   618	                    "confirm_status": confirm_status,
+   619	                    "confirm": confirm,
+   620	                    "rejected_utc": utc(),
+   621	                    "reason": reason,
+   622	                    "dry_run": False,
+   623	                })
+   624	
+   625	                exec_state.setdefault("active", {}).pop(asset, None)
+   626	                reset_cycle_after_reject(asset, reason, confirm)
+   627	                continue
+   628	
+   629	            exec_state.setdefault("active", {})[asset] = {
+   630	                "asset": asset,
+   631	                "cycle_id": cycle.get("cycle_id"),
+   632	                "level": level,
+   633	                "direction": direction,
+   634	                "size": size,
+   635	                "dealReference": deal_ref,
+   636	                "dealId": deal_id,
+   637	                "open_status": status,
+   638	                "confirm_status": confirm_status,
+   639	                "confirm": confirm,
+   640	                "opened_utc": utc(),
+   641	                "dry_run": False,
+   642	            }
+   643	        else:
+   644	            dry_deal_id = f"DRY_{asset}_L{level}_{direction}_{cycle.get('cycle_id')}"
+   645	            exec_state.setdefault("active", {})[asset] = {
+   646	                "asset": asset,
+   647	                "cycle_id": cycle.get("cycle_id"),
+   648	                "level": level,
+   649	                "direction": direction,
+   650	                "size": size,
+   651	                "dealReference": None,
+   652	                "dealId": dry_deal_id,
+   653	                "open_status": "DRY_RUN",
+   654	                "confirm_status": "DRY_RUN",
+   655	                "confirm": {"DRY_RUN": True},
+   656	                "opened_utc": utc(),
+   657	                "dry_run": True,
+   658	            }
+   659	
+   660	    save_json(EXEC_STATE_FILE, exec_state)
+   661	
+   662	    print("=" * 160)
+   663	    if SEND_REAL_ORDERS:
+   664	        print("Mode ORDRES DEMO ACTIFS : aucun ordre envoyé si aucun cycle actif.")
+   665	    else:
+   666	        print("Aucun ordre réel envoyé tant que SEND_REAL_ORDERS=False.")
+   667	    print("Execution state :", EXEC_STATE_FILE)
+   668	
+   669	def show_cycle_state(assets):
+   670	    cycles = current_cycles()
+   671	
+   672	    print()
+   673	    print("=" * 130)
+   674	    print("06G — CYCLES ACTIFS DU MODULE 05")
+   675	    print("=" * 130)
+   676	    print("ACTIF      | LVL | DIR  | SIZE       | ENTRY        | TP €     | CYCLE")
+   677	    print("-" * 130)
+   678	
+   679	    for asset in assets:
+   680	        c = cycles.get(asset)
+   681	        if not c:
+   682	            print(f"{asset:10s} | --  | --   | --         | --           | --       | aucun cycle")
+   683	            continue
+   684	
+   685	        print(
+   686	            f"{asset:10s} | "
+   687	            f"{int(c['level']):<3} | "
+   688	            f"{c['direction']:4s} | "
+   689	            f"{float(c['size']):<10.6f} | "
+   690	            f"{float(c['entry_price']):<12.6f} | "
+   691	            f"{float(c['tp_eur']):<8.4f} | "
+   692	            f"{c.get('cycle_id')}"
+   693	        )
+   694	
+   695	    print("=" * 130)
+   696	
+   697	def parse_assets(raw):
+   698	    if raw.upper() == "ALL":
+   699	        return list(CFG.ASSETS)
+   700	    return [x.strip().upper() for x in raw.replace(";", ",").split(",") if x.strip()]
+   701	
+   702	def main():
+   703	    parser = argparse.ArgumentParser()
+   704	    parser.add_argument("--mode", choices=["status", "plan"], default="plan")
+   705	    parser.add_argument("--assets", default="ALL")
+   706	    args = parser.parse_args()
+   707	
+   708	    EXEC_DIR.mkdir(parents=True, exist_ok=True)
+   709	    assets = parse_assets(args.assets)
+   710	
+   711	    if args.mode == "status":
+   712	        show_cycle_state(assets)
+   713	        return
+   714	
+   715	    if SEND_REAL_ORDERS:
+   716	        load_env()
+   717	        headers = login()
+   718	    else:
+   719	        headers = None
+   720	
+   721	    execute_from_cycle(headers, assets)
+   722	
+   723	if __name__ == "__main__":
+   724	    main()

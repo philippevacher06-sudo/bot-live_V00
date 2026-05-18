@@ -1,0 +1,201 @@
+#!/usr/bin/env bash
+# V24.1 — Chargement robuste .env + curseurs de test démo
+cd "$(dirname "$0")"
+
+if [ -f ".env" ]; then
+  set -a
+  . ".env"
+  set +a
+fi
+
+export CAPITAL_IDENTIFIER="${CAPITAL_IDENTIFIER:-$CAPITAL_LOGIN}"
+
+# Curseurs individuels V24.1
+export BOLLINGER_CURSOR="${BOLLINGER_CURSOR:-1.0}"
+export TREND_ENTRY_CURSOR="${TREND_ENTRY_CURSOR:-0.8}"
+export SAFETY_EXIT_CURSOR="${SAFETY_EXIT_CURSOR:-1.0}"
+
+# Protection news paramétrable
+export NEWS_WINDOW_BEFORE_MIN="${NEWS_WINDOW_BEFORE_MIN:-5}"
+export NEWS_WINDOW_AFTER_MIN="${NEWS_WINDOW_AFTER_MIN:-5}"
+
+
+cd "$(dirname "$0")" || exit 1
+
+ASSETS="US500,US100,US30,DE40,FR40,UK100,J225,EURUSD,GBPUSD,USDJPY,EURJPY,GOLD,SILVER,OIL_CRUDE,BTCUSD,ETHUSD"
+
+MAX_CYCLES=16
+TICK_SECONDS=90
+PRINT_EVERY=30
+PAUSE_SECONDS=30
+MIN_SPREAD_SAMPLES=300
+
+# Fraîcheur du contexte
+REFRESH_MARKETS_SECONDS=3600     # 1 heure
+REFRESH_ZONES_SECONDS=7200       # 2 heures
+REFRESH_HISTORY_SECONDS=14400    # 4 heures
+
+LOG_DIR="logs"
+mkdir -p "$LOG_DIR"
+
+LOG="$LOG_DIR/BOT_PIVOT_07D_24_7_DEMO_$(date -u '+%Y%m%d_%H%M%S').log"
+
+CTX_DIR="data/context_refresh"
+mkdir -p "$CTX_DIR"
+
+MARKETS_TS="$CTX_DIR/last_markets_refresh.ts"
+ZONES_TS="$CTX_DIR/last_zones_refresh.ts"
+HISTORY_TS="$CTX_DIR/last_history_refresh.ts"
+
+now_epoch() {
+  date +%s
+}
+
+file_age_seconds() {
+  local f="$1"
+  if [ ! -f "$f" ]; then
+    echo 999999999
+  else
+    echo $(( $(now_epoch) - $(cat "$f" 2>/dev/null || echo 0) ))
+  fi
+}
+
+mark_done() {
+  local f="$1"
+  now_epoch > "$f"
+}
+
+refresh_markets() {
+  echo "" | tee -a "$LOG"
+  echo "============================================================================================================" | tee -a "$LOG"
+  echo "REFRESH CONTEXTE — 06C MARKET RULES — $(date -u '+%Y-%m-%dT%H:%M:%SZ')" | tee -a "$LOG"
+  echo "============================================================================================================" | tee -a "$LOG"
+
+  python BOT_PIVOT_06C_market_rules.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+  local rc=${PIPESTATUS[0]}
+
+  if [ "$rc" -eq 0 ]; then
+    mark_done "$MARKETS_TS"
+    echo "REFRESH 06C OK" | tee -a "$LOG"
+  else
+    echo "REFRESH 06C ECHEC rc=$rc" | tee -a "$LOG"
+  fi
+}
+
+refresh_history() {
+  echo "" | tee -a "$LOG"
+  echo "============================================================================================================" | tee -a "$LOG"
+  echo "REFRESH CONTEXTE — 01 HISTORICAL M15 30D — $(date -u '+%Y-%m-%dT%H:%M:%SZ')" | tee -a "$LOG"
+  echo "============================================================================================================" | tee -a "$LOG"
+
+  python BOT_PIVOT_01_historical.py --assets "$ASSETS" --resolution MINUTE_15 --days 30 2>&1 | tee -a "$LOG"
+  local rc=${PIPESTATUS[0]}
+
+  if [ "$rc" -eq 0 ]; then
+    mark_done "$HISTORY_TS"
+    echo "REFRESH 01 OK" | tee -a "$LOG"
+    return 0
+  else
+    echo "REFRESH 01 ECHEC rc=$rc" | tee -a "$LOG"
+    return 1
+  fi
+}
+
+refresh_zones() {
+  echo "" | tee -a "$LOG"
+  echo "============================================================================================================" | tee -a "$LOG"
+  echo "REFRESH CONTEXTE — 02 ZONES / PIVOTS — $(date -u '+%Y-%m-%dT%H:%M:%SZ')" | tee -a "$LOG"
+  echo "============================================================================================================" | tee -a "$LOG"
+
+  python BOT_PIVOT_02_zones.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+  local rc=${PIPESTATUS[0]}
+
+  if [ "$rc" -eq 0 ]; then
+    mark_done "$ZONES_TS"
+    echo "REFRESH 02 OK" | tee -a "$LOG"
+  else
+    echo "REFRESH 02 ECHEC rc=$rc" | tee -a "$LOG"
+  fi
+}
+
+refresh_context_if_due() {
+  local markets_age
+  local zones_age
+  local history_age
+
+  markets_age=$(file_age_seconds "$MARKETS_TS")
+  zones_age=$(file_age_seconds "$ZONES_TS")
+  history_age=$(file_age_seconds "$HISTORY_TS")
+
+  echo "" | tee -a "$LOG"
+  echo "FRAÎCHEUR CONTEXTE :" | tee -a "$LOG"
+  echo "- markets age : ${markets_age}s / seuil ${REFRESH_MARKETS_SECONDS}s" | tee -a "$LOG"
+  echo "- zones age   : ${zones_age}s / seuil ${REFRESH_ZONES_SECONDS}s" | tee -a "$LOG"
+  echo "- history age : ${history_age}s / seuil ${REFRESH_HISTORY_SECONDS}s" | tee -a "$LOG"
+
+  if [ "$markets_age" -ge "$REFRESH_MARKETS_SECONDS" ]; then
+    refresh_markets
+  fi
+
+  if [ "$history_age" -ge "$REFRESH_HISTORY_SECONDS" ]; then
+    if refresh_history; then
+      # Quand l’historique change, les zones doivent être recalculées immédiatement.
+      refresh_zones
+    fi
+  elif [ "$zones_age" -ge "$REFRESH_ZONES_SECONDS" ]; then
+    refresh_zones
+  fi
+}
+
+echo "========================================================================================================================" | tee -a "$LOG"
+echo "BOT_PIVOT_07D — DEMO 24/7" | tee -a "$LOG"
+echo "Début UTC       : $(date -u '+%Y-%m-%d %H:%M:%S')" | tee -a "$LOG"
+echo "Ordres          : DEMO Capital.com uniquement" | tee -a "$LOG"
+echo "Actifs          : $ASSETS" | tee -a "$LOG"
+echo "Max cycles      : $MAX_CYCLES" | tee -a "$LOG"
+echo "Ticks secondes  : $TICK_SECONDS" | tee -a "$LOG"
+echo "Pause secondes  : $PAUSE_SECONDS" | tee -a "$LOG"
+echo "Refresh markets : ${REFRESH_MARKETS_SECONDS}s" | tee -a "$LOG"
+echo "Refresh zones   : ${REFRESH_ZONES_SECONDS}s" | tee -a "$LOG"
+echo "Refresh history : ${REFRESH_HISTORY_SECONDS}s" | tee -a "$LOG"
+echo "Log             : $LOG" | tee -a "$LOG"
+echo "========================================================================================================================" | tee -a "$LOG"
+
+# Refresh initial obligatoire au démarrage
+refresh_markets
+if refresh_history; then
+  refresh_zones
+fi
+
+i=0
+
+while true; do
+  i=$((i+1))
+
+  echo "" | tee -a "$LOG"
+  echo "########################################################################################################################" | tee -a "$LOG"
+  echo "07D — CYCLE $i — $(date -u '+%Y-%m-%dT%H:%M:%SZ')" | tee -a "$LOG"
+  echo "########################################################################################################################" | tee -a "$LOG"
+
+  refresh_context_if_due
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 03 — TICKS" | tee -a "$LOG"
+  python BOT_PIVOT_03_tick_stream.py --assets "$ASSETS" --seconds "$TICK_SECONDS" --print-every "$PRINT_EVERY" 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 04 — SIGNAUX" | tee -a "$LOG"
+  python BOT_PIVOT_04_signal_tick.py --assets "$ASSETS" --min-spread-samples "$MIN_SPREAD_SAMPLES" 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 05 — CYCLE ENGINE" | tee -a "$LOG"
+  python BOT_PIVOT_05_cycle_engine.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 06H — EXECUTION DEMO GARDEE" | tee -a "$LOG"
+  python BOT_PIVOT_06H_execution_demo_guarded.py --real-demo --unlock OK_ENVOI_DEMO --max-cycles "$MAX_CYCLES" --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "Pause ${PAUSE_SECONDS}s..." | tee -a "$LOG"
+  sleep "$PAUSE_SECONDS"
+done

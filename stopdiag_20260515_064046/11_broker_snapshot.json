@@ -1,0 +1,9 @@
+{
+  "positions_status": 200,
+  "positions_count": 0,
+  "positions": [],
+  "workingorders_status": 200,
+  "workingorders_raw": {
+    "workingOrders": []
+  }
+}

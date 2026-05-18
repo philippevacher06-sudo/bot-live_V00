@@ -1,0 +1,33 @@
+# Environnement Python local
+venv/
+.venv/
+env/
+
+# Secrets locaux
+.env
+.env.*
+*.env
+*secret*
+*token*
+*password*
+*credentials*
+
+# Caches Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Fichiers runtime lourds exclus GitHub
+data/ticks/*.jsonl
+logs/**/*.log
+backups/**/state/data/ticks/*.jsonl
+*.tar.gz
+*.zip

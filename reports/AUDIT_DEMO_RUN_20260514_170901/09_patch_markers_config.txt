@@ -1,0 +1,35 @@
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:1:export V2435I_DEMO_RPOS_HIGH="75"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:2:export V2435I_DEMO_RPOS_LOW="25"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:3:export V2435I_DEMO_SIGNAL_SAMPLER="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:4:export V2435F_DEMO_FORCE_ENTRY_SAMPLES="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:5:export V2435H_USE_STREAM_PRICE_GUARD="1"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:6:export BOLLINGER_BUFFER_CURSOR=${BOLLINGER_BUFFER_CURSOR:-0.10}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:8:export V2433_LIMIT_ARMING_STEP_MULT="8.0"
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:39:export BOLLINGER_CURSOR=${BOLLINGER_CURSOR:-0.8}
+run_BOT_PIVOT_07D_SCALP_ACTIVE.sh:41:# Avec BOLLINGER_CURSOR=0.8, le max_dist final affiche environ 80% de ces valeurs.
+BOT_PIVOT_05_cycle_engine.py:740:                # V24.3.5I_DEMO_SIGNAL_SAMPLER:
+BOT_PIVOT_05_cycle_engine.py:743:                demo_sampler = str(__import__("os").getenv("V2435I_DEMO_SIGNAL_SAMPLER", "0")).lower() in (
+BOT_PIVOT_05_cycle_engine.py:775:                    low_thr = float(__import__("os").getenv("V2435I_DEMO_RPOS_LOW", "25"))
+BOT_PIVOT_05_cycle_engine.py:776:                    high_thr = float(__import__("os").getenv("V2435I_DEMO_RPOS_HIGH", "75"))
+BOT_PIVOT_05_cycle_engine.py:791:                        c["demo_sample_version"] = "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+BOT_PIVOT_06G2_execution_secure.py:471:# BOLLINGER_CURSOR :
+BOT_PIVOT_06G2_execution_secure.py:526:    return v241_cursor("BOLLINGER_CURSOR", 1.0, 0.5, 1.5)
+BOT_PIVOT_06G2_execution_secure.py:530:    # V24.3.5D_BUFFER_ONLY_CURSOR
+BOT_PIVOT_06G2_execution_secure.py:533:    return v241_cursor("BOLLINGER_BUFFER_CURSOR", 1.0, 0.0, 1.5)
+BOT_PIVOT_06G2_execution_secure.py:783:    # V24.3.5H_STREAM_PRICE_GUARD:
+BOT_PIVOT_06G2_execution_secure.py:797:        use_stream_guard = str(__import__("os").getenv("V2435H_USE_STREAM_PRICE_GUARD", "0")).lower() in (
+BOT_PIVOT_06G2_execution_secure.py:851:    # V24.3.5F_DEMO_FORCE_ENTRY_SAMPLES:
+BOT_PIVOT_06G2_execution_secure.py:853:    demo_force_samples = str(__import__("os").getenv("V2435F_DEMO_FORCE_ENTRY_SAMPLES", "0")).lower() in (
+BOT_PIVOT_06G2_execution_secure.py:1024:    # V24.3.5D_BUFFER_ONLY_CURSOR :
+BOT_PIVOT_06G2_execution_secure.py:1025:    # BOLLINGER_CURSOR continue de piloter le step.
+BOT_PIVOT_06G2_execution_secure.py:1026:    # BOLLINGER_BUFFER_CURSOR rapproche uniquement L1 de la bande Bollinger.
+BOT_PIVOT_06G2_execution_secure.py:1066:# BOLLINGER_CURSOR < 1.0 : plus agressif, L1 plus proche
+BOT_PIVOT_06G2_execution_secure.py:1067:# BOLLINGER_CURSOR = 1.0 : réglage normal
+BOT_PIVOT_06G2_execution_secure.py:1068:# BOLLINGER_CURSOR > 1.0 : plus défensif, L1 plus éloigné
+BOT_PIVOT_06G2_execution_secure.py:1367:            _v2433_os.getenv("V2433_LIMIT_ARMING_STEP_MULT", "1.5")
+BOT_PIVOT_06G2_execution_secure.py:2620:        # V24.3.5_L123_ATOMIC_BASKET:
+BOT_PIVOT_06G2_execution_secure.py:2742:                "reason": "V2435_L123_ATOMIC_INCOMPLETE_AFTER_LOOP",
+BOT_PIVOT_06G2_execution_secure.py:5553:    # V24.3.5B_KEEP_REINFORCEMENTS:
+BOT_PIVOT_06G2_execution_secure.py:5558:        reason = "V24_3_5B_KEEP_REINFORCEMENTS_NO_AUTO_CANCEL"
+BOT_PIVOT_06G2_execution_secure.py:5569:            "event": "BASKET_PARTIAL_PENDING_KEEP",
+BOT_PIVOT_06G2_execution_secure.py:5580:            f"{asset:10s} | BASKET_PARTIAL_PENDING_KEEP | 1-3 | {direction:4s} | "

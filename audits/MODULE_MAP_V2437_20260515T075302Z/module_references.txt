@@ -1,0 +1,117 @@
+BOT_PIVOT_00B_pnl_eur.py:1:# BOT_PIVOT_00B_pnl_eur.py
+BOT_PIVOT_00B_pnl_eur.py:6:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_00Z_SCALP_ACTIVE_GUARD.py:46:    import BOT_PIVOT_06G2_execution_secure as G
+BOT_PIVOT_00_config.py:1:# BOT_PIVOT_00_config.py
+BOT_PIVOT_01_historical.py:1:# BOT_PIVOT_01_historical.py
+BOT_PIVOT_01_historical.py:18:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_02_zones.py:1:# BOT_PIVOT_02_zones.py
+BOT_PIVOT_02_zones.py:26:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_02_zones.py:181:            "Lance d'abord BOT_PIVOT_01_historical.py."
+BOT_PIVOT_02_zones.py:1008:        "source": "BOT_PIVOT_02_zones.py",
+BOT_PIVOT_03_tick_stream.py:1:# BOT_PIVOT_03_tick_stream.py
+BOT_PIVOT_03_tick_stream.py:28:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_04B_context_score.py:1:# BOT_PIVOT_04B_context_score.py
+BOT_PIVOT_04B_context_score.py:9:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_04_signal_tick.py:1:# BOT_PIVOT_04_signal_tick.py
+BOT_PIVOT_04_signal_tick.py:5:# - lire les ticks JSONL produits par BOT_PIVOT_03_tick_stream.py
+BOT_PIVOT_04_signal_tick.py:6:# - charger les zones produites par BOT_PIVOT_02_zones.py
+BOT_PIVOT_04_signal_tick.py:24:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_04_signal_tick.py:25:import BOT_PIVOT_04B_context_score as CTX
+BOT_PIVOT_05A_read_signals.py:1:# BOT_PIVOT_05A_read_signals.py
+BOT_PIVOT_05A_read_signals.py:7:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05B_open_level1.py:1:# BOT_PIVOT_05B_open_level1.py
+BOT_PIVOT_05B_open_level1.py:10:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05C2_close_tp.py:1:# BOT_PIVOT_05C2_close_tp.py
+BOT_PIVOT_05C2_close_tp.py:10:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05C3_timeout_next_level.py:6:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05C_check_pnl.py:1:# BOT_PIVOT_05C_check_pnl.py
+BOT_PIVOT_05C_check_pnl.py:9:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05D_level5_guard.py:1:# BOT_PIVOT_05D_level5_guard.py
+BOT_PIVOT_05D_level5_guard.py:9:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05_cycle_engine.py:1:# BOT_PIVOT_05_cycle_engine.py
+BOT_PIVOT_05_cycle_engine.py:15:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05_cycle_engine.py:16:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:1:# BOT_PIVOT_05_cycle_engine.py
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:15:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05_cycle_engine_before_safety_exit_cursor_20260513_082020.py:16:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:1:# BOT_PIVOT_05_cycle_engine.py
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:15:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_05_cycle_engine_before_trend_entry_cursor_20260513_080519.py:16:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_06A_session_check.py:1:# BOT_PIVOT_06A_session_check.py
+BOT_PIVOT_06A_session_check.py:9:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06B_account_positions.py:1:# BOT_PIVOT_06B_account_positions.py
+BOT_PIVOT_06B_account_positions.py:10:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06C_market_rules.py:1:# BOT_PIVOT_06C_market_rules.py
+BOT_PIVOT_06C_market_rules.py:10:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06D_size_validator.py:1:# BOT_PIVOT_06D_size_validator.py
+BOT_PIVOT_06D_size_validator.py:6:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06E_order_builder_dryrun.py:1:# BOT_PIVOT_06E_order_builder_dryrun.py
+BOT_PIVOT_06E_order_builder_dryrun.py:7:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06F_execution.py:1:# BOT_PIVOT_06F_execution.py
+BOT_PIVOT_06F_execution.py:10:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06G1_reconcile_broker.py:6:import BOT_PIVOT_06G_execution_from_cycle_state as B
+BOT_PIVOT_06G2_execution_secure.py:2:# BOT_PIVOT_06G2_execution_secure.py
+BOT_PIVOT_06G2_execution_secure.py:14:import BOT_PIVOT_06G_execution_from_cycle_state as B
+BOT_PIVOT_06G2_execution_secure.py:15:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_06G2_execution_secure.py:1016:    import BOT_PIVOT_00_config as CFG_LOCAL
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:2:# BOT_PIVOT_06G2_execution_secure.py
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:11:import BOT_PIVOT_06G_execution_from_cycle_state as B
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:12:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_06G2_execution_secure_before_bollinger_config_20260513_071353.py:503:    import BOT_PIVOT_00_config as CFG_LOCAL
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:2:# BOT_PIVOT_06G2_execution_secure.py
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:11:import BOT_PIVOT_06G_execution_from_cycle_state as B
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:12:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_06G2_execution_secure_before_cursor_steps_20260513_075348.py:568:    import BOT_PIVOT_00_config as CFG_LOCAL
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:2:# BOT_PIVOT_06G2_execution_secure.py
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:11:import BOT_PIVOT_06G_execution_from_cycle_state as B
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:12:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_06G2_execution_secure_before_individual_cursors_20260513_074947.py:503:    import BOT_PIVOT_00_config as CFG_LOCAL
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:2:# BOT_PIVOT_06G2_execution_secure.py
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:11:import BOT_PIVOT_06G_execution_from_cycle_state as B
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:12:import BOT_PIVOT_00B_pnl_eur as PNL
+BOT_PIVOT_06G2_execution_secure_before_remove_open_profitDistance_20260513_065123.py:498:    import BOT_PIVOT_00_config as CFG_LOCAL
+BOT_PIVOT_06G_execution_from_cycle_state.py:1:# BOT_PIVOT_06G_execution_from_cycle_state.py
+BOT_PIVOT_06G_execution_from_cycle_state.py:20:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06G_execution_from_cycle_state.py:259:            f"Lancer d'abord BOT_PIVOT_06C_market_rules.py."
+BOT_PIVOT_06H_execution_demo_guarded.py:1:# BOT_PIVOT_06H_execution_demo_guarded.py
+BOT_PIVOT_06H_execution_demo_guarded.py:14:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_06H_execution_demo_guarded.py:15:import BOT_PIVOT_06G2_execution_secure as G
+BOT_PIVOT_07C_loop.py:1:# BOT_PIVOT_07C_loop.py
+BOT_PIVOT_07C_loop.py:12:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_07C_loop.py:88:                "BOT_PIVOT_03_tick_stream.py",
+BOT_PIVOT_07C_loop.py:104:                "BOT_PIVOT_04_signal_tick.py",
+BOT_PIVOT_07C_loop.py:116:            ["python", "BOT_PIVOT_05_cycle_engine.py"],
+BOT_PIVOT_07C_loop.py:130:                    "BOT_PIVOT_06G_execution_from_cycle_state.py",
+BOT_PIVOT_07_main.py:1:# BOT_PIVOT_07_main.py
+BOT_PIVOT_07_main.py:12:import BOT_PIVOT_00_config as CFG
+BOT_PIVOT_07_main.py:76:                "BOT_PIVOT_03_tick_stream.py",
+BOT_PIVOT_07_main.py:89:            "BOT_PIVOT_04_signal_tick.py",
+BOT_PIVOT_07_main.py:96:    cmd05 = ["python", "BOT_PIVOT_05_cycle_engine.py"]
+BOT_PIVOT_07_main.py:109:            "BOT_PIVOT_06F_execution.py",
+BOT_PIVOT_99_cancel_gold_pending.py:179:    print("BOT_PIVOT_99_cancel_gold_pending.py — ANNULATION FORCÉE DES PENDING GOLD")
+BOT_PIVOT_99_v243_audit_logs.py:5:BOT_PIVOT_99_v243_audit_logs.py
+BOT_PIVOT_99_v243_audit_logs.py:24:from BOT_PIVOT_99_v243_audit_log import (
+run_BOT_PIVOT_07D_24_7_DEMO.sh:61:import BOT_PIVOT_06G_execution_from_cycle_state as B
+run_BOT_PIVOT_07D_24_7_DEMO.sh:62:import BOT_PIVOT_06G2_execution_secure as X
+run_BOT_PIVOT_07D_24_7_DEMO.sh:152:python BOT_PIVOT_00Z_SCALP_ACTIVE_GUARD.py || true
+run_BOT_PIVOT_07D_24_7_DEMO.sh:153:  python BOT_PIVOT_06C_market_rules.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:170:  python BOT_PIVOT_01_historical.py --assets "$ASSETS" --resolution MINUTE_15 --days 30 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:189:  python BOT_PIVOT_02_zones.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:263:  python BOT_PIVOT_03_tick_stream.py --assets "$ASSETS" --seconds "$TICK_SECONDS" --print-every "$PRINT_EVERY" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:267:  python BOT_PIVOT_04_signal_tick.py --assets "$ASSETS" --min-spread-samples "$MIN_SPREAD_SAMPLES" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:271:  python BOT_PIVOT_05_cycle_engine.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO.sh:275:  python BOT_PIVOT_06H_execution_demo_guarded.py --real-demo --unlock OK_ENVOI_DEMO --max-cycles "$MAX_CYCLES" --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:54:  python BOT_PIVOT_06C_market_rules.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:71:  python BOT_PIVOT_01_historical.py --assets "$ASSETS" --resolution MINUTE_15 --days 30 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:90:  python BOT_PIVOT_02_zones.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:164:  python BOT_PIVOT_03_tick_stream.py --assets "$ASSETS" --seconds "$TICK_SECONDS" --print-every "$PRINT_EVERY" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:168:  python BOT_PIVOT_04_signal_tick.py --assets "$ASSETS" --min-spread-samples "$MIN_SPREAD_SAMPLES" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:172:  python BOT_PIVOT_05_cycle_engine.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_env_load_20260513_081724.sh:176:  python BOT_PIVOT_06H_execution_demo_guarded.py --real-demo --unlock OK_ENVOI_DEMO --max-cycles "$MAX_CYCLES" --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:65:  python BOT_PIVOT_06C_market_rules.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:82:  python BOT_PIVOT_01_historical.py --assets "$ASSETS" --resolution MINUTE_15 --days 30 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:101:  python BOT_PIVOT_02_zones.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:175:  python BOT_PIVOT_03_tick_stream.py --assets "$ASSETS" --seconds "$TICK_SECONDS" --print-every "$PRINT_EVERY" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:179:  python BOT_PIVOT_04_signal_tick.py --assets "$ASSETS" --min-spread-samples "$MIN_SPREAD_SAMPLES" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:183:  python BOT_PIVOT_05_cycle_engine.py --assets "$ASSETS" 2>&1 | tee -a "$LOG"
+run_BOT_PIVOT_07D_24_7_DEMO_before_v241_full_test_20260513_082020.sh:187:  python BOT_PIVOT_06H_execution_demo_guarded.py --real-demo --unlock OK_ENVOI_DEMO --max-cycles "$MAX_CYCLES" --assets "$ASSETS" 2>&1 | tee -a "$LOG"

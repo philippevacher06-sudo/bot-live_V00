@@ -1,0 +1,32 @@
+{"event": "TP_HIT_SIM", "asset": "DE40", "cycle_id": null, "level": 1, "direction": "BUY", "entry_price": 24244.45, "exit_price": 24258.95, "size": 0.01, "tp_eur": 0.1, "pnl_eur": 0.145, "event_utc": "2026-05-11T19:50:10+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "US30", "old_level": 1, "new_level": 2, "direction": "BUY", "exit_price": 49653.7, "pnl_eur": 0.027999999999956345, "adverse_drift_points": 0.0, "adverse_drift_pct": 0.0, "drift_coeff": 1.0, "new_size": 0.02, "new_tp_eur": 0.2, "event_utc": "2026-05-11T19:51:27+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "OIL_CRUDE", "old_level": 1, "new_level": 2, "direction": "SELL", "exit_price": 95.649, "pnl_eur": 0.0002699999999998681, "adverse_drift_points": 0.0, "adverse_drift_pct": 0.0, "drift_coeff": 1.0, "new_size": 0.02, "new_tp_eur": 0.2, "event_utc": "2026-05-11T19:51:27+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "US30", "old_level": 2, "new_level": 3, "pnl": 0.0, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:00:24+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "OIL_CRUDE", "old_level": 2, "new_level": 3, "pnl": 0.0, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:00:24+00:00"}
+{"event": "OPEN_LEVEL_1_SIM", "asset": "DE40", "direction": "SELL", "entry": 24278.9, "event_utc": "2026-05-11T20:33:00+00:00"}
+{"event": "OPEN_LEVEL_1_SIM", "asset": "SILVER", "direction": "SELL", "entry": 86.15, "event_utc": "2026-05-11T20:33:00+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "DE40", "old_level": 1, "new_level": 2, "pnl": -0.011999999999970897, "drift": 1.1999999999970896, "coeff": 1.0, "event_utc": "2026-05-11T20:37:36+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "SILVER", "old_level": 1, "new_level": 2, "pnl": -0.031999999999982265, "drift": 0.031999999999982265, "coeff": 1.0, "event_utc": "2026-05-11T20:37:36+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "DE40", "old_level": 2, "new_level": 3, "pnl": 0.027999999999956345, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:41:59+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "SILVER", "old_level": 2, "new_level": 3, "pnl": 0.031999999999982265, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:41:59+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "DE40", "old_level": 3, "new_level": 4, "pnl": -0.06, "drift": 1.5, "coeff": 1.0, "event_utc": "2026-05-11T20:44:01+00:00"}
+{"event": "OPEN_LEVEL_1_SIM", "asset": "GBPUSD", "direction": "BUY", "entry": 1.360985, "event_utc": "2026-05-11T20:44:01+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "SILVER", "old_level": 3, "new_level": 4, "pnl": 0.008000000000038199, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:44:01+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "DE40", "old_level": 4, "new_level": 5, "pnl": 0.5839999999999418, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:53:00+00:00"}
+{"event": "OPEN_LEVEL_1_SIM", "asset": "EURUSD", "direction": "BUY", "entry": 1.178155, "event_utc": "2026-05-11T20:53:00+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "GBPUSD", "old_level": 1, "new_level": 2, "pnl": 0.0070000000000014495, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:53:00+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "SILVER", "old_level": 4, "new_level": 5, "pnl": 0.5759999999999081, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:53:00+00:00"}
+{"event": "OPEN_LEVEL_1_SIM", "asset": "OIL_CRUDE", "direction": "SELL", "entry": 95.994, "event_utc": "2026-05-11T20:54:02+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "EURUSD", "old_level": 1, "new_level": 2, "pnl": 0.004999999999988347, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:57:42+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "GBPUSD", "old_level": 2, "new_level": 3, "pnl": -0.005999999999994898, "drift": 2.999999999997449e-05, "coeff": 1.0, "event_utc": "2026-05-11T20:57:42+00:00"}
+{"event": "TP_HIT_SIM", "asset": "OIL_CRUDE", "level": 1, "pnl": 0.12899999999999068, "event_utc": "2026-05-11T20:57:42+00:00"}
+{"event": "OPEN_LEVEL_1_SIM", "asset": "GOLD", "direction": "SELL", "entry": 4735.02, "event_utc": "2026-05-11T20:58:43+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "EURUSD", "old_level": 2, "new_level": 3, "pnl": 0.005000000000032756, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T20:59:45+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "GBPUSD", "old_level": 3, "new_level": 4, "pnl": -0.013999999999914081, "drift": 3.49999999997852e-05, "coeff": 1.0, "event_utc": "2026-05-11T20:59:45+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "EURUSD", "old_level": 3, "new_level": 4, "pnl": 0.004000000000026205, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T21:07:17+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "GBPUSD", "old_level": 4, "new_level": 5, "pnl": 0.0, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T21:07:17+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "GOLD", "old_level": 1, "new_level": 2, "pnl": 0.0, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T21:07:17+00:00"}
+{"event": "OPEN_LEVEL_1_SIM", "asset": "USDJPY", "direction": "BUY", "entry": 157.159, "event_utc": "2026-05-11T21:08:18+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "EURUSD", "old_level": 4, "new_level": 5, "pnl": 0.0, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T21:09:20+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "GOLD", "old_level": 2, "new_level": 3, "pnl": 0.0, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T21:09:20+00:00"}
+{"event": "TIMEOUT_NEXT_LEVEL_SIM", "asset": "USDJPY", "old_level": 1, "new_level": 2, "pnl": 0.0, "drift": 0.0, "coeff": 1.0, "event_utc": "2026-05-11T21:10:22+00:00"}

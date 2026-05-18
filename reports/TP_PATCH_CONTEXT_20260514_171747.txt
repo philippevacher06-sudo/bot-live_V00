@@ -1,0 +1,764 @@
+=== TP / CLOSE GREP ===
+4:# Bloc 1/3 : fondations + résolution du vrai dealId broker.
+100:    return B.broker_position_epic(item)
+104:    return B.broker_position_deal_id(item)
+108:    p = item.get("position", {}) if isinstance(item, dict) else {}
+113:    p = item.get("position", {}) if isinstance(item, dict) else {}
+118:    p = item.get("position", {}) if isinstance(item, dict) else {}
+122:def fetch_positions(headers):
+126:    return B.broker_positions(headers)
+129:def positions_for_asset(asset, positions):
+130:    return [p for p in positions if pos_epic(p) == asset]
+133:def deal_ids_for_asset(asset, positions):
+135:    for p in positions_for_asset(asset, positions):
+142:def broker_has_deal_id(deal_id, positions):
+145:    return deal_id in [pos_deal_id(p) for p in positions]
+155:def resolve_real_broker_deal_id(asset, before_positions, after_positions, expected_direction, expected_size):
+159:    Le dealId retourné par GET /confirms peut être différent du dealId réellement
+160:    visible dans GET /positions. Donc 06G2 ne doit pas stocker aveuglément le
+161:    dealId du confirm.
+164:    - on prend les positions broker AVANT l'ouverture ;
+165:    - on prend les positions broker APRÈS l'ouverture ;
+166:    - on cherche le nouveau dealId apparu chez le broker ;
+167:    - on stocke CE dealId-là dans execution_state.
+169:    before_ids = set(deal_ids_for_asset(asset, before_positions))
+170:    after_items = positions_for_asset(asset, after_positions)
+181:        "after_ids": deal_ids_for_asset(asset, after_positions),
+187:                "dealId": pos_deal_id(x),
+916:def v24_extract_close_price(item):
+920:    close_price = item.get("closePrice") or item.get("close") or item.get("c")
+922:    if isinstance(close_price, dict):
+923:        bid = close_price.get("bid")
+924:        ask = close_price.get("ask")
+925:        last = close_price.get("lastTraded") or close_price.get("last")
+936:    if close_price is not None:
+937:        return float(close_price)
+952:        return cached.get("closes", [])
+975:        closes = []
+977:            close = v24_extract_close_price(item)
+978:            if close is not None:
+979:                closes.append(float(close))
+983:            "closes": closes,
+986:        return closes
+997:def v24_compute_bollinger_bands(closes, period=20, mult=2.0):
+998:    if not closes or len(closes) < period:
+1001:    sample = [float(x) for x in closes[-period:]]
+1159:    closes = v24_api_get_prices_m5(headers, asset, max_points=60)
+1160:    bands = v24_compute_bollinger_bands(closes, period=20, mult=2.0)
+1168:            "closes_count": len(closes) if closes else 0,
+1726:    Attention : cela crée un ordre en attente, pas encore une position ouverte.
+1908:def open_cycle_secure(headers, asset, cycle, market_status, before_positions):
+1911:    Ne stocke jamais aveuglément le dealId du confirm.
+1912:    Stocke le vrai dealId visible dans GET /positions.
+1922:    status, data = B.api_post(headers, "/api/v1/positions", payload)
+1952:            "dealId": dry_deal_id,
+1959:        }, before_positions
+1982:        return False, {"reason": reason, "response": data}, before_positions
+2007:        return False, {"reason": reason, "response": data}, before_positions
+2013:    # Le point critique : récupérer le vrai dealId broker via GET /positions.
+2014:    after_positions = before_positions
+2021:        _, after_positions, _ = fetch_positions(headers)
+2025:            before_positions=before_positions,
+2026:            after_positions=after_positions,
+2049:            "confirm_dealId": confirm_deal_id,
+2059:            f"{market_status:9s} | vrai dealId broker introuvable : {resolve_reason}"
+2061:        return False, {"reason": reason, "details": resolve_details}, after_positions
+2063:    # Récupération du vrai prix d'entrée broker depuis GET /positions.
+2064:    real_broker_position = None
+2065:    for item in positions_for_asset(asset, after_positions):
+2067:            real_broker_position = item
+2072:            float(pos_entry(real_broker_position))
+2073:            if real_broker_position is not None and pos_entry(real_broker_position) is not None
+2105:        "dealId": real_broker_deal_id,
+2107:        "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+2143:    return True, record, after_positions
+2150:    Remet un cycle à IDLE quand la position broker a disparu
+2201:        d.get("dealId")
+2204:        or item.get("dealId")
+2258:def v24_broker_positions_for_asset_from_list(positions, asset, direction=None):
+2260:    Filtre les positions broker pour un actif.
+2264:    for p in positions or []:
+2268:        pos = p.get("position", {}) or {}
+2369:    Retrouve le vrai dealId du working order via GET /api/v1/workingorders.
+2401:    Annule un ordre LIMIT/STOP en attente via DELETE /api/v1/workingorders/{dealId}.
+2402:    Ne doit pas être utilisé pour fermer une position ouverte.
+2455:def close_deal_secure(headers, asset, deal_id, reason, old_exec=None):
+2458:    - DELETE /positions/{vrai_brokerDealId}
+2460:    - relecture GET /positions
+2461:    - validation seulement si le dealId a disparu.
+2469:            "dealId": deal_id,
+2471:            "close_reason": reason,
+2481:            "dealId": deal_id,
+2483:            "close_reason": reason,
+2490:    delete_status, delete_response = B.api_delete(headers, f"/api/v1/positions/{deal_id}")
+2503:    positions_after = []
+2505:    verified_closed = False
+2510:        verify_status, positions_after, _ = fetch_positions(headers)
+2511:        remaining_ids = deal_ids_for_asset(asset, positions_after)
+2513:        if not broker_has_deal_id(deal_id, positions_after):
+2514:            verified_closed = True
+2517:    ok = delete_status in (200, 201, 202, 404) and verified_closed
+2522:        "dealId": deal_id,
+2523:        "close_reason": reason,
+2531:        "verified_closed": verified_closed,
+2541:    return ok, info, positions_after
+2630:        orphan_close_results = []
+2675:            orphan_close_results = v24_close_orphan_positions_after_partial_reject(
+2693:            "orphan_close_results": orphan_close_results,
+2712:            "orphan_close_results": orphan_close_results,
+2781:    d = item.get("position") if isinstance(item, dict) else {}
+2793:    d = item.get("position") if isinstance(item, dict) else {}
+2804:def v24_position_matches_level(item, level_record):
+2843:def v24_position_pnl_candidates(item):
+2965:# Source de vérité TP panier = Capital.com position.upl
+2968:def v24_pick_broker_upl_eur(candidates):
+2971:    v24_position_pnl_candidates(), en privilégiant position.upl.
+2978:            if "position.upl" not in path and not path.endswith(".upl") and "upl" not in path:
+3026:    broker_upl_total = 0.0
+3027:    broker_upl_count = 0
+3028:    broker_upl_missing = 0
+3050:        broker_deal_id = rec.get("brokerDealId") or rec.get("dealId")
+3052:        broker_pnl_candidates = v24_position_pnl_candidates(broker_item) if broker_item else []
+3053:        broker_upl_eur = v24_pick_broker_upl_eur(broker_pnl_candidates)
+3055:        if broker_upl_eur is None:
+3056:            broker_upl_missing += 1
+3058:            broker_upl_total += float(broker_upl_eur)
+3059:            broker_upl_count += 1
+3064:        rec["last_broker_upl_eur"] = broker_upl_eur
+3087:            "broker_upl_eur": broker_upl_eur,
+3092:    broker_upl_total_complete = (
+3093:        float(broker_upl_total)
+3094:        if open_count > 0 and broker_upl_count >= open_count
+3108:        "total_broker_upl_eur": broker_upl_total_complete,
+3109:        "broker_upl_partial_total_eur": float(broker_upl_total),
+3110:        "broker_upl_count": int(broker_upl_count),
+3111:        "broker_upl_missing": int(broker_upl_missing),
+3112:        "tp_decision_source": "BROKER_POSITION_UPL" if broker_upl_total_complete is not None else "NO_BROKER_UPL_BLOCK_TP",
+3113:        "tp_decision_pnl_eur": broker_upl_total_complete,
+3119:        broker_upl_log = "none" if broker_upl_total_complete is None else f"{broker_upl_total_complete:.4f}"
+3137:                f"broker_upl={leg.get('broker_upl_eur')} "
+3143:            f"open={open_count} pnl={total:.4f} broker_upl={broker_upl_log} target={target}"
+3164:def v24_broker_positions_for_asset(headers, asset):
+3166:    Relit les positions broker et retourne uniquement celles de l'actif.
+3179:        r = requests.get(base.rstrip("/") + "/positions", headers=headers, timeout=20)
+3193:    positions = []
+3194:    for item in data.get("positions", []) or []:
+3196:        pos = item.get("position", {}) or {}
+3199:            positions.append(item)
+3205:        "count": len(positions),
+3209:    return positions, info
+3212:def v24_close_orphan_positions_after_partial_reject(headers, asset, reason, levels=None):
+3217:    position orpheline sur cet actif.
+3222:    closed_ids = set()
+3225:    # accepté en position avec un léger délai.
+3229:        positions, fetch_info = v24_broker_positions_for_asset(headers, asset)
+3236:            "positions_count": len(positions),
+3241:        if not positions:
+3244:        for item in positions:
+3246:            pos = item.get("position", {}) or {}
+3248:            deal_id = pos.get("dealId") or item.get("dealId")
+3254:                    "position": v24_json_safe(item),
+3258:            if deal_id in closed_ids:
+3264:                "dealId": deal_id,
+3270:                "position": pos,
+3281:                ok_close, close_info, positions_after = close_deal_secure(
+3289:                ok_close, close_info, positions_after = False, {"exception": str(e)}, None
+3291:            closed_ids.add(deal_id)
+3293:            safe_info = v24_json_safe(close_info)
+3297:                if ok_close
+3305:                "dealId": deal_id,
+3310:                "close_info": safe_info,
+3316:                f"{'BASKET_REJECT_ORPHAN_CLOSE_OK' if ok_close else 'BASKET_REJECT_ORPHAN_CLOSE_FAIL'} | "
+3324:                "ok": bool(ok_close),
+3325:                "dealId": deal_id,
+3329:                "close_info": safe_info,
+3335:def v24_close_basket_secure(headers, asset, basket_exec, reason):
+3342:    last_positions_after = None
+3348:            deal_id = rec.get("brokerDealId") or rec.get("dealId")
+3350:            ok, info, positions_after = close_deal_secure(
+3358:            rec["closed_utc"] = utc()
+3360:            rec["close_info"] = safe_info
+3370:            if positions_after is not None:
+3371:                last_positions_after = positions_after
+3396:                rec["closed_utc"] = utc()
+3435:    return ok_all, info, last_positions_after
+3636:def v243_margin_selector_threshold_eur():
+3653:        return float(margin) >= float(v243_margin_selector_threshold_eur())
+3719:def v243_margin_selector_worst_pending(exec_state, positions=None):
+3731:            broker_open_count = len(positions_for_asset(asset, positions or []))
+3740:        # On ne sélectionne que les paniers sans position ouverte.
+4074:def v243_storm_emergency_close_enabled():
+4267:    # On n'invalide pas une position sur un signal trop vieux.
+4279:    - breakout contre la position
+4304:        ["range_position", "range_pos", "rpos", "R.Pos", "r_pos"],
+4780:def v24_process_basket(headers, asset, cycle, active_exec, broker_items, broker_ids, positions, market_status, exec_state, margin_snapshot=None, storm_snapshot=None):
+4819:    # 2. Associer les positions broker apparues aux niveaux LIMIT.
+4838:            if v24_position_matches_level(item, rec):
+4855:            matched_rec["dealId"] = deal_id
+4856:            matched_rec["dealId_source"] = "GET_POSITIONS_AFTER_LIMIT_FILL_BASKET"
+4891:    broker_upl_total_for_tp = pnl_audit.get("total_broker_upl_eur")
+4892:    broker_upl_count_for_tp = int(pnl_audit.get("broker_upl_count") or 0)
+4897:        and broker_upl_total_for_tp is not None
+4898:        and broker_upl_count_for_tp >= int(open_count)
+4901:    tp_decision_pnl = float(broker_upl_total_for_tp) if tp_broker_ready else None
+4908:    active_exec["last_broker_upl_total_eur"] = broker_upl_total_for_tp
+4909:    active_exec["last_broker_upl_count"] = broker_upl_count_for_tp
+4922:            ladder_threshold = float(target) + float(ladder_margin) if target is not None else None
+4924:            ladder_threshold = None
+4930:        elif tp_decision_pnl is not None and ladder_threshold is not None and float(tp_decision_pnl) >= float(ladder_threshold):
+4936:        threshold_s = "None" if ladder_threshold is None else f"{float(ladder_threshold):.4f}"
+4937:        broker_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+4942:            f"{asset:10s} | BASKET_TP_LADDER_CHECK | 1-3 | {direction:4s} | "
+4944:            f"open={int(open_count)} expected_target={target_s} threshold={threshold_s} "
+4945:            f"broker_upl={broker_upl_s} tp_pnl={tp_pnl_s} "
+4946:            f"broker_count={int(broker_upl_count_for_tp)}/{int(open_count)} "
+4961:        fresh_status, fresh_positions, fresh_raw = fetch_positions(headers)
+4962:        fresh_broker_items = positions_for_asset(asset, fresh_positions)
+4983:            active_exec["broker_empty_reset_last_broker_upl_total_eur"] = broker_upl_total_for_tp
+4986:            active_exec["broker_empty_reset_last_broker_upl_count"] = int(broker_upl_count_for_tp)
+4997:            broker_empty_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+5001:                f"{asset:10s} | BROKER_EMPTY_RESET | 1-3 | {direction:4s} | "
+5004:                f"last_broker_upl={broker_empty_upl_s} target={broker_empty_target_s} "
+5005:                f"broker_count={broker_upl_count_for_tp}/{open_count} internal={float(pnl_total):.4f} "
+5010:                "event": "BROKER_EMPTY_RESET",
+5021:            return True, fresh_positions
+5083:            return True, positions
+5088:    if storm_blocked and open_count > 0 and v243_storm_emergency_close_enabled():
+5091:        if broker_upl_total_for_tp is None:
+5096:        elif float(broker_upl_total_for_tp) <= -float(storm_loss_limit):
+5097:            ok, close_info, positions_after = v24_close_basket_secure(
+5104:            active_exec["storm_guard_emergency_close_utc"] = utc()
+5105:            active_exec["storm_guard_emergency_close_reasons"] = storm_reasons
+5106:            active_exec["storm_guard_emergency_close_broker_upl"] = float(broker_upl_total_for_tp)
+5107:            active_exec["storm_guard_emergency_close_loss_limit"] = float(storm_loss_limit)
+5110:                exec_state.setdefault("closed", []).append({
+5112:                    "closed_reason": "V243_STORM_GUARD_EMERGENCY_CLOSE",
+5113:                    "closed_utc": utc(),
+5114:                    "close_info": close_info,
+5123:                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5132:                    "broker_upl": float(broker_upl_total_for_tp),
+5135:                    "close_info": close_info,
+5138:                return True, positions_after
+5142:                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5148:            return True, positions
+5153:        if broker_upl_total_for_tp is None:
+5158:        elif float(broker_upl_total_for_tp) <= -float(max_loss_eur):
+5170:            ok, close_info, positions_after = v24_close_basket_secure(
+5177:            active_exec["max_loss_broker_upl"] = float(broker_upl_total_for_tp)
+5183:                exec_state.setdefault("closed", []).append({
+5185:                    "closed_reason": "V243_BASKET_MAX_LOSS_BROKER_UPL",
+5186:                    "closed_utc": utc(),
+5187:                    "close_info": close_info,
+5196:                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5205:                    "broker_upl": float(broker_upl_total_for_tp),
+5208:                    "close_info": close_info,
+5211:                return True, positions_after
+5215:                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+5221:            return True, positions
+5246:        ok, close_info, positions_after = v24_close_basket_secure(
+5259:            exec_state.setdefault("closed", []).append({
+5261:                "closed_reason": invalidation_reason,
+5262:                "closed_utc": utc(),
+
+=== TP CODE WINDOW ===
+  4722	        retry_status, retry_data = B.api_post(headers, "/api/v1/workingorders", retry_payload)
+  4723	    except Exception as exc:
+  4724	        try:
+  4725	            print(f"V24_WORKING_ORDER_RETRY_EXCEPTION | {exc}")
+  4726	        except Exception:
+  4727	            pass
+  4728	        return status, data, payload
+  4729	    retry_err = v24sa_error_text(retry_data)
+  4730	
+  4731	    # V24 SCALP ACTIVE — deuxième tentative si le broker donne enfin
+  4732	    # le niveau stop min/max exact à respecter.
+  4733	    if int(retry_status) in (400, 403) and "invalid.stoploss" in retry_err:
+  4734	        second_payload, second_adjusted = v24sa_adjust_stopdistance_from_broker_error(dict(retry_payload), retry_err)
+  4735	        if second_adjusted:
+  4736	            try:
+  4737	                asset2 = str(second_payload.get("epic") or "")
+  4738	                direction2 = str(second_payload.get("direction") or "")
+  4739	                print(
+  4740	                    f"{asset2:10s} | V24_WORKING_ORDER_SECOND_RETRY | {direction2:4s} | "
+  4741	                    f"reason=DYNAMIC_STOP_DISTANCE old_error={retry_err}"
+  4742	                )
+  4743	                second_status, second_data = B.api_post(headers, "/api/v1/workingorders", second_payload)
+  4744	                print(
+  4745	                    f"{asset2:10s} | V24_WORKING_ORDER_SECOND_RETRY_RESULT | {direction2:4s} | "
+  4746	                    f"HTTP={second_status} data={second_data}"
+  4747	                )
+  4748	                return second_status, second_data, second_payload
+  4749	            except Exception as exc:
+  4750	                try:
+  4751	                    print(f"V24_WORKING_ORDER_SECOND_RETRY_EXCEPTION | {exc}")
+  4752	                except Exception:
+  4753	                    pass
+  4754	
+  4755	    if int(retry_status) in (400, 403) and "error.invalid.stoploss" in retry_err and v24sa_env_bool("V24_ALLOW_NO_STOP_LAST_RETRY", False):
+  4756	        last_payload = dict(retry_payload)
+  4757	        for key in ("stopDistance", "stopLevel", "stopAmount", "guaranteedStop"):
+  4758	            last_payload.pop(key, None)
+  4759	        try:
+  4760	            asset = str(last_payload.get("epic") or "")
+  4761	            direction = str(last_payload.get("direction") or "")
+  4762	            print(f"{asset:10s} | V24_STOP_GUARD_LAST_RETRY_NO_STOP | {direction:4s} | old_error={retry_err}")
+  4763	            last_status, last_data = B.api_post(headers, "/api/v1/workingorders", last_payload)
+  4764	            return last_status, last_data, last_payload
+  4765	        except Exception:
+  4766	            return retry_status, retry_data, retry_payload
+  4767	    try:
+  4768	        asset = str(retry_payload.get("epic") or "")
+  4769	        direction = str(retry_payload.get("direction") or "")
+  4770	        print(f"{asset:10s} | V24_WORKING_ORDER_RETRY_RESULT | {direction:4s} | HTTP={retry_status} data={retry_data}")
+  4771	    except Exception:
+  4772	        pass
+  4773	    return retry_status, retry_data, retry_payload
+  4774	
+  4775	# =============================================================================
+  4776	# FIN V24_SCALP_ACTIVE_GLOBAL_HELPERS_V3
+  4777	# =============================================================================
+  4778	
+  4779	
+  4780	def v24_process_basket(headers, asset, cycle, active_exec, broker_items, broker_ids, positions, market_status, exec_state, margin_snapshot=None, storm_snapshot=None):
+  4781	    """
+  4782	    Gestion complète du panier V24 :
+  4783	    - résolution workingDealId des LIMIT
+  4784	    - détection des LIMIT remplis
+  4785	    - calcul PnL global
+  4786	    - fermeture globale au TP panier
+  4787	    """
+  4788	    levels = active_exec.setdefault("levels", {})
+  4789	    direction = active_exec.get("direction") or cycle.get("direction")
+  4790	
+  4791	    # 1. Résoudre les vrais workingDealId des LIMIT en attente.
+  4792	    for level_key, rec in levels.items():
+  4793	        if str(rec.get("status", "")).startswith("PENDING_LIMIT") and not rec.get("workingDealId"):
+  4794	            resolved_id, resolve_reason, resolve_response = resolve_working_order_id(headers, rec)
+  4795	
+  4796	            if resolved_id:
+  4797	                rec["workingDealId"] = resolved_id
+  4798	                rec["workingDealId_source"] = resolve_reason
+  4799	                rec["workingDealId_resolved_utc"] = utc()
+  4800	
+  4801	                print(
+  4802	                    f"{asset:10s} | BASKET_ID_OK | {int(level_key):<3} | {direction:4s} | "
+  4803	                    f"{float(rec.get('size', 0.0)):<10.6f} | {market_status:9s} | "
+  4804	                    f"workingId={short_id(resolved_id)}"
+  4805	                )
+  4806	
+  4807	                event({
+  4808	                    "event": "V24_BASKET_WORKING_ID_RESOLVED",
+  4809	                    "asset": asset,
+  4810	                    "cycle_id": cycle.get("cycle_id"),
+  4811	                    "level": int(level_key),
+  4812	                    "workingDealId": resolved_id,
+  4813	                    "resolve_reason": resolve_reason,
+  4814	                })
+  4815	            else:
+  4816	                rec["workingDealId_resolve_last_reason"] = resolve_reason
+  4817	                rec["workingDealId_resolve_last_utc"] = utc()
+  4818	
+  4819	    # 2. Associer les positions broker apparues aux niveaux LIMIT.
+  4820	    already_tracked = {
+  4821	        rec.get("brokerDealId")
+  4822	        for rec in levels.values()
+  4823	        if rec.get("brokerDealId")
+  4824	    }
+  4825	
+  4826	    for item in broker_items:
+  4827	        deal_id = pos_deal_id(item)
+  4828	        if not deal_id or deal_id in already_tracked:
+  4829	            continue
+  4830	
+  4831	        matched_key = None
+  4832	        matched_rec = None
+  4833	
+  4834	        for level_key, rec in levels.items():
+  4835	            if not str(rec.get("status", "")).startswith("PENDING_LIMIT"):
+  4836	                continue
+  4837	
+  4838	            if v24_position_matches_level(item, rec):
+  4839	                matched_key = level_key
+  4840	                matched_rec = rec
+  4841	                break
+  4842	
+  4843	        if matched_rec is not None:
+  4844	            try:
+  4845	                broker_entry_price = (
+  4846	                    float(pos_entry(item))
+  4847	                    if pos_entry(item) is not None
+  4848	                    else None
+  4849	                )
+  4850	            except Exception:
+  4851	                broker_entry_price = None
+  4852	
+  4853	            matched_rec["status"] = "OPEN_POSITION"
+  4854	            matched_rec["brokerDealId"] = deal_id
+  4855	            matched_rec["dealId"] = deal_id
+  4856	            matched_rec["dealId_source"] = "GET_POSITIONS_AFTER_LIMIT_FILL_BASKET"
+  4857	            matched_rec["brokerEntryPrice"] = broker_entry_price
+  4858	            matched_rec["brokerEntryPrice_source"] = (
+  4859	                "GET_POSITIONS_AFTER_LIMIT_FILL_LEVEL"
+  4860	                if broker_entry_price is not None
+  4861	                else "UNAVAILABLE"
+  4862	            )
+  4863	            matched_rec["filled_utc"] = utc()
+  4864	
+  4865	            print(
+  4866	                f"{asset:10s} | BASKET_FILL | {int(matched_key):<3} | {direction:4s} | "
+  4867	                f"{float(matched_rec.get('size', 0.0)):<10.6f} | {market_status:9s} | "
+  4868	                f"deal={short_id(deal_id)} limit={matched_rec.get('limit_price')} entry={broker_entry_price}"
+  4869	            )
+  4870	
+  4871	            event({
+  4872	                "event": "V24_BASKET_LEVEL_FILLED",
+  4873	                "asset": asset,
+  4874	                "cycle_id": cycle.get("cycle_id"),
+  4875	                "level": int(matched_key),
+  4876	                "direction": direction,
+  4877	                "brokerDealId": deal_id,
+  4878	                "brokerEntryPrice": broker_entry_price,
+  4879	                "requested_limit_price": matched_rec.get("limit_price"),
+  4880	                "price_audit": matched_rec.get("price_audit"),
+  4881	            })
+  4882	
+  4883	    # 3. Calcul PnL global.
+  4884	    pnl_total, open_count, target = v24_basket_current_pnl(asset, active_exec, broker_items=broker_items)
+  4885	
+  4886	    active_exec["last_basket_pnl_eur"] = float(pnl_total)
+  4887	    active_exec["last_open_count"] = int(open_count)
+  4888	    active_exec["last_target_tp_eur"] = target
+  4889	
+  4890	    pnl_audit = active_exec.get("last_pnl_audit") or {}
+  4891	    broker_upl_total_for_tp = pnl_audit.get("total_broker_upl_eur")
+  4892	    broker_upl_count_for_tp = int(pnl_audit.get("broker_upl_count") or 0)
+  4893	
+  4894	    tp_broker_ready = (
+  4895	        open_count > 0
+  4896	        and target is not None
+  4897	        and broker_upl_total_for_tp is not None
+  4898	        and broker_upl_count_for_tp >= int(open_count)
+  4899	    )
+  4900	
+  4901	    tp_decision_pnl = float(broker_upl_total_for_tp) if tp_broker_ready else None
+  4902	
+  4903	    active_exec["last_tp_decision_source"] = (
+  4904	        "BROKER_POSITION_UPL" if tp_broker_ready else "NO_BROKER_UPL_BLOCK_TP"
+  4905	    )
+  4906	    active_exec["last_tp_decision_pnl_eur"] = tp_decision_pnl
+  4907	    active_exec["last_internal_pnl_eur"] = float(pnl_total)
+  4908	    active_exec["last_broker_upl_total_eur"] = broker_upl_total_for_tp
+  4909	    active_exec["last_broker_upl_count"] = broker_upl_count_for_tp
+  4910	    active_exec["last_check_utc"] = utc()
+  4911	
+  4912	    # V24.3.1 - TP LADDER AUDIT LOG ONLY
+  4913	    # Prouve explicitement open=1/2/3 => target=0.20/0.40/0.60.
+  4914	    # Aucun changement de decision, aucun appel API supplementaire.
+  4915	    if open_count > 0 and v24_bool_env("V243_TP_LADDER_CHECK_LOG", True):
+  4916	        try:
+  4917	            ladder_margin = float(v24_tp_safety_margin_eur())
+  4918	        except Exception:
+  4919	            ladder_margin = 0.0
+  4920	
+  4921	        try:
+  4922	            ladder_threshold = float(target) + float(ladder_margin) if target is not None else None
+  4923	        except Exception:
+  4924	            ladder_threshold = None
+  4925	
+  4926	        if target is None:
+  4927	            ladder_decision = "NO_TARGET"
+  4928	        elif not tp_broker_ready:
+  4929	            ladder_decision = "HOLD_NO_BROKER_UPL"
+  4930	        elif tp_decision_pnl is not None and ladder_threshold is not None and float(tp_decision_pnl) >= float(ladder_threshold):
+  4931	            ladder_decision = "TP_READY"
+  4932	        else:
+  4933	            ladder_decision = "HOLD_BELOW_TARGET"
+  4934	
+  4935	        target_s = "None" if target is None else f"{float(target):.4f}"
+  4936	        threshold_s = "None" if ladder_threshold is None else f"{float(ladder_threshold):.4f}"
+  4937	        broker_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+  4938	        tp_pnl_s = "none" if tp_decision_pnl is None else f"{float(tp_decision_pnl):.4f}"
+  4939	        source_s = "BROKER_POSITION_UPL" if tp_broker_ready else "NO_BROKER_UPL_BLOCK_TP"
+  4940	
+  4941	        print(
+  4942	            f"{asset:10s} | BASKET_TP_LADDER_CHECK | 1-3 | {direction:4s} | "
+  4943	            f"--         | {market_status:9s} | "
+  4944	            f"open={int(open_count)} expected_target={target_s} threshold={threshold_s} "
+  4945	            f"broker_upl={broker_upl_s} tp_pnl={tp_pnl_s} "
+  4946	            f"broker_count={int(broker_upl_count_for_tp)}/{int(open_count)} "
+  4947	            f"internal={float(pnl_total):.4f} margin={float(ladder_margin):.4f} "
+  4948	            f"decision={ladder_decision} source={source_s}"
+  4949	        )
+  4950	
+  4951	    exec_state.setdefault("active", {})[asset] = active_exec
+  4952	    B.save_json(B.EXEC_STATE_FILE, exec_state)
+  4953	
+  4954	    pending_count = len([
+  4955	        rec for rec in levels.values()
+  4956	        if str(rec.get("status", "")).startswith("PENDING_LIMIT")
+  4957	    ])
+  4958	
+  4959	    # V24.3 -- anti-zombie local : jambes OPEN localement mais disparues côté broker.
+  4960	    if open_count > 0 and not broker_items:
+  4961	        fresh_status, fresh_positions, fresh_raw = fetch_positions(headers)
+  4962	        fresh_broker_items = positions_for_asset(asset, fresh_positions)
+  4963	
+  4964	        if fresh_status in (200, 201, 202) and not fresh_broker_items:
+  4965	            reason = "V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET"
+  4966	
+  4967	            try:
+  4968	                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+  4969	                    headers=headers,
+  4970	                    asset=asset,
+  4971	                    direction=direction,
+  4972	                    reason=reason + "_PENDING_SWEEP",
+  4973	                )
+  4974	            except Exception as e:
+  4975	                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+  4976	
+  4977	            active_exec["broker_empty_reset_reason"] = reason
+  4978	            active_exec["broker_empty_reset_utc"] = utc()
+  4979	            active_exec["broker_empty_reset_open_count"] = int(open_count)
+  4980	            active_exec["broker_empty_reset_pending_count"] = int(pending_count)
+  4981	            active_exec["broker_empty_reset_fetch_status"] = fresh_status
+  4982	            active_exec["broker_empty_reset_cleanup_results"] = broker_cleanup_results
+  4983	            active_exec["broker_empty_reset_last_broker_upl_total_eur"] = broker_upl_total_for_tp
+  4984	            active_exec["broker_empty_reset_last_target_tp_eur"] = target
+  4985	            active_exec["broker_empty_reset_last_internal_pnl_eur"] = float(pnl_total)
+  4986	            active_exec["broker_empty_reset_last_broker_upl_count"] = int(broker_upl_count_for_tp)
+  4987	
+  4988	            exec_state.setdefault("orphaned_resets", []).append({
+  4989	                **active_exec,
+  4990	                "orphaned_reason": reason,
+  4991	                "orphaned_utc": utc(),
+  4992	            })
+  4993	            exec_state.setdefault("active", {}).pop(asset, None)
+  4994	            reset_cycle_idle(asset, reason)
+  4995	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  4996	
+  4997	            broker_empty_upl_s = "none" if broker_upl_total_for_tp is None else f"{float(broker_upl_total_for_tp):.4f}"
+  4998	            broker_empty_target_s = "none" if target is None else f"{float(target):.4f}"
+  4999	
+  5000	            print(
+  5001	                f"{asset:10s} | BROKER_EMPTY_RESET | 1-3 | {direction:4s} | "
+  5002	                f"--         | {market_status:9s} | "
+  5003	                f"local_open={open_count} broker_open=0 pending={pending_count} "
+  5004	                f"last_broker_upl={broker_empty_upl_s} target={broker_empty_target_s} "
+  5005	                f"broker_count={broker_upl_count_for_tp}/{open_count} internal={float(pnl_total):.4f} "
+  5006	                f"reason={reason}"
+  5007	            )
+  5008	
+  5009	            event({
+  5010	                "event": "BROKER_EMPTY_RESET",
+  5011	                "asset": asset,
+  5012	                "cycle_id": active_exec.get("cycle_id"),
+  5013	                "direction": direction,
+  5014	                "local_open_count": int(open_count),
+  5015	                "pending_count": int(pending_count),
+  5016	                "fetch_status": fresh_status,
+  5017	                "cleanup_results": broker_cleanup_results,
+  5018	                "reason": reason,
+  5019	            })
+  5020	
+  5021	            return True, fresh_positions
+  5022	
+  5023	        active_exec["broker_empty_reset_blocked_utc"] = utc()
+  5024	        active_exec["broker_empty_reset_blocked_status"] = fresh_status
+  5025	        active_exec["broker_empty_reset_blocked_broker_count"] = len(fresh_broker_items)
+  5026	        exec_state.setdefault("active", {})[asset] = active_exec
+  5027	        B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5028	
+  5029	    storm_blocked, storm_reasons = v243_storm_guard_blocks_asset(storm_snapshot, asset)
+  5030	
+  5031	    if storm_blocked and pending_count > 0:
+  5032	        reason = "V243_STORM_GUARD_CANCEL_PENDING"
+  5033	
+  5034	        cancel_results = v24_cancel_all_pending_limits(
+  5035	            headers=headers,
+  5036	            asset=asset,
+  5037	            levels=levels,
+  5038	            reason=reason,
+  5039	        )
+  5040	
+  5041	        try:
+  5042	            broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+  5043	                headers=headers,
+  5044	                asset=asset,
+  5045	                direction=direction,
+  5046	                reason=reason + "_BROKER_SWEEP",
+  5047	            )
+  5048	        except Exception as e:
+  5049	            broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+  5050	
+  5051	        active_exec["storm_guard_reasons"] = storm_reasons
+  5052	        active_exec["storm_guard_cancel_results"] = cancel_results
+  5053	        active_exec["storm_guard_broker_cleanup_results"] = broker_cleanup_results
+  5054	        active_exec["storm_guard_cancel_utc"] = utc()
+  5055	
+  5056	        event({
+  5057	            "event": "STORM_GUARD_CANCEL_PENDING",
+  5058	            "asset": asset,
+  5059	            "cycle_id": active_exec.get("cycle_id"),
+  5060	            "direction": direction,
+  5061	            "open_count": open_count,
+  5062	            "pending_count": pending_count,
+  5063	            "storm_reasons": storm_reasons,
+  5064	            "cancel_results": cancel_results,
+  5065	            "broker_cleanup_results": broker_cleanup_results,
+  5066	        })
+  5067	
+  5068	        print(
+  5069	            f"{asset:10s} | STORM_GUARD_CANCEL_PENDING | 1-3 | {direction:4s} | "
+  5070	            f"--         | {market_status:9s} | "
+  5071	            f"open={open_count} pending={pending_count} reasons={','.join(storm_reasons[:4])}"
+  5072	        )
+  5073	
+  5074	        if open_count <= 0:
+  5075	            exec_state.setdefault("cancelled", []).append({
+  5076	                **active_exec,
+  5077	                "cancelled_reason": reason,
+  5078	                "cancelled_utc": utc(),
+  5079	            })
+  5080	            exec_state.setdefault("active", {}).pop(asset, None)
+  5081	            reset_cycle_idle(asset, reason)
+  5082	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5083	            return True, positions
+  5084	
+  5085	        exec_state.setdefault("active", {})[asset] = active_exec
+  5086	        B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5087	
+  5088	    if storm_blocked and open_count > 0 and v243_storm_emergency_close_enabled():
+  5089	        storm_loss_limit = v243_storm_max_loss_eur(open_count)
+  5090	
+  5091	        if broker_upl_total_for_tp is None:
+  5092	            print(
+  5093	                f"{asset:10s} | STORM_GUARD_CLOSE_BLOCKED_NO_BROKER_UPL | 1-3 | {direction:4s} | "
+  5094	                f"--         | {market_status:9s} | limit=-{storm_loss_limit:.4f} reasons={','.join(storm_reasons[:4])}"
+  5095	            )
+  5096	        elif float(broker_upl_total_for_tp) <= -float(storm_loss_limit):
+  5097	            ok, close_info, positions_after = v24_close_basket_secure(
+  5098	                headers=headers,
+  5099	                asset=asset,
+  5100	                basket_exec=active_exec,
+  5101	                reason="V243_STORM_GUARD_EMERGENCY_CLOSE",
+  5102	            )
+  5103	
+  5104	            active_exec["storm_guard_emergency_close_utc"] = utc()
+  5105	            active_exec["storm_guard_emergency_close_reasons"] = storm_reasons
+  5106	            active_exec["storm_guard_emergency_close_broker_upl"] = float(broker_upl_total_for_tp)
+  5107	            active_exec["storm_guard_emergency_close_loss_limit"] = float(storm_loss_limit)
+  5108	
+  5109	            if ok:
+  5110	                exec_state.setdefault("closed", []).append({
+  5111	                    **active_exec,
+  5112	                    "closed_reason": "V243_STORM_GUARD_EMERGENCY_CLOSE",
+  5113	                    "closed_utc": utc(),
+  5114	                    "close_info": close_info,
+  5115	                })
+  5116	                exec_state.setdefault("active", {}).pop(asset, None)
+  5117	
+  5118	                reset_cycle_idle(asset, "V243_STORM_GUARD_EMERGENCY_CLOSE")
+  5119	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5120	
+  5121	                print(
+  5122	                    f"{asset:10s} | STORM_GUARD_EMERGENCY_CLOSE_OK | 1-3 | {direction:4s} | "
+  5123	                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5124	                    f"limit=-{storm_loss_limit:.4f} reasons={','.join(storm_reasons[:4])}"
+  5125	                )
+  5126	
+  5127	                event({
+  5128	                    "event": "STORM_GUARD_EMERGENCY_CLOSE_OK",
+  5129	                    "asset": asset,
+  5130	                    "cycle_id": active_exec.get("cycle_id"),
+  5131	                    "direction": direction,
+  5132	                    "broker_upl": float(broker_upl_total_for_tp),
+  5133	                    "loss_limit": float(storm_loss_limit),
+  5134	                    "storm_reasons": storm_reasons,
+  5135	                    "close_info": close_info,
+  5136	                })
+  5137	
+  5138	                return True, positions_after
+  5139	
+  5140	            print(
+  5141	                f"{asset:10s} | STORM_GUARD_EMERGENCY_CLOSE_FAIL | 1-3 | {direction:4s} | "
+  5142	                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5143	                f"limit=-{storm_loss_limit:.4f}"
+  5144	            )
+  5145	
+  5146	            exec_state.setdefault("active", {})[asset] = active_exec
+  5147	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5148	            return True, positions
+  5149	
+  5150	    if open_count > 0 and v243_max_loss_guard_enabled():
+  5151	        max_loss_eur = v243_basket_max_loss_eur(open_count)
+  5152	
+  5153	        if broker_upl_total_for_tp is None:
+  5154	            print(
+  5155	                f"{asset:10s} | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | {direction:4s} | "
+  5156	                f"--         | {market_status:9s} | limit=-{max_loss_eur:.4f}"
+  5157	            )
+  5158	        elif float(broker_upl_total_for_tp) <= -float(max_loss_eur):
+  5159	            try:
+  5160	                max_loss_cancel_results = v24_cancel_all_pending_limits(
+  5161	                    headers=headers,
+  5162	                    asset=asset,
+  5163	                    levels=levels,
+  5164	                    reason="V243_BASKET_MAX_LOSS_CANCEL_PENDING",
+  5165	                )
+  5166	                active_exec["max_loss_cancel_results"] = max_loss_cancel_results
+  5167	            except Exception as e:
+  5168	                active_exec["max_loss_cancel_error"] = str(e)
+  5169	
+  5170	            ok, close_info, positions_after = v24_close_basket_secure(
+  5171	                headers=headers,
+  5172	                asset=asset,
+  5173	                basket_exec=active_exec,
+  5174	                reason="V243_BASKET_MAX_LOSS_BROKER_UPL",
+  5175	            )
+  5176	
+  5177	            active_exec["max_loss_broker_upl"] = float(broker_upl_total_for_tp)
+  5178	            active_exec["max_loss_limit_eur"] = float(max_loss_eur)
+  5179	            active_exec["max_loss_open_count"] = int(open_count)
+  5180	            active_exec["max_loss_utc"] = utc()
+  5181	
+  5182	            if ok:
+  5183	                exec_state.setdefault("closed", []).append({
+  5184	                    **active_exec,
+  5185	                    "closed_reason": "V243_BASKET_MAX_LOSS_BROKER_UPL",
+  5186	                    "closed_utc": utc(),
+  5187	                    "close_info": close_info,
+  5188	                })
+  5189	                exec_state.setdefault("active", {}).pop(asset, None)
+  5190	
+  5191	                reset_cycle_idle(asset, "V243_BASKET_MAX_LOSS_BROKER_UPL")
+  5192	                B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5193	
+  5194	                print(
+  5195	                    f"{asset:10s} | BASKET_MAX_LOSS_CLOSE_OK | 1-3 | {direction:4s} | "
+  5196	                    f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5197	                    f"limit=-{max_loss_eur:.4f} open={open_count}"
+  5198	                )
+  5199	
+  5200	                event({
+  5201	                    "event": "BASKET_MAX_LOSS_CLOSE_OK",
+  5202	                    "asset": asset,
+  5203	                    "cycle_id": active_exec.get("cycle_id"),
+  5204	                    "direction": direction,
+  5205	                    "broker_upl": float(broker_upl_total_for_tp),
+  5206	                    "loss_limit": float(max_loss_eur),
+  5207	                    "open_count": int(open_count),
+  5208	                    "close_info": close_info,
+  5209	                })
+  5210	
+  5211	                return True, positions_after
+  5212	
+  5213	            print(
+  5214	                f"{asset:10s} | BASKET_MAX_LOSS_CLOSE_FAIL | 1-3 | {direction:4s} | "
+  5215	                f"--         | {market_status:9s} | broker_upl={float(broker_upl_total_for_tp):.4f} "
+  5216	                f"limit=-{max_loss_eur:.4f}"
+  5217	            )
+  5218	
+  5219	            exec_state.setdefault("active", {})[asset] = active_exec
+  5220	            B.save_json(B.EXEC_STATE_FILE, exec_state)
+  5221	            return True, positions
+  5222	

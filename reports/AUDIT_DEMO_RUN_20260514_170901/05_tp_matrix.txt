@@ -1,0 +1,241 @@
+581:US30       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+582:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+619:GOLD       | PNL_AUDIT_LEG | L1   | BUY  | entry=4678.590000 size=0.270000 bid=4677.120000 ask=4677.620000 exit=4677.120000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=-0.3392 pnl_dist=-0.33923076923082807 pnl_mod=-0.33923076923082807 raw=-0.3969000000000688 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.76 broker=position.upl=-0.76
+620:GOLD       | PNL_AUDIT_LEG | L2   | BUY  | entry=4674.710000 size=0.540000 bid=4677.120000 ask=4677.620000 exit=4677.120000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1123 pnl_dist=1.1123076923076254 pnl_mod=1.1123076923076254 raw=1.3013999999999215 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.27 broker=position.upl=0.27
+621:GOLD       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=0.7731 broker_upl=-0.4900 target=0.4
+622:GOLD       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.4900 tp_pnl=-0.4900 broker_count=2/2 internal=0.7731 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+623:GOLD       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=0.7731 broker_upl=-0.4900 target=0.4000
+625:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=0.7731 target=0.4
+660:ETHUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=2304.340000 size=0.060000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=-0.1097 pnl_dist=-0.10974358974358324 pnl_mod=-0.10974358974358321 raw=-0.12839999999999235 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.31 broker=position.upl=-0.31
+661:ETHUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=2308.350000 size=0.120000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1918 pnl_dist=0.19179487179486063 pnl_mod=0.1917948717948606 raw=0.2243999999999869 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.21 broker=position.upl=-0.21
+662:ETHUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=0.0821 broker_upl=-0.5200 target=0.4
+663:ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.5200 tp_pnl=-0.5200 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+665:ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 pnl=0.0821 target=0.4
+859:US100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+861:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+903:USDJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+930:GOLD       | PNL_AUDIT_LEG | L1   | BUY  | entry=4678.590000 size=0.270000 bid=4677.120000 ask=4677.620000 exit=4677.120000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=-0.3392 pnl_dist=-0.33923076923082807 pnl_mod=-0.33923076923082807 raw=-0.3969000000000688 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.57 broker=position.upl=-0.57
+931:GOLD       | PNL_AUDIT_LEG | L2   | BUY  | entry=4674.710000 size=0.540000 bid=4677.120000 ask=4677.620000 exit=4677.120000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1123 pnl_dist=1.1123076923076254 pnl_mod=1.1123076923076254 raw=1.3013999999999215 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.65 broker=position.upl=0.65
+932:GOLD       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=0.7731 broker_upl=0.0800 target=0.4
+933:GOLD       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=0.0800 tp_pnl=0.0800 broker_count=2/2 internal=0.7731 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+934:GOLD       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=0.7731 broker_upl=0.0800 target=0.4000
+936:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=0.7731 target=0.4
+944:BTCUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+945:ETHUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=2304.340000 size=0.060000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=-0.1097 pnl_dist=-0.10974358974358324 pnl_mod=-0.10974358974358321 raw=-0.12839999999999235 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.39 broker=position.upl=-0.39
+946:ETHUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=2308.350000 size=0.120000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1918 pnl_dist=0.19179487179486063 pnl_mod=0.1917948717948606 raw=0.2243999999999869 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.36 broker=position.upl=-0.36
+947:ETHUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=0.0821 broker_upl=-0.7500 target=0.4
+948:ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.7500 tp_pnl=-0.7500 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+950:ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 pnl=0.0821 target=0.4
+1146:US100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1155:UK100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1162:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1164:USDJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1169:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1170:GOLD       | PNL_AUDIT_LEG | L1   | BUY  | entry=4678.590000 size=0.270000 bid=4677.120000 ask=4677.620000 exit=4677.120000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=-0.3392 pnl_dist=-0.33923076923082807 pnl_mod=-0.33923076923082807 raw=-0.3969000000000688 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+1171:GOLD       | PNL_AUDIT_LEG | L2   | BUY  | entry=4674.710000 size=0.540000 bid=4677.120000 ask=4677.620000 exit=4677.120000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1123 pnl_dist=1.1123076923076254 pnl_mod=1.1123076923076254 raw=1.3013999999999215 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+1172:GOLD       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=0.7731 broker_upl=none target=0.4
+1173:GOLD       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=0.7731 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+1174:GOLD       | BROKER_EMPTY_RESET | 1-3 | BUY  | --         | TRADEABLE | local_open=2 broker_open=0 pending=1 last_broker_upl=none target=0.4000 broker_count=0/2 internal=0.7731 reason=V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET
+1178:ETHUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=2304.340000 size=0.060000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=-0.1097 pnl_dist=-0.10974358974358324 pnl_mod=-0.10974358974358321 raw=-0.12839999999999235 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.29 broker=position.upl=-0.29
+1179:ETHUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=2308.350000 size=0.120000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1918 pnl_dist=0.19179487179486063 pnl_mod=0.1917948717948606 raw=0.2243999999999869 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.18 broker=position.upl=-0.18
+1180:ETHUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=0.0821 broker_upl=-0.4700 target=0.4
+1181:ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.4700 tp_pnl=-0.4700 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+1184:ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 pnl=0.0821 target=0.4
+1389:US100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1398:UK100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1418:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1419:USDJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1420:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1453:ETHUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=2304.340000 size=0.060000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=-0.1097 pnl_dist=-0.10974358974358324 pnl_mod=-0.10974358974358321 raw=-0.12839999999999235 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.28 broker=position.upl=-0.28
+1454:ETHUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=2308.350000 size=0.120000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1918 pnl_dist=0.19179487179486063 pnl_mod=0.1917948717948606 raw=0.2243999999999869 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.16 broker=position.upl=-0.16
+1455:ETHUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=0.0821 broker_upl=-0.4400 target=0.4
+1456:ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.4400 tp_pnl=-0.4400 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+1458:ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 pnl=0.0821 target=0.4
+1660:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1670:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1673:GBPUSD     | PNL_AUDIT_LEG | L2   | BUY  | entry=1.345840 size=2400.000000 bid=1.346980 ask=1.347110 exit=1.346980 side=BID_LOW_SIDE_FOR_BUY pnl_sel=2.3385 pnl_dist=2.3384615384618277 pnl_mod=2.3384615384618277 raw=2.736000000000338 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.27 broker=position.upl=-0.27
+1674:GBPUSD     | PNL_AUDIT_LEG | L3   | BUY  | entry=1.345570 size=3600.000000 bid=1.346980 ask=1.347110 exit=1.346980 side=BID_LOW_SIDE_FOR_BUY pnl_sel=4.3385 pnl_dist=4.338461538461949 pnl_mod=4.338461538461949 raw=5.07600000000048 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.43 broker=position.upl=0.43
+1675:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=6.6769 broker_upl=0.1600 target=0.4
+1676:GBPUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=0.1600 tp_pnl=0.1600 broker_count=2/2 internal=6.6769 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+1677:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=6.6769 broker_upl=0.1600 target=0.4000
+1680:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=6.6769 target=0.4
+1691:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1693:ETHUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=2304.340000 size=0.060000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=-0.1097 pnl_dist=-0.10974358974358324 pnl_mod=-0.10974358974358321 raw=-0.12839999999999235 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.08 broker=position.upl=-0.08
+1694:ETHUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=2308.350000 size=0.120000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1918 pnl_dist=0.19179487179486063 pnl_mod=0.1917948717948606 raw=0.2243999999999869 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.26 broker=position.upl=0.26
+1695:ETHUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=0.0821 broker_upl=0.1800 target=0.4
+1696:ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=0.1800 tp_pnl=0.1800 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+1699:ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 pnl=0.0821 target=0.4
+1879:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1905:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1906:GBPUSD     | PNL_AUDIT_LEG | L2   | BUY  | entry=1.345840 size=2400.000000 bid=1.346980 ask=1.347110 exit=1.346980 side=BID_LOW_SIDE_FOR_BUY pnl_sel=2.3385 pnl_dist=2.3384615384618277 pnl_mod=2.3384615384618277 raw=2.736000000000338 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+1907:GBPUSD     | PNL_AUDIT_LEG | L3   | BUY  | entry=1.345570 size=3600.000000 bid=1.346980 ask=1.347110 exit=1.346980 side=BID_LOW_SIDE_FOR_BUY pnl_sel=4.3385 pnl_dist=4.338461538461949 pnl_mod=4.338461538461949 raw=5.07600000000048 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+1908:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=6.6769 broker_upl=none target=0.4
+1909:GBPUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=6.6769 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+1910:GBPUSD     | BROKER_EMPTY_RESET | 1-3 | BUY  | --         | TRADEABLE | local_open=2 broker_open=0 pending=1 last_broker_upl=none target=0.4000 broker_count=0/2 internal=6.6769 reason=V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET
+1949:OIL_CRUDE  | PNL_AUDIT_LEG | L1   | BUY  | entry=96.796000 size=4.000000 bid=97.132000 ask=97.172000 exit=97.132000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1487 pnl_dist=1.1487179487179437 pnl_mod=1.1487179487179437 raw=1.343999999999994 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.01 broker=position.upl=-0.01
+1950:OIL_CRUDE  | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=1.1487 broker_upl=-0.0100 target=0.2
+1951:OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.0100 tp_pnl=-0.0100 broker_count=1/1 internal=1.1487 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+1952:OIL_CRUDE  | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=1.1487 broker_upl=-0.0100 target=0.2000
+1954:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 pnl=1.1487 target=0.2
+1956:ETHUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=2304.340000 size=0.060000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=-0.1097 pnl_dist=-0.10974358974358324 pnl_mod=-0.10974358974358321 raw=-0.12839999999999235 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+1957:ETHUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=2308.350000 size=0.120000 bid=2304.730000 ask=2306.480000 exit=2306.480000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1918 pnl_dist=0.19179487179486063 pnl_mod=0.1917948717948606 raw=0.2243999999999869 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+1958:ETHUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=0.0821 broker_upl=none target=0.4
+1959:ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=0.0821 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+1960:ETHUSD     | BROKER_EMPTY_RESET | 1-3 | SELL | --         | TRADEABLE | local_open=2 broker_open=0 pending=1 last_broker_upl=none target=0.4000 broker_count=0/2 internal=0.0821 reason=V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET
+2142:UK100      | PNL_AUDIT_LEG | L1   | SELL | entry=10391.600000 size=0.120000 bid=10374.300000 ask=10376.300000 exit=10376.300000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=2.1185 pnl_dist=2.11846153846169 pnl_mod=2.11846153846169 raw=1.8360000000001309 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.32 broker=position.upl=-0.32
+2143:UK100      | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=2.1185 broker_upl=-0.3200 target=0.2
+2144:UK100      | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.3200 tp_pnl=-0.3200 broker_count=1/1 internal=2.1185 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2145:UK100      | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=2.1185 broker_upl=-0.3200 target=0.2000
+2147:UK100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=2.1185 target=0.2
+2156:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2158:OIL_CRUDE  | PNL_AUDIT_LEG | L1   | BUY  | entry=96.796000 size=4.000000 bid=97.132000 ask=97.172000 exit=97.132000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1487 pnl_dist=1.1487179487179437 pnl_mod=1.1487179487179437 raw=1.343999999999994 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.22 broker=position.upl=-0.22
+2159:OIL_CRUDE  | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=1.1487 broker_upl=-0.2200 target=0.2
+2160:OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.2200 tp_pnl=-0.2200 broker_count=1/1 internal=1.1487 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2161:OIL_CRUDE  | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=1.1487 broker_upl=-0.2200 target=0.2000
+2163:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 pnl=1.1487 target=0.2
+2365:UK100      | PNL_AUDIT_LEG | L1   | SELL | entry=10391.600000 size=0.120000 bid=10374.300000 ask=10376.300000 exit=10376.300000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=2.1185 pnl_dist=2.11846153846169 pnl_mod=2.11846153846169 raw=1.8360000000001309 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.76 broker=position.upl=-0.76
+2366:UK100      | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=2.1185 broker_upl=-0.7600 target=0.2
+2367:UK100      | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.7600 tp_pnl=-0.7600 broker_count=1/1 internal=2.1185 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2368:UK100      | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=2.1185 broker_upl=-0.7600 target=0.2000
+2370:UK100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=2.1185 target=0.2
+2385:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2387:OIL_CRUDE  | PNL_AUDIT_LEG | L1   | BUY  | entry=96.796000 size=4.000000 bid=97.132000 ask=97.172000 exit=97.132000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1487 pnl_dist=1.1487179487179437 pnl_mod=1.1487179487179437 raw=1.343999999999994 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.06 broker=position.upl=0.06
+2388:OIL_CRUDE  | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=1.1487 broker_upl=0.0600 target=0.2
+2389:OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.0600 tp_pnl=0.0600 broker_count=1/1 internal=1.1487 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2390:OIL_CRUDE  | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=1.1487 broker_upl=0.0600 target=0.2000
+2392:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 pnl=1.1487 target=0.2
+2579:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2601:UK100      | PNL_AUDIT_LEG | L1   | SELL | entry=10391.600000 size=0.120000 bid=10374.300000 ask=10376.300000 exit=10376.300000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=2.1185 pnl_dist=2.11846153846169 pnl_mod=2.11846153846169 raw=1.8360000000001309 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.11 broker=position.upl=0.11
+2602:UK100      | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=2.1185 broker_upl=0.1100 target=0.2
+2603:UK100      | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.1100 tp_pnl=0.1100 broker_count=1/1 internal=2.1185 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2604:UK100      | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=2.1185 broker_upl=0.1100 target=0.2000
+2606:UK100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=2.1185 target=0.2
+2661:OIL_CRUDE  | PNL_AUDIT_LEG | L1   | BUY  | entry=96.796000 size=4.000000 bid=97.132000 ask=97.172000 exit=97.132000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1487 pnl_dist=1.1487179487179437 pnl_mod=1.1487179487179437 raw=1.343999999999994 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.13 broker=position.upl=-0.13
+2662:OIL_CRUDE  | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=1.1487 broker_upl=-0.1300 target=0.2
+2663:OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.1300 tp_pnl=-0.1300 broker_count=1/1 internal=1.1487 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2664:OIL_CRUDE  | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=1.1487 broker_upl=-0.1300 target=0.2000
+2666:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 pnl=1.1487 target=0.2
+2861:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2865:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2886:UK100      | PNL_AUDIT_LEG | L1   | SELL | entry=10391.600000 size=0.120000 bid=10374.300000 ask=10376.300000 exit=10376.300000 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=2.1185 pnl_dist=2.11846153846169 pnl_mod=2.11846153846169 raw=1.8360000000001309 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.25 broker=position.upl=0.25
+2887:UK100      | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=2.1185 broker_upl=0.2500 target=0.2
+2888:UK100      | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.2500 tp_pnl=0.2500 broker_count=1/1 internal=2.1185 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+2889:UK100      | BASKET_TP_OK | 1-3 | SELL | --         | TRADEABLE | pnl=0.2500 target=0.2000 internal=2.1185 source=BROKER_POSITION_UPL
+2920:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2928:USDJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2965:OIL_CRUDE  | PNL_AUDIT_LEG | L1   | BUY  | entry=96.796000 size=4.000000 bid=97.132000 ask=97.172000 exit=97.132000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.1487 pnl_dist=1.1487179487179437 pnl_mod=1.1487179487179437 raw=1.343999999999994 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.54 broker=position.upl=0.54
+2966:OIL_CRUDE  | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=1.1487 broker_upl=0.5400 target=0.2
+2967:OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.5400 tp_pnl=0.5400 broker_count=1/1 internal=1.1487 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+2968:OIL_CRUDE  | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=0.5400 target=0.2000 internal=1.1487 source=BROKER_POSITION_UPL
+3162:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3166:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3189:J225       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3190:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3195:USDJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3225:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3448:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3452:DE40       | PNL_AUDIT_LEG | L1   | BUY  | entry=24412.600000 size=0.051000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.2954 pnl_dist=1.295400000000074 pnl_mod=1.295400000000074 raw=1.295400000000074 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.03 broker=position.upl=0.03
+3453:DE40       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=1.2954 broker_upl=0.0300 target=0.2
+3454:DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.0300 tp_pnl=0.0300 broker_count=1/1 internal=1.2954 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+3455:DE40       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=1.2954 broker_upl=0.0300 target=0.2000
+3457:DE40       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 pnl=1.2954 target=0.2
+3460:J225       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3467:EURJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3473:OIL_CRUDE  | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3685:DE40       | PNL_AUDIT_LEG | L1   | BUY  | entry=24412.600000 size=0.051000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.2954 pnl_dist=1.295400000000074 pnl_mod=1.295400000000074 raw=1.295400000000074 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.57 broker=position.upl=-0.57
+3686:DE40       | PNL_AUDIT_LEG | L2   | BUY  | entry=24400.500000 size=0.102000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=3.8250 pnl_dist=3.8249999999999997 pnl_mod=3.8249999999999997 raw=3.8249999999999997 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.1 broker=position.upl=0.1
+3687:DE40       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=5.1204 broker_upl=-0.4700 target=0.4
+3688:DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.4700 tp_pnl=-0.4700 broker_count=2/2 internal=5.1204 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+3689:DE40       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=5.1204 broker_upl=-0.4700 target=0.4000
+3691:DE40       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=5.1204 target=0.4
+3967:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3986:DE40       | PNL_AUDIT_LEG | L1   | BUY  | entry=24412.600000 size=0.051000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.2954 pnl_dist=1.295400000000074 pnl_mod=1.295400000000074 raw=1.295400000000074 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.53 broker=position.upl=-0.53
+3987:DE40       | PNL_AUDIT_LEG | L2   | BUY  | entry=24400.500000 size=0.102000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=3.8250 pnl_dist=3.8249999999999997 pnl_mod=3.8249999999999997 raw=3.8249999999999997 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.17 broker=position.upl=0.17
+3988:DE40       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=5.1204 broker_upl=-0.3600 target=0.4
+3989:DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.3600 tp_pnl=-0.3600 broker_count=2/2 internal=5.1204 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+3990:DE40       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=5.1204 broker_upl=-0.3600 target=0.4000
+3992:DE40       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=5.1204 target=0.4
+3999:UK100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4051:ETHUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4244:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4245:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4249:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4250:DE40       | PNL_AUDIT_LEG | L1   | BUY  | entry=24412.600000 size=0.051000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.2954 pnl_dist=1.295400000000074 pnl_mod=1.295400000000074 raw=1.295400000000074 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.46 broker=position.upl=-0.46
+4251:DE40       | PNL_AUDIT_LEG | L2   | BUY  | entry=24400.500000 size=0.102000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=3.8250 pnl_dist=3.8249999999999997 pnl_mod=3.8249999999999997 raw=3.8249999999999997 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.32 broker=position.upl=0.32
+4252:DE40       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=5.1204 broker_upl=-0.1400 target=0.4
+4253:DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.1400 tp_pnl=-0.1400 broker_count=2/2 internal=5.1204 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+4254:DE40       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=5.1204 broker_upl=-0.1400 target=0.4000
+4256:DE40       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=5.1204 target=0.4
+4260:UK100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4277:OIL_CRUDE  | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4284:ETHUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4470:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4472:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4473:DE40       | PNL_AUDIT_LEG | L1   | BUY  | entry=24412.600000 size=0.051000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=1.2954 pnl_dist=1.295400000000074 pnl_mod=1.295400000000074 raw=1.295400000000074 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.06 broker=position.upl=-0.06
+4474:DE40       | PNL_AUDIT_LEG | L2   | BUY  | entry=24400.500000 size=0.102000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=3.8250 pnl_dist=3.8249999999999997 pnl_mod=3.8249999999999997 raw=3.8249999999999997 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=1.12 broker=position.upl=1.12
+4475:DE40       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=5.1204 broker_upl=1.0600 target=0.4
+4476:DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=1.0600 tp_pnl=1.0600 broker_count=2/2 internal=5.1204 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+4477:DE40       | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=1.0600 target=0.4000 internal=5.1204 source=BROKER_POSITION_UPL
+4516:OIL_CRUDE  | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4729:USDJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4949:US100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5006:USDJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5016:BTCUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5248:US100      | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5252:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5256:DE40       | PNL_AUDIT_LEG | L1   | BUY  | entry=24391.000000 size=0.051000 bid=24438.000000 ask=24439.500000 exit=24438.000000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=2.3970 pnl_dist=2.397 pnl_mod=2.397 raw=2.397 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.23 broker=position.upl=0.23
+5257:DE40       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=2.3970 broker_upl=0.2300 target=0.2
+5258:DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.2300 tp_pnl=0.2300 broker_count=1/1 internal=2.3970 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+5259:DE40       | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=0.2300 target=0.2000 internal=2.3970 source=BROKER_POSITION_UPL
+5269:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5300:BTCUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5304:ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5495:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5497:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5503:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5547:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5549:ETHUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5742:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5744:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6024:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6251:US500      | PNL_AUDIT_LEG | L1   | BUY  | entry=7496.900000 size=0.150000 bid=7513.400000 ask=7513.800000 exit=7513.400000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=2.1154 pnl_dist=2.115384615384616 pnl_mod=2.1153846153846154 raw=2.475 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.14 broker=position.upl=0.14
+6252:US500      | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=2.1154 broker_upl=0.1400 target=0.2
+6253:US500      | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.1400 tp_pnl=0.1400 broker_count=1/1 internal=2.1154 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+6254:US500      | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=2.1154 broker_upl=0.1400 target=0.2000
+6256:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 pnl=2.1154 target=0.2
+6261:US30       | PNL_AUDIT_LEG | L1   | BUY  | entry=50017.800000 size=0.024000 bid=50167.200000 ask=50169.200000 exit=50167.200000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=3.0646 pnl_dist=3.0646153846152657 pnl_mod=3.0646153846152657 raw=3.5855999999998605 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.79 broker=position.upl=-0.79
+6262:US30       | PNL_AUDIT_LEG | L2   | BUY  | entry=49997.000000 size=0.048000 bid=50167.200000 ask=50169.200000 exit=50167.200000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=6.9826 pnl_dist=6.982564102563984 pnl_mod=6.982564102563984 raw=8.16959999999986 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.72 broker=position.upl=-0.72
+6263:US30       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=10.0472 broker_upl=-1.5100 target=0.4
+6264:US30       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-1.5100 tp_pnl=-1.5100 broker_count=2/2 internal=10.0472 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+6265:US30       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=10.0472 broker_upl=-1.5100 target=0.4000
+6267:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=10.0472 target=0.4
+6276:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6286:USDJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6350:ETHUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6542:US500      | PNL_AUDIT_LEG | L1   | BUY  | entry=7496.900000 size=0.150000 bid=7513.400000 ask=7513.800000 exit=7513.400000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=2.1154 pnl_dist=2.115384615384616 pnl_mod=2.1153846153846154 raw=2.475 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.03 broker=position.upl=-0.03
+6543:US500      | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=2.1154 broker_upl=-0.0300 target=0.2
+6544:US500      | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.0300 tp_pnl=-0.0300 broker_count=1/1 internal=2.1154 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+6545:US500      | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=2.1154 broker_upl=-0.0300 target=0.2000
+6547:US500      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 pnl=2.1154 target=0.2
+6549:US30       | PNL_AUDIT_LEG | L1   | BUY  | entry=50017.800000 size=0.024000 bid=50167.200000 ask=50169.200000 exit=50167.200000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=3.0646 pnl_dist=3.0646153846152657 pnl_mod=3.0646153846152657 raw=3.5855999999998605 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.59 broker=position.upl=-0.59
+6550:US30       | PNL_AUDIT_LEG | L2   | BUY  | entry=49997.000000 size=0.048000 bid=50167.200000 ask=50169.200000 exit=50167.200000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=6.9826 pnl_dist=6.982564102563984 pnl_mod=6.982564102563984 raw=8.16959999999986 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.32 broker=position.upl=-0.32
+6551:US30       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=10.0472 broker_upl=-0.9100 target=0.4
+6552:US30       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.9100 tp_pnl=-0.9100 broker_count=2/2 internal=10.0472 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+6553:US30       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=10.0472 broker_upl=-0.9100 target=0.4000
+6555:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 pnl=10.0472 target=0.4
+6563:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6570:USDJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6574:EURJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6613:OIL_CRUDE  | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6615:ETHUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6808:US500      | PNL_AUDIT_LEG | L1   | BUY  | entry=7496.900000 size=0.150000 bid=7513.400000 ask=7513.800000 exit=7513.400000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=2.1154 pnl_dist=2.115384615384616 pnl_mod=2.1153846153846154 raw=2.475 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+6809:US500      | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=2.1154 broker_upl=none target=0.2
+6810:US500      | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=none tp_pnl=none broker_count=0/1 internal=2.1154 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+6811:US500      | BROKER_EMPTY_RESET | 1-3 | BUY  | --         | TRADEABLE | local_open=1 broker_open=0 pending=2 last_broker_upl=none target=0.2000 broker_count=0/1 internal=2.1154 reason=V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET
+6830:US30       | PNL_AUDIT_LEG | L1   | BUY  | entry=50017.800000 size=0.024000 bid=50167.200000 ask=50169.200000 exit=50167.200000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=3.0646 pnl_dist=3.0646153846152657 pnl_mod=3.0646153846152657 raw=3.5855999999998605 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+6831:US30       | PNL_AUDIT_LEG | L2   | BUY  | entry=49997.000000 size=0.048000 bid=50167.200000 ask=50169.200000 exit=50167.200000 side=BID_LOW_SIDE_FOR_BUY pnl_sel=6.9826 pnl_dist=6.982564102563984 pnl_mod=6.982564102563984 raw=8.16959999999986 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+6832:US30       | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=2 pnl=10.0472 broker_upl=none target=0.4
+6833:US30       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=10.0472 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+6834:US30       | BROKER_EMPTY_RESET | 1-3 | BUY  | --         | TRADEABLE | local_open=2 broker_open=0 pending=1 last_broker_upl=none target=0.4000 broker_count=0/2 internal=10.0472 reason=V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET
+6847:EURJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+6851:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None

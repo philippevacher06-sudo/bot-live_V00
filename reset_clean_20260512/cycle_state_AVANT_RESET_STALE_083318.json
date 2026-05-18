@@ -1,0 +1,125 @@
+{
+  "updated_utc": "2026-05-12T08:25:29+00:00",
+  "assets": {
+    "US500": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "US100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "US30": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "DE40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "CLOSE_TP",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "FR40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "UK100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "J225": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "EURUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "EURUSD",
+        "cycle_id": "d60a48ce-929",
+        "level": 2,
+        "direction": "SELL",
+        "entry_price": 1.174815,
+        "size": 200.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T08:25:29+00:00",
+        "opened_utc": "2026-05-12T08:25:29+00:00",
+        "level_open_utc": "2026-05-12T08:25:29+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "GBPUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "USDJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "EURJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "CLOSE_TP",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "GOLD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "SILVER": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "CLOSE_TP",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "OIL_CRUDE",
+        "cycle_id": "5b2d45e4-75c",
+        "level": 2,
+        "direction": "BUY",
+        "entry_price": 98.136,
+        "size": 2.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T08:25:29+00:00",
+        "opened_utc": "2026-05-12T08:25:29+00:00",
+        "level_open_utc": "2026-05-12T08:25:29+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "BTCUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    },
+    "ETHUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T08:25:29+00:00"
+    }
+  }
+}

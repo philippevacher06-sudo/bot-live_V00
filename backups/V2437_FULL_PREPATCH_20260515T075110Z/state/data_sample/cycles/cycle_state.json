@@ -1,0 +1,101 @@
+{
+  "updated_utc": "2026-05-13T19:41:54.030251+00:00",
+  "assets": {
+    "US500": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "US100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "V24_PENDING_BASKET_EXPIRED_CANCEL",
+      "last_event_utc": "2026-05-13T19:33:27+00:00"
+    },
+    "US30": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "V24_PENDING_BASKET_EXPIRED_CANCEL",
+      "last_event_utc": "2026-05-13T19:33:30+00:00"
+    },
+    "DE40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "MANUAL_RESET_BEFORE_V24_2_AFTER_BROKER_CLEANUP",
+      "last_event_utc": "2026-05-13T19:41:54.030251+00:00"
+    },
+    "FR40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "UK100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "J225": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "EURUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "GBPUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "MANUAL_RESET_BEFORE_V24_2_AFTER_BROKER_CLEANUP",
+      "last_event_utc": "2026-05-13T19:41:54.030251+00:00"
+    },
+    "USDJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "EURJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "GOLD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "MANUAL_RESET_BEFORE_V24_2_AFTER_BROKER_CLEANUP",
+      "last_event_utc": "2026-05-13T19:41:54.030251+00:00"
+    },
+    "SILVER": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE_PHASE_VETO",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "BTCUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    },
+    "ETHUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-13T19:33:25+00:00"
+    }
+  }
+}

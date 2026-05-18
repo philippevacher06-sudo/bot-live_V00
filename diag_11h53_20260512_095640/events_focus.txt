@@ -1,0 +1,147 @@
+724:GBPUSD     | OPEN_REQUEST   | 1   | SELL | 400.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 400.0, "guaranteedStop": true, "stopDistance": 0.00163, "profitDistance": 0.00025}
+725:GBPUSD     | OPEN_OK        | 1   | SELL | 400.000000 | TRADEABLE | brokerDealId=000070...0db4 confirmDealId=000070...0db3
+876:GBPUSD     | NEXT_LEVEL   | L1->L2 | SELL | pnl=-0.1520 | coeff=1.000 | size=800.000000 | tp=0.2000
+915:DE40       | OPEN_REQUEST   | 1   | SELL | 0.017000   | TRADEABLE | {"epic": "DE40", "direction": "SELL", "size": 0.017, "guaranteedStop": true, "stopDistance": 29.0, "profitDistance": 5.9}
+916:DE40       | OPEN_OK        | 1   | SELL | 0.017000   | TRADEABLE | brokerDealId=071016...2f93 confirmDealId=071016...2f92
+921:GBPUSD     | CLOSE_OK     | 1->2 | SELL | 800.000000 | TRADEABLE | deal=000070...0db4 fermé confirmé
+922:GBPUSD     | OPEN_REQUEST   | 2   | SELL | 800.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 800.0, "guaranteedStop": true, "stopDistance": 0.00163, "profitDistance": 0.00025}
+923:GBPUSD     | OPEN_OK        | 2   | SELL | 800.000000 | TRADEABLE | brokerDealId=000070...0dbb confirmDealId=000070...0dba
+1069:DE40       | NEXT_LEVEL   | L1->L2 | SELL | pnl=0.0102 | coeff=1.000 | size=0.034000 | tp=0.2000
+1074:GBPUSD     | NEXT_LEVEL   | L2->L3 | SELL | pnl=0.0800 | coeff=1.000 | size=1600.000000 | tp=0.4000
+1114:DE40       | BROKER_CLOSED | 2   | SELL | 0.034000   | TRADEABLE | deal=071016...2f93 disparu, cycle remis IDLE
+1119:GBPUSD     | CLOSE_OK     | 2->3 | SELL | 1600.000000 | TRADEABLE | deal=000070...0dbb fermé confirmé
+1120:GBPUSD     | OPEN_REQUEST   | 3   | SELL | 1600.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 1600.0, "guaranteedStop": true, "stopDistance": 0.00163, "profitDistance": 0.00025}
+1121:GBPUSD     | OPEN_OK        | 3   | SELL | 1600.000000 | TRADEABLE | brokerDealId=000070...0dd7 confirmDealId=000070...0dd6
+1272:GBPUSD     | NEXT_LEVEL   | L3->L4 | SELL | pnl=-0.4000 | coeff=1.000 | size=3200.000000 | tp=0.8000
+1316:GBPUSD     | CLOSE_OK     | 3->4 | SELL | 3200.000000 | TRADEABLE | deal=000070...0dd7 fermé confirmé
+1317:GBPUSD     | OPEN_REQUEST   | 4   | SELL | 3200.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 3200.0, "guaranteedStop": true, "stopDistance": 0.00163, "profitDistance": 0.00025}
+1318:GBPUSD     | OPEN_OK        | 4   | SELL | 3200.000000 | TRADEABLE | brokerDealId=000070...0de4 confirmDealId=000070...0de3
+1324:BTCUSD     | OPEN_REQUEST   | 1   | SELL | 0.000600   | TRADEABLE | {"epic": "BTCUSD", "direction": "SELL", "size": 0.0006, "guaranteedStop": true, "stopDistance": 484.25, "profitDistance": 166.7}
+1325:BTCUSD     | OPEN_OK        | 1   | SELL | 0.000600   | TRADEABLE | brokerDealId=000940...7508 confirmDealId=000940...7507
+1470:GBPUSD     | CLOSE_TP     | L4 | SELL | pnl=1.1200 | tp=0.8000
+1476:BTCUSD     | NEXT_LEVEL   | L1->L2 | SELL | pnl=0.0092 | coeff=1.000 | size=0.001200 | tp=0.2000
+1512:UK100      | OPEN_REQUEST   | 1   | BUY  | 0.040000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.04, "guaranteedStop": true, "stopDistance": 12.3, "profitDistance": 2.5}
+1513:UK100      | OPEN_OK        | 1   | BUY  | 0.040000   | TRADEABLE | brokerDealId=152f6d...08e5 confirmDealId=152f6d...08e4
+1522:BTCUSD     | CLOSE_OK     | 1->2 | SELL | 0.001200   | TRADEABLE | deal=000940...7508 fermé confirmé
+1523:BTCUSD     | OPEN_REQUEST   | 2   | SELL | 0.001200   | TRADEABLE | {"epic": "BTCUSD", "direction": "SELL", "size": 0.0012, "guaranteedStop": true, "stopDistance": 484.25, "profitDistance": 166.7}
+1524:BTCUSD     | OPEN_OK        | 2   | SELL | 0.001200   | TRADEABLE | brokerDealId=000940...7515 confirmDealId=000940...7514
+1691:UK100      | NEXT_LEVEL   | L1->L2 | BUY  | pnl=-0.0880 | coeff=1.000 | size=0.080000 | tp=0.2000
+1700:BTCUSD     | NEXT_LEVEL   | L2->L3 | SELL | pnl=0.0128 | coeff=1.000 | size=0.002400 | tp=0.4000
+1736:DE40       | OPEN_REQUEST   | 1   | BUY  | 0.017000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.017, "guaranteedStop": true, "stopDistance": 29.0, "profitDistance": 5.9}
+1737:DE40       | OPEN_OK        | 1   | BUY  | 0.017000   | TRADEABLE | brokerDealId=071016...2feb confirmDealId=071016...2fea
+1738:FR40       | OPEN_REQUEST   | 1   | BUY  | 0.050000   | TRADEABLE | {"epic": "FR40", "direction": "BUY", "size": 0.05, "guaranteedStop": true, "stopDistance": 24.1, "profitDistance": 2.0}
+1739:FR40       | OPEN_OK        | 1   | BUY  | 0.050000   | TRADEABLE | brokerDealId=001832...068a confirmDealId=001832...0689
+1740:UK100      | CLOSE_OK     | 1->2 | BUY  | 0.080000   | TRADEABLE | deal=152f6d...08e5 fermé confirmé
+1741:UK100      | OPEN_REQUEST   | 2   | BUY  | 0.080000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.08, "guaranteedStop": true, "stopDistance": 12.3, "profitDistance": 2.5}
+1742:UK100      | OPEN_OK        | 2   | BUY  | 0.080000   | TRADEABLE | brokerDealId=152f6d...08ed confirmDealId=152f6d...08ec
+1751:BTCUSD     | CLOSE_OK     | 2->3 | SELL | 0.002400   | TRADEABLE | deal=000940...7515 fermé confirmé
+1752:BTCUSD     | OPEN_REQUEST   | 3   | SELL | 0.002400   | TRADEABLE | {"epic": "BTCUSD", "direction": "SELL", "size": 0.0024, "guaranteedStop": true, "stopDistance": 484.25, "profitDistance": 166.7}
+1753:BTCUSD     | OPEN_OK        | 3   | SELL | 0.002400   | TRADEABLE | brokerDealId=000940...751d confirmDealId=000940...751c
+1893:DE40       | CLOSE_TP     | L1 | BUY  | pnl=0.1343 | tp=0.1000
+1894:FR40       | CLOSE_TP     | L1 | BUY  | pnl=0.1500 | tp=0.1000
+1895:UK100      | CLOSE_TP     | L2 | BUY  | pnl=0.3840 | tp=0.2000
+1904:BTCUSD     | NEXT_LEVEL   | L3->L4 | SELL | pnl=-0.0869 | coeff=1.000 | size=0.004800 | tp=0.8000
+1944:EURUSD     | OPEN_REQUEST   | 1   | SELL | 500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 500.0, "guaranteedStop": true, "stopDistance": 0.00353, "profitDistance": 0.0002}
+1945:EURUSD     | OPEN_OK        | 1   | SELL | 500.000000 | TRADEABLE | brokerDealId=000055...24b0 confirmDealId=000055...24af
+1952:BTCUSD     | CLOSE_OK     | 3->4 | SELL | 0.004800   | TRADEABLE | deal=000940...751d fermé confirmé
+1953:BTCUSD     | OPEN_REQUEST   | 4   | SELL | 0.004800   | TRADEABLE | {"epic": "BTCUSD", "direction": "SELL", "size": 0.0048, "guaranteedStop": true, "stopDistance": 484.25, "profitDistance": 166.7}
+1954:BTCUSD     | OPEN_OK        | 4   | SELL | 0.004800   | TRADEABLE | brokerDealId=000940...7521 confirmDealId=000940...7520
+2098:EURUSD     | NEXT_LEVEL   | L1->L2 | SELL | pnl=0.0350 | coeff=1.000 | size=1000.000000 | tp=0.2000
+2105:BTCUSD     | NEXT_LEVEL   | L4->L5 | SELL | pnl=0.1183 | coeff=1.000 | size=0.009600 | tp=1.6000
+2143:EURUSD     | CLOSE_OK     | 1->2 | SELL | 1000.000000 | TRADEABLE | deal=000055...24b0 fermé confirmé
+2144:EURUSD     | OPEN_REQUEST   | 2   | SELL | 1000.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 1000.0, "guaranteedStop": true, "stopDistance": 0.00353, "profitDistance": 0.0002}
+2145:EURUSD     | OPEN_OK        | 2   | SELL | 1000.000000 | TRADEABLE | brokerDealId=000055...24c5 confirmDealId=000055...24c4
+2152:BTCUSD     | CLOSE_OK     | 4->5 | SELL | 0.009600   | TRADEABLE | deal=000940...7521 fermé confirmé
+2153:BTCUSD     | OPEN_REQUEST   | 5   | SELL | 0.009600   | TRADEABLE | {"epic": "BTCUSD", "direction": "SELL", "size": 0.0096, "guaranteedStop": true, "stopDistance": 484.25, "profitDistance": 166.7}
+2154:BTCUSD     | OPEN_OK        | 5   | SELL | 0.009600   | TRADEABLE | brokerDealId=000940...7524 confirmDealId=000940...7523
+2298:EURUSD     | CLOSE_TP     | L2 | SELL | pnl=0.2900 | tp=0.2000
+2341:DE40       | OPEN_REQUEST   | 1   | BUY  | 0.017000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.017, "guaranteedStop": true, "stopDistance": 29.0, "profitDistance": 5.9}
+2342:DE40       | OPEN_OK        | 1   | BUY  | 0.017000   | TRADEABLE | brokerDealId=071016...2fff confirmDealId=071016...2ffe
+2343:FR40       | OPEN_REQUEST   | 1   | BUY  | 0.050000   | TRADEABLE | {"epic": "FR40", "direction": "BUY", "size": 0.05, "guaranteedStop": true, "stopDistance": 24.1, "profitDistance": 2.0}
+2344:FR40       | OPEN_OK        | 1   | BUY  | 0.050000   | TRADEABLE | brokerDealId=001832...0691 confirmDealId=001832...0690
+2354:BTCUSD     | HOLD_EXEC    | 5   | SELL | 0.009600   | TRADEABLE | niveau déjà exécuté deal=000940...7524
+2355:ETHUSD     | OPEN_REQUEST   | 1   | SELL | 0.017000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.017, "guaranteedStop": true, "stopDistance": 13.7, "profitDistance": 5.89}
+2356:ETHUSD     | OPEN_OK        | 1   | SELL | 0.017000   | TRADEABLE | brokerDealId=001542...2124 confirmDealId=001542...2123
+2495:DE40       | NEXT_LEVEL   | L1->L2 | BUY  | pnl=-0.1853 | coeff=1.000 | size=0.034000 | tp=0.2000
+2496:FR40       | NEXT_LEVEL   | L1->L2 | BUY  | pnl=-0.1000 | coeff=1.000 | size=0.100000 | tp=0.2000
+2507:ETHUSD     | NEXT_LEVEL   | L1->L2 | SELL | pnl=0.0364 | coeff=1.000 | size=0.034000 | tp=0.2000
+2547:US30       | OPEN_REQUEST   | 1   | BUY  | 0.008000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.008, "guaranteedStop": true, "stopDistance": 59.6, "profitDistance": 12.5}
+2548:US30       | OPEN_OK        | 1   | BUY  | 0.008000   | TRADEABLE | brokerDealId=174f8d...209c confirmDealId=174f8d...209b
+2549:DE40       | CLOSE_OK     | 1->2 | BUY  | 0.034000   | TRADEABLE | deal=071016...2fff fermé confirmé
+2550:DE40       | OPEN_REQUEST   | 2   | BUY  | 0.034000   | TRADEABLE | {"epic": "DE40", "direction": "BUY", "size": 0.034, "guaranteedStop": true, "stopDistance": 29.0, "profitDistance": 5.9}
+2551:DE40       | OPEN_OK        | 2   | BUY  | 0.034000   | TRADEABLE | brokerDealId=071016...300b confirmDealId=071016...300a
+2552:FR40       | CLOSE_OK     | 1->2 | BUY  | 0.100000   | TRADEABLE | deal=001832...0691 fermé confirmé
+2553:FR40       | OPEN_REQUEST   | 2   | BUY  | 0.100000   | TRADEABLE | {"epic": "FR40", "direction": "BUY", "size": 0.1, "guaranteedStop": true, "stopDistance": 24.1, "profitDistance": 2.0}
+2554:FR40       | OPEN_OK        | 2   | BUY  | 0.100000   | TRADEABLE | brokerDealId=001832...0695 confirmDealId=001832...0694
+2557:EURUSD     | OPEN_REQUEST   | 1   | BUY  | 500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 500.0, "guaranteedStop": true, "stopDistance": 0.00353, "profitDistance": 0.0002}
+2558:EURUSD     | OPEN_OK        | 1   | BUY  | 500.000000 | TRADEABLE | brokerDealId=000055...24d2 confirmDealId=000055...24d1
+2561:EURJPY     | OPEN_REQUEST   | 1   | BUY  | 600.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 600.0, "guaranteedStop": true, "stopDistance": 0.223, "profitDistance": 0.021}
+2562:EURJPY     | OPEN_OK        | 1   | BUY  | 600.000000 | TRADEABLE | brokerDealId=000055...036b confirmDealId=000055...036a
+2564:SILVER     | OPEN_REQUEST   | 1   | BUY  | 5.000000   | TRADEABLE | {"epic": "SILVER", "direction": "BUY", "size": 5.0, "guaranteedStop": true, "stopDistance": 1.009, "profitDistance": 0.02}
+2565:SILVER     | OPEN_OK        | 1   | BUY  | 5.000000   | TRADEABLE | brokerDealId=006011...2d5b confirmDealId=006011...2d5a
+2567:BTCUSD     | HOLD_EXEC    | 5   | SELL | 0.009600   | TRADEABLE | niveau déjà exécuté deal=000940...7524
+2568:ETHUSD     | CLOSE_OK     | 1->2 | SELL | 0.034000   | TRADEABLE | deal=001542...2124 fermé confirmé
+2569:ETHUSD     | OPEN_REQUEST   | 2   | SELL | 0.034000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.034, "guaranteedStop": true, "stopDistance": 13.7, "profitDistance": 5.89}
+2570:ETHUSD     | OPEN_OK        | 2   | SELL | 0.034000   | TRADEABLE | brokerDealId=001542...2129 confirmDealId=001542...2128
+2708:US30       | NEXT_LEVEL   | L1->L2 | BUY  | pnl=0.0616 | coeff=1.000 | size=0.016000 | tp=0.2000
+2709:DE40       | NEXT_LEVEL   | L2->L3 | BUY  | pnl=0.0680 | coeff=1.000 | size=0.068000 | tp=0.4000
+2710:FR40       | NEXT_LEVEL   | L2->L3 | BUY  | pnl=0.0000 | coeff=1.000 | size=0.200000 | tp=0.4000
+2713:EURUSD     | CLOSE_TP     | L1 | BUY  | pnl=0.1200 | tp=0.1000
+2716:EURJPY     | CLOSE_TP     | L1 | BUY  | pnl=10.8000 | tp=0.1000
+2718:SILVER     | CLOSE_TP     | L1 | BUY  | pnl=0.3150 | tp=0.1000
+2721:ETHUSD     | NEXT_LEVEL   | L2->L3 | SELL | pnl=0.0109 | coeff=1.000 | size=0.068000 | tp=0.4000
+2762:US30       | CLOSE_OK     | 1->2 | BUY  | 0.016000   | TRADEABLE | deal=174f8d...209c fermé confirmé
+2763:US30       | OPEN_REQUEST   | 2   | BUY  | 0.016000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.016, "guaranteedStop": true, "stopDistance": 59.6, "profitDistance": 12.5}
+2764:US30       | OPEN_OK        | 2   | BUY  | 0.016000   | TRADEABLE | brokerDealId=174f8d...20a3 confirmDealId=174f8d...20a2
+2765:DE40       | BROKER_CLOSED | 3   | BUY  | 0.068000   | TRADEABLE | deal=071016...300b disparu, cycle remis IDLE
+2766:FR40       | CLOSE_OK     | 2->3 | BUY  | 0.200000   | TRADEABLE | deal=001832...0695 fermé confirmé
+2767:FR40       | OPEN_REQUEST   | 3   | BUY  | 0.200000   | TRADEABLE | {"epic": "FR40", "direction": "BUY", "size": 0.2, "guaranteedStop": true, "stopDistance": 24.1, "profitDistance": 2.0}
+2768:FR40       | OPEN_OK        | 3   | BUY  | 0.200000   | TRADEABLE | brokerDealId=001832...0698 confirmDealId=001832...0697
+2778:BTCUSD     | HOLD_EXEC    | 5   | SELL | 0.009600   | TRADEABLE | niveau déjà exécuté deal=000940...7524
+2779:ETHUSD     | CLOSE_OK     | 2->3 | SELL | 0.068000   | TRADEABLE | deal=001542...2129 fermé confirmé
+2780:ETHUSD     | OPEN_REQUEST   | 3   | SELL | 0.068000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.068, "guaranteedStop": true, "stopDistance": 13.7, "profitDistance": 5.89}
+2781:ETHUSD     | OPEN_OK        | 3   | SELL | 0.068000   | TRADEABLE | brokerDealId=001542...212d confirmDealId=001542...212c
+2919:US30       | NEXT_LEVEL   | L2->L3 | BUY  | pnl=-0.1824 | coeff=1.000 | size=0.032000 | tp=0.4000
+2921:FR40       | NEXT_LEVEL   | L3->L4 | BUY  | pnl=-0.9600 | coeff=1.000 | size=0.400000 | tp=0.8000
+2932:ETHUSD     | NEXT_LEVEL   | L3->L4 | SELL | pnl=-0.0326 | coeff=1.000 | size=0.136000 | tp=0.8000
+2968:US30       | CLOSE_OK     | 2->3 | BUY  | 0.032000   | TRADEABLE | deal=174f8d...20a3 fermé confirmé
+2969:US30       | OPEN_REQUEST   | 3   | BUY  | 0.032000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.032, "guaranteedStop": true, "stopDistance": 59.6, "profitDistance": 12.5}
+2970:US30       | OPEN_OK        | 3   | BUY  | 0.032000   | TRADEABLE | brokerDealId=174f8d...20ad confirmDealId=174f8d...20ac
+2972:FR40       | CLOSE_OK     | 3->4 | BUY  | 0.400000   | TRADEABLE | deal=001832...0698 fermé confirmé
+2973:FR40       | OPEN_REQUEST   | 4   | BUY  | 0.400000   | TRADEABLE | {"epic": "FR40", "direction": "BUY", "size": 0.4, "guaranteedStop": true, "stopDistance": 24.1, "profitDistance": 2.0}
+2974:FR40       | OPEN_OK        | 4   | BUY  | 0.400000   | TRADEABLE | brokerDealId=001832...069d confirmDealId=001832...069c
+2984:BTCUSD     | HOLD_EXEC    | 5   | SELL | 0.009600   | TRADEABLE | niveau déjà exécuté deal=000940...7524
+2985:ETHUSD     | CLOSE_OK     | 3->4 | SELL | 0.136000   | TRADEABLE | deal=001542...212d fermé confirmé
+2986:ETHUSD     | OPEN_REQUEST   | 4   | SELL | 0.136000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.136, "guaranteedStop": true, "stopDistance": 13.7, "profitDistance": 5.89}
+2987:ETHUSD     | OPEN_OK        | 4   | SELL | 0.136000   | TRADEABLE | brokerDealId=001542...2131 confirmDealId=001542...2130
+3150:US30       | NEXT_LEVEL   | L3->L4 | BUY  | pnl=-0.1312 | coeff=1.000 | size=0.064000 | tp=0.8000
+3152:FR40       | NEXT_LEVEL   | L4->L5 | BUY  | pnl=-1.0800 | coeff=1.000 | size=0.800000 | tp=1.6000
+3163:ETHUSD     | NEXT_LEVEL   | L4->L5 | SELL | pnl=-0.0381 | coeff=1.000 | size=0.272000 | tp=1.6000
+3200:US30       | CLOSE_OK     | 3->4 | BUY  | 0.064000   | TRADEABLE | deal=174f8d...20ad fermé confirmé
+3201:US30       | OPEN_REQUEST   | 4   | BUY  | 0.064000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.064, "guaranteedStop": true, "stopDistance": 59.6, "profitDistance": 12.5}
+3202:US30       | OPEN_OK        | 4   | BUY  | 0.064000   | TRADEABLE | brokerDealId=174f8d...20b6 confirmDealId=174f8d...20b5
+3204:FR40       | BROKER_CLOSED | 5   | BUY  | 0.800000   | TRADEABLE | deal=001832...069d disparu, cycle remis IDLE
+3205:UK100      | OPEN_REQUEST   | 1   | BUY  | 0.040000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.04, "guaranteedStop": true, "stopDistance": 12.3, "profitDistance": 2.5}
+3206:UK100      | OPEN_OK        | 1   | BUY  | 0.040000   | TRADEABLE | brokerDealId=152f6d...0931 confirmDealId=152f6d...0930
+3215:BTCUSD     | HOLD_EXEC    | 5   | SELL | 0.009600   | TRADEABLE | niveau déjà exécuté deal=000940...7524
+3216:ETHUSD     | CLOSE_OK     | 4->5 | SELL | 0.272000   | TRADEABLE | deal=001542...2131 fermé confirmé
+3217:ETHUSD     | OPEN_REQUEST   | 5   | SELL | 0.272000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.272, "guaranteedStop": true, "stopDistance": 13.7, "profitDistance": 5.89}
+3218:ETHUSD     | OPEN_OK        | 5   | SELL | 0.272000   | TRADEABLE | brokerDealId=001542...2134 confirmDealId=001542...2133
+3356:US30       | NEXT_LEVEL   | L4->L5 | BUY  | pnl=-0.1920 | coeff=1.000 | size=0.128000 | tp=1.6000
+3359:UK100      | NEXT_LEVEL   | L1->L2 | BUY  | pnl=0.0160 | coeff=1.000 | size=0.080000 | tp=0.2000
+3409:US30       | CLOSE_OK     | 4->5 | BUY  | 0.128000   | TRADEABLE | deal=174f8d...20b6 fermé confirmé
+3410:US30       | OPEN_REQUEST   | 5   | BUY  | 0.128000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.128, "guaranteedStop": true, "stopDistance": 59.6, "profitDistance": 12.5}
+3411:US30       | OPEN_OK        | 5   | BUY  | 0.128000   | TRADEABLE | brokerDealId=174f8d...20e9 confirmDealId=174f8d...20e8
+3413:FR40       | OPEN_REQUEST   | 1   | BUY  | 0.050000   | TRADEABLE | {"epic": "FR40", "direction": "BUY", "size": 0.05, "guaranteedStop": true, "stopDistance": 24.1, "profitDistance": 2.0}
+3414:FR40       | OPEN_OK        | 1   | BUY  | 0.050000   | TRADEABLE | brokerDealId=001832...06a3 confirmDealId=001832...06a2
+3415:UK100      | CLOSE_OK     | 1->2 | BUY  | 0.080000   | TRADEABLE | deal=152f6d...0931 fermé confirmé
+3416:UK100      | OPEN_REQUEST   | 2   | BUY  | 0.080000   | TRADEABLE | {"epic": "UK100", "direction": "BUY", "size": 0.08, "guaranteedStop": true, "stopDistance": 12.3, "profitDistance": 2.5}
+3417:UK100      | OPEN_OK        | 2   | BUY  | 0.080000   | TRADEABLE | brokerDealId=152f6d...093a confirmDealId=152f6d...0939
+3421:USDJPY     | OPEN_REQUEST   | 1   | BUY  | 600.000000 | TRADEABLE | {"epic": "USDJPY", "direction": "BUY", "size": 600.0, "guaranteedStop": true, "stopDistance": 0.19, "profitDistance": 0.018}
+3422:USDJPY     | OPEN_OK        | 1   | BUY  | 600.000000 | TRADEABLE | brokerDealId=000154...0c09 confirmDealId=000154...0c08
+3423:EURJPY     | OPEN_REQUEST   | 1   | BUY  | 600.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 600.0, "guaranteedStop": true, "stopDistance": 0.223, "profitDistance": 0.021}
+3424:EURJPY     | OPEN_OK        | 1   | BUY  | 600.000000 | TRADEABLE | brokerDealId=000055...0370 confirmDealId=000055...036f
+3426:SILVER     | OPEN_REQUEST   | 1   | BUY  | 5.000000   | TRADEABLE | {"epic": "SILVER", "direction": "BUY", "size": 5.0, "guaranteedStop": true, "stopDistance": 1.009, "profitDistance": 0.02}
+3427:SILVER     | OPEN_OK        | 1   | BUY  | 5.000000   | TRADEABLE | brokerDealId=006011...2d7a confirmDealId=006011...2d79
+3429:BTCUSD     | HOLD_EXEC    | 5   | SELL | 0.009600   | TRADEABLE | niveau déjà exécuté deal=000940...7524
+3430:ETHUSD     | HOLD_EXEC    | 5   | SELL | 0.272000   | TRADEABLE | niveau déjà exécuté deal=001542...2134

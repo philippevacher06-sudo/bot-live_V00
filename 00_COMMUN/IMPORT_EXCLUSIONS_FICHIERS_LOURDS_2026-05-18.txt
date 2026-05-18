@@ -1,0 +1,15 @@
+Fichiers lourds supprimés avant import GitHub :
+
+./data/ticks/ticks_20260512.jsonl
+./data/ticks/ticks_20260515.jsonl
+./data/ticks/ticks_20260514.jsonl
+./data/ticks/ticks_20260513.jsonl
+./logs/v24_4_forced_audit/V24_4_FORCED_AUDIT_20260516.log
+./logs/v24_4_forced_audit/V24_4_FORCED_AUDIT_20260517.log
+./backups/V2437_FULL_PREPATCH_20260515T075110Z/state/data/ticks/ticks_20260512.jsonl
+./backups/V2437_FULL_PREPATCH_20260515T075110Z/state/data/ticks/ticks_20260514.jsonl
+./backups/V2437_FULL_PREPATCH_20260515T075110Z/state/data/ticks/ticks_20260513.jsonl
+
+Raison :
+Fichiers runtime trop lourds pour import GitHub.
+Le code, les scripts, les patchs et la documentation sont conservés.

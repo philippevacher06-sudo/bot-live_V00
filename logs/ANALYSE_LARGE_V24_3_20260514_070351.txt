@@ -1,0 +1,1159 @@
+======================================================================
+ANALYSE LARGE BOT-PIVOT V24.3
+======================================================================
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260514_064234.log
+DATE=Thu May 14 07:03:51 UTC 2026
+
+======================================================================
+1) BILAN GLOBAL
+======================================================================
+07D — CYCLE                              : 23
+Traceback                                  : 0
+TimeoutError                               : 0
+ERROR                                      : 0
+Exception                                  : 0
+OPEN_L1                                    : 20
+PRICE_AUDIT                                : 19
+LIMIT_REQUEST                              : 15
+LIMIT_OK                                   : 15
+LIMIT_REJECT                               : 0
+BASKET_NEW                                 : 5
+BASKET_ID_OK                               : 13
+BASKET_HOLD                                : 49
+BASKET_FILL                                : 3
+PNL_AUDIT_LEG                              : 53
+PNL_AUDIT_TOTAL                            : 36
+BASKET_TP_OK                               : 0
+BASKET_TP_BLOCKED                          : 33
+BASKET_TP_BLOCKED_BROKER_UPL               : 21
+BASKET_PENDING_CANCEL                      : 3
+BASKET_PARTIAL_PENDING_CANCEL              : 2
+BASKET_REJECT                              : 29
+BASKET_REJECT_BOLLINGER_TOO_FAR            : 28
+BASKET_REJECT_MARKETABLE_LIMIT             : 0
+BASKET_REJECT_LEVELS_COLLAPSED             : 0
+BASKET_REJECT_STORM_GUARD                  : 0
+MARGIN_GUARD                               : 21
+MARGIN_SELECTOR                            : 0
+MARGIN_SELECTOR_CANCEL                     : 0
+STORM_GUARD                                : 21
+STORM_GUARD_CANCEL_PENDING                 : 0
+STORM_GUARD_EMERGENCY_CLOSE                : 0
+MAX_LOSS                                   : 12
+BASKET_MAX_LOSS                            : 12
+CLOSE                                      : 21
+CLOSED                                     : 0
+
+======================================================================
+2) ACTIVITÉ PAR ACTIF — OPEN / LIMIT / FILL / TP / CANCEL
+======================================================================
+ACTIF      OPEN_L1 PRICE_AUDIT LIMIT_REQUEST LIMIT_OK BASKET_NEW BASKET_ID_OK BASKET_HOLD BASKET_FILL PNL_AUDIT_TOTAL BASKET_TP_OK BASKET_TP_BLOCKED_ BASKET_PENDING_CAN BASKET_PARTIAL_PEN BASKET_REJECT_BOLL MARGIN_SELECTOR_CA STORM_GUARD_CANCEL BASKET_MAX_LOSS_CL
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US100      3       3           0             0        0          0            0           0           0               0            0                  0                  0                  6                  0                  0                  0                 
+DE40       1       1           3             3        1          3            5           0           0               0            0                  1                  0                  0                  0                  0                  0                 
+J225       2       2           0             0        0          0            0           0           0               0            0                  0                  0                  4                  0                  0                  0                 
+EURUSD     1       1           3             3        1          2            19          2           20              0            10                 0                  1                  0                  0                  0                  0                 
+GBPUSD     1       1           3             3        1          2            15          1           16              0            11                 0                  1                  0                  0                  0                  0                 
+USDJPY     1       1           0             0        0          0            0           0           0               0            0                  0                  0                  2                  0                  0                  0                 
+EURJPY     1       1           3             3        1          3            5           0           0               0            0                  1                  0                  0                  0                  0                  0                 
+GOLD       1       1           3             3        1          3            5           0           0               0            0                  1                  0                  0                  0                  0                  0                 
+SILVER     1       0           0             0        0          0            0           0           0               0            0                  0                  0                  0                  0                  0                  0                 
+OIL_CRUDE  1       1           0             0        0          0            0           0           0               0            0                  0                  0                  2                  0                  0                  0                 
+BTCUSD     7       7           0             0        0          0            0           0           0               0            0                  0                  0                  14                 0                  0                  0                 
+
+======================================================================
+3) REJETS BOLLINGER — DISTANCE / MAX_DIST PAR ACTIF
+======================================================================
+ACTIF         N  ratio_min  ratio_med  ratio_max       dist_med        max_med
+--------------------------------------------------------------------------------------
+BTCUSD        7       4.17       4.22       7.42   168.71000000    40.00000000
+US100         3      13.14      15.64      15.66   100.10000000     6.40000000
+J225          2       7.71       8.03       8.34   224.70000000    28.00000000
+USDJPY        1       2.35       2.35       2.35     0.04700000     0.02000000
+OIL_CRUDE     1       1.30       1.30       1.30     0.65100000     0.50000000
+
+======================================================================
+4) LIMIT_OK / BASKET_NEW / FILL / TP PAR ACTIF
+======================================================================
+
+--- LIMIT_OK par actif ---
+      3 GOLD
+      3 GBPUSD
+      3 EURUSD
+      3 EURJPY
+      3 DE40
+
+--- BASKET_NEW par actif ---
+      1 GOLD
+      1 GBPUSD
+      1 EURUSD
+      1 EURJPY
+      1 DE40
+
+--- BASKET_FILL par actif ---
+      2 EURUSD
+      1 GBPUSD
+
+--- BASKET_TP_OK par actif ---
+
+======================================================================
+5) CHRONOLOGIE LARGE DES ENTRÉES / SORTIES
+======================================================================
+644:EURUSD     | OPEN_L1      | SELL | entry=1.171490 | size=1500.000000 | tp=0.2000
+651:BTCUSD     | OPEN_L1      | SELL | entry=79818.350000 | size=0.001800 | tp=0.2000
+673:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+677:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.69 min_available=0.0 block=False reasons=
+678:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+689:EURUSD     | PRICE_AUDIT | SELL | stream_bid=1.17149 stream_ask=1.17156 snapshot_bid=1.17146 snapshot_ask=1.17153 BB_LOW=1.1709194541451224 BB_MID=1.1712575 BB_HIGH=1.1715955458548777 L1=1.17168 L2=1.17192 L3=1.17216 dist=0.0001500000000000945
+692:EURUSD     | LIMIT_REQUEST | 1   | SELL | 1500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 1500.0, "guaranteedStop": true, "stopDistance": 0.25048, "type": "LIMIT", "level": 1.17168}
+694:EURUSD     | LIMIT_OK      | 1   | SELL | 1500.000000 | TRADEABLE | ref=o_6fdb...8b07 limit=1.17168
+696:EURUSD     | LIMIT_REQUEST | 2   | SELL | 3000.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 3000.0, "guaranteedStop": true, "stopDistance": 0.25024, "type": "LIMIT", "level": 1.17192}
+698:EURUSD     | LIMIT_OK      | 2   | SELL | 3000.000000 | TRADEABLE | ref=o_53fd...1bfc limit=1.17192
+700:EURUSD     | LIMIT_REQUEST | 3   | SELL | 4500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 4500.0, "guaranteedStop": true, "stopDistance": 0.25, "type": "LIMIT", "level": 1.17216}
+702:EURUSD     | LIMIT_OK      | 3   | SELL | 4500.000000 | TRADEABLE | ref=o_5fe5...811a limit=1.17216
+703:EURUSD     | BASKET_NEW  | 1-3 | SELL | 1500.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+710:BTCUSD     | PRICE_AUDIT | SELL | stream_bid=79818.35 stream_ask=79868.35 snapshot_bid=79803.3 snapshot_ask=79853.3 BB_LOW=79401.6134342356 BB_MID=79707.81250000001 BB_HIGH=80014.01156576443 L1=80022.01 L2=80062.01 L3=80102.01 dist=168.70999999999185
+837:SILVER     | OPEN_L1      | SELL | entry=87.389000 | size=15.000000 | tp=0.2000
+839:BTCUSD     | OPEN_L1      | SELL | entry=79818.450000 | size=0.001800 | tp=0.2000
+865:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+869:MARGIN_GUARD | margin_cfd=1922.3400000000001 max=3100.0 available=1582.29 min_available=0.0 block=False reasons=
+870:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+881:EURUSD     | BASKET_ID_OK | 2   | SELL | 3000.000000 | TRADEABLE | workingId=000055...6645
+882:EURUSD     | BASKET_ID_OK | 3   | SELL | 4500.000000 | TRADEABLE | workingId=000055...6646
+883:EURUSD     | BASKET_FILL | 1   | SELL | 1500.000000 | TRADEABLE | deal=000055...6650 limit=1.17168 entry=1.17168
+884:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.08 broker=position.upl=-0.08
+885:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.0800 target=0.2
+886:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+894:BTCUSD     | PRICE_AUDIT | SELL | stream_bid=79818.45 stream_ask=79868.45 snapshot_bid=79803.3 snapshot_ask=79853.3 BB_LOW=79444.47589881266 BB_MID=79728.36124999999 BB_HIGH=80012.24660118732 L1=80020.25 L2=80060.25 L3=80100.25 dist=166.9499999999971
+1012:DE40       | OPEN_L1      | SELL | entry=24343.600000 | size=0.051000 | tp=0.2000
+1019:USDJPY     | OPEN_L1      | BUY  | entry=157.830000 | size=1800.000000 | tp=0.2000
+1024:OIL_CRUDE  | OPEN_L1      | BUY  | entry=96.329000 | size=4.000000 | tp=0.2000
+1025:BTCUSD     | OPEN_L1      | SELL | entry=79814.000000 | size=0.001800 | tp=0.2000
+1053:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+1057:MARGIN_GUARD | margin_cfd=1921.96 max=3100.0 available=1582.5 min_available=0.0 block=False reasons=
+1058:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1065:DE40       | PRICE_AUDIT | SELL | stream_bid=24343.6 stream_ask=24345.1 snapshot_bid=24324.1 snapshot_ask=24325.6 BB_LOW=24180.275862384264 BB_MID=24263.474999999988 BB_HIGH=24346.67413761571 L1=24350.7 L2=24362.7 L3=24374.7 dist=25.100000000002183
+1068:DE40       | LIMIT_REQUEST | 1   | SELL | 0.051000   | TRADEABLE | {"epic": "DE40", "direction": "SELL", "size": 0.051, "guaranteedStop": true, "stopDistance": 120.0, "type": "LIMIT", "level": 24350.7}
+1070:DE40       | LIMIT_OK      | 1   | SELL | 0.051000   | TRADEABLE | ref=o_1b36...13aa limit=24350.7
+1072:DE40       | LIMIT_REQUEST | 2   | SELL | 0.102000   | TRADEABLE | {"epic": "DE40", "direction": "SELL", "size": 0.102, "guaranteedStop": true, "stopDistance": 108.0, "type": "LIMIT", "level": 24362.7}
+1074:DE40       | LIMIT_OK      | 2   | SELL | 0.102000   | TRADEABLE | ref=o_86f7...b7c8 limit=24362.7
+1076:DE40       | LIMIT_REQUEST | 3   | SELL | 0.153000   | TRADEABLE | {"epic": "DE40", "direction": "SELL", "size": 0.153, "guaranteedStop": true, "stopDistance": 96.0, "type": "LIMIT", "level": 24374.7}
+1078:DE40       | LIMIT_OK      | 3   | SELL | 0.153000   | TRADEABLE | ref=o_4556...5206 limit=24374.7
+1079:DE40       | BASKET_NEW  | 1-3 | SELL | 0.051000   | TRADEABLE | LIMITS posés=3 rejetés=0
+1083:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.26 broker=position.upl=-0.26
+1084:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.2600 target=0.2
+1085:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1087:USDJPY     | PRICE_AUDIT | BUY  | stream_bid=157.818 stream_ask=157.83 snapshot_bid=157.875 snapshot_ask=157.887 BB_LOW=157.83592461125843 BB_MID=157.893 BB_HIGH=157.95007538874157 L1=157.828 L2=157.788 L3=157.748 dist=0.046999999999997044
+1093:OIL_CRUDE  | PRICE_AUDIT | BUY  | stream_bid=96.289 stream_ask=96.329 snapshot_bid=97.331 snapshot_ask=97.363 BB_LOW=96.76039087448831 BB_MID=97.70500000000001 BB_HIGH=98.64960912551172 L1=96.68 L2=96.48 L3=96.28 dist=0.6509999999999962
+1096:BTCUSD     | PRICE_AUDIT | SELL | stream_bid=79814.0 stream_ask=79864.0 snapshot_bid=79803.3 snapshot_ask=79853.3 BB_LOW=79444.14878635919 BB_MID=79728.82999999999 BB_HIGH=80013.51121364078 L1=80021.51 L2=80061.51 L3=80101.51 dist=168.20999999999185
+1224:BTCUSD     | OPEN_L1      | SELL | entry=79813.400000 | size=0.001800 | tp=0.2000
+1253:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+1257:MARGIN_GUARD | margin_cfd=2296.2 max=3100.0 available=1208.25 min_available=0.0 block=False reasons=
+1258:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1265:DE40       | BASKET_ID_OK | 1   | SELL | 0.051000   | TRADEABLE | workingId=071016...6aea
+1266:DE40       | BASKET_ID_OK | 2   | SELL | 0.102000   | TRADEABLE | workingId=071016...6aeb
+1267:DE40       | BASKET_ID_OK | 3   | SELL | 0.153000   | TRADEABLE | workingId=071016...6aee
+1268:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1272:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.23 broker=position.upl=-0.23
+1273:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.2300 target=0.2
+1274:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1281:BTCUSD     | PRICE_AUDIT | SELL | stream_bid=79813.4 stream_ask=79863.4 snapshot_bid=79803.3 snapshot_ask=79853.3 BB_LOW=79444.46229417624 BB_MID=79728.38249999999 BB_HIGH=80012.30270582375 L1=80020.3 L2=80060.3 L3=80100.3 dist=167.0
+1397:US100      | OPEN_L1      | BUY  | entry=29512.800000 | size=0.042000 | tp=0.2000
+1405:GBPUSD     | OPEN_L1      | SELL | entry=1.352630 | size=1200.000000 | tp=0.2000
+1441:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+1445:MARGIN_GUARD | margin_cfd=2295.89 max=3100.0 available=1208.42 min_available=0.0 block=False reasons=
+1446:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1451:US100      | PRICE_AUDIT | BUY  | stream_bid=29511.0 stream_ask=29512.8 snapshot_bid=29522.5 snapshot_ask=29524.3 BB_LOW=29426.38908043715 BB_MID=29490.265000000003 BB_HIGH=29554.140919562855 L1=29422.4 L2=29410.4 L3=29398.4 dist=100.09999999999854
+1455:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1459:EURUSD     | BASKET_FILL | 2   | SELL | 3000.000000 | TRADEABLE | deal=000055...667b limit=1.17192 entry=1.17192
+1460:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.35 broker=position.upl=-0.35
+1461:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.08 broker=position.upl=-0.08
+1462:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.4300 target=0.4
+1463:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.4300 target=0.4000
+1464:EURUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 age=222.1s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+1465:GBPUSD     | PRICE_AUDIT | SELL | stream_bid=1.35263 stream_ask=1.35276 snapshot_bid=1.35238 snapshot_ask=1.35251 BB_LOW=1.3514721112493462 BB_MID=1.3520442500000003 BB_HIGH=1.3526163887506544 L1=1.35271 L2=1.35299 L3=1.35327 dist=0.00019999999999997797
+1468:GBPUSD     | LIMIT_REQUEST | 1   | SELL | 1200.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 1200.0, "guaranteedStop": true, "stopDistance": 0.10056, "type": "LIMIT", "level": 1.35271}
+1470:GBPUSD     | LIMIT_OK      | 1   | SELL | 1200.000000 | TRADEABLE | ref=o_a3ea...e907 limit=1.35271
+1472:GBPUSD     | LIMIT_REQUEST | 2   | SELL | 2400.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 2400.0, "guaranteedStop": true, "stopDistance": 0.10029, "type": "LIMIT", "level": 1.35299}
+1474:GBPUSD     | LIMIT_OK      | 2   | SELL | 2400.000000 | TRADEABLE | ref=o_0671...4b2f limit=1.35299
+1476:GBPUSD     | LIMIT_REQUEST | 3   | SELL | 3600.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.10001, "type": "LIMIT", "level": 1.35327}
+1478:GBPUSD     | LIMIT_OK      | 3   | SELL | 3600.000000 | TRADEABLE | ref=o_06ad...a5ab limit=1.35327
+1479:GBPUSD     | BASKET_NEW  | 1-3 | SELL | 1200.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+1598:US100      | OPEN_L1      | BUY  | entry=29514.800000 | size=0.042000 | tp=0.2000
+1608:EURJPY     | OPEN_L1      | SELL | entry=184.970000 | size=1800.000000 | tp=0.2000
+1646:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+1650:MARGIN_GUARD | margin_cfd=1950.79 max=3100.0 available=1552.58 min_available=0.0 block=False reasons=
+1651:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1656:US100      | PRICE_AUDIT | BUY  | stream_bid=29513.0 stream_ask=29514.8 snapshot_bid=29522.5 snapshot_ask=29524.3 BB_LOW=29426.312729315734 BB_MID=29490.430000000004 BB_HIGH=29554.547270684274 L1=29422.3 L2=29410.3 L3=29398.3 dist=100.20000000000073
+1660:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1664:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.45 broker=position.upl=-0.45
+1665:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.28 broker=position.upl=-0.28
+1666:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.7300 target=0.4
+1667:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.7300 target=0.4000
+1668:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+1669:GBPUSD     | BASKET_ID_OK | 2   | SELL | 2400.000000 | TRADEABLE | workingId=000070...1c70
+1670:GBPUSD     | BASKET_ID_OK | 3   | SELL | 3600.000000 | TRADEABLE | workingId=000070...1c71
+1671:GBPUSD     | BASKET_FILL | 1   | SELL | 1200.000000 | TRADEABLE | deal=000070...1c72 limit=1.35271 entry=1.35271
+1672:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.28 broker=position.upl=-0.28
+1673:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.2800 target=0.2
+1674:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.2800 target=0.2000
+1675:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+1677:EURJPY     | PRICE_AUDIT | SELL | stream_bid=184.97 stream_ask=184.991 snapshot_bid=184.946 snapshot_ask=184.967 BB_LOW=184.8592149698681 BB_MID=184.93845 BB_HIGH=185.01768503013187 L1=185.03 L2=185.078 L3=185.126 dist=0.06299999999998818
+1680:EURJPY     | LIMIT_REQUEST | 1   | SELL | 1800.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "SELL", "size": 1800.0, "guaranteedStop": true, "stopDistance": 0.481, "type": "LIMIT", "level": 185.03}
+1685:EURJPY     | LIMIT_OK      | 1   | SELL | 1800.000000 | TRADEABLE | ref=o_215c...b693 limit=185.03
+1687:EURJPY     | LIMIT_REQUEST | 2   | SELL | 3600.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "SELL", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.433, "type": "LIMIT", "level": 185.078}
+1692:EURJPY     | LIMIT_OK      | 2   | SELL | 3600.000000 | TRADEABLE | ref=o_6302...e02d limit=185.078
+1694:EURJPY     | LIMIT_REQUEST | 3   | SELL | 5400.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "SELL", "size": 5400.0, "guaranteedStop": true, "stopDistance": 0.385, "type": "LIMIT", "level": 185.126}
+1699:EURJPY     | LIMIT_OK      | 3   | SELL | 5400.000000 | TRADEABLE | ref=o_2ff3...af1b limit=185.126
+1700:EURJPY     | BASKET_NEW  | 1-3 | SELL | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+1866:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+1870:MARGIN_GUARD | margin_cfd=2313.5 max=3100.0 available=1190.98 min_available=0.0 block=False reasons=
+1871:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1878:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1882:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.26 broker=position.upl=-0.26
+1883:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.1 broker=position.upl=0.1
+1884:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.1600 target=0.4
+1885:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.1600 target=0.4000
+1886:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+1887:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.07 broker=position.upl=-0.07
+1888:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.0700 target=0.2
+1889:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.0700 target=0.2000
+1890:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+1892:EURJPY     | BASKET_ID_OK | 1   | SELL | 1800.000000 | TRADEABLE | workingId=000055...05bb
+1893:EURJPY     | BASKET_ID_OK | 2   | SELL | 3600.000000 | TRADEABLE | workingId=000055...05bc
+1894:EURJPY     | BASKET_ID_OK | 3   | SELL | 5400.000000 | TRADEABLE | workingId=000055...05bd
+1895:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2061:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+2065:MARGIN_GUARD | margin_cfd=2313.76 max=3100.0 available=1190.95 min_available=0.0 block=False reasons=
+2066:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2073:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2077:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.18 broker=position.upl=-0.18
+2078:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.26 broker=position.upl=0.26
+2079:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=0.0800 target=0.4
+2080:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=0.0800 target=0.4000
+2081:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2082:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.05 broker=position.upl=-0.05
+2083:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.0500 target=0.2
+2084:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.0500 target=0.2000
+2085:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+2087:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2253:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+2257:MARGIN_GUARD | margin_cfd=2313.2 max=3100.0 available=1191.07 min_available=0.0 block=False reasons=
+2258:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2265:DE40       | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=330.5s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+2269:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.29 broker=position.upl=-0.29
+2270:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.03 broker=position.upl=0.03
+2271:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.2600 target=0.4
+2272:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.2600 target=0.4000
+2273:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2274:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.17 broker=position.upl=-0.17
+2275:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1700 target=0.2
+2276:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1700 target=0.2000
+2277:GBPUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 age=220.9s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+2279:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2407:GOLD       | OPEN_L1      | SELL | entry=4700.940000 | size=0.270000 | tp=0.2000
+2443:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+2447:MARGIN_GUARD | margin_cfd=1424.6599999999999 max=3100.0 available=2078.82 min_available=0.0 block=False reasons=
+2448:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2459:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.46 broker=position.upl=-0.46
+2460:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.31 broker=position.upl=-0.31
+2461:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.7700 target=0.4
+2462:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.7700 target=0.4000
+2463:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2464:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.38 broker=position.upl=-0.38
+2465:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.3800 target=0.2
+2466:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.3800 target=0.2000
+2467:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2469:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2470:GOLD       | PRICE_AUDIT | SELL | stream_bid=4700.94 stream_ask=4701.44 snapshot_bid=4694.91 snapshot_ask=4695.41 BB_LOW=4686.9402627425025 BB_MID=4695.0332499999995 BB_HIGH=4703.1262372574965 L1=4704.73 L2=4708.73 L3=4712.73 dist=9.319999999999709
+2473:GOLD       | LIMIT_REQUEST | 1   | SELL | 0.270000   | TRADEABLE | {"epic": "GOLD", "direction": "SELL", "size": 0.27, "guaranteedStop": true, "stopDistance": 40.0, "type": "LIMIT", "level": 4704.73}
+2480:GOLD       | LIMIT_OK      | 1   | SELL | 0.270000   | TRADEABLE | ref=o_30c1...4658 limit=4704.73
+2482:GOLD       | LIMIT_REQUEST | 2   | SELL | 0.540000   | TRADEABLE | {"epic": "GOLD", "direction": "SELL", "size": 0.54, "guaranteedStop": true, "stopDistance": 36.0, "type": "LIMIT", "level": 4708.73}
+2489:GOLD       | LIMIT_OK      | 2   | SELL | 0.540000   | TRADEABLE | ref=o_3c93...cfa8 limit=4708.73
+2491:GOLD       | LIMIT_REQUEST | 3   | SELL | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "SELL", "size": 0.81, "guaranteedStop": true, "stopDistance": 32.0, "type": "LIMIT", "level": 4712.73}
+2498:GOLD       | LIMIT_OK      | 3   | SELL | 0.810000   | TRADEABLE | ref=o_8eb3...b715 limit=4712.73
+2499:GOLD       | BASKET_NEW  | 1-3 | SELL | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+2628:BTCUSD     | OPEN_L1      | BUY  | entry=79822.450000 | size=0.001800 | tp=0.2000
+2665:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+2669:MARGIN_GUARD | margin_cfd=1751.77 max=3100.0 available=1751.44 min_available=0.0 block=False reasons=
+2670:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2681:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.58 broker=position.upl=-0.58
+2682:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.54 broker=position.upl=-0.54
+2683:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-1.1200 target=0.4
+2684:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-1.1200 target=0.4000
+2685:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2686:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.54 broker=position.upl=-0.54
+2687:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.5400 target=0.2
+2688:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.5400 target=0.2000
+2689:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2691:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2692:GOLD       | BASKET_ID_OK | 1   | SELL | 0.270000   | TRADEABLE | workingId=006015...a543
+2693:GOLD       | BASKET_ID_OK | 2   | SELL | 0.540000   | TRADEABLE | workingId=006015...a544
+2694:GOLD       | BASKET_ID_OK | 3   | SELL | 0.810000   | TRADEABLE | workingId=006015...a545
+2695:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2698:BTCUSD     | PRICE_AUDIT | BUY  | stream_bid=79772.45 stream_ask=79822.45 snapshot_bid=79803.3 snapshot_ask=79853.3 BB_LOW=79514.65102678032 BB_MID=79746.93000000002 BB_HIGH=79979.20897321972 L1=79506.65 L2=79466.65 L3=79426.65 dist=296.65000000000873
+2862:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+2866:MARGIN_GUARD | margin_cfd=1751.3000000000002 max=3100.0 available=1751.46 min_available=0.0 block=False reasons=
+2867:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2878:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.63 broker=position.upl=-0.63
+2879:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.64 broker=position.upl=-0.64
+2880:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-1.2700 target=0.4
+2881:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-1.2700 target=0.4000
+2882:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2883:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.57 broker=position.upl=-0.57
+2884:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.5700 target=0.2
+2885:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.5700 target=0.2000
+2886:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2888:EURJPY     | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=331.3s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+2889:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3011:J225       | OPEN_L1      | SELL | entry=62769.500000 | size=0.300000 | tp=0.2000
+3019:BTCUSD     | OPEN_L1      | BUY  | entry=79823.600000 | size=0.001800 | tp=0.2000
+3053:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+3057:MARGIN_GUARD | margin_cfd=1391.4099999999999 max=3100.0 available=2112.51 min_available=0.0 block=False reasons=
+3058:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3068:J225       | PRICE_AUDIT | SELL | stream_bid=62769.5 stream_ask=62779.5 snapshot_bid=62701.9 snapshot_ask=62711.9 BB_LOW=62655.04621152799 BB_MID=62796.2 BB_HIGH=62937.353788472006 L1=62945.4 L2=62985.4 L3=63025.4 dist=233.5
+3071:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.28 broker=position.upl=-0.28
+3072:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.05 broker=position.upl=0.05
+3073:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.2300 target=0.4
+3074:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.2300 target=0.4000
+3075:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3076:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.18 broker=position.upl=-0.18
+3077:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1800 target=0.2
+3078:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1800 target=0.2000
+3079:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3082:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3085:BTCUSD     | PRICE_AUDIT | BUY  | stream_bid=79773.6 stream_ask=79823.6 snapshot_bid=79803.3 snapshot_ask=79853.3 BB_LOW=79585.91439175305 BB_MID=79766.30375 BB_HIGH=79946.69310824697 L1=79577.91 L2=79537.91 L3=79497.91 dist=225.38999999999942
+3213:BTCUSD     | OPEN_L1      | BUY  | entry=79821.650000 | size=0.001800 | tp=0.2000
+3246:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+3250:MARGIN_GUARD | margin_cfd=1392.4 max=3100.0 available=2112.31 min_available=0.0 block=False reasons=
+3251:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3262:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.12 broker=position.upl=-0.12
+3263:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.38 broker=position.upl=0.38
+3264:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=0.2600 target=0.4
+3265:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=0.2600 target=0.4000
+3266:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3267:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.24 broker=position.upl=-0.24
+3268:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.2400 target=0.2
+3269:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.2400 target=0.2000
+3270:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3273:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3276:BTCUSD     | PRICE_AUDIT | BUY  | stream_bid=79771.65 stream_ask=79821.65 snapshot_bid=79803.3 snapshot_ask=79853.3 BB_LOW=79585.86307355766 BB_MID=79766.0975 BB_HIGH=79946.33192644235 L1=79577.86 L2=79537.86 L3=79497.86 dist=225.44000000000233
+3436:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+3440:MARGIN_GUARD | margin_cfd=430.5799999999999 max=3100.0 available=3074.14 min_available=0.0 block=False reasons=
+3441:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3452:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3453:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3454:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3455:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3456:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+3457:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3458:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.1 broker=position.upl=-0.1
+3459:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1000 target=0.2
+3460:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1000 target=0.2000
+3461:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3464:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3625:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+3629:MARGIN_GUARD | margin_cfd=430.4699999999998 max=3100.0 available=3074.19 min_available=0.0 block=False reasons=
+3630:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3641:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3642:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3643:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3644:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3645:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+3646:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3647:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.15 broker=position.upl=-0.15
+3648:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1500 target=0.2
+3649:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1500 target=0.2000
+3650:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3653:GOLD       | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=331.2s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+3770:US100      | OPEN_L1      | BUY  | entry=29506.000000 | size=0.042000 | tp=0.2000
+3812:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+3816:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+3817:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3822:US100      | PRICE_AUDIT | BUY  | stream_bid=29504.2 stream_ask=29506.0 snapshot_bid=29522.5 snapshot_ask=29524.3 BB_LOW=29442.37772634538 BB_MID=29497.4925 BB_HIGH=29552.60727365462 L1=29438.4 L2=29426.4 L3=29414.4 dist=84.09999999999854
+3830:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3831:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3832:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3833:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3834:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+3835:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3836:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3837:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+3838:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+3839:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+3840:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4000:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4004:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4005:STORM_GUARD | mode=LOCAL alerts=1 assets=DE40 systemic=False
+4016:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4017:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4018:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4019:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4020:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4021:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4022:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4023:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4024:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4025:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4026:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4151:J225       | OPEN_L1      | SELL | entry=62764.900000 | size=0.300000 | tp=0.2000
+4188:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4192:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4193:STORM_GUARD | mode=LOCAL alerts=1 assets=DE40 systemic=False
+4203:J225       | PRICE_AUDIT | SELL | stream_bid=62764.9 stream_ask=62774.9 snapshot_bid=62701.9 snapshot_ask=62711.9 BB_LOW=62654.79837753398 BB_MID=62787.27499999999 BB_HIGH=62919.75162246599 L1=62927.8 L2=62967.8 L3=63007.8 dist=215.90000000000146
+4206:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4207:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4208:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4209:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4210:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4211:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4212:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4213:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4214:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4215:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4216:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4376:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4380:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4381:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4392:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4393:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4394:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4395:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4396:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4397:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4398:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4399:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4400:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4401:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4402:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4562:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4566:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4567:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4578:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4579:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4580:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4581:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4582:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4583:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4584:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4585:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4586:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4587:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4588:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+
+======================================================================
+6) FOCUS PANIERS OUVERTS / FILLS / TP
+======================================================================
+883:EURUSD     | BASKET_FILL | 1   | SELL | 1500.000000 | TRADEABLE | deal=000055...6650 limit=1.17168 entry=1.17168
+885:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.0800 target=0.2
+886:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1084:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.2600 target=0.2
+1085:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1268:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1273:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.2300 target=0.2
+1274:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1455:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1459:EURUSD     | BASKET_FILL | 2   | SELL | 3000.000000 | TRADEABLE | deal=000055...667b limit=1.17192 entry=1.17192
+1462:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.4300 target=0.4
+1463:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.4300 target=0.4000
+1660:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1666:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.7300 target=0.4
+1667:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.7300 target=0.4000
+1668:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+1671:GBPUSD     | BASKET_FILL | 1   | SELL | 1200.000000 | TRADEABLE | deal=000070...1c72 limit=1.35271 entry=1.35271
+1673:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.2800 target=0.2
+1674:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.2800 target=0.2000
+1675:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+1878:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+1884:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.1600 target=0.4
+1885:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.1600 target=0.4000
+1886:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+1888:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.0700 target=0.2
+1889:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.0700 target=0.2000
+1890:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+1895:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2073:DE40       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2079:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=0.0800 target=0.4
+2080:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=0.0800 target=0.4000
+2081:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2083:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.0500 target=0.2
+2084:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.0500 target=0.2000
+2085:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+2087:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2271:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.2600 target=0.4
+2272:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.2600 target=0.4000
+2273:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2275:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1700 target=0.2
+2276:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1700 target=0.2000
+2279:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2461:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.7700 target=0.4
+2462:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.7700 target=0.4000
+2463:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2465:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.3800 target=0.2
+2466:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.3800 target=0.2000
+2467:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2469:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2683:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-1.1200 target=0.4
+2684:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-1.1200 target=0.4000
+2685:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2687:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.5400 target=0.2
+2688:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.5400 target=0.2000
+2689:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2691:EURJPY     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2695:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2880:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-1.2700 target=0.4
+2881:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-1.2700 target=0.4000
+2882:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2884:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.5700 target=0.2
+2885:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.5700 target=0.2000
+2886:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2889:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3073:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.2300 target=0.4
+3074:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.2300 target=0.4000
+3075:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3077:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1800 target=0.2
+3078:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1800 target=0.2000
+3079:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3082:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3264:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=0.2600 target=0.4
+3265:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=0.2600 target=0.4000
+3266:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3268:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.2400 target=0.2
+3269:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.2400 target=0.2000
+3270:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3273:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3454:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3457:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3459:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1000 target=0.2
+3460:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1000 target=0.2000
+3461:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3464:GOLD       | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3643:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3646:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3648:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1500 target=0.2
+3649:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1500 target=0.2000
+3650:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3832:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3835:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3837:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+3840:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4018:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4021:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4023:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4026:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4208:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4211:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4213:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4216:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4394:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4397:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4399:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4402:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4580:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4583:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4585:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4588:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+
+======================================================================
+7) FOCUS ANNULATIONS L2/L3 / PENDING
+======================================================================
+1464:EURUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 age=222.1s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+2265:DE40       | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=330.5s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+2277:GBPUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 age=220.9s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+2888:EURJPY     | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=331.3s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+3653:GOLD       | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=331.2s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+
+======================================================================
+8) FOCUS GBPUSD / EURUSD / ETHUSD
+======================================================================
+644:EURUSD     | OPEN_L1      | SELL | entry=1.171490 | size=1500.000000 | tp=0.2000
+689:EURUSD     | PRICE_AUDIT | SELL | stream_bid=1.17149 stream_ask=1.17156 snapshot_bid=1.17146 snapshot_ask=1.17153 BB_LOW=1.1709194541451224 BB_MID=1.1712575 BB_HIGH=1.1715955458548777 L1=1.17168 L2=1.17192 L3=1.17216 dist=0.0001500000000000945
+692:EURUSD     | LIMIT_REQUEST | 1   | SELL | 1500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 1500.0, "guaranteedStop": true, "stopDistance": 0.25048, "type": "LIMIT", "level": 1.17168}
+694:EURUSD     | LIMIT_OK      | 1   | SELL | 1500.000000 | TRADEABLE | ref=o_6fdb...8b07 limit=1.17168
+696:EURUSD     | LIMIT_REQUEST | 2   | SELL | 3000.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 3000.0, "guaranteedStop": true, "stopDistance": 0.25024, "type": "LIMIT", "level": 1.17192}
+698:EURUSD     | LIMIT_OK      | 2   | SELL | 3000.000000 | TRADEABLE | ref=o_53fd...1bfc limit=1.17192
+700:EURUSD     | LIMIT_REQUEST | 3   | SELL | 4500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 4500.0, "guaranteedStop": true, "stopDistance": 0.25, "type": "LIMIT", "level": 1.17216}
+702:EURUSD     | LIMIT_OK      | 3   | SELL | 4500.000000 | TRADEABLE | ref=o_5fe5...811a limit=1.17216
+703:EURUSD     | BASKET_NEW  | 1-3 | SELL | 1500.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+881:EURUSD     | BASKET_ID_OK | 2   | SELL | 3000.000000 | TRADEABLE | workingId=000055...6645
+882:EURUSD     | BASKET_ID_OK | 3   | SELL | 4500.000000 | TRADEABLE | workingId=000055...6646
+883:EURUSD     | BASKET_FILL | 1   | SELL | 1500.000000 | TRADEABLE | deal=000055...6650 limit=1.17168 entry=1.17168
+884:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.08 broker=position.upl=-0.08
+885:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.0800 target=0.2
+886:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1083:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.26 broker=position.upl=-0.26
+1084:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.2600 target=0.2
+1085:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1272:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.23 broker=position.upl=-0.23
+1273:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.1923 broker_upl=-0.2300 target=0.2
+1274:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.1923 target=0.2
+1405:GBPUSD     | OPEN_L1      | SELL | entry=1.352630 | size=1200.000000 | tp=0.2000
+1459:EURUSD     | BASKET_FILL | 2   | SELL | 3000.000000 | TRADEABLE | deal=000055...667b limit=1.17192 entry=1.17192
+1460:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.35 broker=position.upl=-0.35
+1461:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.08 broker=position.upl=-0.08
+1462:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.4300 target=0.4
+1463:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.4300 target=0.4000
+1464:EURUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=2 pending=1 age=222.1s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+1465:GBPUSD     | PRICE_AUDIT | SELL | stream_bid=1.35263 stream_ask=1.35276 snapshot_bid=1.35238 snapshot_ask=1.35251 BB_LOW=1.3514721112493462 BB_MID=1.3520442500000003 BB_HIGH=1.3526163887506544 L1=1.35271 L2=1.35299 L3=1.35327 dist=0.00019999999999997797
+1468:GBPUSD     | LIMIT_REQUEST | 1   | SELL | 1200.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 1200.0, "guaranteedStop": true, "stopDistance": 0.10056, "type": "LIMIT", "level": 1.35271}
+1470:GBPUSD     | LIMIT_OK      | 1   | SELL | 1200.000000 | TRADEABLE | ref=o_a3ea...e907 limit=1.35271
+1472:GBPUSD     | LIMIT_REQUEST | 2   | SELL | 2400.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 2400.0, "guaranteedStop": true, "stopDistance": 0.10029, "type": "LIMIT", "level": 1.35299}
+1474:GBPUSD     | LIMIT_OK      | 2   | SELL | 2400.000000 | TRADEABLE | ref=o_0671...4b2f limit=1.35299
+1476:GBPUSD     | LIMIT_REQUEST | 3   | SELL | 3600.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "SELL", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.10001, "type": "LIMIT", "level": 1.35327}
+1478:GBPUSD     | LIMIT_OK      | 3   | SELL | 3600.000000 | TRADEABLE | ref=o_06ad...a5ab limit=1.35327
+1479:GBPUSD     | BASKET_NEW  | 1-3 | SELL | 1200.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+1664:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.45 broker=position.upl=-0.45
+1665:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.28 broker=position.upl=-0.28
+1666:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.7300 target=0.4
+1667:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.7300 target=0.4000
+1668:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+1669:GBPUSD     | BASKET_ID_OK | 2   | SELL | 2400.000000 | TRADEABLE | workingId=000070...1c70
+1670:GBPUSD     | BASKET_ID_OK | 3   | SELL | 3600.000000 | TRADEABLE | workingId=000070...1c71
+1671:GBPUSD     | BASKET_FILL | 1   | SELL | 1200.000000 | TRADEABLE | deal=000070...1c72 limit=1.35271 entry=1.35271
+1672:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.28 broker=position.upl=-0.28
+1673:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.2800 target=0.2
+1674:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.2800 target=0.2000
+1675:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+1882:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.26 broker=position.upl=-0.26
+1883:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.1 broker=position.upl=0.1
+1884:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.1600 target=0.4
+1885:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.1600 target=0.4000
+1886:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+1887:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.07 broker=position.upl=-0.07
+1888:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.0700 target=0.2
+1889:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.0700 target=0.2000
+1890:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+2077:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.18 broker=position.upl=-0.18
+2078:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.26 broker=position.upl=0.26
+2079:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=0.0800 target=0.4
+2080:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=0.0800 target=0.4000
+2081:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2082:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.05 broker=position.upl=-0.05
+2083:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.0500 target=0.2
+2084:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.0500 target=0.2000
+2085:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 pnl=0.2051 target=0.2
+2269:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.29 broker=position.upl=-0.29
+2270:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.03 broker=position.upl=0.03
+2271:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.2600 target=0.4
+2272:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.2600 target=0.4000
+2273:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2274:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.17 broker=position.upl=-0.17
+2275:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1700 target=0.2
+2276:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1700 target=0.2000
+2277:GBPUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=1 pending=2 age=220.9s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+2459:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.46 broker=position.upl=-0.46
+2460:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.31 broker=position.upl=-0.31
+2461:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.7700 target=0.4
+2462:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.7700 target=0.4000
+2463:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2464:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.38 broker=position.upl=-0.38
+2465:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.3800 target=0.2
+2466:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.3800 target=0.2000
+2467:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2681:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.58 broker=position.upl=-0.58
+2682:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.54 broker=position.upl=-0.54
+2683:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-1.1200 target=0.4
+2684:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-1.1200 target=0.4000
+2685:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2686:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.54 broker=position.upl=-0.54
+2687:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.5400 target=0.2
+2688:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.5400 target=0.2000
+2689:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+2878:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.63 broker=position.upl=-0.63
+2879:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.64 broker=position.upl=-0.64
+2880:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-1.2700 target=0.4
+2881:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-1.2700 target=0.4000
+2882:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+2883:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.57 broker=position.upl=-0.57
+2884:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.5700 target=0.2
+2885:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.5700 target=0.2000
+2886:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3071:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.28 broker=position.upl=-0.28
+3072:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.05 broker=position.upl=0.05
+3073:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=-0.2300 target=0.4
+3074:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=-0.2300 target=0.4000
+3075:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3076:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.18 broker=position.upl=-0.18
+3077:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1800 target=0.2
+3078:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1800 target=0.2000
+3079:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3262:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.12 broker=position.upl=-0.12
+3263:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=0.38 broker=position.upl=0.38
+3264:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=0.2600 target=0.4
+3265:EURUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=0.2600 target=0.4000
+3266:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3267:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.24 broker=position.upl=-0.24
+3268:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.2400 target=0.2
+3269:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.2400 target=0.2000
+3270:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3452:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3453:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3454:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3455:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3456:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+3457:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3458:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.1 broker=position.upl=-0.1
+3459:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1000 target=0.2
+3460:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1000 target=0.2000
+3461:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3641:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3642:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3643:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3644:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3645:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+3646:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3647:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.15 broker=position.upl=-0.15
+3648:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=-0.1500 target=0.2
+3649:GBPUSD     | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=-0.1500 target=0.2000
+3650:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+3830:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3831:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3832:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+3833:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3834:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+3835:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+3836:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+3837:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+3838:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+3839:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+3840:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4016:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4017:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4018:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4019:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4020:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4021:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4022:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4023:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4024:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4025:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4026:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4206:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4207:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4208:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4209:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4210:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4211:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4212:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4213:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4214:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4215:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4216:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4392:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4393:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4394:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4395:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4396:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4397:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4398:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4399:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4400:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4401:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4402:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+4578:EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4579:EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4580:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+4581:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4582:EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+4583:EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+4584:GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+4585:GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+4586:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4587:GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+4588:GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+
+======================================================================
+9) MARGE / STORM / MAX LOSS
+======================================================================
+677:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.69 min_available=0.0 block=False reasons=
+678:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+869:MARGIN_GUARD | margin_cfd=1922.3400000000001 max=3100.0 available=1582.29 min_available=0.0 block=False reasons=
+870:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1057:MARGIN_GUARD | margin_cfd=1921.96 max=3100.0 available=1582.5 min_available=0.0 block=False reasons=
+1058:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1257:MARGIN_GUARD | margin_cfd=2296.2 max=3100.0 available=1208.25 min_available=0.0 block=False reasons=
+1258:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1445:MARGIN_GUARD | margin_cfd=2295.89 max=3100.0 available=1208.42 min_available=0.0 block=False reasons=
+1446:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1650:MARGIN_GUARD | margin_cfd=1950.79 max=3100.0 available=1552.58 min_available=0.0 block=False reasons=
+1651:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1870:MARGIN_GUARD | margin_cfd=2313.5 max=3100.0 available=1190.98 min_available=0.0 block=False reasons=
+1871:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2065:MARGIN_GUARD | margin_cfd=2313.76 max=3100.0 available=1190.95 min_available=0.0 block=False reasons=
+2066:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2257:MARGIN_GUARD | margin_cfd=2313.2 max=3100.0 available=1191.07 min_available=0.0 block=False reasons=
+2258:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2447:MARGIN_GUARD | margin_cfd=1424.6599999999999 max=3100.0 available=2078.82 min_available=0.0 block=False reasons=
+2448:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2669:MARGIN_GUARD | margin_cfd=1751.77 max=3100.0 available=1751.44 min_available=0.0 block=False reasons=
+2670:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2866:MARGIN_GUARD | margin_cfd=1751.3000000000002 max=3100.0 available=1751.46 min_available=0.0 block=False reasons=
+2867:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3057:MARGIN_GUARD | margin_cfd=1391.4099999999999 max=3100.0 available=2112.51 min_available=0.0 block=False reasons=
+3058:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3250:MARGIN_GUARD | margin_cfd=1392.4 max=3100.0 available=2112.31 min_available=0.0 block=False reasons=
+3251:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3440:MARGIN_GUARD | margin_cfd=430.5799999999999 max=3100.0 available=3074.14 min_available=0.0 block=False reasons=
+3441:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3455:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3629:MARGIN_GUARD | margin_cfd=430.4699999999998 max=3100.0 available=3074.19 min_available=0.0 block=False reasons=
+3630:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3644:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3816:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+3817:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3833:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+3838:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4004:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4005:STORM_GUARD | mode=LOCAL alerts=1 assets=DE40 systemic=False
+4019:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4024:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4192:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4193:STORM_GUARD | mode=LOCAL alerts=1 assets=DE40 systemic=False
+4209:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4214:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4380:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4381:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4395:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4400:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+4566:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+4567:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4581:EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+4586:GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+
+======================================================================
+10) ÉTAT LOCAL ACTUEL — CYCLE / EXEC
+======================================================================
+====================================================================================================
+CYCLE data/cycles/cycle_state.json
+CYCLE non-IDLE = 2
+
+ASSET: EURUSD
+status: IN_POSITION
+{
+  "asset": "EURUSD",
+  "cycle_id": "4e2442f9-f60",
+  "level": 1,
+  "direction": "SELL",
+  "entry_price": 1.17149,
+  "size": 1500.0,
+  "tp_eur": 0.2,
+  "drift_coeff": 1.0,
+  "created_utc": "2026-05-14T06:44:49+00:00",
+  "opened_utc": "2026-05-14T06:44:49+00:00",
+  "level_open_utc": "2026-05-14T06:44:49+00:00",
+  "basket_mode": "V24_BASKET_LIMIT",
+  "execution_owner": "BOT_PIVOT_06G2"
+}
+
+ASSET: GBPUSD
+status: IN_POSITION
+{
+  "asset": "GBPUSD",
+  "cycle_id": "653ea0af-d36",
+  "level": 1,
+  "direction": "SELL",
+  "entry_price": 1.35263,
+  "size": 1200.0,
+  "tp_eur": 0.2,
+  "drift_coeff": 1.0,
+  "created_utc": "2026-05-14T06:48:31+00:00",
+  "opened_utc": "2026-05-14T06:48:31+00:00",
+  "level_open_utc": "2026-05-14T06:48:31+00:00",
+  "basket_mode": "V24_BASKET_LIMIT",
+  "execution_owner": "BOT_PIVOT_06G2"
+}
+====================================================================================================
+EXEC data/execution/cycle_execution_state.json
+EXEC active = 2 ['EURUSD', 'GBPUSD']
+
+----------------------------------------------------------------------------------------------------
+ASSET: EURUSD
+direction: SELL
+basket_mode: V24_BASKET_LIMIT
+created_utc: 2026-05-14T06:44:51+00:00
+last_open_count: 2
+last_pending_count: 0
+last_pnl_eur: None
+last_target_eur: None
+last_broker_upl: None
+cancelled_reason: None
+closed_reason: None
+--- levels ---
+LEVEL 1 | status= OPEN_POSITION | level= 1 | size= 1500.0 | dealId= 00005552-0055-311e-0000-000081ea6650 | workingOrderId= None | cancelled_reason= None
+LEVEL 2 | status= OPEN_POSITION | level= 2 | size= 3000.0 | dealId= 00005552-0055-311e-0000-000081ea667b | workingOrderId= None | cancelled_reason= None
+LEVEL 3 | status= CANCELLED_PENDING_LIMIT | level= 3 | size= 4500.0 | dealId= None | workingOrderId= None | cancelled_reason= None
+
+----------------------------------------------------------------------------------------------------
+ASSET: GBPUSD
+direction: SELL
+basket_mode: V24_BASKET_LIMIT
+created_utc: 2026-05-14T06:48:34+00:00
+last_open_count: 1
+last_pending_count: 0
+last_pnl_eur: None
+last_target_eur: None
+last_broker_upl: None
+cancelled_reason: None
+closed_reason: None
+--- levels ---
+LEVEL 1 | status= OPEN_POSITION | level= 1 | size= 1200.0 | dealId= 00007090-0055-311e-0000-0000811c1c72 | workingOrderId= None | cancelled_reason= None
+LEVEL 2 | status= CANCELLED_PENDING_LIMIT | level= 2 | size= 2400.0 | dealId= None | workingOrderId= None | cancelled_reason= None
+LEVEL 3 | status= CANCELLED_PENDING_LIMIT | level= 3 | size= 3600.0 | dealId= None | workingOrderId= None | cancelled_reason= None
+
+======================================================================
+11) DERNIÈRES 250 LIGNES DU LOG
+======================================================================
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+US100      | IDLE         | --  | --   | --         | --        | aucun cycle
+US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+BTCUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+ETHUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 22 — 2026-05-14T07:02:24Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 1186s / seuil 7200s
+- zones age   : 1155s / seuil 43200s
+- history age : 1155s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-14 07:02:24,938 - INFO - ============================================================
+2026-05-14 07:02:24,938 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-14 07:02:24,938 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 07:02:24,938 - INFO - Nb actifs    : 16
+2026-05-14 07:02:24,938 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-14 07:02:24,938 - INFO - Durée test   : 45 sec
+2026-05-14 07:02:24,938 - INFO - ============================================================
+2026-05-14 07:02:25,045 - INFO - [SUBSCRIBE] envoyé
+2026-05-14 07:02:25,074 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2026-05-14 07:03:09,939 - INFO - Durée de test atteinte.
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    43 | 7462.600000  | 7463.200000  | 7462.900000  | 0.600000     | 0.600000     | 1.0s
+US100      |   125 | 29507.400000 | 29509.200000 | 29508.300000 | 1.800000     | 1.800000     | 1.0s
+US30       |    41 | 49867.800000 | 49869.800000 | 49868.800000 | 2.000000     | 2.000000     | 1.0s
+DE40       |   118 | 24378.200000 | 24379.700000 | 24378.950000 | 1.500000     | 1.500000     | 1.0s
+FR40       |    28 | 8058.600000  | 8059.400000  | 8059.000000  | 0.800000     | 0.800000     | 2.0s
+UK100      |    56 | 10333.600000 | 10334.600000 | 10334.100000 | 1.000000     | 1.000000     | 1.0s
+J225       |    39 | 62785.400000 | 62795.400000 | 62790.400000 | 10.000000    | 10.000000    | 0.0s
+EURUSD     |    34 | 1.171750     | 1.171820     | 1.171785     | 0.000070     | 0.000070     | 1.0s
+GBPUSD     |    58 | 1.352540     | 1.352670     | 1.352605     | 0.000130     | 0.000130     | 1.0s
+USDJPY     |    29 | 157.845000   | 157.857000   | 157.851000   | 0.012000     | 0.012000     | 1.0s
+EURJPY     |    83 | 184.957000   | 184.977000   | 184.967000   | 0.020000     | 0.020000     | 1.0s
+GOLD       |   183 | 4701.550000  | 4702.050000  | 4701.800000  | 0.500000     | 0.500000     | 0.0s
+SILVER     |    75 | 87.161000    | 87.211000    | 87.186000    | 0.050000     | 0.050000     | 1.0s
+OIL_CRUDE  |    38 | 97.486000    | 97.526000    | 97.506000    | 0.040000     | 0.040000     | 0.0s
+BTCUSD     |   126 | 79780.400000 | 79830.400000 | 79805.400000 | 50.000000    | 50.000000    | 1.0s
+ETHUSD     |   105 | 2267.000000  | 2268.750000  | 2267.875000  | 1.750000     | 1.750000     | 1.0s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    56 | 7463.000000  | 7463.600000  | 7463.300000  | 0.600000     | 0.600000     | 0.9s
+US100      |   184 | 29510.000000 | 29511.800000 | 29510.900000 | 1.800000     | 1.800000     | 0.9s
+US30       |    55 | 49867.400000 | 49869.400000 | 49868.400000 | 2.000000     | 2.000000     | 1.9s
+DE40       |   174 | 24383.900000 | 24385.400000 | 24384.650000 | 1.500000     | 1.500000     | 0.9s
+FR40       |    40 | 8059.100000  | 8059.900000  | 8059.500000  | 0.800000     | 0.800000     | 1.9s
+UK100      |    75 | 10335.900000 | 10336.900000 | 10336.400000 | 1.000000     | 1.000000     | 0.9s
+J225       |    59 | 62792.000000 | 62802.000000 | 62797.000000 | 10.000000    | 10.000000    | 0.9s
+EURUSD     |    51 | 1.171760     | 1.171830     | 1.171795     | 0.000070     | 0.000070     | 0.9s
+GBPUSD     |    90 | 1.352560     | 1.352690     | 1.352625     | 0.000130     | 0.000130     | 0.9s
+USDJPY     |    37 | 157.845000   | 157.857000   | 157.851000   | 0.012000     | 0.012000     | 2.9s
+EURJPY     |   117 | 184.959000   | 184.979000   | 184.969000   | 0.020000     | 0.020000     | 2.9s
+GOLD       |   253 | 4701.250000  | 4702.000000  | 4701.625000  | 0.750000     | 0.500000     | 0.9s
+SILVER     |   104 | 87.175000    | 87.225000    | 87.200000    | 0.050000     | 0.050000     | 0.9s
+OIL_CRUDE  |    73 | 97.562000    | 97.602000    | 97.582000    | 0.040000     | 0.040000     | 1.9s
+BTCUSD     |   189 | 79767.300000 | 79817.300000 | 79792.300000 | 50.000000    | 50.000000    | 0.9s
+ETHUSD     |   151 | 2266.490000  | 2268.240000  | 2267.365000  | 1.750000     | 1.750000     | 0.9s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+MODULE 04 — SIGNAUX
+Fichier ticks utilisé : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 7463.300000  | 67.7  | 6.200000    | 0.600000 | 0.600000 | True  | 1.9   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+US100      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 29510.900000 | 58.3  | 39.600000   | 1.800000 | 1.800000 | True  | 1.9   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49868.400000 | 38.7  | 27.900000   | 2.000000 | 2.000000 | True  | 3.0   | --                       | True      | False      | hors_zone
+DE40       | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 24384.650000 | 83.8  | 78.600000   | 1.500000 | 1.500000 | True  | 2.0   | MAJOR+PSYCHO:resistance: | True      | False      | pas_micro_rejet
+FR40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 8059.500000  | 30.0  | 23.300000   | 0.800000 | 0.800000 | True  | 3.0   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+UK100      | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 10336.400000 | 70.4  | 26.000000   | 1.000000 | 1.000000 | True  | 2.0   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+J225       | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 62797.000000 | 95.8  | 120.300000  | 10.000000 | 10.000000 | True  | 2.1   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+EURUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 1.171795     | 20.0  | 0.000450    | 0.000070 | 0.000070 | True  | 2.1   | --                       | False     | True       | hors_zone
+GBPUSD     | BUY      |     4 | NEUTRAL  | RANGE      | NONE                 | 1.352625     | 16.0  | 0.000750    | 0.000130 | 0.000130 | True  | 2.1   | LOCAL:active             | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 157.851000   | 57.5  | 0.040000    | 0.012000 | 0.012000 | True  | 4.1   | LOCAL:support            | True      | False      | range_pas_assez_bas
+EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.969000   | 39.4  | 0.077500    | 0.020000 | 0.021000 | True  | 4.1   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4701.625000  | 95.1  | 7.095000    | 0.750000 | 0.500000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 87.200000    | 69.5  | 0.295000    | 0.050000 | 0.080000 | True  | 2.2   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 97.582000    | 83.7  | 1.109000    | 0.040000 | 0.040000 | True  | 3.2   | LOCAL+PSYCHO+MAJOR:resis | True      | False      | pas_micro_rejet
+BTCUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 79792.300000 | 42.5  | 76.750000   | 50.000000 | 50.000000 | True  | 2.3   | --                       | True      | False      | hors_zone
+ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 2267.365000  | 44.6  | 3.610000    | 1.750000 | 1.750000 | True  | 2.3   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | IDLE         | aucun signal
+US100      | IDLE         | aucun signal
+US30       | IDLE         | aucun signal
+DE40       | IDLE         | aucun signal
+FR40       | IDLE         | aucun signal
+UK100      | IDLE         | aucun signal
+J225       | IDLE         | aucun signal
+EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+GBPUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+USDJPY     | IDLE         | aucun signal
+EURJPY     | IDLE         | aucun signal
+GOLD       | IDLE         | aucun signal
+SILVER     | IDLE         | aucun signal
+OIL_CRUDE  | IDLE         | aucun signal
+BTCUSD     | IDLE         | aucun signal
+ETHUSD     | IDLE         | aucun signal
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 2
+- EURUSD     L1 SELL size=1500.0 cycle=4e2442f9-f60
+- GBPUSD     L1 SELL size=1200.0 cycle=653ea0af-d36
+Deals réels DEMO suivis : 6
+- EURUSD     L1 SELL size=1500.0 dealId=00005552-0055-311e-0000-000081ea6650
+- EURUSD     L2 SELL size=3000.0 dealId=00005552-0055-311e-0000-000081ea667b
+- EURUSD     L3 SELL size=4500.0 dealId=None
+- GBPUSD     L1 SELL size=1200.0 dealId=00007090-0055-311e-0000-0000811c1c72
+- GBPUSD     L2 SELL size=2400.0 dealId=None
+- GBPUSD     L3 SELL size=3600.0 dealId=None
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3504.64 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+US100      | IDLE         | --  | --   | --         | --        | aucun cycle
+US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+EURUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.171680 size=1500.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.1923 pnl_dist=0.1923076923078135 pnl_mod=0.19230769230781347 raw=0.22500000000014175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+EURUSD     | PNL_AUDIT_LEG | L2   | SELL | entry=1.171920 size=3000.000000 bid=1.171460 ask=1.171530 exit=1.171530 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=1.0000 pnl_dist=1.0000000000002887 pnl_mod=1.0000000000002884 raw=1.1700000000003374 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+EURUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=2 pnl=1.1923 broker_upl=none target=0.4
+EURUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-3.0000
+EURUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=1.1923 broker_upl=None target=0.4000
+EURUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=2 pending=0 pnl=1.1923 target=0.4
+GBPUSD     | PNL_AUDIT_LEG | L1   | SELL | entry=1.352710 size=1200.000000 bid=1.352380 ask=1.352510 exit=1.352510 side=ASK_HIGH_SIDE_FOR_SELL pnl_sel=0.2051 pnl_dist=0.20512820512818256 pnl_mod=0.20512820512818256 raw=0.23999999999997357 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=None broker=none
+GBPUSD     | PNL_AUDIT_TOTAL | 1-3 | SELL | open=1 pnl=0.2051 broker_upl=none target=0.2
+GBPUSD     | BASKET_MAX_LOSS_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | limit=-1.5000
+GBPUSD     | BASKET_TP_BLOCKED_NO_BROKER_UPL | 1-3 | SELL | --         | TRADEABLE | internal=0.2051 broker_upl=None target=0.2000
+GBPUSD     | BASKET_HOLD | 1-3 | SELL | --         | TRADEABLE | open=1 pending=0 pnl=0.2051 target=0.2
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+BTCUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+ETHUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 23 — 2026-05-14T07:03:18Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 1240s / seuil 7200s
+- zones age   : 1209s / seuil 43200s
+- history age : 1209s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-14 07:03:18,781 - INFO - ============================================================
+2026-05-14 07:03:18,781 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-14 07:03:18,781 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 07:03:18,781 - INFO - Nb actifs    : 16
+2026-05-14 07:03:18,781 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-14 07:03:18,781 - INFO - Durée test   : 45 sec
+2026-05-14 07:03:18,781 - INFO - ============================================================
+2026-05-14 07:03:18,889 - INFO - [SUBSCRIBE] envoyé
+2026-05-14 07:03:18,918 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+======================================================================
+FIN ANALYSE LARGE
+======================================================================

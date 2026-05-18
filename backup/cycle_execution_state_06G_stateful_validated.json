@@ -1,0 +1,216 @@
+{
+  "active": {
+    "DE40": {
+      "asset": "DE40",
+      "cycle_id": "6701fb3b-f4b",
+      "level": 5,
+      "direction": "SELL",
+      "size": 0.16,
+      "dealReference": null,
+      "dealId": "DRY_DE40_L5_SELL_6701fb3b-f4b",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:03:31+00:00",
+      "dry_run": true
+    },
+    "SILVER": {
+      "asset": "SILVER",
+      "cycle_id": "41edebf5-fab",
+      "level": 5,
+      "direction": "SELL",
+      "size": 16.0,
+      "dealReference": null,
+      "dealId": "DRY_SILVER_L5_SELL_41edebf5-fab",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:03:31+00:00",
+      "dry_run": true
+    },
+    "GBPUSD": {
+      "asset": "GBPUSD",
+      "cycle_id": "4fa0e043-abc",
+      "level": 5,
+      "direction": "BUY",
+      "size": 1600.0,
+      "dealReference": null,
+      "dealId": "DRY_GBPUSD_L5_BUY_4fa0e043-abc",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:07:17+00:00",
+      "dry_run": true
+    },
+    "EURUSD": {
+      "asset": "EURUSD",
+      "cycle_id": "44b916f7-1aa",
+      "level": 5,
+      "direction": "BUY",
+      "size": 1600.0,
+      "dealReference": null,
+      "dealId": "DRY_EURUSD_L5_BUY_44b916f7-1aa",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:09:20+00:00",
+      "dry_run": true
+    },
+    "GOLD": {
+      "asset": "GOLD",
+      "cycle_id": "b7bcd702-d22",
+      "level": 3,
+      "direction": "SELL",
+      "size": 0.04,
+      "dealReference": null,
+      "dealId": "DRY_GOLD_L3_SELL_b7bcd702-d22",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:09:20+00:00",
+      "dry_run": true
+    },
+    "USDJPY": {
+      "asset": "USDJPY",
+      "cycle_id": "c5114a56-b14",
+      "level": 2,
+      "direction": "BUY",
+      "size": 200.0,
+      "dealReference": null,
+      "dealId": "DRY_USDJPY_L2_BUY_c5114a56-b14",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:10:22+00:00",
+      "dry_run": true
+    }
+  },
+  "closed": [
+    {
+      "asset": "EURUSD",
+      "cycle_id": "44b916f7-1aa",
+      "level": 3,
+      "direction": "BUY",
+      "size": 400.0,
+      "dealReference": null,
+      "dealId": "DRY_EURUSD_L3_BUY_44b916f7-1aa",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:03:31+00:00",
+      "dry_run": true,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 4,
+      "closed_utc": "2026-05-11T21:07:17+00:00"
+    },
+    {
+      "asset": "GBPUSD",
+      "cycle_id": "4fa0e043-abc",
+      "level": 4,
+      "direction": "BUY",
+      "size": 800.0,
+      "dealReference": null,
+      "dealId": "DRY_GBPUSD_L4_BUY_4fa0e043-abc",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:03:31+00:00",
+      "dry_run": true,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 5,
+      "closed_utc": "2026-05-11T21:07:17+00:00"
+    },
+    {
+      "asset": "GOLD",
+      "cycle_id": "b7bcd702-d22",
+      "level": 1,
+      "direction": "SELL",
+      "size": 0.01,
+      "dealReference": null,
+      "dealId": "DRY_GOLD_L1_SELL_b7bcd702-d22",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:03:31+00:00",
+      "dry_run": true,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 2,
+      "closed_utc": "2026-05-11T21:07:17+00:00"
+    },
+    {
+      "asset": "EURUSD",
+      "cycle_id": "44b916f7-1aa",
+      "level": 4,
+      "direction": "BUY",
+      "size": 800.0,
+      "dealReference": null,
+      "dealId": "DRY_EURUSD_L4_BUY_44b916f7-1aa",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:07:17+00:00",
+      "dry_run": true,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 5,
+      "closed_utc": "2026-05-11T21:09:20+00:00"
+    },
+    {
+      "asset": "GOLD",
+      "cycle_id": "b7bcd702-d22",
+      "level": 2,
+      "direction": "SELL",
+      "size": 0.02,
+      "dealReference": null,
+      "dealId": "DRY_GOLD_L2_SELL_b7bcd702-d22",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:07:17+00:00",
+      "dry_run": true,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 3,
+      "closed_utc": "2026-05-11T21:09:20+00:00"
+    },
+    {
+      "asset": "USDJPY",
+      "cycle_id": "c5114a56-b14",
+      "level": 1,
+      "direction": "BUY",
+      "size": 100.0,
+      "dealReference": null,
+      "dealId": "DRY_USDJPY_L1_BUY_c5114a56-b14",
+      "open_status": "DRY_RUN",
+      "confirm_status": "DRY_RUN",
+      "confirm": {
+        "DRY_RUN": true
+      },
+      "opened_utc": "2026-05-11T21:08:18+00:00",
+      "dry_run": true,
+      "closed_reason": "LEVEL_CHANGED",
+      "new_level": 2,
+      "closed_utc": "2026-05-11T21:10:22+00:00"
+    }
+  ]
+}

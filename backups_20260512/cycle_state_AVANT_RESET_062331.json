@@ -1,0 +1,257 @@
+{
+  "updated_utc": "2026-05-12T06:22:55+00:00",
+  "assets": {
+    "US500": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "US500",
+        "cycle_id": "e417288c-cc8",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 7416.5,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-11T23:08:39+00:00",
+        "opened_utc": "2026-05-11T23:08:39+00:00",
+        "level_open_utc": "2026-05-11T23:08:39+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-11T23:08:39+00:00"
+    },
+    "US100": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "US100",
+        "cycle_id": "9b2f0b9f-c15",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 29322.800000000003,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-11T23:53:17+00:00",
+        "opened_utc": "2026-05-11T23:53:17+00:00",
+        "level_open_utc": "2026-05-11T23:53:17+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-11T23:53:17+00:00"
+    },
+    "US30": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "US30",
+        "cycle_id": "88a92dc8-4ee",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 49711.0,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-11T23:51:15+00:00",
+        "opened_utc": "2026-05-11T23:51:15+00:00",
+        "level_open_utc": "2026-05-11T23:51:15+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-11T23:51:15+00:00"
+    },
+    "DE40": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "DE40",
+        "cycle_id": "5190062d-6b7",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 24269.6,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T00:13:30+00:00",
+        "opened_utc": "2026-05-12T00:13:30+00:00",
+        "level_open_utc": "2026-05-12T00:13:30+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T00:13:30+00:00"
+    },
+    "FR40": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "FR40",
+        "cycle_id": "73e70fd8-005",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 8015.45,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T03:28:11+00:00",
+        "opened_utc": "2026-05-12T03:28:11+00:00",
+        "level_open_utc": "2026-05-12T03:28:11+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T03:28:11+00:00"
+    },
+    "UK100": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "UK100",
+        "cycle_id": "c575fb45-f45",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 10209.2,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T05:46:19+00:00",
+        "opened_utc": "2026-05-12T05:46:19+00:00",
+        "level_open_utc": "2026-05-12T05:46:19+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T05:46:19+00:00"
+    },
+    "J225": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T06:22:55+00:00"
+    },
+    "EURUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "EURUSD",
+        "cycle_id": "c56a6ea3-58d",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 1.178095,
+        "size": 1600.0,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-11T23:30:59+00:00",
+        "opened_utc": "2026-05-11T23:30:59+00:00",
+        "level_open_utc": "2026-05-11T23:30:59+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-11T23:30:59+00:00"
+    },
+    "GBPUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "GBPUSD",
+        "cycle_id": "70cc6e73-c97",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 1.36091,
+        "size": 1600.0,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-11T21:53:37+00:00",
+        "opened_utc": "2026-05-11T21:53:37+00:00",
+        "level_open_utc": "2026-05-11T21:53:37+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-11T21:53:37+00:00"
+    },
+    "USDJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T06:22:55+00:00"
+    },
+    "EURJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-12T06:22:55+00:00"
+    },
+    "GOLD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "GOLD",
+        "cycle_id": "91730803-921",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 4713.69,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T05:19:52+00:00",
+        "opened_utc": "2026-05-12T05:19:52+00:00",
+        "level_open_utc": "2026-05-12T05:19:52+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T05:19:52+00:00"
+    },
+    "SILVER": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "SILVER",
+        "cycle_id": "f88f1f38-dd6",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 85.56700000000001,
+        "size": 16.0,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T05:50:23+00:00",
+        "opened_utc": "2026-05-12T05:50:23+00:00",
+        "level_open_utc": "2026-05-12T05:50:23+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T05:50:23+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "OIL_CRUDE",
+        "cycle_id": "dbfa6afd-2ba",
+        "level": 5,
+        "direction": "SELL",
+        "entry_price": 96.286,
+        "size": 16.0,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T05:21:54+00:00",
+        "opened_utc": "2026-05-12T05:21:54+00:00",
+        "level_open_utc": "2026-05-12T05:21:54+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T05:21:54+00:00"
+    },
+    "BTCUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "BTCUSD",
+        "cycle_id": "2cc96846-6af",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 81386.85,
+        "size": 0.016,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T01:14:17+00:00",
+        "opened_utc": "2026-05-12T01:14:17+00:00",
+        "level_open_utc": "2026-05-12T01:14:17+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T01:14:17+00:00"
+    },
+    "ETHUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "ETHUSD",
+        "cycle_id": "fcd5d9c8-121",
+        "level": 5,
+        "direction": "BUY",
+        "entry_price": 2334.045,
+        "size": 0.16,
+        "tp_eur": 1.6,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-12T00:51:59+00:00",
+        "opened_utc": "2026-05-12T00:51:59+00:00",
+        "level_open_utc": "2026-05-12T00:51:59+00:00"
+      },
+      "last_event": "NEXT_LEVEL",
+      "last_event_utc": "2026-05-12T00:51:59+00:00"
+    }
+  }
+}

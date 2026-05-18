@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+# BOT_PIVOT_06G2_execution_secure.py
+# Exécution sécurisée BOT-PIVOT.
+# Bloc 1/3 : fondations + résolution du vrai dealId broker.
+
+import argparse
+import json
+import time
+from datetime import datetime, timezone
+
+import BOT_PIVOT_06G_execution_from_cycle_state as B
+
+
+SEND_REAL_ORDERS = False
+
+
+def utc():
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def sync_base_flags():
+    """
+    06G2 pilote l'ancien module 06G uniquement comme librairie API.
+    On synchronise son flag pour que api_post/api_delete envoient réellement
+    uniquement quand 06H aura explicitement activé SEND_REAL_ORDERS.
+    """
+    B.SEND_REAL_ORDERS = SEND_REAL_ORDERS
+
+
+def load_env():
+    return B.load_env()
+
+
+def login():
+    return B.login()
+
+
+def parse_confirm(confirm):
+    return B.parse_confirm(confirm)
+
+
+def event(payload):
+    payload = dict(payload)
+    payload.setdefault("module", "06G2")
+    payload.setdefault("utc", utc())
+    return B.event(payload)
+
+
+def parse_assets(raw):
+    if raw.upper() == "ALL":
+        return list(B.CFG.ASSETS)
+    return [x.strip().upper() for x in raw.replace(";", ",").split(",") if x.strip()]
+
+
+def short_id(x):
+    if not x:
+        return "--"
+    x = str(x)
+    return x[:6] + "..." + x[-4:] if len(x) > 14 else x
+
+
+def pos_epic(item):
+    return B.broker_position_epic(item)
+
+
+def pos_deal_id(item):
+    return B.broker_position_deal_id(item)
+
+
+def pos_direction(item):
+    p = item.get("position", {}) if isinstance(item, dict) else {}
+    return p.get("direction") or item.get("direction")
+
+
+def pos_size(item):
+    p = item.get("position", {}) if isinstance(item, dict) else {}
+    return p.get("size") or item.get("size")
+
+
+def pos_entry(item):
+    p = item.get("position", {}) if isinstance(item, dict) else {}
+    return p.get("level") or p.get("entryLevel") or p.get("openLevel")
+
+
+def fetch_positions(headers):
+    sync_base_flags()
+    if not SEND_REAL_ORDERS:
+        return "DRY_RUN", [], {}
+    return B.broker_positions(headers)
+
+
+def positions_for_asset(asset, positions):
+    return [p for p in positions if pos_epic(p) == asset]
+
+
+def deal_ids_for_asset(asset, positions):
+    out = []
+    for p in positions_for_asset(asset, positions):
+        did = pos_deal_id(p)
+        if did:
+            out.append(did)
+    return out
+
+
+def broker_has_deal_id(deal_id, positions):
+    if not deal_id:
+        return False
+    return deal_id in [pos_deal_id(p) for p in positions]
+
+
+def same_size(a, b, tol=1e-9):
+    try:
+        return abs(float(a) - float(b)) <= tol
+    except Exception:
+        return False
+
+
+def resolve_real_broker_deal_id(asset, before_positions, after_positions, expected_direction, expected_size):
+    """
+    Point critique du 06G2.
+
+    Le dealId retourné par GET /confirms peut être différent du dealId réellement
+    visible dans GET /positions. Donc 06G2 ne doit pas stocker aveuglément le
+    dealId du confirm.
+
+    Méthode :
+    - on prend les positions broker AVANT l'ouverture ;
+    - on prend les positions broker APRÈS l'ouverture ;
+    - on cherche le nouveau dealId apparu chez le broker ;
+    - on stocke CE dealId-là dans execution_state.
+    """
+    before_ids = set(deal_ids_for_asset(asset, before_positions))
+    after_items = positions_for_asset(asset, after_positions)
+
+    new_items = []
+    for item in after_items:
+        did = pos_deal_id(item)
+        if did and did not in before_ids:
+            new_items.append(item)
+
+    details = {
+        "asset": asset,
+        "before_ids": list(before_ids),
+        "after_ids": deal_ids_for_asset(asset, after_positions),
+        "expected_direction": expected_direction,
+        "expected_size": expected_size,
+        "new_count": len(new_items),
+        "new_items": [
+            {
+                "dealId": pos_deal_id(x),
+                "direction": pos_direction(x),
+                "size": pos_size(x),
+                "entry": pos_entry(x),
+            }
+            for x in new_items
+        ],
+    }
+
+    if len(new_items) == 1:
+        return pos_deal_id(new_items[0]), "NEW_BROKER_DEAL_UNIQUE", details
+
+    matched = []
+    for item in new_items:
+        if pos_direction(item) == expected_direction and same_size(pos_size(item), expected_size):
+            matched.append(item)
+
+    if len(matched) == 1:
+        return pos_deal_id(matched[0]), "NEW_BROKER_DEAL_MATCH_DIR_SIZE", details
+
+    if len(new_items) == 0:
+        return None, "NO_NEW_BROKER_DEAL_VISIBLE", details
+
+    return None, "AMBIGUOUS_NEW_BROKER_DEALS", details
+
+
+def show_status_only(assets):
+    sync_base_flags()
+
+    print("=" * 140)
+    print("BOT_PIVOT_06G2 — BLOC 1/3 — STATUS OUTILS")
+    print("=" * 140)
+    print("SEND_REAL_ORDERS :", SEND_REAL_ORDERS)
+    print("Actifs           :", ",".join(assets))
+    print("Note             : bloc 1/3, aucune exécution de cycle.")
+    print("=" * 140)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--assets", default="ALL")
+    parser.add_argument("--mode", choices=["status"], default="status")
+    args = parser.parse_args()
+
+    assets = parse_assets(args.assets)
+    show_status_only(assets)
+
+
+if __name__ == "__main__":
+    main()

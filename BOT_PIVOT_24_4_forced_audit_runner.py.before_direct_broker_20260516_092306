@@ -1,0 +1,166 @@
+# BOT_PIVOT_24_4_forced_audit_runner.py
+# Runner expérimental séparé.
+# Ne lance pas les anciens paniers LIMIT.
+# Ouvre ETHUSD via open_cycle_secure pour produire 2 ouvertures/minute.
+# Ferme par paire faible/forte si une paire valide existe.
+
+from __future__ import annotations
+
+import os
+import time
+import uuid
+import traceback
+
+import BOT_PIVOT_06G2_execution_secure as G
+import BOT_PIVOT_24_4_forced_audit_sampling as FAS
+
+ASSET = os.getenv("V244_TRADED_ASSET", "ETHUSD").upper()
+SLEEP_SEC = float(os.getenv("V244_RUNNER_SLEEP_SEC", "20"))
+TARGET_OPENINGS_PER_MIN = int(os.getenv("V244_TARGET_OPENINGS_PER_MIN", "2"))
+MAX_POSITIONS = int(os.getenv("V244_MAX_OPEN_POSITIONS", "12"))
+
+
+def log(event, **kw):
+    FAS.audit_log(event, **kw)
+
+
+def broker_positions(headers):
+    status, positions, raw = G.fetch_positions(headers)
+    return positions or []
+
+
+def positions_for_asset(asset, positions):
+    return [p for p in positions or [] if G.pos_epic(p) == asset]
+
+
+def normalize_broker_item(item):
+    pos = item.get("position", {}) if isinstance(item, dict) else {}
+    deal_id = G.pos_deal_id(item)
+    size = pos.get("size") or item.get("size") or pos.get("dealSize") or item.get("dealSize")
+    upl = pos.get("upl") or pos.get("profit") or item.get("upl") or item.get("profit") or 0.0
+
+    return {
+        "asset": ASSET,
+        "dealId": deal_id,
+        "brokerDealId": deal_id,
+        "size": size,
+        "broker_upl": upl,
+        "raw": item,
+    }
+
+
+def close_pair_if_available(headers, positions):
+    items = positions_for_asset(ASSET, positions)
+    records = [normalize_broker_item(x) for x in items]
+    pair = FAS.select_close_pair_from_records(ASSET, records)
+
+    if not pair:
+        return positions
+
+    weak, strong = pair
+    closed = []
+
+    for rec in (weak, strong):
+        deal_id = rec.get("brokerDealId") or rec.get("dealId")
+        if not deal_id:
+            closed.append({"deal_id": None, "ok": False, "reason": "MISSING_DEAL_ID"})
+            continue
+
+        ok, info, positions_after = G.close_deal_secure(
+            headers=headers,
+            asset=ASSET,
+            deal_id=deal_id,
+            reason="V244_FORCED_AUDIT_PAIR_CLOSE",
+            old_exec=rec,
+        )
+        closed.append({"deal_id": deal_id, "ok": ok, "info": info})
+
+        if positions_after is not None:
+            positions = positions_after
+
+    FAS.register_close_pair(ASSET, weak, strong, reason="V244_FORCED_AUDIT_PAIR_CLOSE")
+    log("RUNNER_CLOSE_PAIR_DONE", asset=ASSET, closed=closed)
+    return positions
+
+
+def open_one(headers, positions):
+    side, size, seq = FAS.next_forced_order()
+
+    cycle = {
+        "cycle_id": f"V244_FORCED_{int(time.time())}_{seq}_{uuid.uuid4().hex[:6]}",
+        "asset": ASSET,
+        "epic": ASSET,
+        "direction": side,
+        "side": side,
+        "level": 1,
+        "size": size,
+        "source": "V24.4_FORCED_AUDIT_RUNNER",
+        "strategy": "FORCED_AUDIT_SAMPLE",
+        "reason": "MINIMUM_2_OPENINGS_PER_MINUTE",
+    }
+
+    log("RUNNER_OPEN_ATTEMPT", asset=ASSET, side=side, size=size, seq=seq, reason="MINIMUM_2_OPENINGS_PER_MINUTE")
+
+    ok, record, positions_after = G.open_cycle_secure(
+        headers=headers,
+        asset=ASSET,
+        cycle=cycle,
+        market_status="OPEN",
+        before_positions=positions,
+    )
+
+    log("RUNNER_OPEN_RESULT", asset=ASSET, side=side, size=size, ok=ok, record=record)
+
+    if ok:
+        FAS.register_open(asset=ASSET, side=side, size=size, reason="FORCED_AUDIT_SAMPLE", extra={"seq": seq, "record": record})
+
+    return positions_after if positions_after is not None else positions
+
+
+def main():
+    FAS.safety_banner()
+    log("RUNNER_START", asset=ASSET, target_openings_per_min=TARGET_OPENINGS_PER_MIN, sleep_sec=SLEEP_SEC, max_positions=MAX_POSITIONS)
+
+    headers = G.login()
+    log("RUNNER_LOGIN_OK", asset=ASSET)
+
+    while True:
+        try:
+            positions = broker_positions(headers)
+            asset_positions = positions_for_asset(ASSET, positions)
+
+            log(
+                "RUNNER_STATUS",
+                asset=ASSET,
+                open_positions=len(asset_positions),
+                openings_last_60s=FAS.count_opens_last_60s(),
+                missing_openings=FAS.missing_openings(),
+            )
+
+            positions = close_pair_if_available(headers, positions)
+            asset_positions = positions_for_asset(ASSET, positions)
+
+            if len(asset_positions) >= MAX_POSITIONS:
+                log("RUNNER_OPEN_BLOCKED", asset=ASSET, reason="MAX_POSITIONS_REACHED", open_positions=len(asset_positions), max_positions=MAX_POSITIONS)
+                time.sleep(SLEEP_SEC)
+                continue
+
+            missing = FAS.missing_openings()
+            for _ in range(missing):
+                positions = open_one(headers, positions)
+                time.sleep(2)
+
+            time.sleep(SLEEP_SEC)
+
+        except Exception as e:
+            log("RUNNER_EXCEPTION", asset=ASSET, exception=str(e), traceback=traceback.format_exc().replace("\n", " / "))
+            if "429" in str(e) or "too-many" in str(e).lower() or "session" in str(e).lower():
+                time.sleep(120)
+                headers = G.login()
+                log("RUNNER_RELOGIN_OK", asset=ASSET)
+            else:
+                time.sleep(20)
+
+
+if __name__ == "__main__":
+    main()

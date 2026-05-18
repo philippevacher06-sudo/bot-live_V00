@@ -1,0 +1,1446 @@
+#!/usr/bin/env python3
+# BOT_PIVOT_06G2_execution_secure.py
+# Exécution sécurisée BOT-PIVOT.
+# Bloc 1/3 : fondations + résolution du vrai dealId broker.
+
+import argparse
+import json
+import time
+from datetime import datetime, timezone
+
+import BOT_PIVOT_06G_execution_from_cycle_state as B
+import BOT_PIVOT_00B_pnl_eur as PNL
+
+
+SEND_REAL_ORDERS = False
+
+
+def utc():
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def sync_base_flags():
+    """
+    06G2 pilote l'ancien module 06G uniquement comme librairie API.
+    On synchronise son flag pour que api_post/api_delete envoient réellement
+    uniquement quand 06H aura explicitement activé SEND_REAL_ORDERS.
+    """
+    B.SEND_REAL_ORDERS = SEND_REAL_ORDERS
+
+
+def load_env():
+    return B.load_env()
+
+
+def login():
+    return B.login()
+
+
+def parse_confirm(confirm):
+    return B.parse_confirm(confirm)
+
+
+def event(payload):
+    payload = dict(payload)
+    payload.setdefault("module", "06G2")
+    payload.setdefault("utc", utc())
+    return B.event(payload)
+
+
+def parse_assets(raw):
+    if raw.upper() == "ALL":
+        return list(B.CFG.ASSETS)
+    return [x.strip().upper() for x in raw.replace(";", ",").split(",") if x.strip()]
+
+
+def short_id(x):
+    if not x:
+        return "--"
+    x = str(x)
+    return x[:6] + "..." + x[-4:] if len(x) > 14 else x
+
+
+def pos_epic(item):
+    return B.broker_position_epic(item)
+
+
+def pos_deal_id(item):
+    return B.broker_position_deal_id(item)
+
+
+def pos_direction(item):
+    p = item.get("position", {}) if isinstance(item, dict) else {}
+    return p.get("direction") or item.get("direction")
+
+
+def pos_size(item):
+    p = item.get("position", {}) if isinstance(item, dict) else {}
+    return p.get("size") or item.get("size")
+
+
+def pos_entry(item):
+    p = item.get("position", {}) if isinstance(item, dict) else {}
+    return p.get("level") or p.get("entryLevel") or p.get("openLevel")
+
+
+def fetch_positions(headers):
+    sync_base_flags()
+    if not SEND_REAL_ORDERS:
+        return "DRY_RUN", [], {}
+    return B.broker_positions(headers)
+
+
+def positions_for_asset(asset, positions):
+    return [p for p in positions if pos_epic(p) == asset]
+
+
+def deal_ids_for_asset(asset, positions):
+    out = []
+    for p in positions_for_asset(asset, positions):
+        did = pos_deal_id(p)
+        if did:
+            out.append(did)
+    return out
+
+
+def broker_has_deal_id(deal_id, positions):
+    if not deal_id:
+        return False
+    return deal_id in [pos_deal_id(p) for p in positions]
+
+
+def same_size(a, b, tol=1e-9):
+    try:
+        return abs(float(a) - float(b)) <= tol
+    except Exception:
+        return False
+
+
+def resolve_real_broker_deal_id(asset, before_positions, after_positions, expected_direction, expected_size):
+    """
+    Point critique du 06G2.
+
+    Le dealId retourné par GET /confirms peut être différent du dealId réellement
+    visible dans GET /positions. Donc 06G2 ne doit pas stocker aveuglément le
+    dealId du confirm.
+
+    Méthode :
+    - on prend les positions broker AVANT l'ouverture ;
+    - on prend les positions broker APRÈS l'ouverture ;
+    - on cherche le nouveau dealId apparu chez le broker ;
+    - on stocke CE dealId-là dans execution_state.
+    """
+    before_ids = set(deal_ids_for_asset(asset, before_positions))
+    after_items = positions_for_asset(asset, after_positions)
+
+    new_items = []
+    for item in after_items:
+        did = pos_deal_id(item)
+        if did and did not in before_ids:
+            new_items.append(item)
+
+    details = {
+        "asset": asset,
+        "before_ids": list(before_ids),
+        "after_ids": deal_ids_for_asset(asset, after_positions),
+        "expected_direction": expected_direction,
+        "expected_size": expected_size,
+        "new_count": len(new_items),
+        "new_items": [
+            {
+                "dealId": pos_deal_id(x),
+                "direction": pos_direction(x),
+                "size": pos_size(x),
+                "entry": pos_entry(x),
+            }
+            for x in new_items
+        ],
+    }
+
+    if len(new_items) == 1:
+        return pos_deal_id(new_items[0]), "NEW_BROKER_DEAL_UNIQUE", details
+
+    matched = []
+    for item in new_items:
+        if pos_direction(item) == expected_direction and same_size(pos_size(item), expected_size):
+            matched.append(item)
+
+    if len(matched) == 1:
+        return pos_deal_id(matched[0]), "NEW_BROKER_DEAL_MATCH_DIR_SIZE", details
+
+    if len(new_items) == 0:
+        return None, "NO_NEW_BROKER_DEAL_VISIBLE", details
+
+    return None, "AMBIGUOUS_NEW_BROKER_DEALS", details
+
+
+
+
+def broker_min_profit_distance(asset):
+    """
+    Distance minimale de take-profit autorisée par Capital.com.
+    """
+    market = B._market_json(asset)
+    rules = market.get("dealingRules", {}) or {}
+
+    min_rule = rules.get("minStopOrProfitDistance")
+    min_value, min_unit = B._rule_value(min_rule)
+
+    if min_value is None:
+        raise RuntimeError(f"Distance minimale TP introuvable pour {asset}")
+
+    price = B._market_mid_price(market)
+
+    if "PERCENT" in min_unit:
+        distance = price * float(min_value) / 100.0
+    else:
+        distance = float(min_value)
+
+    distance *= 1.10
+
+    step_value, step_unit = B._rule_value(rules.get("minStepDistance"))
+
+    if step_value is not None:
+        distance = B._round_up_to_step(distance, float(step_value))
+    else:
+        distance = round(distance, 10)
+
+    return distance
+
+
+def cycle_target_tp_eur(cycle):
+    """
+    TP stratégique du cycle en euros.
+    Priorité au tp_eur produit par le module 05.
+    """
+    for key in ("tp_eur", "target_tp_eur", "take_profit_eur"):
+        if cycle.get(key) is not None:
+            return float(cycle[key])
+
+    level = int(cycle.get("level", 1))
+    base = float(getattr(B.CFG, "BASE_TP_EUR", 0.10))
+    multipliers = getattr(B.CFG, "LEVEL_MULTIPLIERS", {})
+
+    try:
+        mult = float(multipliers.get(level, 2 ** (level - 1)))
+    except Exception:
+        mult = float(2 ** (level - 1))
+
+    return base * mult
+
+
+def take_profit_distance(cycle):
+    """
+    TP broker réel :
+    - basé sur l'objectif en euros du cycle
+    - converti en distance prix par la taille
+    - jamais inférieur au minimum broker
+    """
+    asset = cycle["asset"]
+    size = float(cycle["size"])
+
+    if size <= 0:
+        raise RuntimeError(f"Taille invalide pour TP broker {asset}: {size}")
+
+    target_eur = cycle_target_tp_eur(cycle)
+    desired_distance = PNL.profit_distance_for_target_eur(asset, size, target_eur)
+
+    min_distance = broker_min_profit_distance(asset)
+    distance = max(desired_distance, min_distance)
+
+    market = B._market_json(asset)
+    rules = market.get("dealingRules", {}) or {}
+    step_value, step_unit = B._rule_value(rules.get("minStepDistance"))
+
+    if step_value is not None:
+        distance = B._round_up_to_step(distance, float(step_value))
+    else:
+        distance = round(distance, 10)
+
+    return distance
+
+
+def build_open_payload_secure(cycle):
+    """
+    Payload 06G2 complet :
+    - stop garanti
+    - stopDistance
+    - profitDistance calculé depuis tp_eur réel converti selon la devise de cotation
+    """
+    payload = B.build_open_payload(cycle)
+    payload["profitDistance"] = take_profit_distance(cycle)
+    return payload
+
+
+
+def v24_market_bid_ask(asset):
+    """
+    Récupère bid / ask depuis le market JSON Capital.com.
+    """
+    market = B._market_json(asset) or {}
+    snap = market.get("snapshot") or market.get("market", {}).get("snapshot") or market
+
+    bid = snap.get("bid")
+    ask = snap.get("ask")
+
+    if ask is None:
+        ask = snap.get("offer")
+    if ask is None:
+        ask = snap.get("ofr")
+
+    if bid is None or ask is None:
+        raise RuntimeError(f"Bid/Ask introuvable pour {asset}: {snap}")
+
+    bid = float(bid)
+    ask = float(ask)
+
+    if bid <= 0 or ask <= 0 or ask < bid:
+        raise RuntimeError(f"Bid/Ask incohérent pour {asset}: bid={bid}, ask={ask}")
+
+    return bid, ask
+
+
+def v24_round_limit_price(asset, direction, price):
+    """
+    Arrondit le prix LIMIT selon le minStepDistance broker.
+    BUY  : arrondi vers le bas.
+    SELL : arrondi vers le haut.
+    """
+    market = B._market_json(asset) or {}
+    rules = market.get("dealingRules", {}) or {}
+    step_value, step_unit = B._rule_value(rules.get("minStepDistance"))
+
+    price = float(price)
+
+    if step_value is None:
+        return round(price, 10)
+
+    step = float(step_value)
+
+    if step <= 0:
+        return round(price, 10)
+
+    if direction == "BUY":
+        rounded = int(price / step) * step
+        return round(float(rounded), 10)
+
+    return float(B._round_up_to_step(price, step))
+
+
+def v24_limit_price(asset, direction, basket_level):
+    """
+    V24 Basket Limit :
+    BUY  -> acheter plus bas.
+    SELL -> vendre plus haut.
+
+    L1 = 2 x spread
+    L2 = 4 x spread
+    L3 = 6 x spread
+    """
+    bid, ask = v24_market_bid_ask(asset)
+    spread = float(ask - bid)
+
+    if spread <= 0:
+        raise RuntimeError(f"Spread invalide pour {asset}: bid={bid}, ask={ask}")
+
+    level = int(basket_level)
+    offset_mult = {1: 2.0, 2: 4.0, 3: 6.0}.get(level, float(level * 2))
+
+    if direction == "BUY":
+        raw_price = bid - offset_mult * spread
+    else:
+        raw_price = ask + offset_mult * spread
+
+    return v24_round_limit_price(asset, direction, raw_price)
+
+
+def build_limit_payload_secure(cycle, basket_level=None):
+    """
+    Payload V24 LIMIT :
+    - ordre LIMIT broker
+    - stop conservé comme airbag
+    - aucun profitDistance individuel
+    """
+    asset = cycle["asset"]
+    direction = cycle["direction"]
+    level = int(basket_level or cycle.get("level", 1))
+
+    payload = B.build_open_payload(cycle)
+
+    # En V24, le TP est panier global, pas TP broker individuel par jambe.
+    for k in ("profitDistance", "profitLevel", "profitAmount"):
+        payload.pop(k, None)
+
+    payload["epic"] = asset
+    payload["direction"] = direction
+    payload["size"] = float(cycle["size"])
+    payload["type"] = "LIMIT"
+    payload["level"] = float(v24_limit_price(asset, direction, level))
+
+    return payload
+
+
+def place_limit_order_secure(headers, asset, cycle, market_status, basket_level=None):
+    """
+    Pose un ordre LIMIT via /api/v1/workingorders.
+    Attention : cela crée un ordre en attente, pas encore une position ouverte.
+    """
+    sync_base_flags()
+
+    level = int(basket_level or cycle.get("level", 1))
+    direction = cycle["direction"]
+    size = float(cycle["size"])
+
+    payload = build_limit_payload_secure(cycle, basket_level=level)
+
+    event({
+        "event": "LIMIT_REQUEST",
+        "asset": asset,
+        "cycle_id": cycle.get("cycle_id"),
+        "level": level,
+        "direction": direction,
+        "size": size,
+        "payload": payload,
+        "dry_run": not SEND_REAL_ORDERS,
+    })
+
+    print(
+        f"{asset:10s} | LIMIT_REQUEST | "
+        f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+        f"{market_status:9s} | {json.dumps(payload, ensure_ascii=False)}"
+    )
+
+    if not SEND_REAL_ORDERS:
+        dry_ref = f"DRY_LIMIT_{asset}_L{level}_{direction}_{cycle.get('cycle_id')}"
+        return True, {
+            "asset": asset,
+            "cycle_id": cycle.get("cycle_id"),
+            "level": level,
+            "direction": direction,
+            "size": size,
+            "status": "PENDING_LIMIT_DRY_RUN",
+            "workingDealReference": dry_ref,
+            "workingDealId": dry_ref,
+            "limit_price": payload.get("level"),
+            "payload": payload,
+            "created_utc": utc(),
+            "dry_run": True,
+        }
+
+    status, data = B.api_post(headers, "/api/v1/workingorders", payload)
+    deal_ref = data.get("dealReference") if isinstance(data, dict) else None
+
+    if status not in (200, 201, 202) or not deal_ref:
+        reason = f"LIMIT_REJECT_HTTP_{status}"
+        event({
+            "event": "LIMIT_REJECT",
+            "asset": asset,
+            "cycle_id": cycle.get("cycle_id"),
+            "level": level,
+            "direction": direction,
+            "size": size,
+            "status": status,
+            "payload": payload,
+            "response": data,
+            "reason": reason,
+        })
+
+        print(
+            f"{asset:10s} | LIMIT_REJECT  | "
+            f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+            f"{market_status:9s} | HTTP {status} | {data}"
+        )
+
+        return False, {
+            "reason": reason,
+            "response": data,
+            "payload": payload,
+        }
+
+    record = {
+        "asset": asset,
+        "cycle_id": cycle.get("cycle_id"),
+        "level": level,
+        "direction": direction,
+        "size": size,
+        "status": "PENDING_LIMIT",
+        "workingDealReference": deal_ref,
+        "workingDealId": deal_ref,
+        "limit_price": payload.get("level"),
+        "payload": payload,
+        "created_utc": utc(),
+        "dry_run": False,
+    }
+
+    event({
+        "event": "LIMIT_PLACED_OK",
+        **record,
+        "response": data,
+    })
+
+    print(
+        f"{asset:10s} | LIMIT_OK      | "
+        f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+        f"{market_status:9s} | ref={short_id(deal_ref)} limit={payload.get('level')}"
+    )
+
+    return True, record
+
+
+
+def open_cycle_secure(headers, asset, cycle, market_status, before_positions):
+    """
+    Ouverture sécurisée 06G2.
+    Ne stocke jamais aveuglément le dealId du confirm.
+    Stocke le vrai dealId visible dans GET /positions.
+    """
+    sync_base_flags()
+
+    level = int(cycle["level"])
+    direction = cycle["direction"]
+    size = float(cycle["size"])
+
+    payload = build_open_payload_secure(cycle)
+
+    status, data = B.api_post(headers, "/api/v1/positions", payload)
+
+    event({
+        "event": "OPEN_REQUEST",
+        "asset": asset,
+        "cycle_id": cycle.get("cycle_id"),
+        "level": level,
+        "direction": direction,
+        "size": size,
+        "status": status,
+        "payload": payload,
+        "response": data,
+        "dry_run": not SEND_REAL_ORDERS,
+    })
+
+    print(
+        f"{asset:10s} | OPEN_REQUEST   | "
+        f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+        f"{market_status:9s} | {json.dumps(payload, ensure_ascii=False)}"
+    )
+
+    if not SEND_REAL_ORDERS:
+        dry_deal_id = f"DRY_{asset}_L{level}_{direction}_{cycle.get('cycle_id')}"
+        return True, {
+            "asset": asset,
+            "cycle_id": cycle.get("cycle_id"),
+            "level": level,
+            "direction": direction,
+            "size": size,
+            "dealReference": None,
+            "dealId": dry_deal_id,
+            "brokerDealId": dry_deal_id,
+            "open_status": "DRY_RUN",
+            "confirm_status": "DRY_RUN",
+            "confirm": {"DRY_RUN": True},
+            "opened_utc": utc(),
+            "dry_run": True,
+        }, before_positions
+
+    if status not in (200, 201, 202):
+        reason = f"OPEN_REJECT_HTTP_{status}"
+        event({
+            "event": "OPEN_REJECT",
+            "asset": asset,
+            "cycle_id": cycle.get("cycle_id"),
+            "level": level,
+            "direction": direction,
+            "size": size,
+            "status": status,
+            "payload": payload,
+            "response": data,
+            "reason": reason,
+        })
+        B.reset_cycle_after_reject(asset, reason, data)
+
+        print(
+            f"{asset:10s} | OPEN_REJECT    | "
+            f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+            f"{market_status:9s} | HTTP {status}"
+        )
+        return False, {"reason": reason, "response": data}, before_positions
+
+    deal_ref = data.get("dealReference") if isinstance(data, dict) else None
+
+    if not deal_ref:
+        reason = "OPEN_REJECT_NO_DEAL_REFERENCE"
+        event({
+            "event": "OPEN_REJECT",
+            "asset": asset,
+            "cycle_id": cycle.get("cycle_id"),
+            "level": level,
+            "direction": direction,
+            "size": size,
+            "status": status,
+            "payload": payload,
+            "response": data,
+            "reason": reason,
+        })
+        B.reset_cycle_after_reject(asset, reason, data)
+
+        print(
+            f"{asset:10s} | OPEN_REJECT    | "
+            f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+            f"{market_status:9s} | pas de dealReference"
+        )
+        return False, {"reason": reason, "response": data}, before_positions
+
+    time.sleep(0.30)
+    confirm_status, confirm = B.api_get(headers, f"/api/v1/confirms/{deal_ref}")
+    confirm_deal_id = parse_confirm(confirm)
+
+    # Le point critique : récupérer le vrai dealId broker via GET /positions.
+    after_positions = before_positions
+    real_broker_deal_id = None
+    resolve_reason = None
+    resolve_details = None
+
+    for attempt in range(1, 8):
+        time.sleep(0.40)
+        _, after_positions, _ = fetch_positions(headers)
+
+        real_broker_deal_id, resolve_reason, resolve_details = resolve_real_broker_deal_id(
+            asset=asset,
+            before_positions=before_positions,
+            after_positions=after_positions,
+            expected_direction=direction,
+            expected_size=size,
+        )
+
+        if real_broker_deal_id:
+            break
+
+    if not real_broker_deal_id:
+        reason = f"OPEN_REJECT_REAL_BROKER_DEAL_NOT_RESOLVED_{resolve_reason}"
+        event({
+            "event": "OPEN_REJECT",
+            "asset": asset,
+            "cycle_id": cycle.get("cycle_id"),
+            "level": level,
+            "direction": direction,
+            "size": size,
+            "status": status,
+            "payload": payload,
+            "response": data,
+            "dealReference": deal_ref,
+            "confirm_status": confirm_status,
+            "confirm": confirm,
+            "confirm_dealId": confirm_deal_id,
+            "resolve_reason": resolve_reason,
+            "resolve_details": resolve_details,
+            "reason": reason,
+        })
+        B.reset_cycle_after_reject(asset, reason, confirm)
+
+        print(
+            f"{asset:10s} | OPEN_REJECT    | "
+            f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+            f"{market_status:9s} | vrai dealId broker introuvable : {resolve_reason}"
+        )
+        return False, {"reason": reason, "details": resolve_details}, after_positions
+
+    # Récupération du vrai prix d'entrée broker depuis GET /positions.
+    real_broker_position = None
+    for item in positions_for_asset(asset, after_positions):
+        if pos_deal_id(item) == real_broker_deal_id:
+            real_broker_position = item
+            break
+
+    try:
+        broker_entry_price = (
+            float(pos_entry(real_broker_position))
+            if real_broker_position is not None and pos_entry(real_broker_position) is not None
+            else None
+        )
+    except Exception:
+        broker_entry_price = None
+
+    try:
+        theoretical_entry_price = float(cycle.get("entry_price"))
+    except Exception:
+        theoretical_entry_price = None
+
+    if broker_entry_price is not None and theoretical_entry_price is not None:
+        entry_slippage_points = broker_entry_price - theoretical_entry_price
+    else:
+        entry_slippage_points = None
+
+    record = {
+        "asset": asset,
+        "cycle_id": cycle.get("cycle_id"),
+        "level": level,
+        "direction": direction,
+        "size": size,
+        "entry_price_theoretical": theoretical_entry_price,
+        "brokerEntryPrice": broker_entry_price,
+        "brokerEntryPrice_source": (
+            "GET_POSITIONS_AFTER_OPEN_LEVEL"
+            if broker_entry_price is not None
+            else "UNAVAILABLE"
+        ),
+        "entry_slippage_points": entry_slippage_points,
+        "dealReference": deal_ref,
+        "confirmDealId": confirm_deal_id,
+        "dealId": real_broker_deal_id,
+        "brokerDealId": real_broker_deal_id,
+        "dealId_source": "GET_POSITIONS_AFTER_OPEN",
+        "resolve_reason": resolve_reason,
+        "open_status": status,
+        "confirm_status": confirm_status,
+        "confirm": confirm,
+        "opened_utc": utc(),
+        "dry_run": False,
+    }
+
+    event({
+        "event": "OPEN_VERIFIED_OK",
+        "asset": asset,
+        "cycle_id": cycle.get("cycle_id"),
+        "level": level,
+        "direction": direction,
+        "size": size,
+        "dealReference": deal_ref,
+        "confirmDealId": confirm_deal_id,
+        "brokerDealId": real_broker_deal_id,
+        "brokerEntryPrice": broker_entry_price,
+        "entry_price_theoretical": theoretical_entry_price,
+        "entry_slippage_points": entry_slippage_points,
+        "resolve_reason": resolve_reason,
+    })
+
+    print(
+        f"{asset:10s} | OPEN_OK        | "
+        f"{level:<3} | {direction:4s} | {size:<10.6f} | "
+        f"{market_status:9s} | "
+        f"brokerDealId={short_id(real_broker_deal_id)} "
+        f"confirmDealId={short_id(confirm_deal_id)} "
+        f"brokerEntry={broker_entry_price} "
+        f"theoreticalEntry={theoretical_entry_price} "
+        f"slip={entry_slippage_points}"
+    )
+
+    return True, record, after_positions
+
+
+
+
+def reset_cycle_idle(asset, reason):
+    """
+    Remet un cycle à IDLE quand la position broker a disparu
+    par TP broker, stop broker ou fermeture manuelle.
+    """
+    state = B.load_json(B.STATE_FILE, {"assets": {}})
+    state.setdefault("assets", {})
+    state["assets"].setdefault(asset, {})
+    state["assets"][asset]["status"] = "IDLE"
+    state["assets"][asset]["cycle"] = None
+    state["assets"][asset]["last_event"] = reason
+    state["assets"][asset]["last_event_utc"] = utc()
+    state["updated_utc"] = utc()
+    B.save_json(B.STATE_FILE, state)
+
+
+
+def cancel_working_order_secure(headers, asset, working_id, reason, old_exec=None):
+    """
+    V24 Basket Limit :
+    Annule un ordre LIMIT/STOP en attente via DELETE /api/v1/workingorders/{dealId}.
+    Ne doit pas être utilisé pour fermer une position ouverte.
+    """
+    sync_base_flags()
+
+    if not working_id:
+        info = {
+            "ok": False,
+            "asset": asset,
+            "working_id": working_id,
+            "reason": "NO_WORKING_ORDER_ID",
+            "cancel_reason": reason,
+            "old_exec": old_exec,
+        }
+        event({"event": "CANCEL_LIMIT_FAILED", **info})
+        return False, info
+
+    if not SEND_REAL_ORDERS:
+        info = {
+            "ok": True,
+            "asset": asset,
+            "working_id": working_id,
+            "reason": "DRY_RUN",
+            "cancel_reason": reason,
+            "old_exec": old_exec,
+            "dry_run": True,
+        }
+        event({"event": "CANCEL_LIMIT_OK_DRY_RUN", **info})
+        return True, info
+
+    status, response = B.api_delete(headers, f"/api/v1/workingorders/{working_id}")
+
+    ok = status in (200, 201, 202, 404)
+
+    info = {
+        "ok": ok,
+        "asset": asset,
+        "working_id": working_id,
+        "cancel_reason": reason,
+        "old_exec": old_exec,
+        "delete_status": status,
+        "delete_response": response,
+        "dry_run": False,
+    }
+
+    event({
+        "event": "CANCEL_LIMIT_OK" if ok else "CANCEL_LIMIT_FAILED",
+        **info,
+    })
+
+    return ok, info
+
+
+
+def close_deal_secure(headers, asset, deal_id, reason, old_exec=None):
+    """
+    Fermeture sécurisée :
+    - DELETE /positions/{vrai_brokerDealId}
+    - éventuel GET /confirms
+    - relecture GET /positions
+    - validation seulement si le dealId a disparu.
+    """
+    sync_base_flags()
+
+    if not deal_id:
+        info = {
+            "ok": False,
+            "asset": asset,
+            "dealId": deal_id,
+            "reason": "NO_DEAL_ID",
+            "close_reason": reason,
+            "old_exec": old_exec,
+        }
+        event({"event": "CLOSE_FAILED", **info})
+        return False, info, None
+
+    if not SEND_REAL_ORDERS:
+        info = {
+            "ok": True,
+            "asset": asset,
+            "dealId": deal_id,
+            "reason": "DRY_RUN",
+            "close_reason": reason,
+            "old_exec": old_exec,
+            "dry_run": True,
+        }
+        event({"event": "CLOSE_OK_DRY_RUN", **info})
+        return True, info, []
+
+    delete_status, delete_response = B.api_delete(headers, f"/api/v1/positions/{deal_id}")
+
+    deal_ref = None
+    if isinstance(delete_response, dict):
+        deal_ref = delete_response.get("dealReference")
+
+    confirm_status = None
+    confirm = None
+
+    if delete_status in (200, 201, 202) and deal_ref:
+        time.sleep(0.30)
+        confirm_status, confirm = B.api_get(headers, f"/api/v1/confirms/{deal_ref}")
+
+    positions_after = []
+    verify_status = None
+    verified_closed = False
+    remaining_ids = []
+
+    for attempt in range(1, 8):
+        time.sleep(0.40)
+        verify_status, positions_after, _ = fetch_positions(headers)
+        remaining_ids = deal_ids_for_asset(asset, positions_after)
+
+        if not broker_has_deal_id(deal_id, positions_after):
+            verified_closed = True
+            break
+
+    ok = delete_status in (200, 201, 202, 404) and verified_closed
+
+    info = {
+        "ok": ok,
+        "asset": asset,
+        "dealId": deal_id,
+        "close_reason": reason,
+        "old_exec": old_exec,
+        "delete_status": delete_status,
+        "delete_response": delete_response,
+        "dealReference": deal_ref,
+        "confirm_status": confirm_status,
+        "confirm": confirm,
+        "verify_status": verify_status,
+        "verified_closed": verified_closed,
+        "remaining_ids_for_asset": remaining_ids,
+        "dry_run": False,
+    }
+
+    event({
+        "event": "CLOSE_VERIFIED_OK" if ok else "CLOSE_FAILED",
+        **info,
+    })
+
+    return ok, info, positions_after
+
+
+def execute_from_cycle(headers, assets):
+    """
+    06G2 bloc 3/3 :
+    - ouverture sécurisée avec vrai brokerDealId ;
+    - fermeture confirmée obligatoire ;
+    - changement de niveau sécurisé ;
+    - anti-empilement broker.
+    """
+    sync_base_flags()
+
+    cycles = B.current_cycles()
+    exec_state = B.load_json(B.EXEC_STATE_FILE, {"active": {}, "closed": [], "rejected": []})
+    exec_state.setdefault("active", {})
+    exec_state.setdefault("closed", [])
+    exec_state.setdefault("rejected", [])
+
+    status, positions, _ = fetch_positions(headers)
+
+    print()
+    print("=" * 170)
+    print("06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES")
+    print("=" * 170)
+    print("SEND_REAL_ORDERS      :", SEND_REAL_ORDERS)
+    print("Positions broker HTTP :", status)
+    print("-" * 170)
+    print("ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD")
+    print("-" * 170)
+
+    for asset in assets:
+        cycle = cycles.get(asset)
+        active_exec = exec_state.get("active", {}).get(asset)
+
+        broker_items = positions_for_asset(asset, positions)
+        broker_ids = deal_ids_for_asset(asset, positions)
+
+        # 1. Aucun cycle interne : si exec_state suit une position, on la ferme.
+        if not cycle:
+            if active_exec:
+                # V24 Basket Limit :
+                # Si le cycle moteur a disparu alors qu'un LIMIT est encore en attente,
+                # on annule le working order au lieu d'appeler close_deal_secure().
+                if str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+                    working_id = (
+                        active_exec.get("workingDealId")
+                        or active_exec.get("workingDealReference")
+                        or active_exec.get("dealId")
+                    )
+                    reason = "CYCLE_IDLE_CANCEL_PENDING_LIMIT"
+
+                    ok, cancel_info = cancel_working_order_secure(
+                        headers=headers,
+                        asset=asset,
+                        working_id=working_id,
+                        reason=reason,
+                        old_exec=active_exec,
+                    )
+
+                    if not ok:
+                        print(
+                            f"{asset:10s} | CANCEL_LIMIT_FAIL | --  | --   | --         | --        | "
+                            f"working={short_id(working_id)} non annulé, local conservé"
+                        )
+                        B.save_json(B.EXEC_STATE_FILE, exec_state)
+                        continue
+
+                    exec_state.setdefault("closed", []).append({
+                        **active_exec,
+                        "closed_reason": reason,
+                        "closed_utc": utc(),
+                        "cancel_info": cancel_info,
+                    })
+                    exec_state.setdefault("active", {}).pop(asset, None)
+
+                    print(
+                        f"{asset:10s} | CANCEL_LIMIT_OK | --  | --   | --         | --        | "
+                        f"working={short_id(working_id)} annulé car cycle IDLE"
+                    )
+
+                    B.save_json(B.EXEC_STATE_FILE, exec_state)
+                    continue
+
+                tracked_id = active_exec.get("brokerDealId") or active_exec.get("dealId")
+
+                ok, close_info, positions_after = close_deal_secure(
+                    headers=headers,
+                    asset=asset,
+                    deal_id=tracked_id,
+                    reason="CYCLE_IDLE",
+                    old_exec=active_exec,
+                )
+
+                if not ok:
+                    print(
+                        f"{asset:10s} | CLOSE_IDLE_FAIL | --  | --   | --         | --        | "
+                        f"deal={short_id(tracked_id)} non fermé, local conservé"
+                    )
+                    B.save_json(B.EXEC_STATE_FILE, exec_state)
+                    continue
+
+                exec_state.setdefault("closed", []).append({
+                    **active_exec,
+                    "closed_reason": "CYCLE_IDLE",
+                    "closed_utc": utc(),
+                    "close_info": close_info,
+                })
+                exec_state.setdefault("active", {}).pop(asset, None)
+
+                print(
+                    f"{asset:10s} | CLOSE_IDLE_OK | --  | --   | --         | --        | "
+                    f"deal={short_id(tracked_id)} fermé confirmé"
+                )
+
+                positions = positions_after if positions_after is not None else fetch_positions(headers)[1]
+
+            elif broker_items:
+                print(
+                    f"{asset:10s} | IDLE_BROKER  | --  | --   | --         | --        | "
+                    f"{len(broker_items)} position(s) broker non suivie(s), aucune action"
+                )
+                event({
+                    "event": "IDLE_WITH_BROKER_POSITION",
+                    "asset": asset,
+                    "broker_ids": broker_ids,
+                })
+            else:
+                print(f"{asset:10s} | IDLE         | --  | --   | --         | --        | aucun cycle")
+
+            continue
+
+        # 2. Cycle interne présent.
+        level = int(cycle["level"])
+        direction = cycle["direction"]
+        size = float(cycle["size"])
+
+        market = B.get_market(asset)
+        market_status = market["status"]
+        min_size = market["min_size"]
+
+        if market_status != "TRADEABLE":
+            print(
+                f"{asset:10s} | SKIP_MARKET  | {level:<3} | {direction:4s} | "
+                f"{size:<10.6f} | {market_status:9s} | marché non tradeable"
+            )
+            continue
+
+        if min_size is None or size < min_size:
+            print(
+                f"{asset:10s} | SKIP_SIZE    | {level:<3} | {direction:4s} | "
+                f"{size:<10.6f} | {market_status:9s} | min broker={min_size}"
+            )
+            continue
+
+        # V24 Basket Limit :
+        # Un ordre LIMIT posé via /workingorders n'est pas encore une position broker.
+        # Tant que l'ordre n'est pas exécuté, il ne faut surtout pas remettre le cycle à IDLE.
+        if active_exec and str(active_exec.get("status", "")).startswith("PENDING_LIMIT"):
+            pending_level = int(active_exec.get("level", level))
+            pending_ref = active_exec.get("workingDealReference") or active_exec.get("workingDealId")
+
+            if len(broker_items) == 0:
+                print(
+                    f"{asset:10s} | HOLD_LIMIT   | {pending_level:<3} | {direction:4s} | "
+                    f"{float(active_exec.get('size', size)):<10.6f} | {market_status:9s} | "
+                    f"ordre LIMIT en attente ref={short_id(pending_ref)}"
+                )
+                event({
+                    "event": "HOLD_PENDING_LIMIT",
+                    "asset": asset,
+                    "cycle": cycle,
+                    "active_exec": active_exec,
+                    "working_ref": pending_ref,
+                })
+                continue
+
+            if len(broker_items) == 1:
+                broker_id = broker_ids[0] if broker_ids else None
+                broker_item = broker_items[0]
+
+                try:
+                    broker_entry_price = (
+                        float(pos_entry(broker_item))
+                        if pos_entry(broker_item) is not None
+                        else None
+                    )
+                except Exception:
+                    broker_entry_price = None
+
+                active_exec["status"] = "OPEN_POSITION"
+                active_exec["brokerDealId"] = broker_id
+                active_exec["dealId"] = broker_id
+                active_exec["dealId_source"] = "GET_POSITIONS_AFTER_LIMIT_FILL"
+                active_exec["brokerEntryPrice"] = broker_entry_price
+                active_exec["brokerEntryPrice_source"] = (
+                    "GET_POSITIONS_AFTER_LIMIT_FILL_LEVEL"
+                    if broker_entry_price is not None
+                    else "UNAVAILABLE"
+                )
+                active_exec["filled_utc"] = utc()
+
+                exec_state.setdefault("active", {})[asset] = active_exec
+
+                # Synchronisation du cycle moteur avec le prix réel de remplissage du LIMIT.
+                if broker_entry_price is not None:
+                    try:
+                        previous_entry_price = cycle.get("entry_price")
+                        cycle["entry_price_theoretical"] = previous_entry_price
+                        cycle["entry_price"] = float(broker_entry_price)
+                        cycle["entry_price_source"] = "BROKER_LIMIT_FILL_LEVEL"
+                        cycle["entry_price_synced_utc"] = utc()
+
+                        cycle_state = B.load_json(B.STATE_FILE, default={"assets": {}})
+                        asset_state = cycle_state.setdefault("assets", {}).setdefault(asset, {})
+                        current_cycle = asset_state.setdefault("cycle", {})
+
+                        if current_cycle.get("cycle_id") == cycle.get("cycle_id"):
+                            current_cycle.update(cycle)
+                        else:
+                            asset_state["cycle"] = cycle
+
+                        B.save_json(B.STATE_FILE, cycle_state)
+
+                    except Exception as e:
+                        event({
+                            "event": "LIMIT_FILL_ENTRY_SYNC_FAILED",
+                            "asset": asset,
+                            "cycle_id": cycle.get("cycle_id"),
+                            "level": pending_level,
+                            "direction": direction,
+                            "brokerEntryPrice": broker_entry_price,
+                            "error": str(e),
+                        })
+
+                B.save_json(B.EXEC_STATE_FILE, exec_state)
+
+                print(
+                    f"{asset:10s} | LIMIT_FILLED | {pending_level:<3} | {direction:4s} | "
+                    f"{float(active_exec.get('size', size)):<10.6f} | {market_status:9s} | "
+                    f"deal={short_id(broker_id)} brokerEntry={broker_entry_price}"
+                )
+
+                event({
+                    "event": "LIMIT_FILLED_TO_OPEN_POSITION",
+                    "asset": asset,
+                    "cycle_id": cycle.get("cycle_id"),
+                    "level": pending_level,
+                    "direction": direction,
+                    "brokerDealId": broker_id,
+                    "brokerEntryPrice": broker_entry_price,
+                    "active_exec": active_exec,
+                })
+
+                continue
+
+            print(
+                f"{asset:10s} | LIMIT_AMBIG  | {pending_level:<3} | {direction:4s} | "
+                f"{float(active_exec.get('size', size)):<10.6f} | {market_status:9s} | "
+                f"{len(broker_items)} positions broker après LIMIT, intervention manuelle requise"
+            )
+            event({
+                "event": "PENDING_LIMIT_AMBIGUOUS_BROKER_POSITIONS",
+                "asset": asset,
+                "cycle": cycle,
+                "active_exec": active_exec,
+                "broker_ids": broker_ids,
+            })
+            continue
+
+
+        # 3. Plusieurs positions broker sur le même actif : blocage total.
+        if len(broker_items) > 1:
+            print(
+                f"{asset:10s} | BLOCK_MULTI  | {level:<3} | {direction:4s} | "
+                f"{size:<10.6f} | {market_status:9s} | {len(broker_items)} positions broker, ouverture interdite"
+            )
+            event({
+                "event": "BLOCK_MULTIPLE_BROKER_POSITIONS",
+                "asset": asset,
+                "cycle": cycle,
+                "broker_ids": broker_ids,
+            })
+            continue
+
+        # 4. Une position broker existe.
+        if len(broker_items) == 1:
+            broker_id = broker_ids[0] if broker_ids else None
+
+            if not active_exec:
+                print(
+                    f"{asset:10s} | SKIP_BROKER | {level:<3} | {direction:4s} | "
+                    f"{size:<10.6f} | {market_status:9s} | broker déjà exposé deal={short_id(broker_id)}"
+                )
+                event({
+                    "event": "SKIP_BROKER_POSITION_EXISTS_NO_EXEC",
+                    "asset": asset,
+                    "cycle": cycle,
+                    "broker_ids": broker_ids,
+                })
+                continue
+
+            tracked_id = active_exec.get("brokerDealId") or active_exec.get("dealId")
+
+            if tracked_id != broker_id:
+                print(
+                    f"{asset:10s} | DESYNC_ID    | {level:<3} | {direction:4s} | "
+                    f"{size:<10.6f} | {market_status:9s} | exec={short_id(tracked_id)} broker={short_id(broker_id)}"
+                )
+                event({
+                    "event": "DESYNC_EXEC_BROKER_DEALID",
+                    "asset": asset,
+                    "cycle": cycle,
+                    "active_exec": active_exec,
+                    "broker_ids": broker_ids,
+                })
+                continue
+
+            same_cycle = active_exec.get("cycle_id") == cycle.get("cycle_id")
+            same_level = int(active_exec.get("level", -1)) == level
+
+            if same_cycle and same_level:
+                print(
+                    f"{asset:10s} | HOLD_EXEC    | {level:<3} | {direction:4s} | "
+                    f"{size:<10.6f} | {market_status:9s} | niveau déjà exécuté deal={short_id(tracked_id)}"
+                )
+                continue
+
+            # 5. Niveau changé : fermeture confirmée obligatoire.
+            old_level = active_exec.get("level")
+
+            ok, close_info, positions_after = close_deal_secure(
+                headers=headers,
+                asset=asset,
+                deal_id=tracked_id,
+                reason="LEVEL_CHANGED",
+                old_exec=active_exec,
+            )
+
+            if not ok:
+                print(
+                    f"{asset:10s} | CLOSE_FAIL   | {old_level}->{level:<1} | {direction:4s} | "
+                    f"{size:<10.6f} | {market_status:9s} | deal={short_id(tracked_id)} non fermé, OPEN bloqué"
+                )
+                B.save_json(B.EXEC_STATE_FILE, exec_state)
+                continue
+
+            exec_state.setdefault("closed", []).append({
+                **active_exec,
+                "closed_reason": "LEVEL_CHANGED",
+                "new_level": level,
+                "closed_utc": utc(),
+                "close_info": close_info,
+            })
+            exec_state.setdefault("active", {}).pop(asset, None)
+            active_exec = None
+
+            print(
+                f"{asset:10s} | CLOSE_OK     | {old_level}->{level:<1} | {direction:4s} | "
+                f"{size:<10.6f} | {market_status:9s} | deal={short_id(tracked_id)} fermé confirmé"
+            )
+
+            positions = positions_after if positions_after is not None else fetch_positions(headers)[1]
+
+            broker_items = positions_for_asset(asset, positions)
+            broker_ids = deal_ids_for_asset(asset, positions)
+
+            if broker_items:
+                print(
+                    f"{asset:10s} | BLOCK_AFTER | {level:<3} | {direction:4s} | "
+                    f"{size:<10.6f} | {market_status:9s} | broker encore exposé ids={','.join(short_id(x) for x in broker_ids)}"
+                )
+                event({
+                    "event": "BLOCK_OPEN_AFTER_CLOSE_REMAINING_BROKER_POSITION",
+                    "asset": asset,
+                    "cycle": cycle,
+                    "broker_ids": broker_ids,
+                })
+                continue
+
+        # 6. Aucune position broker : ouverture autorisée.
+        broker_items = positions_for_asset(asset, positions)
+
+        if len(broker_items) == 0:
+            if active_exec:
+                tracked_id = active_exec.get("brokerDealId") or active_exec.get("dealId")
+                reason = "BROKER_POSITION_DISAPPEARED_TP_STOP_OR_MANUAL"
+
+                print(
+                    f"{asset:10s} | BROKER_CLOSED | {level:<3} | {direction:4s} | "
+                    f"{size:<10.6f} | {market_status:9s} | deal={short_id(tracked_id)} disparu, cycle remis IDLE"
+                )
+
+                event({
+                    "event": "BROKER_POSITION_DISAPPEARED",
+                    "asset": asset,
+                    "cycle": cycle,
+                    "active_exec": active_exec,
+                    "brokerDealId": tracked_id,
+                    "reason": reason,
+                })
+
+                exec_state.setdefault("closed", []).append({
+                    **active_exec,
+                    "closed_reason": reason,
+                    "closed_utc": utc(),
+                })
+                exec_state.setdefault("active", {}).pop(asset, None)
+
+                reset_cycle_idle(asset, reason)
+                B.save_json(B.EXEC_STATE_FILE, exec_state)
+                continue
+
+            # V24 Basket Limit :
+
+            # L'ouverture initiale ne se fait plus au marché.
+
+            # On pose un vrai ordre LIMIT broker via /api/v1/workingorders.
+
+            ok, record = place_limit_order_secure(
+
+                headers=headers,
+
+                asset=asset,
+
+                cycle=cycle,
+
+                market_status=market_status,
+
+                basket_level=level,
+
+            )
+
+
+            # Un LIMIT n'est pas encore une position ouverte.
+
+            # On conserve donc la photo broker actuelle.
+
+            positions_after = positions
+
+            if ok:
+                exec_state.setdefault("active", {})[asset] = record
+
+                # Synchronisation du cycle moteur avec le vrai prix d'entrée broker.
+                # Après ouverture confirmée, le PnL du moteur doit utiliser le level réel Capital.com.
+                broker_entry_price = record.get("brokerEntryPrice")
+                if broker_entry_price is not None:
+                    try:
+                        previous_entry_price = cycle.get("entry_price")
+                        cycle["entry_price_theoretical"] = previous_entry_price
+                        cycle["entry_price"] = float(broker_entry_price)
+                        cycle["entry_price_source"] = "BROKER_POSITION_LEVEL"
+                        cycle["entry_price_synced_utc"] = utc()
+
+                        # Sauvegarde robuste du cycle_state après correction du vrai prix broker.
+                        # On ne dépend pas d'une variable locale 'state' inexistante.
+                        cycle_state = B.load_json(B.STATE_FILE, default={"assets": {}})
+                        asset_state = cycle_state.setdefault("assets", {}).setdefault(asset, {})
+
+                        # On ne remplace que le cycle courant correspondant.
+                        current_cycle = asset_state.setdefault("cycle", {})
+                        if current_cycle.get("cycle_id") == cycle.get("cycle_id"):
+                            current_cycle.update(cycle)
+                        else:
+                            # Sécurité : si le cycle_id a changé entre-temps, on force quand même
+                            # la sauvegarde du cycle actif que l'exécution vient réellement d'ouvrir.
+                            asset_state["cycle"] = cycle
+
+                        B.save_json(B.STATE_FILE, cycle_state)
+
+                        event({
+                            "event": "SYNC_CYCLE_ENTRY_PRICE_FROM_BROKER",
+                            "asset": asset,
+                            "cycle_id": cycle.get("cycle_id"),
+                            "level": level,
+                            "direction": direction,
+                            "previous_entry_price": previous_entry_price,
+                            "brokerEntryPrice": broker_entry_price,
+                            "entry_slippage_points": record.get("entry_slippage_points"),
+                        })
+
+                        print(
+                            f"{asset:10s} | ENTRY_SYNC   | "
+                            f"{level:<3} | {direction:4s} | "
+                            f"entry {previous_entry_price} -> broker {broker_entry_price} | "
+                            f"slip={record.get('entry_slippage_points')}"
+                        )
+                    except Exception as e:
+                        event({
+                            "event": "SYNC_CYCLE_ENTRY_PRICE_FAILED",
+                            "asset": asset,
+                            "cycle_id": cycle.get("cycle_id"),
+                            "level": level,
+                            "direction": direction,
+                            "brokerEntryPrice": broker_entry_price,
+                            "error": str(e),
+                        })
+                        print(
+                            f"{asset:10s} | ENTRY_SYNC_FAIL | "
+                            f"{level:<3} | {direction:4s} | brokerEntry={broker_entry_price} | {e}"
+                        )
+                positions = positions_after
+            else:
+                exec_state.setdefault("rejected", []).append({
+                    "asset": asset,
+                    "cycle_id": cycle.get("cycle_id"),
+                    "level": level,
+                    "direction": direction,
+                    "size": size,
+                    "rejected_utc": utc(),
+                    "details": record,
+                })
+                positions = positions_after
+
+    B.save_json(B.EXEC_STATE_FILE, exec_state)
+
+    print("=" * 170)
+    print("06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.")
+    print("Execution state :", B.EXEC_STATE_FILE)
+    print("=" * 170)
+
+def show_status_only(assets):
+    sync_base_flags()
+
+    print("=" * 140)
+    print("BOT_PIVOT_06G2 — BLOC 1/3 — STATUS OUTILS")
+    print("=" * 140)
+    print("SEND_REAL_ORDERS :", SEND_REAL_ORDERS)
+    print("Actifs           :", ",".join(assets))
+    print("Note             : bloc 1/3, aucune exécution de cycle.")
+    print("=" * 140)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--assets", default="ALL")
+    parser.add_argument("--mode", choices=["status", "plan"], default="status")
+    args = parser.parse_args()
+
+    assets = parse_assets(args.assets)
+
+    if args.mode == "status":
+        show_status_only(assets)
+        return
+
+    if SEND_REAL_ORDERS:
+        load_env()
+        headers = login()
+    else:
+        headers = None
+
+    execute_from_cycle(headers, assets)
+
+
+if __name__ == "__main__":
+    main()

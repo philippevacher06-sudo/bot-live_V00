@@ -1,0 +1,93 @@
+{
+  "instrument": {
+    "epic": "US500",
+    "symbol": "US500",
+    "expiry": "-",
+    "name": "US 500",
+    "lotSize": 1,
+    "type": "INDICES",
+    "guaranteedStopAllowed": true,
+    "streamingPricesAvailable": true,
+    "currency": "USD",
+    "marginFactor": 100,
+    "marginFactorUnit": "PERCENTAGE",
+    "openingHours": {
+      "mon": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "tue": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "wed": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "thu": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "fri": [
+        "00:00 - 21:00"
+      ],
+      "sat": [],
+      "sun": [
+        "22:00 - 00:00"
+      ],
+      "zone": "UTC"
+    },
+    "country": "United States of America",
+    "overnightFee": {
+      "longRate": -0.021318,
+      "shortRate": -0.0009042,
+      "swapChargeTimestamp": 1778965200000,
+      "swapChargeInterval": 1440
+    }
+  },
+  "dealingRules": {
+    "minStepDistance": {
+      "unit": "POINTS",
+      "value": 0.1
+    },
+    "minDealSize": {
+      "unit": "POINTS",
+      "value": 0.01
+    },
+    "maxDealSize": {
+      "unit": "POINTS",
+      "value": 2250
+    },
+    "minSizeIncrement": {
+      "unit": "POINTS",
+      "value": 0.01
+    },
+    "minGuaranteedStopDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.1
+    },
+    "minStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.01
+    },
+    "maxStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 100
+    },
+    "marketOrderPreference": "AVAILABLE_DEFAULT_ON",
+    "trailingStopsPreference": "NOT_AVAILABLE"
+  },
+  "snapshot": {
+    "marketStatus": "CLOSED",
+    "percentageChange": 0.0,
+    "updateTime": "2026-05-15T22:59:57.810",
+    "delayTime": 0,
+    "bid": 7395.5,
+    "offer": 7396.1,
+    "decimalPlacesFactor": 1,
+    "scalingFactor": 1,
+    "marketModes": [
+      "REGULAR"
+    ]
+  }
+}

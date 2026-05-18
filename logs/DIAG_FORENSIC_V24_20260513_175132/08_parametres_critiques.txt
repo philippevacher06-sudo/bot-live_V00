@@ -1,0 +1,52 @@
+### run_BOT_PIVOT_07D_SCALP_ACTIVE.sh
+7:export V24_TARGET_TRADES_MIN=${V24_TARGET_TRADES_MIN:-50}
+8:export V24_TARGET_TRADES_MAX=${V24_TARGET_TRADES_MAX:-100}
+17:export BOLLINGER_CURSOR=${BOLLINGER_CURSOR:-0.8}
+18:export PENDING_BASKET_MAX_AGE_SEC=${PENDING_BASKET_MAX_AGE_SEC:-60}
+19:export PARTIAL_BASKET_PENDING_MAX_AGE_SEC=${PARTIAL_BASKET_PENDING_MAX_AGE_SEC:-90}
+20:export STOP_AIRBAG_STEP_MULT=${STOP_AIRBAG_STEP_MULT:-8.0}
+21:export STOP_AIRBAG_SPREAD_MULT=${STOP_AIRBAG_SPREAD_MULT:-8.0}
+22:export TREND_ENTRY_CURSOR=${TREND_ENTRY_CURSOR:-1.0}
+23:export SAFETY_EXIT_CURSOR=${SAFETY_EXIT_CURSOR:-1.1}
+25:export V24_TP_SAFETY_MARGIN_EUR=${V24_TP_SAFETY_MARGIN_EUR:-0}
+33:export V24_MAX_BROKER_PENDING_ORDERS=${V24_MAX_BROKER_PENDING_ORDERS:-18}
+34:export V24_ORPHAN_PENDING_MAX_AGE_SEC=${V24_ORPHAN_PENDING_MAX_AGE_SEC:-0}
+
+### BOT_PIVOT_06G2_execution_secure.py
+246:def cycle_target_tp_eur(cycle):
+251:    for key in ("tp_eur", "target_tp_eur", "take_profit_eur"):
+256:    base = float(getattr(B.CFG, "BASE_TP_EUR", 0.10))
+280:    target_eur = cycle_target_tp_eur(cycle)
+281:    desired_distance = PNL.profit_distance_for_target_eur(asset, size, target_eur)
+1119:    return max(0.5, v241_env_float_local("STOP_AIRBAG_STEP_MULT", 1.5))
+1124:    return max(1.0, v241_env_float_local("STOP_AIRBAG_SPREAD_MULT", 3.0))
+2242:        "target_mode": "BASKET_GLOBAL_TP",
+2367:    - méthode distance_for_target_eur
+2389:        one_eur_distance = float(PNL.profit_distance_for_target_eur(asset, size, 1.0))
+2531:    target = float(0.20 * open_count) if open_count > 0 else None
+2540:        "target": target,
+2567:            f"{asset:10s} | PNL_AUDIT_TOTAL | 1-3 | {str(basket_exec.get('direction', '--')):4s} | "
+2568:            f"open={open_count} pnl={total:.4f} target={target}"
+2581:    return total, open_count, target
+3029:    return max(30.0, v241_env_float("V24_OPEN_SIGNAL_LOST_GRACE_SEC", 120.0))
+3034:    return max(0.0, v241_env_float("V24_SIGNAL_LOST_MIN_LOSS_EUR", 0.20))
+3039:    return max(0.0, v241_env_float("V24_OPPOSITE_SIGNAL_MIN_LOSS_EUR", 0.10))
+3044:    return max(0.0, v241_env_float("V24_BREAKOUT_MIN_LOSS_EUR", 0.20))
+3122:            "V24_OPEN_BASKET_OPPOSITE_SIGNAL_CLOSE"
+3128:            "V24_OPEN_BASKET_PHASE_VWAP_AGAINST_CLOSE"
+3134:            "V24_OPEN_BASKET_BREAKOUT_AGAINST_CLOSE"
+3140:            "V24_OPEN_BASKET_SIGNAL_LOST_CLOSE"
+3468:            f"{asset:10s} | V24_DYNAMIC_STOP_DISTANCE | {direction:4s} | "
+3694:    pnl_total, open_count, target = v24_basket_current_pnl(asset, active_exec, broker_items=broker_items)
+3698:    active_exec["last_target_tp_eur"] = target
+3784:    if open_count > 0 and target is not None and pnl_total >= (target + tp_safety_margin):
+3819:                f"{asset:10s} | BASKET_TP_OK | 1-3 | {direction:4s} | "
+3820:                f"--         | {market_status:9s} | pnl={pnl_total:.4f} target={target:.4f}"
+3833:                reason="V24_BASKET_TP_FAIL_CANCEL_PENDING_TO_FREE_MARGIN",
+3841:        active_exec["last_tp_fail_target_eur"] = float(target)
+3846:            f"{asset:10s} | BASKET_TP_FAIL | 1-3 | {direction:4s} | "
+3847:            f"--         | {market_status:9s} | pnl={pnl_total:.4f} target={target:.4f}"
+3987:            reason = "V24_PENDING_BASKET_SIGNAL_LOST_CANCEL" if cycle_missing else "V24_PENDING_BASKET_EXPIRED_CANCEL"
+4021:                f"{asset:10s} | BASKET_PENDING_CANCEL | 1-3 | {direction:4s} | "
+4030:        f"open={open_count} pending={pending_count} pnl={pnl_total:.4f} target={target}"
+4041:        "target": target,

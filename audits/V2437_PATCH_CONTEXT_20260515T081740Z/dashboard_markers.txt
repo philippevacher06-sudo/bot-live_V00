@@ -1,0 +1,46 @@
+24:fill_re = re.compile(r"\| BASKET_FILL \|\s+(\d+)")
+25:limit_re = re.compile(r"\| (LIMIT_REQUEST|LIMIT_OK|LIMIT_REJECT)\s+\|\s+(\d+)")
+27:    r"BASKET_TP_LADDER_CHECK.*open=(\d+) expected_target=([0-9.]+).*"
+32:    r"(TP_MATRIX_TRIGGER|TP_MATRIX_CLOSE_OK|TP_MATRIX_CLOSE_FAIL).*"
+38:    r"dist=([0-9.]+).*dist_ratio=([0-9.]+)"
+41:    r"BASKET_ARMING_DELAYED.*dist_step_ratio=([0-9.]+).*mult=([0-9.]+)"
+79:        "BASKET_NEW", "BASKET_FILL", "BASKET_TP_OK",
+80:        "TP_MATRIX_TRIGGER", "TP_MATRIX_CLOSE_OK", "TP_MATRIX_CLOSE_FAIL",
+81:        "BASKET_TP_BLOCKED", "LIMIT_REJECT", "BASKET_L123",
+82:        "BASKET_ARMING_DELAYED", "BOLLINGER_ENTRY_OBSERVE",
+83:        "BASKET_PARTIAL_PENDING_CANCEL", "BASKET_PARTIAL_PENDING_KEEP",
+84:        "BASKET_PENDING_CANCEL"
+99:        asset_counts[asset][f"BASKET_FILL_L{lvl}"] += 1
+100:        global_counts[f"BASKET_FILL_L{lvl}"] += 1
+104:        direction, width, required, dist, dist_ratio = bm.groups()
+110:            "dist_ratio": float(dist_ratio),
+174:    "BASKET_NEW",
+175:    "BASKET_FILL",
+176:    "BASKET_FILL_L1",
+177:    "BASKET_FILL_L2",
+178:    "BASKET_FILL_L3",
+179:    "BASKET_TP_OK",
+180:    "TP_MATRIX_TRIGGER",
+181:    "TP_MATRIX_CLOSE_OK",
+182:    "TP_MATRIX_CLOSE_FAIL",
+183:    "BASKET_TP_BLOCKED_BROKER_UPL",
+184:    "BASKET_TP_BLOCKED_NO_BROKER_UPL",
+185:    "BASKET_PARTIAL_PENDING_KEEP",
+186:    "BASKET_PARTIAL_PENDING_CANCEL",
+187:    "BASKET_PENDING_CANCEL",
+188:    "BASKET_ARMING_DELAYED",
+189:    "BASKET_REJECT",
+192:    "LIMIT_OK",
+194:    "BASKET_L123_ABORT_L1_REJECT",
+195:    "BASKET_L123_ATOMIC_CANCEL",
+214:    block = c["BASKET_TP_BLOCKED_BROKER_UPL"] + c["BASKET_TP_BLOCKED_NO_BROKER_UPL"]
+216:    l123 = c["BASKET_L123_ABORT_L1_REJECT"] + c["BASKET_L123_ATOMIC_CANCEL"]
+217:    mclose = sum(v for k, v in c.items() if k.startswith("TP_MATRIX_CLOSE_OK"))
+218:    mtrig = sum(v for k, v in c.items() if k.startswith("TP_MATRIX_TRIGGER"))
+220:        f"{asset:10s} {c['BASKET_NEW']:4d} {c['BASKET_FILL']:4d} "
+221:        f"{c['BASKET_FILL_L1']:3d} {c['BASKET_FILL_L2']:3d} {c['BASKET_FILL_L3']:3d} "
+222:        f"{c['BASKET_TP_OK']:3d} {mtrig:5d} {mclose:6d} "
+223:        f"{block:5d} {c['BOLLINGER_ENTRY_OBSERVE']:4d} {c['BASKET_ARMING_DELAYED']:4d} "
+224:        f"{lrej:5d} {l123:5d} {c['BASKET_PARTIAL_PENDING_CANCEL']:5d}"
+235:    avg_dist_ratio = sum(x["dist_ratio"] for x in bb_stats[asset]) / len(bb_stats[asset])
+239:        f"dist_ratio_last={last['dist_ratio']:.3f} dist_ratio_avg={avg_dist_ratio:.3f} line={last['line']}"

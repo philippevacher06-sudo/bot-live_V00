@@ -1,0 +1,236 @@
+{
+  "updated_utc": "2026-05-14T17:42:26+00:00",
+  "assets": {
+    "US500": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "US500",
+        "cycle_id": "f080370b-a2b",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 7498.3,
+        "size": 0.15,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:42:14+00:00",
+        "opened_utc": "2026-05-14T17:42:14+00:00",
+        "level_open_utc": "2026-05-14T17:42:14+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=81.9>=75.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "OPEN_L1",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "US100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+      "last_event_utc": "2026-05-14T17:42:18+00:00"
+    },
+    "US30": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "US30",
+        "cycle_id": "011091c6-01b",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 50053.2,
+        "size": 0.024,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:41:07+00:00",
+        "opened_utc": "2026-05-14T17:41:07+00:00",
+        "level_open_utc": "2026-05-14T17:41:07+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=84.7>=75.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "DE40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "FR40": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "UK100": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "J225": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "J225",
+        "cycle_id": "0d45c311-829",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 62873.1,
+        "size": 1.5,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:41:07+00:00",
+        "opened_utc": "2026-05-14T17:41:07+00:00",
+        "level_open_utc": "2026-05-14T17:41:07+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=92.3>=75.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "EURUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "EURUSD",
+        "cycle_id": "79292f6c-f20",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 1.16788,
+        "size": 450.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:03:19+00:00",
+        "opened_utc": "2026-05-14T17:03:19+00:00",
+        "level_open_utc": "2026-05-14T17:03:19+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=95.5>=75.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "GBPUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "GBPUSD",
+        "cycle_id": "a9e8b380-48b",
+        "level": 1,
+        "direction": "BUY",
+        "entry_price": 1.3421,
+        "size": 1200.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:41:07+00:00",
+        "opened_utc": "2026-05-14T17:41:07+00:00",
+        "level_open_utc": "2026-05-14T17:41:07+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=0.0<=25.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "USDJPY": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "EURJPY": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "EURJPY",
+        "cycle_id": "d7232e7f-220",
+        "level": 1,
+        "direction": "BUY",
+        "entry_price": 184.709,
+        "size": 1800.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:29:36+00:00",
+        "opened_utc": "2026-05-14T17:29:36+00:00",
+        "level_open_utc": "2026-05-14T17:29:36+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "GOLD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "SILVER": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "IDLE_PHASE_VETO",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "OIL_CRUDE": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "OIL_CRUDE",
+        "cycle_id": "ad41e3a0-10b",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 97.961,
+        "size": 4.0,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:42:14+00:00",
+        "opened_utc": "2026-05-14T17:42:14+00:00",
+        "level_open_utc": "2026-05-14T17:42:14+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=100.0>=75.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "OPEN_L1",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    },
+    "BTCUSD": {
+      "status": "IDLE",
+      "cycle": null,
+      "last_event": "V24_BASKET_LIMIT_REJECTED_OR_PARTIAL_REJECT",
+      "last_event_utc": "2026-05-14T17:42:26+00:00"
+    },
+    "ETHUSD": {
+      "status": "IN_POSITION",
+      "cycle": {
+        "asset": "ETHUSD",
+        "cycle_id": "ab9c958f-dfe",
+        "level": 1,
+        "direction": "SELL",
+        "entry_price": 2315.04,
+        "size": 0.06,
+        "tp_eur": 0.2,
+        "drift_coeff": 1.0,
+        "created_utc": "2026-05-14T17:03:19+00:00",
+        "opened_utc": "2026-05-14T17:03:19+00:00",
+        "level_open_utc": "2026-05-14T17:03:19+00:00",
+        "basket_mode": "V24_BASKET_LIMIT",
+        "execution_owner": "BOT_PIVOT_06G2",
+        "demo_sample_signal": true,
+        "demo_sample_reason": "rpos=89.3>=75.0",
+        "demo_sample_version": "V24.3.5I_DEMO_SIGNAL_SAMPLER"
+      },
+      "last_event": "BASKET_EXEC_OWNER_06G2",
+      "last_event_utc": "2026-05-14T17:42:14+00:00"
+    }
+  },
+  "manual_reset_utc": "2026-05-14T13:11:18.799761+00:00",
+  "manual_reset_reason": "FORCE_RESET_ALL_LIVE_BROKER_FLAT"
+}

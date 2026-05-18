@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+cd /home/philippe_vacher06/bot-pivot/live
+source venv/bin/activate
+
+mkdir -p logs
+
+LOG="logs/BOT_PIVOT_07D_24_7_DEMO_$(date -u +%Y%m%d_%H%M%S).log"
+
+TICK_SECONDS=90
+PRINT_EVERY=30
+PAUSE_SECONDS=30
+MAX_CYCLES=3
+MIN_SPREAD_SAMPLES=20
+
+echo "========================================================================================================================" | tee -a "$LOG"
+echo "BOT_PIVOT_07D — DEMO 24/7" | tee -a "$LOG"
+echo "Début UTC       : $(date -u '+%Y-%m-%d %H:%M:%S')" | tee -a "$LOG"
+echo "Ordres          : DEMO Capital.com uniquement" | tee -a "$LOG"
+echo "Max cycles      : $MAX_CYCLES" | tee -a "$LOG"
+echo "Ticks secondes  : $TICK_SECONDS" | tee -a "$LOG"
+echo "Pause secondes  : $PAUSE_SECONDS" | tee -a "$LOG"
+echo "Log             : $LOG" | tee -a "$LOG"
+echo "========================================================================================================================" | tee -a "$LOG"
+
+i=0
+
+while true; do
+  i=$((i+1))
+
+  echo "" | tee -a "$LOG"
+  echo "########################################################################################################################" | tee -a "$LOG"
+  echo "07D — CYCLE $i — $(date -u '+%Y-%m-%dT%H:%M:%SZ')" | tee -a "$LOG"
+  echo "########################################################################################################################" | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 03 — TICKS" | tee -a "$LOG"
+  python BOT_PIVOT_03_tick_stream.py --seconds "$TICK_SECONDS" --print-every "$PRINT_EVERY" 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 04 — SIGNAUX" | tee -a "$LOG"
+  python BOT_PIVOT_04_signal_tick.py --min-spread-samples "$MIN_SPREAD_SAMPLES" 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 05 — CYCLE ENGINE" | tee -a "$LOG"
+  python BOT_PIVOT_05_cycle_engine.py 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "MODULE 06H — EXECUTION DEMO GARDEE" | tee -a "$LOG"
+  python BOT_PIVOT_06H_execution_demo_guarded.py --real-demo --unlock OK_ENVOI_DEMO --max-cycles "$MAX_CYCLES" --assets ALL 2>&1 | tee -a "$LOG"
+
+  echo "" | tee -a "$LOG"
+  echo "Pause ${PAUSE_SECONDS}s..." | tee -a "$LOG"
+  sleep "$PAUSE_SECONDS"
+done

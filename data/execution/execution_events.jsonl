@@ -1,0 +1,1 @@
+{"event": "OPEN_ATTEMPT", "asset": "GBPUSD", "dry_run": true, "status": 0, "payload": {"epic": "GBPUSD", "direction": "BUY", "size": 100.0, "guaranteedStop": false}, "response": {"DRY_RUN": true, "endpoint": "/api/v1/positions", "payload": {"epic": "GBPUSD", "direction": "BUY", "size": 100.0, "guaranteedStop": false}}, "event_utc": "2026-05-11T20:44:02+00:00"}

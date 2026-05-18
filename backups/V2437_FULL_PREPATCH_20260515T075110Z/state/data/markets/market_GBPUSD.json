@@ -1,0 +1,95 @@
+{
+  "instrument": {
+    "epic": "GBPUSD",
+    "symbol": "GBP/USD",
+    "expiry": "-",
+    "name": "GBP/USD",
+    "lotSize": 1,
+    "type": "CURRENCIES",
+    "guaranteedStopAllowed": true,
+    "streamingPricesAvailable": true,
+    "currency": "USD",
+    "marginFactor": 100,
+    "marginFactorUnit": "PERCENTAGE",
+    "openingHours": {
+      "mon": [
+        "00:00 - 20:59:50",
+        "21:05 - 00:00"
+      ],
+      "tue": [
+        "00:00 - 20:59:50",
+        "21:05 - 00:00"
+      ],
+      "wed": [
+        "00:00 - 20:59:50",
+        "21:05 - 00:00"
+      ],
+      "thu": [
+        "00:00 - 20:59:50",
+        "21:05 - 00:00"
+      ],
+      "fri": [
+        "00:00 - 20:59:50"
+      ],
+      "sat": [],
+      "sun": [
+        "21:00 - 00:00"
+      ],
+      "zone": "UTC"
+    },
+    "overnightFee": {
+      "longRate": -0.0039629,
+      "shortRate": -0.0042571,
+      "swapChargeTimestamp": 1778878800000,
+      "swapChargeInterval": 1440
+    }
+  },
+  "dealingRules": {
+    "minStepDistance": {
+      "unit": "POINTS",
+      "value": 1e-05
+    },
+    "minDealSize": {
+      "unit": "POINTS",
+      "value": 100
+    },
+    "maxDealSize": {
+      "unit": "POINTS",
+      "value": 40000000
+    },
+    "minSizeIncrement": {
+      "unit": "POINTS",
+      "value": 100
+    },
+    "minGuaranteedStopDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.1
+    },
+    "minStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.01
+    },
+    "maxStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 100
+    },
+    "marketOrderPreference": "AVAILABLE_DEFAULT_ON",
+    "trailingStopsPreference": "NOT_AVAILABLE"
+  },
+  "snapshot": {
+    "marketStatus": "TRADEABLE",
+    "netChange": -0.0156,
+    "percentageChange": -0.22,
+    "updateTime": "2026-05-15T09:21:00.265",
+    "delayTime": 0,
+    "bid": 1.33688,
+    "offer": 1.33701,
+    "high": 1.34042,
+    "low": 1.33344,
+    "decimalPlacesFactor": 5,
+    "scalingFactor": 1,
+    "marketModes": [
+      "REGULAR"
+    ]
+  }
+}

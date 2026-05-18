@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd /home/philippe_vacher06/bot-pivot/live
+
+set -a
+. ./.env
+set +a
+
+export V244_FORCED_AUDIT_ENABLED=1
+export V244_DEMO_ONLY_LOCK=1
+export V244_DISABLE_CLASSIC_BASKET_OPEN=1
+
+export V244_TRADED_ASSET=FR40
+
+# V2446K3_STATE_PER_ASSET
+# Chaque paire doit avoir son propre état adverse-step.
+# Sinon un actif peut hériter du last_step_level d'un autre actif.
+mkdir -p data/execution
+export V2446_ADVERSE_STATE_FILE="data/execution/v2446_adverse_steps_state_${V244_TRADED_ASSET}.json"
+export V244_CONFIRM_ASSET=DE40
+export V244_EXCLUDED_ASSETS=
+
+export V244_STATE_FILE=data/execution/V2442_NETTING_STATE_FR40.json
+export V244_LOCK_FILE=data/execution/V244_FORCED_RUNNER_LOCK_FR40
+export V2446_ADVERSE_STATE_FILE=data/execution/v2446_adverse_steps_state_FR40.json
+export V244_PROTECTED_DEAL_IDS=
+
+export V244_AUDIT_DIR=logs/v24_4_forced_audit_FR40_DE40
+mkdir -p "$V244_AUDIT_DIR"
+
+export V244_ENTRY_MODE=ADVERSE_PRICE_STEPS
+export V244_ADVERSE_PRICE_STEPS_ENABLED=1
+
+export V2446I_MAX_LEGS=5
+export V2446I_STEP_PCT=0.0007
+export V2446I_RESET_COOLDOWN_SEC=300
+export V2446I_TIME_STOP_SEC=14400
+export V2446I_BASKET_TAKE_PROFIT_EUR=5
+export V2446I_L1_STOP_LOSS_EUR=3
+export V2446I_BASKET_MAX_LOSS_EUR=15
+
+export V244_BASE_SIZE=0.01
+export V244_SIZE_STEP=0.01
+export V244_MAX_SIZE=1.00
+
+export V244_RUNNER_SLEEP_SEC=15
+export V244_TARGET_OPENINGS_PER_MIN=99999
+
+export V244_MARGIN_MAX_EUR=3000
+export V244_MARGIN_SOFT_EUR=2600
+export V244_MARGIN_BUFFER_RATIO=0.95
+
+export V244_MAX_SPREAD_BPS=25
+export V244_GUARANTEED_STOP=1
+export V244_STOP_DISTANCE=25
+
+echo "RUN V2446 LIVE ISOLATED FR40/DE40"
+echo "STATE_FILE=$V244_STATE_FILE"
+echo "LOCK_FILE=$V244_LOCK_FILE"
+echo "ADVERSE_STATE=$V2446_ADVERSE_STATE_FILE"
+echo "PROTECTED_DEAL_IDS=$V244_PROTECTED_DEAL_IDS"
+echo "BASE_SIZE=$V244_BASE_SIZE SIZE_STEP=$V244_SIZE_STEP SLEEP=$V244_RUNNER_SLEEP_SEC"
+
+python3 BOT_PIVOT_24_4_forced_audit_runner.py

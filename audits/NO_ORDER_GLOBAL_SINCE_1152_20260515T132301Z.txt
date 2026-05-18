@@ -1,0 +1,638 @@
+=== LOGS CONCERNES ===
+-rw-rw-r-- 1 philippe_vacher06 philippe_vacher06 257K May 15 07:32 logs/BOT_PIVOT_07D_24_7_DEMO_20260515_072058.log
+-rw-rw-r-- 1 philippe_vacher06 philippe_vacher06 109K May 15 08:35 logs/BOT_PIVOT_07D_24_7_DEMO_20260515_083138.log
+-rw-rw-r-- 1 philippe_vacher06 philippe_vacher06 142K May 15 08:50 logs/BOT_PIVOT_07D_24_7_DEMO_20260515_084648.log
+-rw-rw-r-- 1 philippe_vacher06 philippe_vacher06 181K May 15 09:02 logs/BOT_PIVOT_07D_24_7_DEMO_20260515_085721.log
+-rw-rw-r-- 1 philippe_vacher06 philippe_vacher06 154K May 15 09:25 logs/BOT_PIVOT_07D_24_7_DEMO_20260515_091959.log
+-rw-rw-r-- 1 philippe_vacher06 philippe_vacher06 794K May 15 10:04 logs/BOT_PIVOT_07D_24_7_DEMO_20260515_093403.log
+-rw-rw-r-- 1 philippe_vacher06 philippe_vacher06 511K May 15 11:08 logs/BOT_PIVOT_07D_24_7_DEMO_20260515_104845.log
+
+=== ORDRES / FILLS / TP DEPUIS 09:52 UTC ===
+1198:EURJPY     | LIMIT_OK      | 1   | BUY  | 1800.000000 | TRADEABLE | ref=o_8629...0c1f limit=184.307
+1205:EURJPY     | LIMIT_OK      | 2   | BUY  | 3600.000000 | TRADEABLE | ref=o_3bef...9a72 limit=184.259
+1212:EURJPY     | LIMIT_OK      | 3   | BUY  | 5400.000000 | TRADEABLE | ref=o_dfe3...d45b limit=184.211
+2451:EURJPY     | LIMIT_OK      | 1   | BUY  | 1800.000000 | TRADEABLE | ref=o_b871...b3ae limit=184.289
+2458:EURJPY     | LIMIT_OK      | 2   | BUY  | 3600.000000 | TRADEABLE | ref=o_f243...ff51 limit=184.241
+2465:EURJPY     | LIMIT_OK      | 3   | BUY  | 5400.000000 | TRADEABLE | ref=o_4035...c898 limit=184.193
+592:GBPUSD     | LIMIT_OK      | 1   | BUY  | 1200.000000 | TRADEABLE | ref=o_614a...588d limit=1.33441
+593:GBPUSD     | V2437_ORDER_ACCEPTED | 1   | BUY  | 1200.000000 | TRADEABLE | ref=o_614a...588d limit=1.33441
+602:GBPUSD     | LIMIT_OK      | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_8cff...1fea limit=1.33413
+603:GBPUSD     | V2437_ORDER_ACCEPTED | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_8cff...1fea limit=1.33413
+612:GBPUSD     | LIMIT_OK      | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_584b...7658 limit=1.33385
+613:GBPUSD     | V2437_ORDER_ACCEPTED | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_584b...7658 limit=1.33385
+632:EURJPY     | LIMIT_OK      | 1   | BUY  | 1800.000000 | TRADEABLE | ref=o_5aad...d8d8 limit=184.298
+633:EURJPY     | V2437_ORDER_ACCEPTED | 1   | BUY  | 1800.000000 | TRADEABLE | ref=o_5aad...d8d8 limit=184.298
+642:EURJPY     | LIMIT_OK      | 2   | BUY  | 3600.000000 | TRADEABLE | ref=o_8963...f639 limit=184.25
+643:EURJPY     | V2437_ORDER_ACCEPTED | 2   | BUY  | 3600.000000 | TRADEABLE | ref=o_8963...f639 limit=184.25
+652:EURJPY     | LIMIT_OK      | 3   | BUY  | 5400.000000 | TRADEABLE | ref=o_70ae...38b7 limit=184.202
+653:EURJPY     | V2437_ORDER_ACCEPTED | 3   | BUY  | 5400.000000 | TRADEABLE | ref=o_70ae...38b7 limit=184.202
+684:ETHUSD     | LIMIT_OK      | 1   | SELL | 0.060000   | TRADEABLE | ref=o_d5e7...1a01 limit=2269.9
+685:ETHUSD     | V2437_ORDER_ACCEPTED | 1   | SELL | 0.060000   | TRADEABLE | ref=o_d5e7...1a01 limit=2269.9
+694:ETHUSD     | LIMIT_OK      | 2   | SELL | 0.120000   | TRADEABLE | ref=o_0bba...5130 limit=2273.9
+695:ETHUSD     | V2437_ORDER_ACCEPTED | 2   | SELL | 0.120000   | TRADEABLE | ref=o_0bba...5130 limit=2273.9
+704:ETHUSD     | LIMIT_OK      | 3   | SELL | 0.180000   | TRADEABLE | ref=o_052c...67d5 limit=2277.9
+705:ETHUSD     | V2437_ORDER_ACCEPTED | 3   | SELL | 0.180000   | TRADEABLE | ref=o_052c...67d5 limit=2277.9
+933:OIL_CRUDE  | LIMIT_OK      | 1   | SELL | 4.000000   | TRADEABLE | ref=o_4338...f912 limit=101.45
+934:OIL_CRUDE  | V2437_ORDER_ACCEPTED | 1   | SELL | 4.000000   | TRADEABLE | ref=o_4338...f912 limit=101.45
+943:OIL_CRUDE  | LIMIT_OK      | 2   | SELL | 8.000000   | TRADEABLE | ref=o_09b0...971c limit=101.65
+944:OIL_CRUDE  | V2437_ORDER_ACCEPTED | 2   | SELL | 8.000000   | TRADEABLE | ref=o_09b0...971c limit=101.65
+953:OIL_CRUDE  | LIMIT_OK      | 3   | SELL | 12.000000  | TRADEABLE | ref=o_9005...6cf6 limit=101.85
+954:OIL_CRUDE  | V2437_ORDER_ACCEPTED | 3   | SELL | 12.000000  | TRADEABLE | ref=o_9005...6cf6 limit=101.85
+594:EURUSD     | LIMIT_OK      | 1   | BUY  | 450.000000 | TRADEABLE | ref=o_660f...ca1a limit=1.16287
+595:EURUSD     | V2437_ORDER_ACCEPTED | 1   | BUY  | 450.000000 | TRADEABLE | ref=o_660f...ca1a limit=1.16287
+604:EURUSD     | LIMIT_OK      | 2   | BUY  | 900.000000 | TRADEABLE | ref=o_21a2...261d limit=1.16272
+605:EURUSD     | V2437_ORDER_ACCEPTED | 2   | BUY  | 900.000000 | TRADEABLE | ref=o_21a2...261d limit=1.16272
+614:EURUSD     | LIMIT_OK      | 3   | BUY  | 1350.000000 | TRADEABLE | ref=o_0686...ca86 limit=1.16257
+615:EURUSD     | V2437_ORDER_ACCEPTED | 3   | BUY  | 1350.000000 | TRADEABLE | ref=o_0686...ca86 limit=1.16257
+635:EURJPY     | LIMIT_OK      | 1   | SELL | 1800.000000 | TRADEABLE | ref=o_1d05...16dc limit=184.455
+636:EURJPY     | V2437_ORDER_ACCEPTED | 1   | SELL | 1800.000000 | TRADEABLE | ref=o_1d05...16dc limit=184.455
+645:EURJPY     | LIMIT_OK      | 2   | SELL | 3600.000000 | TRADEABLE | ref=o_206d...1aee limit=184.485
+646:EURJPY     | V2437_ORDER_ACCEPTED | 2   | SELL | 3600.000000 | TRADEABLE | ref=o_206d...1aee limit=184.485
+655:EURJPY     | LIMIT_OK      | 3   | SELL | 5400.000000 | TRADEABLE | ref=o_dca7...7990 limit=184.515
+656:EURJPY     | V2437_ORDER_ACCEPTED | 3   | SELL | 5400.000000 | TRADEABLE | ref=o_dca7...7990 limit=184.515
+673:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_3026...9c27 limit=4548.46
+674:GOLD       | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_3026...9c27 limit=4548.46
+685:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_c9dd...036e limit=4545.96
+686:GOLD       | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_c9dd...036e limit=4545.96
+697:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c7e9...ca0e limit=4543.46
+698:GOLD       | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c7e9...ca0e limit=4543.46
+719:ETHUSD     | LIMIT_OK      | 1   | SELL | 0.060000   | TRADEABLE | ref=o_b383...ebb6 limit=2269.54
+720:ETHUSD     | V2437_ORDER_ACCEPTED | 1   | SELL | 0.060000   | TRADEABLE | ref=o_b383...ebb6 limit=2269.54
+729:ETHUSD     | LIMIT_OK      | 2   | SELL | 0.120000   | TRADEABLE | ref=o_3d19...b57c limit=2272.04
+730:ETHUSD     | V2437_ORDER_ACCEPTED | 2   | SELL | 0.120000   | TRADEABLE | ref=o_3d19...b57c limit=2272.04
+739:ETHUSD     | LIMIT_OK      | 3   | SELL | 0.180000   | TRADEABLE | ref=o_01a5...ad14 limit=2274.54
+740:ETHUSD     | V2437_ORDER_ACCEPTED | 3   | SELL | 0.180000   | TRADEABLE | ref=o_01a5...ad14 limit=2274.54
+1200:GBPUSD     | LIMIT_OK      | 1   | BUY  | 1200.000000 | TRADEABLE | ref=o_b5e9...a85d limit=1.33394
+1201:GBPUSD     | V2437_ORDER_ACCEPTED | 1   | BUY  | 1200.000000 | TRADEABLE | ref=o_b5e9...a85d limit=1.33394
+1210:GBPUSD     | LIMIT_OK      | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_b8c6...692a limit=1.33377
+1211:GBPUSD     | V2437_ORDER_ACCEPTED | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_b8c6...692a limit=1.33377
+1220:GBPUSD     | LIMIT_OK      | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_a4ae...3cfd limit=1.33359
+1221:GBPUSD     | V2437_ORDER_ACCEPTED | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_a4ae...3cfd limit=1.33359
+1227:EURJPY     | BASKET_FILL | 1   | SELL | 1800.000000 | TRADEABLE | deal=000055...0803 limit=184.455 entry=184.456
+773:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_cdca...5006 limit=4544.64
+774:GOLD       | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_cdca...5006 limit=4544.64
+785:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_9581...0445 limit=4542.14
+786:GOLD       | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_9581...0445 limit=4542.14
+797:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_6013...f2af limit=4539.64
+798:GOLD       | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_6013...f2af limit=4539.64
+1212:UK100      | LIMIT_OK      | 1   | BUY  | 0.120000   | TRADEABLE | ref=o_51d8...4375 limit=10209.9
+1213:UK100      | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.120000   | TRADEABLE | ref=o_51d8...4375 limit=10209.9
+1219:UK100      | LIMIT_OK      | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_4930...2a67 limit=10204.9
+1220:UK100      | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_4930...2a67 limit=10204.9
+1226:UK100      | LIMIT_OK      | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_9daa...32c6 limit=10199.9
+1227:UK100      | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_9daa...32c6 limit=10199.9
+1352:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_3995...0c09 limit=4544.98
+1353:GOLD       | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_3995...0c09 limit=4544.98
+1364:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_cf3b...d594 limit=4542.48
+1365:GOLD       | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_cf3b...d594 limit=4542.48
+1376:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_b7e4...06c8 limit=4539.98
+1377:GOLD       | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_b7e4...06c8 limit=4539.98
+1392:SILVER     | LIMIT_OK      | 1   | BUY  | 15.000000  | TRADEABLE | ref=o_4bd9...b9cf limit=77.579
+1393:SILVER     | V2437_ORDER_ACCEPTED | 1   | BUY  | 15.000000  | TRADEABLE | ref=o_4bd9...b9cf limit=77.579
+1402:SILVER     | LIMIT_OK      | 2   | BUY  | 30.000000  | TRADEABLE | ref=o_bbec...f1cb limit=77.329
+1403:SILVER     | V2437_ORDER_ACCEPTED | 2   | BUY  | 30.000000  | TRADEABLE | ref=o_bbec...f1cb limit=77.329
+1412:SILVER     | LIMIT_OK      | 3   | BUY  | 45.000000  | TRADEABLE | ref=o_06cd...35a3 limit=77.079
+1413:SILVER     | V2437_ORDER_ACCEPTED | 3   | BUY  | 45.000000  | TRADEABLE | ref=o_06cd...35a3 limit=77.079
+1608:GOLD       | BASKET_FILL | 1   | BUY  | 0.270000   | TRADEABLE | deal=006015...97d6 limit=4544.98 entry=4544.81
+1614:GOLD       | TP_MATRIX_CLOSE_OK | 1-3 | BUY  | --         | TRADEABLE | broker_upl=0.2700 target=0.2000 threshold=0.2000 broker_after=0 verified=True status=from_close
+1615:GOLD       | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=0.2700 target=0.2000 internal=0.3300 source=BROKER_POSITION_UPL close=TP_MATRIX_CLOSE_OK
+1618:SILVER     | BASKET_FILL | 1   | BUY  | 15.000000  | TRADEABLE | deal=006011...7f7a limit=77.579 entry=77.565
+1624:SILVER     | TP_MATRIX_CLOSE_OK | 1-3 | BUY  | --         | TRADEABLE | broker_upl=2.2100 target=0.2000 threshold=0.2000 broker_after=0 verified=True status=from_close
+1625:SILVER     | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=2.2100 target=0.2000 internal=1.4744 source=BROKER_POSITION_UPL close=TP_MATRIX_CLOSE_OK
+1835:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_d741...fd5d limit=4544.14
+1836:GOLD       | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_d741...fd5d limit=4544.14
+1847:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_a5d9...f4f7 limit=4541.64
+1848:GOLD       | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_a5d9...f4f7 limit=4541.64
+1859:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_fa18...1f97 limit=4539.14
+1860:GOLD       | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_fa18...1f97 limit=4539.14
+2303:SILVER     | LIMIT_OK      | 1   | BUY  | 15.000000  | TRADEABLE | ref=o_f00d...a31c limit=77.543
+2304:SILVER     | V2437_ORDER_ACCEPTED | 1   | BUY  | 15.000000  | TRADEABLE | ref=o_f00d...a31c limit=77.543
+2313:SILVER     | LIMIT_OK      | 2   | BUY  | 30.000000  | TRADEABLE | ref=o_9750...26ca limit=77.293
+2314:SILVER     | V2437_ORDER_ACCEPTED | 2   | BUY  | 30.000000  | TRADEABLE | ref=o_9750...26ca limit=77.293
+2323:SILVER     | LIMIT_OK      | 3   | BUY  | 45.000000  | TRADEABLE | ref=o_1b21...21b2 limit=77.043
+2324:SILVER     | V2437_ORDER_ACCEPTED | 3   | BUY  | 45.000000  | TRADEABLE | ref=o_1b21...21b2 limit=77.043
+2746:GOLD       | BASKET_FILL | 1   | BUY  | 0.270000   | TRADEABLE | deal=006015...98d3 limit=4544.14 entry=4544.02
+2753:SILVER     | BASKET_FILL | 1   | BUY  | 15.000000  | TRADEABLE | deal=006011...7fa5 limit=77.543 entry=77.542
+2966:UK100      | LIMIT_OK      | 1   | BUY  | 0.120000   | TRADEABLE | ref=o_31ba...baac limit=10209.4
+2967:UK100      | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.120000   | TRADEABLE | ref=o_31ba...baac limit=10209.4
+2973:UK100      | LIMIT_OK      | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_e4de...f177 limit=10204.4
+2974:UK100      | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_e4de...f177 limit=10204.4
+2980:UK100      | LIMIT_OK      | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_d60b...7301 limit=10199.4
+2981:UK100      | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_d60b...7301 limit=10199.4
+2991:GOLD       | BASKET_FILL | 2   | BUY  | 0.540000   | TRADEABLE | deal=006015...9913 limit=4541.64 entry=4541.64
+2998:GOLD       | TP_MATRIX_CLOSE_OK | 1-3 | BUY  | --         | TRADEABLE | broker_upl=0.4800 target=0.4000 threshold=0.4000 broker_after=0 verified=True status=from_close
+2999:GOLD       | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=0.4800 target=0.4000 internal=2.6354 source=BROKER_POSITION_UPL close=TP_MATRIX_CLOSE_OK
+3248:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_5c10...9fe9 limit=4541.93
+3249:GOLD       | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_5c10...9fe9 limit=4541.93
+3260:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_35ab...f318 limit=4539.43
+3261:GOLD       | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_35ab...f318 limit=4539.43
+3272:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_5a19...d1f8 limit=4536.93
+3273:GOLD       | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_5a19...d1f8 limit=4536.93
+3511:GOLD       | BASKET_FILL | 1   | BUY  | 0.270000   | TRADEABLE | deal=006015...9943 limit=4541.93 entry=4541.89
+3986:GOLD       | BASKET_FILL | 2   | BUY  | 0.540000   | TRADEABLE | deal=006015...99fc limit=4539.43 entry=4539.4
+4205:GOLD       | BASKET_FILL | 3   | BUY  | 0.810000   | TRADEABLE | deal=006015...9aaa limit=4536.93 entry=4536.92
+4656:GOLD       | TP_MATRIX_CLOSE_OK | 1-3 | BUY  | --         | TRADEABLE | broker_upl=1.1200 target=0.6000 threshold=0.6000 broker_after=0 verified=True status=from_close
+4657:GOLD       | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=1.1200 target=0.6000 internal=10.6131 source=BROKER_POSITION_UPL close=TP_MATRIX_CLOSE_OK
+4864:UK100      | LIMIT_OK      | 1   | BUY  | 0.120000   | TRADEABLE | ref=o_6720...2291 limit=10211.5
+4865:UK100      | V2437_ORDER_ACCEPTED | 1   | BUY  | 0.120000   | TRADEABLE | ref=o_6720...2291 limit=10211.5
+4871:UK100      | LIMIT_OK      | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_b012...e3cb limit=10206.5
+4872:UK100      | V2437_ORDER_ACCEPTED | 2   | BUY  | 0.240000   | TRADEABLE | ref=o_b012...e3cb limit=10206.5
+4878:UK100      | LIMIT_OK      | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_b966...0b95 limit=10201.5
+4879:UK100      | V2437_ORDER_ACCEPTED | 3   | BUY  | 0.360000   | TRADEABLE | ref=o_b966...0b95 limit=10201.5
+1742:EURJPY     | LIMIT_OK      | 1   | SELL | 1800.000000 | TRADEABLE | ref=o_5256...75ba limit=184.604
+1743:EURJPY     | V2437_ORDER_ACCEPTED | 1   | SELL | 1800.000000 | TRADEABLE | ref=o_5256...75ba limit=184.604
+1752:EURJPY     | LIMIT_OK      | 2   | SELL | 3600.000000 | TRADEABLE | ref=o_b057...6be1 limit=184.634
+1753:EURJPY     | V2437_ORDER_ACCEPTED | 2   | SELL | 3600.000000 | TRADEABLE | ref=o_b057...6be1 limit=184.634
+1762:EURJPY     | LIMIT_OK      | 3   | SELL | 5400.000000 | TRADEABLE | ref=o_f952...c75a limit=184.664
+1763:EURJPY     | V2437_ORDER_ACCEPTED | 3   | SELL | 5400.000000 | TRADEABLE | ref=o_f952...c75a limit=184.664
+2551:SILVER     | LIMIT_OK      | 1   | SELL | 15.000000  | TRADEABLE | ref=o_277f...e6d4 limit=79.132
+2552:SILVER     | V2437_ORDER_ACCEPTED | 1   | SELL | 15.000000  | TRADEABLE | ref=o_277f...e6d4 limit=79.132
+2561:SILVER     | LIMIT_OK      | 2   | SELL | 30.000000  | TRADEABLE | ref=o_4c22...a8f0 limit=79.382
+2562:SILVER     | V2437_ORDER_ACCEPTED | 2   | SELL | 30.000000  | TRADEABLE | ref=o_4c22...a8f0 limit=79.382
+2571:SILVER     | LIMIT_OK      | 3   | SELL | 45.000000  | TRADEABLE | ref=o_50d7...7a86 limit=79.632
+2572:SILVER     | V2437_ORDER_ACCEPTED | 3   | SELL | 45.000000  | TRADEABLE | ref=o_50d7...7a86 limit=79.632
+
+=== DERNIERES ACTIVITES RUN ===
+394:07D — CYCLE 1 — 2026-05-15T09:20:34Z
+518:MODULE 06H — EXECUTION DEMO GARDEE
+519:V2437_EXEC_GUARD_AUDIT max_loop_cycles=1 max_active_cycles=96
+578:07D — CYCLE 2 — 2026-05-15T09:21:28Z
+706:MODULE 06H — EXECUTION DEMO GARDEE
+707:V2437_EXEC_GUARD_AUDIT max_loop_cycles=1 max_active_cycles=96
+821:07D — CYCLE 3 — 2026-05-15T09:22:23Z
+947:MODULE 06H — EXECUTION DEMO GARDEE
+948:V2437_EXEC_GUARD_AUDIT max_loop_cycles=1 max_active_cycles=96
+1024:07D — CYCLE 4 — 2026-05-15T09:23:17Z
+1152:MODULE 06H — EXECUTION DEMO GARDEE
+1153:V2437_EXEC_GUARD_AUDIT max_loop_cycles=1 max_active_cycles=96
+1256:07D — CYCLE 5 — 2026-05-15T09:24:12Z
+1329:V2436 CLEANUP PENDING ON SIGINT — 2026-05-15T09:24:58Z
+1331:{"event": "V2436_EXIT_CLEANUP_BEFORE", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 6}
+1332:{"event": "V2437_EXIT_CLEANUP_BEFORE", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T091958Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 6}
+1333:UK100      | V2436_EXIT_PENDING_CLEANUP | count=3
+1334:GOLD       | V2436_EXIT_PENDING_CLEANUP | count=3
+1336:{"event": "V2436_EXIT_CLEANUP_AFTER", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "results": [{"asset": "US500", "results": []}, {"asset": "US100", "results": []}, {"asset": "US30", "results": []}, {"asset": "DE40", "results": []}, {"asset": "FR40", "results": []}, {"asset": "UK100", "results": [{"working_id": "152f6d75-001c-241e-0000-000080a8253d", "ok": true, "info": {"ok": true, "asset": "UK100", "working_id": "152f6d75-001c-241e-0000-000080a8253d", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "UK100", "direction": "BUY", "size": 0.24, "limit_price": 10204.9, "workingDealId": "152f6d75-001c-241e-0000-000080a8253d"}, "delete_status": 200, "delete_response": {"dealReference": "o_4930d3cf-5903-4ed8-aacd-f32b157c2a67"}, "dry_run": false}}, {"working_id": "152f6d75-001c-241e-0000-000080a8253e", "ok": true, "info": {"ok": true, "asset": "UK100", "working_id": "152f6d75-001c-241e-0000-000080a8253e", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "UK100", "direction": "BUY", "size": 0.36, "limit_price": 10199.9, "workingDealId": "152f6d75-001c-241e-0000-000080a8253e"}, "delete_status": 200, "delete_response": {"dealReference": "o_9daa4806-4850-480d-b66c-f69cadf932c6"}, "dry_run": false}}, {"working_id": "152f6d75-001c-241e-0000-000080a8253c", "ok": true, "info": {"ok": true, "asset": "UK100", "working_id": "152f6d75-001c-241e-0000-000080a8253c", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "UK100", "direction": "BUY", "size": 0.12, "limit_price": 10209.9, "workingDealId": "152f6d75-001c-241e-0000-000080a8253c"}, "delete_status": 200, "delete_response": {"dealReference": "o_51d86399-d24f-41c2-873f-54294ba84375"}, "dry_run": false}}]}, {"asset": "J225", "results": []}, {"asset": "EURUSD", "results": []}, {"asset": "GBPUSD", "results": []}, {"asset": "USDJPY", "results": []}, {"asset": "EURJPY", "results": []}, {"asset": "GOLD", "results": [{"working_id": "00601567-0055-311e-0000-000084ac92ae", "ok": true, "info": {"ok": true, "asset": "GOLD", "working_id": "00601567-0055-311e-0000-000084ac92ae", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "GOLD", "direction": "BUY", "size": 0.27, "limit_price": 4544.64, "workingDealId": "00601567-0055-311e-0000-000084ac92ae"}, "delete_status": 200, "delete_response": {"dealReference": "o_cdca2950-8423-472a-b9cd-eed9f59d5006"}, "dry_run": false}}, {"working_id": "00601567-0055-311e-0000-000084ac92af", "ok": true, "info": {"ok": true, "asset": "GOLD", "working_id": "00601567-0055-311e-0000-000084ac92af", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "GOLD", "direction": "BUY", "size": 0.54, "limit_price": 4542.14, "workingDealId": "00601567-0055-311e-0000-000084ac92af"}, "delete_status": 200, "delete_response": {"dealReference": "o_958180a2-d2bf-4d93-a0ce-da88df480445"}, "dry_run": false}}, {"working_id": "00601567-0055-311e-0000-000084ac92b0", "ok": true, "info": {"ok": true, "asset": "GOLD", "working_id": "00601567-0055-311e-0000-000084ac92b0", "cancel_reason": "V2436_RUN_SCRIPT_EXIT_PENDING_CLEANUP", "old_exec": {"asset": "GOLD", "direction": "BUY", "size": 0.81, "limit_price": 4539.64, "workingDealId": "00601567-0055-311e-0000-000084ac92b0"}, "delete_status": 200, "delete_response": {"dealReference": "o_60131dab-996c-46c5-932f-e8765b83f2af"}, "dry_run": false}}]}, {"asset": "SILVER", "results": []}, {"asset": "OIL_CRUDE", "results": []}, {"asset": "BTCUSD", "results": []}, {"asset": "ETHUSD", "results": []}]}
+1337:{"event": "V2437_EXIT_CLEANUP_OK", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T091958Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "verify_results": [], "flatten_results": []}
+1339:V2437_RECONCILE_AFTER_EXIT_CLEANUP — 2026-05-15T09:25:03Z
+365:07D — CYCLE 1 — 2026-05-15T09:34:35Z
+489:MODULE 06H — EXECUTION DEMO GARDEE
+490:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+561:07D — CYCLE 2 — 2026-05-15T09:35:29Z
+686:MODULE 06H — EXECUTION DEMO GARDEE
+687:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+755:07D — CYCLE 3 — 2026-05-15T09:36:22Z
+881:MODULE 06H — EXECUTION DEMO GARDEE
+882:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+950:07D — CYCLE 4 — 2026-05-15T09:37:16Z
+1076:MODULE 06H — EXECUTION DEMO GARDEE
+1077:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1149:07D — CYCLE 5 — 2026-05-15T09:38:10Z
+1277:MODULE 06H — EXECUTION DEMO GARDEE
+1278:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1429:07D — CYCLE 6 — 2026-05-15T09:39:07Z
+1553:MODULE 06H — EXECUTION DEMO GARDEE
+1554:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1640:07D — CYCLE 7 — 2026-05-15T09:40:04Z
+1766:MODULE 06H — EXECUTION DEMO GARDEE
+1767:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1877:07D — CYCLE 8 — 2026-05-15T09:41:00Z
+2005:MODULE 06H — EXECUTION DEMO GARDEE
+2006:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2089:07D — CYCLE 9 — 2026-05-15T09:41:55Z
+2218:MODULE 06H — EXECUTION DEMO GARDEE
+2219:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2342:07D — CYCLE 10 — 2026-05-15T09:42:50Z
+2470:MODULE 06H — EXECUTION DEMO GARDEE
+2471:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2557:07D — CYCLE 11 — 2026-05-15T09:43:45Z
+2684:MODULE 06H — EXECUTION DEMO GARDEE
+2685:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2772:07D — CYCLE 12 — 2026-05-15T09:44:40Z
+2901:MODULE 06H — EXECUTION DEMO GARDEE
+2902:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3020:07D — CYCLE 13 — 2026-05-15T09:45:38Z
+3153:MODULE 06H — EXECUTION DEMO GARDEE
+3154:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3298:07D — CYCLE 14 — 2026-05-15T09:46:35Z
+3430:MODULE 06H — EXECUTION DEMO GARDEE
+3431:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3538:07D — CYCLE 15 — 2026-05-15T09:47:31Z
+3671:MODULE 06H — EXECUTION DEMO GARDEE
+3672:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3781:07D — CYCLE 16 — 2026-05-15T09:48:27Z
+3911:MODULE 06H — EXECUTION DEMO GARDEE
+3912:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4014:07D — CYCLE 17 — 2026-05-15T09:49:21Z
+4142:MODULE 06H — EXECUTION DEMO GARDEE
+4143:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4245:07D — CYCLE 18 — 2026-05-15T09:50:16Z
+4373:MODULE 06H — EXECUTION DEMO GARDEE
+4374:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4464:07D — CYCLE 19 — 2026-05-15T09:51:11Z
+4591:MODULE 06H — EXECUTION DEMO GARDEE
+4592:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4676:07D — CYCLE 20 — 2026-05-15T09:52:09Z
+4806:MODULE 06H — EXECUTION DEMO GARDEE
+4807:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4914:07D — CYCLE 21 — 2026-05-15T09:53:04Z
+5040:MODULE 06H — EXECUTION DEMO GARDEE
+5041:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+5119:07D — CYCLE 22 — 2026-05-15T09:53:59Z
+5246:MODULE 06H — EXECUTION DEMO GARDEE
+5247:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+5322:07D — CYCLE 23 — 2026-05-15T09:54:53Z
+5450:MODULE 06H — EXECUTION DEMO GARDEE
+5451:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+5524:07D — CYCLE 24 — 2026-05-15T09:55:47Z
+5651:MODULE 06H — EXECUTION DEMO GARDEE
+5652:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+5710:07D — CYCLE 25 — 2026-05-15T09:56:41Z
+5835:MODULE 06H — EXECUTION DEMO GARDEE
+5836:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+5900:07D — CYCLE 26 — 2026-05-15T09:57:35Z
+6026:MODULE 06H — EXECUTION DEMO GARDEE
+6027:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+6095:07D — CYCLE 27 — 2026-05-15T09:58:29Z
+6223:MODULE 06H — EXECUTION DEMO GARDEE
+6224:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+6300:07D — CYCLE 28 — 2026-05-15T09:59:23Z
+6428:MODULE 06H — EXECUTION DEMO GARDEE
+6429:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+6505:07D — CYCLE 29 — 2026-05-15T10:00:17Z
+6636:MODULE 06H — EXECUTION DEMO GARDEE
+6637:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+6725:07D — CYCLE 30 — 2026-05-15T10:01:14Z
+6856:MODULE 06H — EXECUTION DEMO GARDEE
+6857:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+6945:07D — CYCLE 31 — 2026-05-15T10:02:09Z
+7074:MODULE 06H — EXECUTION DEMO GARDEE
+7075:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+7155:07D — CYCLE 32 — 2026-05-15T10:03:03Z
+7282:MODULE 06H — EXECUTION DEMO GARDEE
+7283:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+7355:07D — CYCLE 33 — 2026-05-15T10:03:57Z
+7375:V2436 CLEANUP PENDING ON SIGINT — 2026-05-15T10:04:02Z
+7377:{"event": "V2436_EXIT_CLEANUP_BEFORE", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+7378:{"event": "V2437_EXIT_CLEANUP_BEFORE", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T093402Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+7380:{"event": "V2436_EXIT_CLEANUP_AFTER", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "results": [{"asset": "US500", "results": []}, {"asset": "US100", "results": []}, {"asset": "US30", "results": []}, {"asset": "DE40", "results": []}, {"asset": "FR40", "results": []}, {"asset": "UK100", "results": []}, {"asset": "J225", "results": []}, {"asset": "EURUSD", "results": []}, {"asset": "GBPUSD", "results": []}, {"asset": "USDJPY", "results": []}, {"asset": "EURJPY", "results": []}, {"asset": "GOLD", "results": []}, {"asset": "SILVER", "results": []}, {"asset": "OIL_CRUDE", "results": []}, {"asset": "BTCUSD", "results": []}, {"asset": "ETHUSD", "results": []}]}
+7381:{"event": "V2437_EXIT_CLEANUP_OK", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T093402Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "verify_results": [], "flatten_results": []}
+7383:V2437_RECONCILE_AFTER_EXIT_CLEANUP — 2026-05-15T10:04:06Z
+7414:V2437_RESET_LOCAL_AFTER_CLEANUP — 2026-05-15T10:04:07Z
+7415:{"event": "V2437_RESET_LOCAL_AFTER_CLEANUP_ERROR", "error": "Login Capital.com refusé HTTP 429 : {\"errorCode\":\"error.too-many.requests\"}"}
+386:07D — CYCLE 1 — 2026-05-15T10:49:21Z
+511:MODULE 06H — EXECUTION DEMO GARDEE
+512:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+564:07D — CYCLE 2 — 2026-05-15T10:50:15Z
+688:MODULE 06H — EXECUTION DEMO GARDEE
+689:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+740:07D — CYCLE 3 — 2026-05-15T10:51:08Z
+875:MODULE 06H — EXECUTION DEMO GARDEE
+876:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+938:07D — CYCLE 4 — 2026-05-15T10:52:01Z
+1072:MODULE 06H — EXECUTION DEMO GARDEE
+1073:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1134:07D — CYCLE 5 — 2026-05-15T10:52:54Z
+1263:MODULE 06H — EXECUTION DEMO GARDEE
+1264:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1346:07D — CYCLE 6 — 2026-05-15T10:53:49Z
+1473:MODULE 06H — EXECUTION DEMO GARDEE
+1474:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1550:07D — CYCLE 7 — 2026-05-15T10:54:43Z
+1676:MODULE 06H — EXECUTION DEMO GARDEE
+1677:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1782:07D — CYCLE 8 — 2026-05-15T10:55:38Z
+1906:MODULE 06H — EXECUTION DEMO GARDEE
+1907:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+1977:07D — CYCLE 9 — 2026-05-15T10:56:32Z
+2100:MODULE 06H — EXECUTION DEMO GARDEE
+2101:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2163:07D — CYCLE 10 — 2026-05-15T10:57:25Z
+2286:MODULE 06H — EXECUTION DEMO GARDEE
+2287:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2349:07D — CYCLE 11 — 2026-05-15T10:58:19Z
+2475:MODULE 06H — EXECUTION DEMO GARDEE
+2476:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2585:07D — CYCLE 12 — 2026-05-15T10:59:14Z
+2709:MODULE 06H — EXECUTION DEMO GARDEE
+2710:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2784:07D — CYCLE 13 — 2026-05-15T11:00:08Z
+2909:MODULE 06H — EXECUTION DEMO GARDEE
+2910:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+2980:07D — CYCLE 14 — 2026-05-15T11:01:03Z
+3105:MODULE 06H — EXECUTION DEMO GARDEE
+3106:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3178:07D — CYCLE 15 — 2026-05-15T11:01:56Z
+3304:MODULE 06H — EXECUTION DEMO GARDEE
+3305:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3364:07D — CYCLE 16 — 2026-05-15T11:02:51Z
+3491:MODULE 06H — EXECUTION DEMO GARDEE
+3492:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3571:07D — CYCLE 17 — 2026-05-15T11:03:45Z
+3702:MODULE 06H — EXECUTION DEMO GARDEE
+3703:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+3804:07D — CYCLE 18 — 2026-05-15T11:04:40Z
+3940:MODULE 06H — EXECUTION DEMO GARDEE
+3941:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4058:07D — CYCLE 19 — 2026-05-15T11:05:36Z
+4186:MODULE 06H — EXECUTION DEMO GARDEE
+4187:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4273:07D — CYCLE 20 — 2026-05-15T11:06:31Z
+4401:MODULE 06H — EXECUTION DEMO GARDEE
+4402:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4479:07D — CYCLE 21 — 2026-05-15T11:07:25Z
+4611:MODULE 06H — EXECUTION DEMO GARDEE
+4612:V2437_EXEC_GUARD_AUDIT max_loop_cycles=999999 max_active_cycles=96
+4713:07D — CYCLE 22 — 2026-05-15T11:08:20Z
+4733:V2436 CLEANUP PENDING ON SIGINT — 2026-05-15T11:08:44Z
+4735:{"event": "V2436_EXIT_CLEANUP_BEFORE", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+4736:{"event": "V2437_EXIT_CLEANUP_BEFORE", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T104844Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+4738:{"event": "V2436_EXIT_CLEANUP_AFTER", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "results": [{"asset": "US500", "results": []}, {"asset": "US100", "results": []}, {"asset": "US30", "results": []}, {"asset": "DE40", "results": []}, {"asset": "FR40", "results": []}, {"asset": "UK100", "results": []}, {"asset": "J225", "results": []}, {"asset": "EURUSD", "results": []}, {"asset": "GBPUSD", "results": []}, {"asset": "USDJPY", "results": []}, {"asset": "EURJPY", "results": []}, {"asset": "GOLD", "results": []}, {"asset": "SILVER", "results": []}, {"asset": "OIL_CRUDE", "results": []}, {"asset": "BTCUSD", "results": []}, {"asset": "ETHUSD", "results": []}]}
+4739:{"event": "V2437_EXIT_CLEANUP_OK", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T104844Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "verify_results": [], "flatten_results": []}
+4741:V2437_RECONCILE_AFTER_EXIT_CLEANUP — 2026-05-15T11:08:48Z
+4772:V2437_RESET_LOCAL_AFTER_CLEANUP — 2026-05-15T11:08:49Z
+4773:{"event": "V2437_RESET_LOCAL_AFTER_CLEANUP_CHECK", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "will_reset_local": true}
+4774:{"event": "V2437_RESET_LOCAL_AFTER_CLEANUP_RESULT", "returncode": 0}
+4783:CYCLE_STATE: tous les actifs -> IDLE
+
+=== BLOQUAGES RECENTS ===
+3455:OIL_CRUDE  | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 99.724000    | 56.0  | 0.852000    | 0.040000 | 0.080000 | True  | 2.6   | LOCAL+PSYCHO:active:100  | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3456:BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 80666.650000 | 38.7  | 157.900000  | 50.000000 | 50.000000 | True  | 1.6   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3457:ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2260.025000  | 29.2  | 5.860000    | 1.750000 | 1.750000 | True  | 1.7   | LOCAL+PSYCHO:active:2250 | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3472:DE40       | IDLE         | aucun signal
+3473:FR40       | IDLE         | aucun signal
+3474:UK100      | IDLE         | aucun signal
+3475:J225       | IDLE         | aucun signal
+3483:GOLD       | IDLE         | aucun signal
+3484:SILVER     | IDLE         | aucun signal
+3485:OIL_CRUDE  | IDLE         | aucun signal
+3486:BTCUSD     | IDLE         | aucun signal
+3487:ETHUSD     | IDLE         | aucun signal
+3519:STORM_GUARD | mode=LOCAL alerts=1 assets=EURUSD systemic=False
+3526:US500      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7416.5 L2=7414.0 L3=7411.5 | market_bid=7441.5 market_ask=7442.1 | distance=25.0000000000 max_dist=2.0000000000
+3527:US500      | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3531:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29088.3 L2=29080.8 L3=29073.3 | market_bid=29227.2 market_ask=29229.0 | distance=138.9000000000 max_dist=4.0000000000
+3532:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3536:US30       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=49673.8 L2=49661.3 L3=49648.8 | market_bid=49819.0 market_ask=49821.0 | distance=145.2000000000 max_dist=12.1500000000
+3537:US30       | BASKET_REJECT | 1-3 | BUY  | 0.024000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3538:DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+3539:FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+3540:UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+3541:J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+3542:EURUSD     | BASKET_REJECT_STORM_GUARD | 1-3 | BUY  | 450.000000 | TRADEABLE | FAST_MOVE:0.0004>=0.000375
+3546:GBPUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=1.33274 L2=1.33257 L3=1.33239 | market_bid=1.33767 market_ask=1.3378 | distance=0.0049300000 max_dist=0.0007500000
+3547:GBPUSD     | BASKET_REJECT | 1-3 | BUY  | 1200.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3551:USDJPY     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=158.563 L2=158.588 L3=158.613 | market_bid=158.419 market_ask=158.431 | distance=0.1320000000 max_dist=0.0125000000
+3552:USDJPY     | BASKET_REJECT | 1-3 | SELL | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3556:EURJPY     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=184.174 L2=184.144 L3=184.114 | market_bid=184.449 market_ask=184.47 | distance=0.2750000000 max_dist=0.1125000000
+3557:EURJPY     | BASKET_REJECT | 1-3 | BUY  | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3558:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+3559:SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+3560:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+3561:BTCUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+3562:ETHUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+3650:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29222.300000 | 9.4   | 53.400000   | 1.800000 | 1.800000 | True  | 1.5   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3652:DE40       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 24132.550000 | 35.2  | 62.800000   | 1.500000 | 1.500000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3653:FR40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 7981.400000  | 3.2   | 15.800000   | 0.800000 | 0.800000 | True  | 1.6   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3655:J225       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 62031.200000 | 40.5  | 226.400000  | 10.000000 | 10.000000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3656:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.164135     | 3.4   | 0.001470    | 0.000070 | 0.000070 | True  | 2.6   | LOCAL:support            | False     | True       | pas_micro_rebond
+3657:GBPUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.337435     | 0.0   | 0.001900    | 0.000130 | 0.000130 | True  | 1.7   | LOCAL:support            | False     | True       | pas_micro_rebond
+3658:USDJPY     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 158.459000   | 100.0 | 0.165000    | 0.012000 | 0.012000 | True  | 3.7   | LOCAL+PSYCHO:resistance: | False     | False      | pas_micro_rejet
+3660:GOLD       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 4564.780000  | 45.4  | 14.220000   | 0.500000 | 0.500000 | True  | 1.8   | --                       | True      | False      | hors_zone
+3661:SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 78.805000    | 33.9  | 0.466000    | 0.050000 | 0.050000 | True  | 1.8   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3662:OIL_CRUDE  | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 99.835000    | 83.5  | 0.704000    | 0.080000 | 0.080000 | True  | 1.8   | LOCAL+PSYCHO:active:100  | True      | False      | range_pas_assez_bas, pas_micro_rejet
+3663:BTCUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 80652.300000 | 2.3   | 113.800000  | 50.000000 | 50.000000 | True  | 1.9   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3664:ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 2259.675000  | 10.0  | 5.000000    | 1.750000 | 1.750000 | True  | 1.9   | LOCAL+PSYCHO:active:2250 | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3679:DE40       | IDLE         | aucun signal
+3682:UK100      | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+3683:J225       | IDLE         | aucun signal
+3691:GOLD       | IDLE         | aucun signal
+3692:SILVER     | IDLE         | aucun signal
+3734:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3741:US500      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7416.7 L2=7414.2 L3=7411.7 | market_bid=7440.0 market_ask=7440.6 | distance=23.3000000000 max_dist=2.0000000000
+3742:US500      | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3746:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29089.0 L2=29081.5 L3=29074.0 | market_bid=29221.4 market_ask=29223.2 | distance=132.4000000000 max_dist=4.0000000000
+3747:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3751:US30       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=49674.5 L2=49662.0 L3=49649.5 | market_bid=49805.9 market_ask=49807.9 | distance=131.4000000000 max_dist=12.1500000000
+3752:US30       | BASKET_REJECT | 1-3 | BUY  | 0.024000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3753:DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+3757:FR40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7958.9 L2=7955.4 L3=7951.9 | market_bid=7981.0 market_ask=7981.8 | distance=22.1000000000 max_dist=2.5000000000
+3758:FR40       | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3759:UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+3760:J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+3764:EURUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=1.16167 L2=1.16152 L3=1.16137 | market_bid=1.1641 market_ask=1.16417 | distance=0.0024300000 max_dist=0.0006250000
+3765:EURUSD     | BASKET_REJECT | 1-3 | BUY  | 450.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3769:GBPUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=1.33276 L2=1.33259 L3=1.33241 | market_bid=1.33737 market_ask=1.3375 | distance=0.0046100000 max_dist=0.0007500000
+3770:GBPUSD     | BASKET_REJECT | 1-3 | BUY  | 1200.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3774:USDJPY     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=158.563 L2=158.588 L3=158.613 | market_bid=158.453 market_ask=158.465 | distance=0.0980000000 max_dist=0.0125000000
+3775:USDJPY     | BASKET_REJECT | 1-3 | SELL | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3779:EURJPY     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=184.174 L2=184.144 L3=184.114 | market_bid=184.458 market_ask=184.478 | distance=0.2840000000 max_dist=0.1125000000
+3780:EURJPY     | BASKET_REJECT | 1-3 | BUY  | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3781:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+3782:SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+3786:OIL_CRUDE  | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=101.83 L2=101.95 L3=102.08 | market_bid=99.795 market_ask=99.875 | distance=1.9550000000 max_dist=0.3125000000
+3787:OIL_CRUDE  | BASKET_REJECT | 1-3 | SELL | 4.000000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3791:BTCUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=80363.51 L2=80338.51 L3=80313.51 | market_bid=80627.3 market_ask=80677.3 | distance=263.7900000000 max_dist=25.0000000000
+3792:BTCUSD     | BASKET_REJECT | 1-3 | BUY  | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3795:ETHUSD     | BASKET_REJECT | 1-3 | BUY  | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+3883:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29217.000000 | 17.0  | 64.700000   | 1.800000 | 1.800000 | True  | 1.7   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3888:J225       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 62027.900000 | 21.7  | 176.100000  | 10.000000 | 10.000000 | True  | 1.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3891:USDJPY     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 158.445000   | 91.5  | 0.165000    | 0.012000 | 0.012000 | True  | 1.9   | --                       | False     | True       | hors_zone
+3892:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.473500   | 19.2  | 0.106500    | 0.021000 | 0.022000 | True  | 6.0   | LOCAL+PSYCHO:support:184 | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3893:GOLD       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 4563.585000  | 18.3  | 10.975000   | 0.750000 | 0.500000 | True  | 1.0   | --                       | True      | False      | hors_zone
+3894:SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 78.765000    | 15.9  | 0.414000    | 0.050000 | 0.050000 | True  | 2.0   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3895:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 99.858000    | 85.5  | 0.715000    | 0.040000 | 0.080000 | True  | 2.1   | LOCAL+PSYCHO:active:100  | True      | False      | range_pas_assez_bas, pas_micro_rejet
+3896:BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 80631.300000 | 4.7   | 138.700000  | 50.000000 | 50.000000 | True  | 2.1   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3897:ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2259.335000  | 9.0   | 5.320000    | 1.750000 | 1.750000 | True  | 2.1   | LOCAL+PSYCHO:active:2250 | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3912:DE40       | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+3976:STORM_GUARD | mode=LOCAL alerts=2 assets=US100,DE40 systemic=False
+3983:US500      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7417.0 L2=7414.5 L3=7412.0 | market_bid=7439.0 market_ask=7439.6 | distance=22.0000000000 max_dist=2.0000000000
+3984:US500      | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3985:US100      | BASKET_REJECT_STORM_GUARD | 1-3 | BUY  | 0.042000   | TRADEABLE | FAST_RANGE:25>=22.5
+3989:US30       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=49676.4 L2=49663.9 L3=49651.4 | market_bid=49801.8 market_ask=49803.8 | distance=125.4000000000 max_dist=12.1500000000
+3990:US30       | BASKET_REJECT | 1-3 | BUY  | 0.024000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3991:DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+3995:FR40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7959.0 L2=7955.5 L3=7952.0 | market_bid=7980.0 market_ask=7980.8 | distance=21.0000000000 max_dist=2.5000000000
+3996:FR40       | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4000:UK100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=10217.4 L2=10212.4 L3=10207.4 | market_bid=10238.0 market_ask=10239.0 | distance=20.6000000000 max_dist=17.5000000000
+4001:UK100      | BASKET_REJECT | 1-3 | BUY  | 0.120000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4005:J225       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=61537.3 L2=61512.3 L3=61487.3 | market_bid=62022.9 market_ask=62032.9 | distance=485.6000000000 max_dist=17.5000000000
+4006:J225       | BASKET_REJECT | 1-3 | BUY  | 1.500000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4010:EURUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=1.16179 L2=1.16164 L3=1.16149 | market_bid=1.16426 market_ask=1.16433 | distance=0.0024700000 max_dist=0.0006250000
+4011:EURUSD     | BASKET_REJECT | 1-3 | BUY  | 450.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4015:GBPUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=1.33301 L2=1.33284 L3=1.33266 | market_bid=1.33752 market_ask=1.33765 | distance=0.0045100000 max_dist=0.0007500000
+4016:GBPUSD     | BASKET_REJECT | 1-3 | BUY  | 1200.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4020:USDJPY     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=158.558 L2=158.583 L3=158.608 | market_bid=158.439 market_ask=158.451 | distance=0.1070000000 max_dist=0.0125000000
+4021:USDJPY     | BASKET_REJECT | 1-3 | SELL | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4025:EURJPY     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=184.188 L2=184.158 L3=184.128 | market_bid=184.463 market_ask=184.484 | distance=0.2750000000 max_dist=0.1125000000
+4026:EURJPY     | BASKET_REJECT | 1-3 | BUY  | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4030:GOLD       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=4538.09 L2=4535.59 L3=4533.09 | market_bid=4563.21 market_ask=4563.96 | distance=25.1200000000 max_dist=13.7500000000
+4031:GOLD       | BASKET_REJECT | 1-3 | BUY  | 0.270000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4035:SILVER     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=77.094 L2=76.844 L3=76.594 | market_bid=78.74 market_ask=78.79 | distance=1.6460000000 max_dist=0.1750000000
+4036:SILVER     | BASKET_REJECT | 1-3 | BUY  | 15.000000  | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4040:OIL_CRUDE  | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=101.82 L2=101.94 L3=102.07 | market_bid=99.838 market_ask=99.878 | distance=1.9420000000 max_dist=0.3125000000
+4041:OIL_CRUDE  | BASKET_REJECT | 1-3 | SELL | 4.000000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4045:BTCUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=80364.13 L2=80339.13 L3=80314.13 | market_bid=80606.3 market_ask=80656.3 | distance=242.1700000000 max_dist=25.0000000000
+4046:BTCUSD     | BASKET_REJECT | 1-3 | BUY  | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4049:ETHUSD     | BASKET_REJECT | 1-3 | BUY  | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+4136:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7440.500000  | 26.4  | 12.900000   | 0.600000 | 0.600000 | True  | 1.7   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4137:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29225.100000 | 29.5  | 64.700000   | 1.800000 | 1.800000 | True  | 1.7   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4138:US30       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 49802.400000 | 14.8  | 98.900000   | 2.000000 | 2.000000 | True  | 1.7   | LOCAL:support            | False     | True       | pas_micro_rebond
+4139:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24106.350000 | 13.5  | 77.300000   | 1.500000 | 1.500000 | True  | 1.8   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4140:FR40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 7981.400000  | 18.9  | 18.500000   | 0.800000 | 0.800000 | True  | 1.8   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4142:J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 62030.100000 | 22.9  | 176.100000  | 10.000000 | 10.000000 | True  | 1.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4143:EURUSD     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 1.164595     | 34.7  | 0.001470    | 0.000070 | 0.000070 | True  | 1.9   | LOCAL+PSYCHO:active:1.16 | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4144:GBPUSD     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 1.337925     | 26.6  | 0.001920    | 0.000130 | 0.000130 | True  | 0.9   | --                       | True      | False      | hors_zone
+4145:USDJPY     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 158.410000   | 70.3  | 0.165000    | 0.012000 | 0.012000 | True  | 1.9   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4146:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.482500   | 27.7  | 0.106500    | 0.021000 | 0.022000 | True  | 1.9   | LOCAL+PSYCHO:active:184. | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4147:GOLD       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 4566.225000  | 42.4  | 10.975000   | 0.750000 | 0.500000 | True  | 2.0   | --                       | True      | False      | hors_zone
+4148:SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 78.811000    | 32.4  | 0.447000    | 0.050000 | 0.050000 | True  | 2.0   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4149:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 99.868000    | 86.9  | 0.715000    | 0.080000 | 0.080000 | True  | 2.0   | LOCAL+PSYCHO:active:100  | True      | False      | range_pas_assez_bas, pas_micro_rejet
+4150:BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 80638.750000 | 16.2  | 148.950000  | 50.000000 | 50.000000 | True  | 2.1   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4160:US500      | IDLE         | aucun signal
+4161:US100      | IDLE         | aucun signal
+4172:EURUSD     | IDLE         | aucun signal
+4173:GBPUSD     | IDLE         | aucun signal
+4174:USDJPY     | IDLE         | aucun signal
+4175:EURJPY     | IDLE         | aucun signal
+4176:GOLD       | IDLE         | aucun signal
+4177:SILVER     | IDLE         | aucun signal
+4215:STORM_GUARD | mode=LOCAL alerts=2 assets=US100,EURUSD systemic=False
+4219:US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+4220:US100      | IDLE         | --  | --   | --         | --        | aucun cycle
+4224:US30       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=49676.4 L2=49663.9 L3=49651.4 | market_bid=49801.4 market_ask=49803.4 | distance=125.0000000000 max_dist=12.1500000000
+4225:US30       | BASKET_REJECT | 1-3 | BUY  | 0.024000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4229:DE40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=24005.1 L2=23997.6 L3=23990.1 | market_bid=24105.6 market_ask=24107.1 | distance=100.5000000000 max_dist=28.1250000000
+4230:DE40       | BASKET_REJECT | 1-3 | BUY  | 0.051000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4234:FR40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7959.0 L2=7955.5 L3=7952.0 | market_bid=7981.0 market_ask=7981.8 | distance=22.0000000000 max_dist=2.5000000000
+4235:FR40       | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4239:UK100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=10217.4 L2=10212.4 L3=10207.4 | market_bid=10237.8 market_ask=10238.8 | distance=20.4000000000 max_dist=17.5000000000
+4240:UK100      | BASKET_REJECT | 1-3 | BUY  | 0.120000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4244:J225       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=61537.7 L2=61512.7 L3=61487.7 | market_bid=62025.1 market_ask=62035.1 | distance=487.4000000000 max_dist=17.5000000000
+4245:J225       | BASKET_REJECT | 1-3 | BUY  | 1.500000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4246:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+4247:GBPUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+4248:USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+4249:EURJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+4250:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+4251:SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+4255:OIL_CRUDE  | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=101.82 L2=101.94 L3=102.07 | market_bid=99.828 market_ask=99.908 | distance=1.9120000000 max_dist=0.3125000000
+4256:OIL_CRUDE  | BASKET_REJECT | 1-3 | SELL | 4.000000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4260:BTCUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=80363.89 L2=80338.89 L3=80313.89 | market_bid=80613.75 market_ask=80663.75 | distance=249.8600000000 max_dist=25.0000000000
+4261:BTCUSD     | BASKET_REJECT | 1-3 | BUY  | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4264:ETHUSD     | BASKET_REJECT | 1-3 | BUY  | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+4352:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29217.900000 | 22.9  | 51.900000   | 1.800000 | 1.800000 | True  | 1.3   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4354:DE40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 24093.750000 | 8.5   | 86.900000   | 1.500000 | 1.500000 | True  | 1.3   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4358:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.164605     | 35.4  | 0.001470    | 0.000070 | 0.000070 | True  | 1.4   | LOCAL+PSYCHO:active:1.16 | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4359:GBPUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.337845     | 22.4  | 0.001920    | 0.000130 | 0.000130 | True  | 1.4   | LOCAL:support            | True      | False      | range_pas_assez_bas
+4360:USDJPY     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 158.417000   | 69.8  | 0.139000    | 0.012000 | 0.012000 | True  | 4.5   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4361:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.493500   | 38.0  | 0.106500    | 0.019000 | 0.022000 | True  | 2.5   | LOCAL+PSYCHO:active:184. | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4362:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4561.875000  | 4.0   | 11.125000   | 0.750000 | 0.500000 | True  | 1.5   | --                       | True      | False      | hors_zone
+4365:BTCUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 80613.850000 | 1.1   | 147.450000  | 50.000000 | 50.000000 | True  | 1.6   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4366:ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 2258.275000  | 0.7   | 5.940000    | 1.750000 | 1.750000 | True  | 1.7   | LOCAL+PSYCHO:active:2250 | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4375:US500      | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+4382:FR40       | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+4383:UK100      | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+4384:J225       | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+4385:EURUSD     | IDLE         | aucun signal
+4388:USDJPY     | IDLE         | aucun signal
+4389:EURJPY     | IDLE         | aucun signal
+4392:SILVER     | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+4393:OIL_CRUDE  | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-3 | phase=TREND_UP | vwap=BUY | trigger_M1:+1; zone_active:+1; micro_rejet:+1; vwap_contre:-2; PHASE_VETO_sell_contre_trend_up:-4
+4429:STORM_GUARD | mode=LOCAL alerts=1 assets=DE40 systemic=False
+4433:US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+4437:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29090.3 L2=29082.8 L3=29075.3 | market_bid=29217.0 market_ask=29218.8 | distance=126.7000000000 max_dist=4.0000000000
+4438:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4442:US30       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=49676.7 L2=49664.2 L3=49651.7 | market_bid=49787.7 market_ask=49789.7 | distance=111.0000000000 max_dist=12.1500000000
+4443:US30       | BASKET_REJECT | 1-3 | BUY  | 0.024000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4444:DE40       | BASKET_REJECT_STORM_GUARD | 1-3 | BUY  | 0.051000   | TRADEABLE | FAST_RANGE:24.6>=22.5
+4445:FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+4446:UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+4447:J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+4448:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+4452:GBPUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=1.333 L2=1.33283 L3=1.33265 | market_bid=1.33778 market_ask=1.33791 | distance=0.0047800000 max_dist=0.0007500000
+4453:GBPUSD     | BASKET_REJECT | 1-3 | BUY  | 1200.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4454:USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+4455:EURJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+4459:GOLD       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=4538.18 L2=4535.68 L3=4533.18 | market_bid=4561.5 market_ask=4562.25 | distance=23.3200000000 max_dist=13.7500000000
+4460:GOLD       | BASKET_REJECT | 1-3 | BUY  | 0.270000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4461:SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+4462:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4466:BTCUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=80364.83 L2=80339.83 L3=80314.83 | market_bid=80588.85 market_ask=80638.85 | distance=224.0200000000 max_dist=25.0000000000
+4467:BTCUSD     | BASKET_REJECT | 1-3 | BUY  | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4470:ETHUSD     | BASKET_REJECT | 1-3 | BUY  | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+4557:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7438.100000  | 9.9   | 10.100000   | 0.600000 | 0.600000 | True  | 1.4   | LOCAL:support            | False     | True       | pas_micro_rebond
+4560:DE40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 24094.250000 | 9.1   | 86.900000   | 1.500000 | 1.500000 | True  | 1.5   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4563:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 61986.400000 | 3.7   | 186.300000  | 10.000000 | 10.000000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4564:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.164715     | 42.9  | 0.001470    | 0.000070 | 0.000070 | True  | 1.6   | LOCAL+PSYCHO:active:1.16 | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4565:GBPUSD     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 1.338045     | 34.6  | 0.001820    | 0.000130 | 0.000130 | True  | 2.6   | --                       | True      | False      | hors_zone
+4566:USDJPY     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 158.419000   | 66.9  | 0.121000    | 0.012000 | 0.012000 | True  | 3.7   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4567:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.511000   | 54.5  | 0.106500    | 0.022000 | 0.022000 | True  | 1.7   | LOCAL+PSYCHO:active:184. | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4568:GOLD       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 4563.780000  | 24.8  | 10.410000   | 0.500000 | 0.500000 | True  | 1.7   | --                       | True      | False      | hors_zone
+4569:SILVER     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 78.760000    | 21.0  | 0.447000    | 0.050000 | 0.050000 | True  | 1.8   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4570:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 99.944000    | 77.5  | 0.714000    | 0.040000 | 0.080000 | True  | 1.8   | LOCAL+PSYCHO:active:100  | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4571:BTCUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 80610.350000 | 1.2   | 145.650000  | 50.000000 | 50.000000 | True  | 4.8   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4572:ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2258.125000  | 0.9   | 5.560000    | 1.750000 | 1.750000 | True  | 1.9   | LOCAL+PSYCHO:active:2250 | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4591:UK100      | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+4594:EURUSD     | IDLE         | aucun signal
+4595:GBPUSD     | IDLE         | aucun signal
+4596:USDJPY     | IDLE         | aucun signal
+4597:EURJPY     | IDLE         | aucun signal
+4643:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+4650:US500      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7417.0 L2=7414.5 L3=7412.0 | market_bid=7437.8 market_ask=7438.4 | distance=20.8000000000 max_dist=2.0000000000
+4651:US500      | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4655:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29090.5 L2=29083.0 L3=29075.5 | market_bid=29214.1 market_ask=29215.9 | distance=123.6000000000 max_dist=4.0000000000
+4656:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4660:US30       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=49676.7 L2=49664.2 L3=49651.7 | market_bid=49785.5 market_ask=49787.5 | distance=108.8000000000 max_dist=12.1500000000
+4661:US30       | BASKET_REJECT | 1-3 | BUY  | 0.024000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4665:DE40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=24005.4 L2=23997.9 L3=23990.4 | market_bid=24093.5 market_ask=24095.0 | distance=88.1000000000 max_dist=28.1250000000
+4666:DE40       | BASKET_REJECT | 1-3 | BUY  | 0.051000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4670:FR40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7959.0 L2=7955.5 L3=7952.0 | market_bid=7979.8 market_ask=7980.6 | distance=20.8000000000 max_dist=2.5000000000
+4671:FR40       | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4672:UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+4676:J225       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=61540.4 L2=61515.4 L3=61490.4 | market_bid=61981.4 market_ask=61991.4 | distance=441.0000000000 max_dist=17.5000000000
+4677:J225       | BASKET_REJECT | 1-3 | BUY  | 1.500000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4678:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+4679:GBPUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+4680:USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+4681:EURJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+4685:GOLD       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=4538.11 L2=4535.61 L3=4533.11 | market_bid=4563.53 market_ask=4564.03 | distance=25.4200000000 max_dist=13.7500000000
+4686:GOLD       | BASKET_REJECT | 1-3 | BUY  | 0.270000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4690:SILVER     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=77.097 L2=76.847 L3=76.597 | market_bid=78.735 market_ask=78.785 | distance=1.6380000000 max_dist=0.1750000000
+4691:SILVER     | BASKET_REJECT | 1-3 | BUY  | 15.000000  | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4695:OIL_CRUDE  | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=101.81 L2=101.93 L3=102.06 | market_bid=99.924 market_ask=99.964 | distance=1.8460000000 max_dist=0.3125000000
+4696:OIL_CRUDE  | BASKET_REJECT | 1-3 | SELL | 4.000000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4700:BTCUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=80364.82 L2=80339.82 L3=80314.82 | market_bid=80585.35 market_ask=80635.35 | distance=220.5300000000 max_dist=25.0000000000
+4701:BTCUSD     | BASKET_REJECT | 1-3 | BUY  | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+4704:ETHUSD     | BASKET_REJECT | 1-3 | BUY  | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+4783:CYCLE_STATE: tous les actifs -> IDLE
+
+=== BROKER NOW ===
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | --                         | --                                             | OK
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | --                         | --                                             | OK
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | --                         | --                                             | OK
+EURUSD     |   0 |    0 | --                         | --                                             | OK
+GBPUSD     |   0 |    0 | --                         | --                                             | OK
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | --                         | --                                             | OK
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | --                         | --                                             | OK
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | --                         | --                                             | OK
+============================================================================================================================================

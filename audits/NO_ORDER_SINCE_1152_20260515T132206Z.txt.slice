@@ -1,0 +1,108 @@
+07D — CYCLE 22 — 2026-05-15T11:08:20Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 1171s / seuil 7200s
+- zones age   : 1139s / seuil 43200s
+- history age : 1139s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-15 11:08:21,004 - INFO - ============================================================
+2026-05-15 11:08:21,004 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-15 11:08:21,004 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-15 11:08:21,004 - INFO - Nb actifs    : 16
+2026-05-15 11:08:21,004 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-15 11:08:21,004 - INFO - Durée test   : 45 sec
+2026-05-15 11:08:21,004 - INFO - ============================================================
+2026-05-15 11:08:21,113 - INFO - [SUBSCRIBE] envoyé
+2026-05-15 11:08:21,144 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+============================================================================================================
+V2436 CLEANUP PENDING ON SIGINT — 2026-05-15T11:08:44Z
+============================================================================================================
+{"event": "V2436_EXIT_CLEANUP_BEFORE", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+{"event": "V2437_EXIT_CLEANUP_BEFORE", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T104844Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+{"event": "V2437_EXIT_POSITION_FLATTEN_BEFORE", "positions_status": 200, "positions_count": 0}
+{"event": "V2436_EXIT_CLEANUP_AFTER", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "results": [{"asset": "US500", "results": []}, {"asset": "US100", "results": []}, {"asset": "US30", "results": []}, {"asset": "DE40", "results": []}, {"asset": "FR40", "results": []}, {"asset": "UK100", "results": []}, {"asset": "J225", "results": []}, {"asset": "EURUSD", "results": []}, {"asset": "GBPUSD", "results": []}, {"asset": "USDJPY", "results": []}, {"asset": "EURJPY", "results": []}, {"asset": "GOLD", "results": []}, {"asset": "SILVER", "results": []}, {"asset": "OIL_CRUDE", "results": []}, {"asset": "BTCUSD", "results": []}, {"asset": "ETHUSD", "results": []}]}
+{"event": "V2437_EXIT_CLEANUP_OK", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T104844Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "verify_results": [], "flatten_results": []}
+
+V2437_RECONCILE_AFTER_EXIT_CLEANUP — 2026-05-15T11:08:48Z
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | --                         | --                                             | OK
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | --                         | --                                             | OK
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | --                         | --                                             | OK
+EURUSD     |   0 |    0 | --                         | --                                             | OK
+GBPUSD     |   0 |    0 | --                         | --                                             | OK
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | --                         | --                                             | OK
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | --                         | --                                             | OK
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | --                         | --                                             | OK
+============================================================================================================================================
+
+V2437_RESET_LOCAL_AFTER_CLEANUP — 2026-05-15T11:08:49Z
+{"event": "V2437_RESET_LOCAL_AFTER_CLEANUP_CHECK", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "will_reset_local": true}
+{"event": "V2437_RESET_LOCAL_AFTER_CLEANUP_RESULT", "returncode": 0}
+============================================================================================================================================
+FORCE RESET ALL LIVE LOCAL STATE
+============================================================================================================================================
+Aucun appel broker. Aucun ordre envoyé. À utiliser uniquement après POS=0 / PEND=0.
+UTC: 2026-05-15T11:08:50.380230+00:00
+============================================================================================================================================
+BACKUP data/cycles/cycle_state.json -> data/cycles/cycle_state.json.before_FORCE_RESET_ALL_LIVE_20260515_110850.bak
+BACKUP data/execution/cycle_execution_state.json -> data/execution/cycle_execution_state.json.before_FORCE_RESET_ALL_LIVE_20260515_110850.bak
+CYCLE_STATE: tous les actifs -> IDLE
+EXEC_STATE: active dict vidé, len_before=0
+EXEC_STATE: états vivants vidés
+============================================================================================================================================
+RESET LOCAL COMPLET TERMINÉ
+============================================================================================================================================
+
+
+V2437_RECONCILE_AFTER_LOCAL_RESET — 2026-05-15T11:08:50Z
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | --                         | --                                             | OK
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | --                         | --                                             | OK
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | --                         | --                                             | OK
+EURUSD     |   0 |    0 | --                         | --                                             | OK
+GBPUSD     |   0 |    0 | --                         | --                                             | OK
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | --                         | --                                             | OK
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | --                         | --                                             | OK
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | --                         | --                                             | OK
+============================================================================================================================================

@@ -1,0 +1,9 @@
+{
+  "eth_empty_confirmations": 2,
+  "first_open_armed": true,
+  "last_real_fill_level": null,
+  "last_step_level": null,
+  "reset_reason": "BROKER_ETH_EMPTY_CONFIRMED",
+  "side": "BUY",
+  "updated_ts": 1779054239.4561477
+}

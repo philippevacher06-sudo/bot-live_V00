@@ -1,0 +1,1238 @@
+# BOT_PIVOT_24_4_forced_audit_runner.py
+# V24.4.1 — RECYCLE 2/MIN — PATCH 1/5
+# ETHUSD uniquement — GOLD protégé
+# Objectif : mécanique broker fiable avant stratégie VWAP/BTC.
+#
+# FIX-1 : confirm_reference ne bloque pas si epic absent.
+# FIX-2 : récupération position créée malgré POST ambigu.
+# ADD-1 : fermeture par âge.
+# ADD-2 : limiteur local 2 ouvertures / 60 secondes.
+
+from __future__ import annotations
+
+import os
+import time
+import uuid
+import json
+import traceback
+from typing import Any, Dict, List, Optional, Tuple
+
+import requests
+
+import BOT_PIVOT_06G2_execution_secure as G
+import BOT_PIVOT_24_4_forced_audit_sampling as FAS
+
+
+ASSET = os.getenv("V244_TRADED_ASSET", "ETHUSD").upper()
+PROTECTED_ASSETS = {"GOLD"}
+
+BASE = os.getenv(
+    "CAPITAL_BASE_URL",
+    "https://demo-api-capital.backend-capital.com/api/v1"
+).rstrip("/")
+
+SLEEP_SEC = float(os.getenv("V244_RUNNER_SLEEP_SEC", "10"))
+TARGET_OPENINGS_PER_MIN = int(os.getenv("V244_TARGET_OPENINGS_PER_MIN", "2"))
+MAX_POSITIONS = int(os.getenv("V244_MAX_OPEN_POSITIONS", "2"))
+
+SIDE_MODE = os.getenv("V244_SIDE_MODE", "BUY_ONLY").upper()
+
+STOP_DISTANCE = float(os.getenv("V244_STOP_DISTANCE", "25"))
+GUARANTEED_STOP = os.getenv("V244_GUARANTEED_STOP", "1") == "1"
+
+CONFIRM_POLL_SEC = float(os.getenv("V244_CONFIRM_POLL_SEC", "1"))
+
+POSITION_BACKOFFS = [
+    float(x.strip())
+    for x in os.getenv("V244_POSITION_BACKOFFS", "1,1.5,2,3,5,8").split(",")
+    if x.strip()
+]
+
+MAX_POSITION_AGE_SEC = float(os.getenv("V244_MAX_POSITION_AGE_SEC", "25"))
+CLOSE_COOLDOWN_SEC = float(os.getenv("V244_CLOSE_COOLDOWN_SEC", "30"))
+
+PAIR_CLOSE_ENABLED = os.getenv("V244_PAIR_CLOSE_ENABLED", "0") == "1"
+
+LOCK_FILE = "data/execution/V244_FORCED_RUNNER_LOCK"
+
+# Registre local runtime : dealId -> open_ts
+_local_open_ts: Dict[str, float] = {}
+
+# Anti double-close : dealId -> last_close_attempt_ts
+_close_attempt_ts: Dict[str, float] = {}
+
+# Fenêtre glissante locale 60 s pour cadence
+_open_ts_window: List[float] = []
+
+
+# ======================================================================
+# LOG / LOCK
+# ======================================================================
+
+def log(event: str, **kw: Any) -> None:
+    try:
+        FAS.audit_log(event, **kw)
+    except Exception:
+        print(event, kw)
+
+
+def ensure_headers(headers: Dict[str, str]) -> Dict[str, str]:
+    h = dict(headers or {})
+    h.setdefault("Content-Type", "application/json")
+    h.setdefault("Accept", "application/json")
+    return h
+
+
+def lock_runner(reason: str, **kw: Any) -> None:
+    os.makedirs("data/execution", exist_ok=True)
+
+    with open(LOCK_FILE, "w", encoding="utf-8") as f:
+        f.write(f"reason={reason}\n")
+        f.write(f"ts_utc={time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}\n")
+        for k, v in kw.items():
+            try:
+                f.write(f"{k}={json.dumps(v, ensure_ascii=False)}\n")
+            except Exception:
+                f.write(f"{k}={repr(v)}\n")
+
+    log("RUNNER_LOCKED", asset=ASSET, reason=reason, **kw)
+
+
+def is_locked() -> bool:
+    return os.path.exists(LOCK_FILE)
+
+
+def refuse_if_lock_present() -> None:
+    if is_locked():
+        log("RUNNER_LOCK_PRESENT_AT_START", asset=ASSET, lock_file=LOCK_FILE)
+        raise RuntimeError(
+            f"LOCK actif : {LOCK_FILE}. "
+            f"Faire reconcile propre puis supprimer manuellement : rm -f {LOCK_FILE}"
+        )
+
+
+# ======================================================================
+# API DIRECTE CAPITAL.COM DEMO
+# ======================================================================
+
+def _demo_guard(url: str) -> Optional[Dict[str, Any]]:
+    if "demo-api-capital" not in url:
+        return {
+            "BLOCKED": True,
+            "reason": "DEMO_ONLY_URL_REQUIRED",
+            "url": url,
+        }
+    return None
+
+
+def api_get(headers: Dict[str, str], path: str) -> Tuple[int, Any]:
+    url = BASE + path
+    blocked = _demo_guard(url)
+    if blocked:
+        return 0, blocked
+
+    try:
+        r = requests.get(url, headers=ensure_headers(headers), timeout=20)
+        try:
+            data = r.json()
+        except Exception:
+            data = {"text": r.text}
+        return int(r.status_code), data
+    except Exception as e:
+        return 0, {
+            "REQUEST_EXCEPTION": True,
+            "method": "GET",
+            "path": path,
+            "exception": repr(e),
+        }
+
+
+def api_post(headers: Dict[str, str], path: str, payload: Dict[str, Any]) -> Tuple[int, Any]:
+    url = BASE + path
+    blocked = _demo_guard(url)
+    if blocked:
+        return 0, blocked
+
+    try:
+        r = requests.post(url, headers=ensure_headers(headers), json=payload, timeout=20)
+        try:
+            data = r.json()
+        except Exception:
+            data = {"text": r.text}
+        return int(r.status_code), data
+    except Exception as e:
+        return 0, {
+            "REQUEST_EXCEPTION": True,
+            "method": "POST",
+            "path": path,
+            "payload": payload,
+            "exception": repr(e),
+        }
+
+
+def api_delete(headers: Dict[str, str], path: str) -> Tuple[int, Any]:
+    url = BASE + path
+    blocked = _demo_guard(url)
+    if blocked:
+        return 0, blocked
+
+    try:
+        r = requests.delete(url, headers=ensure_headers(headers), timeout=20)
+        try:
+            data = r.json()
+        except Exception:
+            data = {"text": r.text}
+        return int(r.status_code), data
+    except Exception as e:
+        return 0, {
+            "REQUEST_EXCEPTION": True,
+            "method": "DELETE",
+            "path": path,
+            "exception": repr(e),
+        }
+
+
+# ======================================================================
+# POSITIONS + REGISTRE LOCAL
+# ======================================================================
+
+def get_positions_raw(headers: Dict[str, str]) -> List[Dict[str, Any]]:
+    status, data = api_get(headers, "/positions")
+
+    if status != 200:
+        log("RUNNER_GET_POSITIONS_ERROR", asset=ASSET, status=status, response=data)
+        raise RuntimeError(f"GET /positions failed status={status} data={data}")
+
+    positions = data.get("positions", []) if isinstance(data, dict) else []
+
+    log(
+        "RUNNER_GET_POSITIONS_OK",
+        asset=ASSET,
+        status=status,
+        total_positions=len(positions),
+        raw=data,
+    )
+
+    return positions
+
+
+def position_epic(item: Dict[str, Any]) -> str:
+    if not isinstance(item, dict):
+        return ""
+
+    market = item.get("market", {}) if isinstance(item.get("market"), dict) else {}
+    position = item.get("position", {}) if isinstance(item.get("position"), dict) else {}
+
+    return str(
+        market.get("epic")
+        or position.get("epic")
+        or item.get("epic")
+        or ""
+    ).upper()
+
+
+def normalize_position(item: Dict[str, Any]) -> Dict[str, Any]:
+    market = item.get("market", {}) if isinstance(item.get("market"), dict) else {}
+    position = item.get("position", {}) if isinstance(item.get("position"), dict) else {}
+
+    def fnum(v: Any, default: float = 0.0) -> float:
+        try:
+            if v is None:
+                return default
+            return float(v)
+        except Exception:
+            return default
+
+    return {
+        "epic": str(market.get("epic") or position.get("epic") or item.get("epic") or "").upper(),
+        "dealId": position.get("dealId") or item.get("dealId"),
+        "dealReference": position.get("dealReference") or item.get("dealReference"),
+        "workingOrderId": position.get("workingOrderId") or item.get("workingOrderId"),
+        "size": fnum(position.get("size") or item.get("size")),
+        "direction": position.get("direction") or item.get("direction"),
+        "level": fnum(position.get("level") or item.get("level")),
+        "upl": fnum(position.get("upl") or item.get("upl")),
+        "guaranteedStop": bool(position.get("guaranteedStop") or item.get("guaranteedStop")),
+        "raw": item,
+    }
+
+
+def asset_positions(headers: Dict[str, str], asset: str = ASSET) -> List[Dict[str, Any]]:
+    raw_positions = get_positions_raw(headers)
+    out: List[Dict[str, Any]] = []
+
+    for item in raw_positions:
+        epic = position_epic(item)
+
+        # GOLD est protégé : jamais retourné à la logique ETH.
+        if epic in PROTECTED_ASSETS:
+            log(
+                "RUNNER_PROTECTED_POSITION_SKIPPED",
+                asset=ASSET,
+                protected_epic=epic,
+                raw=item,
+            )
+            continue
+
+        if epic == asset:
+            out.append(normalize_position(item))
+
+    log(
+        "RUNNER_ASSET_POSITIONS",
+        asset=asset,
+        count=len(out),
+        dealIds=[p.get("dealId") for p in out],
+        sizes=[p.get("size") for p in out],
+        upls=[p.get("upl") for p in out],
+    )
+
+    return out
+
+
+def mark_open(deal_id: str, opened_ts: Optional[float] = None) -> None:
+    if not deal_id:
+        return
+
+    did = str(deal_id)
+    if did not in _local_open_ts:
+        _local_open_ts[did] = opened_ts or time.time()
+        log(
+            "RUNNER_MARK_OPEN",
+            asset=ASSET,
+            dealId=did,
+            opened_ts=_local_open_ts[did],
+        )
+
+
+def unmark_open(deal_id: str) -> None:
+    if not deal_id:
+        return
+
+    did = str(deal_id)
+    if did in _local_open_ts:
+        _local_open_ts.pop(did, None)
+        log(
+            "RUNNER_UNMARK_OPEN",
+            asset=ASSET,
+            dealId=did,
+        )
+
+
+def mark_close_attempt(deal_id: str) -> None:
+    if deal_id:
+        _close_attempt_ts[str(deal_id)] = time.time()
+
+
+def close_recently_attempted(deal_id: str) -> bool:
+    if not deal_id:
+        return False
+
+    last = _close_attempt_ts.get(str(deal_id))
+
+    if not last:
+        return False
+
+    return (time.time() - last) < CLOSE_COOLDOWN_SEC
+
+
+def sync_local_open_registry(headers: Dict[str, str]) -> None:
+    """
+    Enregistre localement les positions ETH visibles mais pas encore connues.
+    Utile si le runner redémarre alors qu'une position ETH existe déjà.
+    GOLD reste ignoré.
+    """
+    now = time.time()
+    positions = asset_positions(headers, ASSET)
+
+    for p in positions:
+        did = p.get("dealId")
+        if did and str(did) not in _local_open_ts:
+            _local_open_ts[str(did)] = now
+            log(
+                "RUNNER_LOCAL_OPEN_SYNC",
+                asset=ASSET,
+                dealId=did,
+                reason="VISIBLE_POSITION_NOT_IN_LOCAL_REGISTRY",
+                position=p,
+            )
+
+
+def local_age_sec(deal_id: str) -> Optional[float]:
+    if not deal_id:
+        return None
+
+    ts = _local_open_ts.get(str(deal_id))
+    if not ts:
+        return None
+
+    return max(0.0, time.time() - ts)
+
+
+def position_ids(positions: List[Dict[str, Any]]) -> set:
+    return {str(p.get("dealId")) for p in positions if p.get("dealId")}
+
+
+# ======================================================================
+# CONFIRM / DEAL ID RESOLUTION / RECUPERATION POST AMBIGU
+# ======================================================================
+
+def extract_deal_candidates(confirm: Dict[str, Any]) -> List[Dict[str, Any]]:
+    candidates: List[Dict[str, Any]] = []
+
+    main = confirm.get("dealId")
+    if main:
+        candidates.append({
+            "source": "confirm.dealId",
+            "dealId": str(main),
+            "status": confirm.get("status"),
+        })
+
+    affected = confirm.get("affectedDeals") or []
+    if isinstance(affected, list):
+        for i, item in enumerate(affected):
+            if not isinstance(item, dict):
+                continue
+            did = item.get("dealId")
+            if did:
+                candidates.append({
+                    "source": f"affectedDeals[{i}].dealId",
+                    "dealId": str(did),
+                    "status": item.get("status"),
+                })
+
+    seen = set()
+    unique = []
+    for c in candidates:
+        did = c.get("dealId")
+        if did and did not in seen:
+            unique.append(c)
+            seen.add(did)
+
+    return unique
+
+
+def resolve_real_deal_id(
+    headers: Dict[str, str],
+    confirm: Dict[str, Any],
+) -> Tuple[bool, Optional[str], Optional[Dict[str, Any]], Dict[str, Any]]:
+    candidates = extract_deal_candidates(confirm)
+    candidate_ids = [c["dealId"] for c in candidates if c.get("dealId")]
+
+    log(
+        "RUNNER_DEAL_ID_CANDIDATES",
+        asset=ASSET,
+        dealReference=confirm.get("dealReference"),
+        candidates=candidates,
+    )
+
+    if not candidate_ids:
+        return False, None, None, {
+            "reason": "NO_DEAL_ID_CANDIDATES",
+            "confirm": confirm,
+        }
+
+    last_seen_positions: List[Dict[str, Any]] = []
+
+    for attempt, delay in enumerate(POSITION_BACKOFFS, start=1):
+        time.sleep(delay)
+
+        positions = asset_positions(headers, ASSET)
+        last_seen_positions = positions
+
+        visible_ids = [str(p.get("dealId")) for p in positions if p.get("dealId")]
+
+        log(
+            "RUNNER_RESOLVE_DEAL_ID_ATTEMPT",
+            asset=ASSET,
+            attempt=attempt,
+            delay=delay,
+            candidate_ids=candidate_ids,
+            visible_ids=visible_ids,
+            positions=positions,
+        )
+
+        for p in positions:
+            did = str(p.get("dealId"))
+            if did in candidate_ids:
+                mark_open(did)
+                log(
+                    "RUNNER_REAL_DEAL_ID_RESOLVED",
+                    asset=ASSET,
+                    real_deal_id=did,
+                    matched_position=p,
+                    attempt=attempt,
+                )
+                return True, did, p, {
+                    "attempt": attempt,
+                    "candidate_ids": candidate_ids,
+                    "visible_ids": visible_ids,
+                }
+
+    return False, None, None, {
+        "reason": "NO_CANDIDATE_VISIBLE_AFTER_BACKOFF",
+        "candidate_ids": candidate_ids,
+        "last_seen_positions": last_seen_positions,
+        "confirm": confirm,
+    }
+
+
+def confirm_reference(headers: Dict[str, str], deal_ref: str) -> Tuple[bool, Dict[str, Any]]:
+    """
+    FIX-1 :
+    Capital.com ne renvoie pas toujours epic dans /confirms.
+    On échoue seulement si epic est présent ET différent de ASSET.
+    """
+    time.sleep(CONFIRM_POLL_SEC)
+
+    status, data = api_get(headers, f"/confirms/{deal_ref}")
+
+    epic = data.get("epic") if isinstance(data, dict) else None
+    epic_ok = (not epic) or (str(epic).upper() == ASSET)
+
+    ok = (
+        status == 200
+        and isinstance(data, dict)
+        and data.get("dealStatus") == "ACCEPTED"
+        and epic_ok
+        and bool(data.get("dealId") or data.get("affectedDeals"))
+    )
+
+    log(
+        "RUNNER_CONFIRM_RESULT",
+        asset=ASSET,
+        dealReference=deal_ref,
+        status=status,
+        ok=ok,
+        epic_present=bool(epic),
+        epic=epic,
+        confirm=data,
+    )
+
+    return ok, data if isinstance(data, dict) else {"raw": data}
+
+
+def _verify_new_position_after_open(
+    headers: Dict[str, str],
+    before_positions: List[Dict[str, Any]],
+    reason: str,
+    context: Dict[str, Any],
+) -> Tuple[bool, Optional[str], Optional[Dict[str, Any]], Dict[str, Any]]:
+    """
+    FIX-2 :
+    Sur POST ambigu ou confirm/résolution échouée, on vérifie par différence
+    si une nouvelle position ETH est apparue dans /positions.
+    """
+    before_ids = position_ids(before_positions)
+    last_positions: List[Dict[str, Any]] = []
+
+    for attempt, delay in enumerate(POSITION_BACKOFFS, start=1):
+        time.sleep(delay)
+
+        after_positions = asset_positions(headers, ASSET)
+        last_positions = after_positions
+        after_ids = position_ids(after_positions)
+        new_ids = sorted(after_ids - before_ids)
+
+        log(
+            "RUNNER_VERIFY_NEW_POSITION_AFTER_OPEN",
+            asset=ASSET,
+            reason=reason,
+            attempt=attempt,
+            delay=delay,
+            before_ids=sorted(before_ids),
+            after_ids=sorted(after_ids),
+            new_ids=new_ids,
+            context=context,
+        )
+
+        if new_ids:
+            real_id = new_ids[0]
+            matched = None
+
+            for p in after_positions:
+                if str(p.get("dealId")) == real_id:
+                    matched = p
+                    break
+
+            mark_open(real_id)
+
+            log(
+                "RUNNER_OPEN_RECOVERED_BY_POSITION_DIFF",
+                asset=ASSET,
+                real_deal_id=real_id,
+                matched_position=matched,
+                reason=reason,
+                context=context,
+            )
+
+            return True, real_id, matched, {
+                "stage": "OPEN_RECOVERED_BY_POSITION_DIFF",
+                "reason": reason,
+                "before_ids": sorted(before_ids),
+                "new_ids": new_ids,
+                "context": context,
+            }
+
+    return False, None, None, {
+        "stage": "POST_POSITION_FAILED_VERIFIED_ABSENT",
+        "reason": reason,
+        "before_ids": sorted(before_ids),
+        "last_seen_positions": last_positions,
+        "context": context,
+    }
+
+
+# ======================================================================
+# OPEN / CLOSE / AGE RECYCLE
+# ======================================================================
+
+def next_side_and_size() -> Tuple[str, float, int]:
+    side, size, seq = FAS.next_forced_order()
+
+    if SIDE_MODE == "BUY_ONLY":
+        side = "BUY"
+    elif SIDE_MODE == "SELL_ONLY":
+        side = "SELL"
+    elif SIDE_MODE == "ALTERNATE":
+        pass
+    else:
+        side = "BUY"
+
+    return side, float(size), int(seq)
+
+
+def open_market_broker_safe(
+    headers: Dict[str, str],
+    side: str,
+    size: float,
+    seq: int,
+) -> Tuple[bool, Dict[str, Any]]:
+    before_positions = asset_positions(headers, ASSET)
+
+    client_ref = f"V2441_RECYCLE_{int(time.time())}_{seq}_{uuid.uuid4().hex[:6]}"
+
+    payload = {
+        "epic": ASSET,
+        "direction": side,
+        "size": float(size),
+        "orderType": "MARKET",
+        "guaranteedStop": GUARANTEED_STOP,
+        "forceOpen": True,
+        "stopDistance": STOP_DISTANCE,
+    }
+
+    log(
+        "RUNNER_DIRECT_OPEN_REQUEST",
+        asset=ASSET,
+        side=side,
+        size=size,
+        seq=seq,
+        client_ref=client_ref,
+        payload=payload,
+    )
+
+    status, data = api_post(headers, "/positions", payload)
+
+    log(
+        "RUNNER_DIRECT_OPEN_RESPONSE",
+        asset=ASSET,
+        side=side,
+        size=size,
+        seq=seq,
+        status=status,
+        response=data,
+    )
+
+    # POST ambigu : exception, status 0, pas de dealReference.
+    # On vérifie quand même /positions par différence.
+    if status not in (200, 201) or not isinstance(data, dict) or not data.get("dealReference"):
+        recovered_ok, real_deal_id, visible_position, recovery_debug = _verify_new_position_after_open(
+            headers=headers,
+            before_positions=before_positions,
+            reason="POST_AMBIGUOUS_OR_FAILED",
+            context={
+                "status": status,
+                "response": data,
+                "payload": payload,
+            },
+        )
+
+        if recovered_ok:
+            return True, {
+                "stage": "OPEN_RECOVERED_POST_AMBIGUOUS",
+                "real_deal_id": real_deal_id,
+                "position": visible_position,
+                "recovery_debug": recovery_debug,
+                "payload": payload,
+            }
+
+        return False, {
+            "stage": "POST_POSITION_FAILED_VERIFIED_ABSENT",
+            "status": status,
+            "response": data,
+            "recovery_debug": recovery_debug,
+            "payload": payload,
+        }
+
+    deal_ref = data["dealReference"]
+
+    confirm_ok, confirm = confirm_reference(headers, deal_ref)
+
+    if not confirm_ok:
+        recovered_ok, real_deal_id, visible_position, recovery_debug = _verify_new_position_after_open(
+            headers=headers,
+            before_positions=before_positions,
+            reason="CONFIRM_NOT_ACCEPTED_OR_UNAVAILABLE",
+            context={
+                "dealReference": deal_ref,
+                "confirm": confirm,
+                "payload": payload,
+            },
+        )
+
+        if recovered_ok:
+            return True, {
+                "stage": "OPEN_RECOVERED_CONFIRM_FAILED",
+                "dealReference": deal_ref,
+                "real_deal_id": real_deal_id,
+                "position": visible_position,
+                "confirm": confirm,
+                "recovery_debug": recovery_debug,
+                "payload": payload,
+            }
+
+        lock_runner(
+            "CONFIRM_NOT_ACCEPTED_AND_NO_POSITION_RECOVERED",
+            dealReference=deal_ref,
+            confirm=confirm,
+            recovery_debug=recovery_debug,
+        )
+
+        return False, {
+            "stage": "CONFIRM_NOT_ACCEPTED_AND_NO_POSITION_RECOVERED",
+            "dealReference": deal_ref,
+            "confirm": confirm,
+            "recovery_debug": recovery_debug,
+        }
+
+    resolved_ok, real_deal_id, visible_position, resolve_debug = resolve_real_deal_id(headers, confirm)
+
+    if not resolved_ok:
+        recovered_ok, recovered_deal_id, recovered_position, recovery_debug = _verify_new_position_after_open(
+            headers=headers,
+            before_positions=before_positions,
+            reason="CONFIRMED_BUT_CANDIDATE_NOT_VISIBLE",
+            context={
+                "dealReference": deal_ref,
+                "confirm": confirm,
+                "resolve_debug": resolve_debug,
+                "payload": payload,
+            },
+        )
+
+        if recovered_ok:
+            return True, {
+                "stage": "OPEN_RECOVERED_CANDIDATE_NOT_VISIBLE",
+                "dealReference": deal_ref,
+                "real_deal_id": recovered_deal_id,
+                "position": recovered_position,
+                "confirm": confirm,
+                "resolve_debug": resolve_debug,
+                "recovery_debug": recovery_debug,
+                "payload": payload,
+            }
+
+        lock_runner(
+            "CONFIRMED_BUT_NO_POSITION_VISIBLE_AFTER_RECOVERY",
+            dealReference=deal_ref,
+            confirm=confirm,
+            resolve_debug=resolve_debug,
+            recovery_debug=recovery_debug,
+        )
+
+        return False, {
+            "stage": "CONFIRMED_BUT_NO_POSITION_VISIBLE_AFTER_RECOVERY",
+            "dealReference": deal_ref,
+            "confirm": confirm,
+            "resolve_debug": resolve_debug,
+            "recovery_debug": recovery_debug,
+        }
+
+    return True, {
+        "stage": "OPEN_CONFIRMED_AND_VISIBLE",
+        "dealReference": deal_ref,
+        "real_deal_id": real_deal_id,
+        "confirm": confirm,
+        "position": visible_position,
+        "resolve_debug": resolve_debug,
+        "payload": payload,
+    }
+
+
+def close_eth_position_direct(
+    headers: Dict[str, str],
+    deal_id: str,
+    reason: str = "V2441_DIRECT_CLOSE",
+) -> Tuple[bool, Dict[str, Any]]:
+    positions = asset_positions(headers, ASSET)
+    target = None
+
+    for p in positions:
+        if str(p.get("dealId")) == str(deal_id):
+            target = p
+            break
+
+    if not target:
+        return False, {
+            "stage": "DEAL_ID_NOT_VISIBLE_BEFORE_CLOSE",
+            "dealId": deal_id,
+            "visible_dealIds": [p.get("dealId") for p in positions],
+        }
+
+    if target.get("epic") in PROTECTED_ASSETS:
+        return False, {
+            "stage": "PROTECTED_ASSET_CLOSE_BLOCKED",
+            "position": target,
+        }
+
+    mark_close_attempt(deal_id)
+
+    status, data = api_delete(headers, f"/positions/{deal_id}")
+
+    log(
+        "RUNNER_DIRECT_CLOSE_RESPONSE",
+        asset=ASSET,
+        dealId=deal_id,
+        status=status,
+        response=data,
+        reason=reason,
+        target=target,
+    )
+
+    close_ref = data.get("dealReference") if isinstance(data, dict) else None
+    confirm_close = None
+
+    if close_ref:
+        time.sleep(1)
+        cstatus, cdata = api_get(headers, f"/confirms/{close_ref}")
+        confirm_close = {
+            "status": cstatus,
+            "data": cdata,
+        }
+
+        log(
+            "RUNNER_DIRECT_CLOSE_CONFIRM",
+            asset=ASSET,
+            dealId=deal_id,
+            closeReference=close_ref,
+            status=cstatus,
+            confirm=cdata,
+        )
+
+    # Vérification disparition de /positions
+    still_visible = True
+    last_positions = []
+
+    for attempt, delay in enumerate(POSITION_BACKOFFS, start=1):
+        time.sleep(delay)
+        positions_after = asset_positions(headers, ASSET)
+        last_positions = positions_after
+        ids_after = position_ids(positions_after)
+
+        log(
+            "RUNNER_CLOSE_VISIBILITY_CHECK",
+            asset=ASSET,
+            dealId=deal_id,
+            attempt=attempt,
+            delay=delay,
+            ids_after=sorted(ids_after),
+        )
+
+        if str(deal_id) not in ids_after:
+            still_visible = False
+            break
+
+    ok = status in (200, 201) and not still_visible
+
+    if ok:
+        unmark_open(deal_id)
+
+    return ok, {
+        "stage": "CLOSE_SENT_AND_CHECKED",
+        "dealId": deal_id,
+        "status": status,
+        "response": data,
+        "confirm_close": confirm_close,
+        "still_visible": still_visible,
+        "last_positions": last_positions,
+    }
+
+
+def register_close_safe(deal_id: str, reason: str, extra: Dict[str, Any]) -> None:
+    """
+    FAS.register_close peut être absent selon la version du module FAS.
+    On ne casse jamais la boucle pour ça.
+    """
+    try:
+        fn = getattr(FAS, "register_close", None)
+        if callable(fn):
+            fn(
+                asset=ASSET,
+                dealId=deal_id,
+                reason=reason,
+                extra=extra,
+            )
+        else:
+            log(
+                "RUNNER_FAS_REGISTER_CLOSE_MISSING",
+                asset=ASSET,
+                dealId=deal_id,
+                reason=reason,
+                extra=extra,
+            )
+    except Exception as e:
+        log(
+            "RUNNER_FAS_REGISTER_CLOSE_EXCEPTION",
+            asset=ASSET,
+            dealId=deal_id,
+            reason=reason,
+            exception=repr(e),
+            extra=extra,
+        )
+
+
+def close_aged_positions(headers: Dict[str, str]) -> None:
+    """
+    ADD-1 :
+    Ferme toute position ETH dont l'âge local dépasse MAX_POSITION_AGE_SEC.
+    Une position visible mais inconnue localement est enregistrée puis vieillit normalement.
+    GOLD ne remonte jamais ici car asset_positions l'exclut.
+    """
+    sync_local_open_registry(headers)
+
+    positions = asset_positions(headers, ASSET)
+
+    for p in positions:
+        did = p.get("dealId")
+        if not did:
+            continue
+
+        did = str(did)
+        age = local_age_sec(did)
+
+        if age is None:
+            mark_open(did)
+            age = local_age_sec(did)
+
+        log(
+            "RUNNER_POSITION_AGE",
+            asset=ASSET,
+            dealId=did,
+            age_sec=age,
+            max_age_sec=MAX_POSITION_AGE_SEC,
+            position=p,
+        )
+
+        if age is None:
+            continue
+
+        if age < MAX_POSITION_AGE_SEC:
+            continue
+
+        if close_recently_attempted(did):
+            log(
+                "RUNNER_CLOSE_BY_AGE_SKIPPED_COOLDOWN",
+                asset=ASSET,
+                dealId=did,
+                age_sec=age,
+                cooldown_sec=CLOSE_COOLDOWN_SEC,
+            )
+            continue
+
+        ok, info = close_eth_position_direct(
+            headers=headers,
+            deal_id=did,
+            reason="V2441_CLOSE_BY_AGE",
+        )
+
+        log(
+            "RUNNER_CLOSE_BY_AGE",
+            asset=ASSET,
+            dealId=did,
+            age_sec=age,
+            ok=ok,
+            info=info,
+        )
+
+        if ok:
+            register_close_safe(
+                deal_id=did,
+                reason="V2441_CLOSE_BY_AGE",
+                extra=info,
+            )
+        else:
+            # Si fermeture demandée mais non vérifiée, on verrouille.
+            lock_runner(
+                "CLOSE_BY_AGE_FAILED",
+                dealId=did,
+                age_sec=age,
+                info=info,
+            )
+            return
+
+
+def close_pair_mechanical_if_enabled(headers: Dict[str, str]) -> None:
+    """
+    Présent mais désactivé par défaut.
+    V24.4.1 : la paire reste hors stratégie, activation uniquement test mécanique.
+    """
+    if not PAIR_CLOSE_ENABLED:
+        return
+
+    positions = asset_positions(headers, ASSET)
+
+    records = []
+    for p in positions:
+        records.append({
+            "asset": ASSET,
+            "epic": ASSET,
+            "dealId": p.get("dealId"),
+            "brokerDealId": p.get("dealId"),
+            "size": p.get("size"),
+            "direction": p.get("direction"),
+            "broker_upl": p.get("upl"),
+            "raw": p,
+        })
+
+    pair = FAS.select_close_pair_from_records(ASSET, records)
+
+    if not pair:
+        log("RUNNER_PAIR_NO_MATCH", asset=ASSET, count=len(records))
+        return
+
+    weak, strong = pair
+
+    log("RUNNER_PAIR_SELECTED_MECHANICAL", asset=ASSET, weak=weak, strong=strong)
+
+    closed = []
+
+    for rec in (weak, strong):
+        did = rec.get("brokerDealId") or rec.get("dealId")
+        if not did:
+            closed.append({"dealId": None, "ok": False, "reason": "MISSING_DEAL_ID"})
+            continue
+
+        ok, info = close_eth_position_direct(
+            headers=headers,
+            deal_id=did,
+            reason="V2441_PAIR_MECHANICAL_CLOSE",
+        )
+
+        closed.append({
+            "dealId": did,
+            "ok": ok,
+            "info": info,
+        })
+
+    try:
+        FAS.register_close_pair(ASSET, weak, strong, reason="V2441_PAIR_MECHANICAL_CLOSE")
+    except Exception as e:
+        log("RUNNER_REGISTER_CLOSE_PAIR_EXCEPTION", asset=ASSET, exception=repr(e))
+
+    log("RUNNER_PAIR_CLOSE_DONE", asset=ASSET, closed=closed)
+
+
+# ======================================================================
+# RATE LIMITER LOCAL — 2 OUVERTURES / 60 SECONDES
+# ======================================================================
+
+def prune_open_window(now: Optional[float] = None) -> None:
+    now = now or time.time()
+    cutoff = now - 60.0
+
+    while _open_ts_window and _open_ts_window[0] < cutoff:
+        _open_ts_window.pop(0)
+
+
+def opens_last_60s() -> int:
+    prune_open_window()
+    return len(_open_ts_window)
+
+
+def can_open_now() -> Tuple[bool, Dict[str, Any]]:
+    now = time.time()
+    prune_open_window(now)
+
+    count = len(_open_ts_window)
+
+    if count >= TARGET_OPENINGS_PER_MIN:
+        return False, {
+            "reason": "RATE_LIMIT_REACHED",
+            "opens_last_60s": count,
+            "target_openings_per_min": TARGET_OPENINGS_PER_MIN,
+            "window": list(_open_ts_window),
+        }
+
+    return True, {
+        "reason": "RATE_LIMIT_OK",
+        "opens_last_60s": count,
+        "target_openings_per_min": TARGET_OPENINGS_PER_MIN,
+    }
+
+
+def register_open_window() -> None:
+    _open_ts_window.append(time.time())
+    prune_open_window()
+
+
+# ======================================================================
+# MAIN LOOP
+# ======================================================================
+
+def main() -> None:
+    FAS.safety_banner()
+
+    if ASSET in PROTECTED_ASSETS:
+        raise RuntimeError(f"ASSET {ASSET} is protected and cannot be traded")
+
+    refuse_if_lock_present()
+
+    log(
+        "RUNNER_V2441_START",
+        asset=ASSET,
+        protected_assets=list(PROTECTED_ASSETS),
+        target_openings_per_min=TARGET_OPENINGS_PER_MIN,
+        sleep_sec=SLEEP_SEC,
+        max_positions=MAX_POSITIONS,
+        side_mode=SIDE_MODE,
+        guaranteed_stop=GUARANTEED_STOP,
+        stop_distance=STOP_DISTANCE,
+        max_position_age_sec=MAX_POSITION_AGE_SEC,
+        close_cooldown_sec=CLOSE_COOLDOWN_SEC,
+        pair_close_enabled=PAIR_CLOSE_ENABLED,
+        backoffs=POSITION_BACKOFFS,
+        base=BASE,
+    )
+
+    headers = ensure_headers(G.login())
+    log("RUNNER_LOGIN_OK", asset=ASSET)
+
+    while True:
+        try:
+            if is_locked():
+                log("RUNNER_HALTED_BY_LOCK", asset=ASSET, lock_file=LOCK_FILE)
+                time.sleep(60)
+                continue
+
+            # 1. Synchroniser les positions visibles.
+            sync_local_open_registry(headers)
+
+            # 2. Fermer les positions âgées pour recycler les slots.
+            close_aged_positions(headers)
+
+            # 3. Fermeture par paire mécanique uniquement si activée explicitement.
+            close_pair_mechanical_if_enabled(headers)
+
+            # 4. Relire les positions après éventuelles fermetures.
+            positions = asset_positions(headers, ASSET)
+
+            rate_ok, rate_info = can_open_now()
+
+            log(
+                "RUNNER_STATUS",
+                asset=ASSET,
+                open_positions=len(positions),
+                open_dealIds=[p.get("dealId") for p in positions],
+                opens_last_60s=opens_last_60s(),
+                target_openings_per_min=TARGET_OPENINGS_PER_MIN,
+                max_positions=MAX_POSITIONS,
+                rate_ok=rate_ok,
+                rate_info=rate_info,
+                local_open_registry=dict(_local_open_ts),
+            )
+
+            # 5. Blocage si MAX_POSITIONS atteint.
+            if len(positions) >= MAX_POSITIONS:
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason="MAX_POSITIONS_REACHED",
+                    open_positions=len(positions),
+                    max_positions=MAX_POSITIONS,
+                    dealIds=[p.get("dealId") for p in positions],
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            # 6. Blocage si cadence 60 s atteinte.
+            if not rate_ok:
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason=rate_info.get("reason"),
+                    rate_info=rate_info,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            # 7. Ouverture au plus une position par itération.
+            side, size, seq = next_side_and_size()
+
+            ok, info = open_market_broker_safe(
+                headers=headers,
+                side=side,
+                size=size,
+                seq=seq,
+            )
+
+            log(
+                "RUNNER_OPEN_RESULT",
+                asset=ASSET,
+                side=side,
+                size=size,
+                seq=seq,
+                ok=ok,
+                info=info,
+            )
+
+            if ok:
+                register_open_window()
+
+                try:
+                    FAS.register_open(
+                        asset=ASSET,
+                        side=side,
+                        size=size,
+                        reason="V2441_RECYCLE_CONFIRMED_VISIBLE_OPEN",
+                        extra=info,
+                    )
+                except Exception as e:
+                    log(
+                        "RUNNER_FAS_REGISTER_OPEN_EXCEPTION",
+                        asset=ASSET,
+                        exception=repr(e),
+                        info=info,
+                    )
+
+            time.sleep(SLEEP_SEC)
+
+        except Exception as e:
+            msg = str(e)
+
+            log(
+                "RUNNER_EXCEPTION",
+                asset=ASSET,
+                exception=msg,
+                traceback=traceback.format_exc().replace("\n", " / "),
+            )
+
+            if "429" in msg or "too-many" in msg.lower() or "session" in msg.lower():
+                time.sleep(120)
+                headers = ensure_headers(G.login())
+                log("RUNNER_RELOGIN_OK", asset=ASSET)
+            else:
+                time.sleep(20)
+
+
+if __name__ == "__main__":
+    main()

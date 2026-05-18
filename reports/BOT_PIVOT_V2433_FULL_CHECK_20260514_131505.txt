@@ -1,0 +1,971 @@
+========================================================================================================================
+BOT-PIVOT V24.3.3 — FULL CHECK DEPUIS RELANCE
+========================================================================================================================
+Thu May 14 13:15:05 UTC 2026
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260514_124511.log
+LINES=3972
+
+========================================================================================================================
+1) RECONCILE BROKER / LOCAL — LECTURE SEULE
+========================================================================================================================
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | --                         | --                                             | OK
+US100      |   0 |    0 | --                         | --                                             | OK
+US30       |   0 |    0 | --                         | --                                             | OK
+DE40       |   0 |    0 | --                         | --                                             | OK
+FR40       |   0 |    0 | --                         | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | --                         | --                                             | OK
+EURUSD     |   0 |    0 | --                         | --                                             | OK
+GBPUSD     |   0 |    0 | --                         | --                                             | OK
+USDJPY     |   0 |    0 | --                         | --                                             | OK
+EURJPY     |   0 |    0 | --                         | --                                             | OK
+GOLD       |   0 |    0 | --                         | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | --                         | --                                             | OK
+BTCUSD     |   0 |    0 | --                         | --                                             | OK
+ETHUSD     |   0 |    0 | --                         | --                                             | OK
+============================================================================================================================================
+
+========================================================================================================================
+2) SANTÉ GÉNÉRALE DU LOG
+========================================================================================================================
+
+========================================================================================================================
+3) PATCHS PRÉSENTS DANS LE CODE
+========================================================================================================================
+1305:    # V24.3.3_TARGETED_LIMIT_ARMING_DISTANCE
+1312:            _v2433_os.getenv("V2433_LIMIT_ARMING_ENABLED", "1")
+1316:            _v2433_os.getenv("V2433_LIMIT_ARMING_STEP_MULT", "1.5")
+1340:                        f"{asset:10s} | BASKET_ARMING_DELAYED | "
+1354:                            "event": "BASKET_ARMING_DELAYED",
+
+========================================================================================================================
+4) COMPILATION DU MODULE EXECUTION
+========================================================================================================================
+COMPILE_06G2=0
+
+========================================================================================================================
+5) CYCLES 07D
+========================================================================================================================
+3:Début UTC       : 2026-05-14 12:45:11
+16:REFRESH CONTEXTE — 06C MARKET RULES — 2026-05-14T12:45:11Z
+44:REFRESH 06C OK
+47:REFRESH CONTEXTE — 01 HISTORICAL M15 30D — 2026-05-14T12:45:15Z
+146:REFRESH CONTEXTE — 02 ZONES / PIVOTS — 2026-05-14T12:45:45Z
+392:07D — CYCLE 1 — 2026-05-14T12:45:46Z
+409:2026-05-14 12:45:47,309 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+586:07D — CYCLE 2 — 2026-05-14T12:46:46Z
+603:2026-05-14 12:46:46,809 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+764:07D — CYCLE 3 — 2026-05-14T12:47:43Z
+781:2026-05-14 12:47:44,202 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+942:07D — CYCLE 4 — 2026-05-14T12:48:40Z
+959:2026-05-14 12:48:40,677 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1115:07D — CYCLE 5 — 2026-05-14T12:49:36Z
+1132:2026-05-14 12:49:37,244 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1295:07D — CYCLE 6 — 2026-05-14T12:50:32Z
+1312:2026-05-14 12:50:33,127 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1469:07D — CYCLE 7 — 2026-05-14T12:51:30Z
+1486:2026-05-14 12:51:31,159 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1641:07D — CYCLE 8 — 2026-05-14T12:52:27Z
+1658:2026-05-14 12:52:27,999 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1820:07D — CYCLE 9 — 2026-05-14T12:53:22Z
+1837:2026-05-14 12:53:23,534 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1957:07D — CYCLE 10 — 2026-05-14T12:54:18Z
+1974:2026-05-14 12:54:18,990 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2137:07D — CYCLE 11 — 2026-05-14T12:55:13Z
+2154:2026-05-14 12:55:14,583 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2316:07D — CYCLE 12 — 2026-05-14T12:56:10Z
+2333:2026-05-14 12:56:11,005 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2503:07D — CYCLE 13 — 2026-05-14T12:57:06Z
+2520:2026-05-14 12:57:07,224 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2688:07D — CYCLE 14 — 2026-05-14T12:58:04Z
+2705:2026-05-14 12:58:04,718 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2875:07D — CYCLE 15 — 2026-05-14T12:59:00Z
+2892:2026-05-14 12:59:01,361 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3048:07D — CYCLE 16 — 2026-05-14T12:59:56Z
+3065:2026-05-14 12:59:57,076 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3234:07D — CYCLE 17 — 2026-05-14T13:00:55Z
+3251:2026-05-14 13:00:56,051 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3416:07D — CYCLE 18 — 2026-05-14T13:01:54Z
+3433:2026-05-14 13:01:54,952 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3592:07D — CYCLE 19 — 2026-05-14T13:02:50Z
+3609:2026-05-14 13:02:50,768 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3773:07D — CYCLE 20 — 2026-05-14T13:03:46Z
+3790:2026-05-14 13:03:47,243 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3955:07D — CYCLE 21 — 2026-05-14T13:04:42Z
+3972:2026-05-14 13:04:43,640 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+========================================================================================================================
+6) ÉVÉNEMENTS TRADING PRINCIPAUX
+========================================================================================================================
+547:US100      | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | BUY  | L1=29405.8 L2=29393.8 L3=29381.8 | market_bid=29408.1 market_ask=29409.9 | BUY_L1_TOO_CLOSE_OR_ABOVE_MARKET distance=2.3000000000 min=2.7000000000
+548:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+552:DE40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=24496.6 L2=24508.6 L3=24520.6 | market_bid=24419.9 market_ask=24421.4 | distance=75.2000000000 max_dist=45.0000000000
+553:DE40       | BASKET_REJECT | 1-3 | SELL | 0.051000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+559:EURUSD     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | BUY  | L1=1.16962 L2=1.16938 L3=1.16914 | market_bid=1.16972 market_ask=1.16979 | BUY_L1_TOO_CLOSE_OR_ABOVE_MARKET distance=0.0001000000 min=0.0001050000
+560:EURUSD     | BASKET_REJECT | 1-3 | BUY  | 1500.000000 | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+565:EURJPY     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | BUY  | L1=184.762 L2=184.714 L3=184.666 | market_bid=184.772 market_ask=184.795 | BUY_L1_TOO_CLOSE_OR_ABOVE_MARKET distance=0.0100000000 min=0.0345000000
+566:EURJPY     | BASKET_REJECT | 1-3 | BUY  | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+569:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=4689.93136 BB_MID=4698.82050 BB_HIGH=4707.70964 width=17.77829 required=8.00000 L1=4688.33 L2=4684.33 L3=4680.33 dist=9.6600000000 max_dist=22.0000000000 dist_ratio=0.439
+570:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4689.93136 | BB_MID=4698.82050 | BB_HIGH=4707.70964 | L1=4688.33 | L2=4684.33 | L3=4680.33 | BUFFER=1.6 | STEP=4.0
+571:GOLD       | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4688.33 L2=4684.33 dist=9.6600000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.415 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+577:ETHUSD     | BASKET_REJECT | 1-3 | SELL | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+747:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=4690.00252 BB_MID=4698.88000 BB_HIGH=4707.75748 width=17.75496 required=8.00000 L1=4688.4 L2=4684.4 L3=4680.4 dist=9.5900000000 max_dist=22.0000000000 dist_ratio=0.436
+748:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4690.00252 | BB_MID=4698.88000 | BB_HIGH=4707.75748 | L1=4688.4 | L2=4684.4 | L3=4680.4 | BUFFER=1.6 | STEP=4.0
+749:GOLD       | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4688.4 L2=4684.4 dist=9.5900000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.398 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+755:ETHUSD     | BASKET_REJECT | 1-3 | SELL | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+929:BTCUSD     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | SELL | L1=79667.16 L2=79707.16 L3=79747.16 | market_bid=79631.4 market_ask=79681.4 | SELL_L1_TOO_CLOSE_OR_BELOW_MARKET distance=-14.2400000000 min=75.0000000000
+930:BTCUSD     | BASKET_REJECT | 1-3 | SELL | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+933:ETHUSD     | BASKET_REJECT | 1-3 | SELL | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+1097:EURUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=1.17091 L2=1.17115 L3=1.17139 | market_bid=1.16972 market_ask=1.16979 | distance=0.0011200000 max_dist=0.0010000000
+1098:EURUSD     | BASKET_REJECT | 1-3 | SELL | 1500.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+1277:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=4690.11974 BB_MID=4699.41875 BB_HIGH=4708.71776 width=18.59803 required=8.00000 L1=4710.32 L2=4714.32 L3=4718.32 dist=11.8300000000 max_dist=22.0000000000 dist_ratio=0.538
+1278:GOLD       | BOLLINGER_M5 | SELL | BB_LOW=4690.11974 | BB_MID=4699.41875 | BB_HIGH=4708.71776 | L1=4710.32 | L2=4714.32 | L3=4718.32 | BUFFER=1.6 | STEP=4.0
+1279:GOLD       | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4710.32 L2=4714.32 dist=11.8300000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.957 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+1284:BTCUSD     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | SELL | L1=79714.59 L2=79754.59 L3=79794.59 | market_bid=79631.4 market_ask=79681.4 | SELL_L1_TOO_CLOSE_OR_BELOW_MARKET distance=33.1900000000 min=75.0000000000
+1285:BTCUSD     | BASKET_REJECT | 1-3 | SELL | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+1458:BTCUSD     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | SELL | L1=79714.0 L2=79754.0 L3=79794.0 | market_bid=79631.4 market_ask=79681.4 | SELL_L1_TOO_CLOSE_OR_BELOW_MARKET distance=32.6000000000 min=75.0000000000
+1459:BTCUSD     | BASKET_REJECT | 1-3 | SELL | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+1632:ETHUSD     | BASKET_REJECT | 1-3 | BUY  | 0.060000   | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+1793:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29401.0 L2=29389.0 L3=29377.0 | market_bid=29408.1 market_ask=29409.9 | distance=7.1000000000 max_dist=6.4000000000
+1794:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+1809:BTCUSD     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | SELL | L1=79706.09 L2=79746.09 L3=79786.09 | market_bid=79631.4 market_ask=79681.4 | SELL_L1_TOO_CLOSE_OR_BELOW_MARKET distance=24.6900000000 min=75.0000000000
+1810:BTCUSD     | BASKET_REJECT | 1-3 | SELL | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+2108:US500      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=7459.0 L2=7455.0 L3=7451.0 | market_bid=7467.9 market_ask=7468.5 | distance=8.9000000000 max_dist=3.2000000000
+2109:US500      | BASKET_REJECT | 1-3 | BUY  | 0.150000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+2122:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=4690.14302 BB_MID=4699.39350 BB_HIGH=4708.64398 width=18.50097 required=8.00000 L1=4710.24 L2=4714.24 L3=4718.24 dist=11.7500000000 max_dist=22.0000000000 dist_ratio=0.534
+2123:GOLD       | BOLLINGER_M5 | SELL | BB_LOW=4690.14302 | BB_MID=4699.39350 | BB_HIGH=4708.64398 | L1=4710.24 | L2=4714.24 | L3=4718.24 | BUFFER=1.6 | STEP=4.0
+2124:GOLD       | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4710.24 L2=4714.24 dist=11.7500000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.938 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+2289:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29385.4 L2=29373.4 L3=29361.4 | market_bid=29408.1 market_ask=29409.9 | distance=22.7000000000 max_dist=6.4000000000
+2290:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+2305:BTCUSD     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | SELL | L1=79752.74 L2=79792.74 L3=79832.74 | market_bid=79631.4 market_ask=79681.4 | SELL_L1_TOO_CLOSE_OR_BELOW_MARKET distance=71.3400000000 min=75.0000000000
+2306:BTCUSD     | BASKET_REJECT | 1-3 | SELL | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+2472:EURUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=1.16969 BB_MID=1.17020 BB_HIGH=1.17071 width=0.00101 required=0.00040 L1=1.16961 L2=1.16937 L3=1.16913 dist=0.0001100000 max_dist=0.0010000000 dist_ratio=0.110
+2473:EURUSD     | BOLLINGER_M5 | BUY  | BB_LOW=1.16969 | BB_MID=1.17020 | BB_HIGH=1.17071 | L1=1.16961 | L2=1.16937 | L3=1.16913 | BUFFER=8e-05 | STEP=0.00023999999999999998
+2477:EURUSD     | LIMIT_OK      | 1   | BUY  | 1500.000000 | TRADEABLE | ref=o_f296...f130 limit=1.16961
+2481:EURUSD     | LIMIT_OK      | 2   | BUY  | 3000.000000 | TRADEABLE | ref=o_87c0...9107 limit=1.16937
+2485:EURUSD     | LIMIT_OK      | 3   | BUY  | 4500.000000 | TRADEABLE | ref=o_6eb8...7e44 limit=1.16913
+2486:EURUSD     | BASKET_NEW  | 1-3 | BUY  | 1500.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+2673:OIL_CRUDE  | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=95.98 L2=95.78 L3=95.58 | market_bid=97.02 market_ask=97.06 | distance=1.0400000000 max_dist=0.5000000000
+2674:OIL_CRUDE  | BASKET_REJECT | 1-3 | BUY  | 4.000000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+2677:BTCUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=79761.21 L2=79801.21 L3=79841.21 | market_bid=79631.4 market_ask=79681.4 | distance=79.8100000000 max_dist=40.0000000000
+2678:BTCUSD     | BASKET_REJECT | 1-3 | SELL | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+2847:DE40       | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=24493.4 L2=24505.4 L3=24517.4 | market_bid=24419.9 market_ask=24421.4 | distance=72.0000000000 max_dist=45.0000000000
+2848:DE40       | BASKET_REJECT | 1-3 | SELL | 0.051000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+2857:EURJPY     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | BUY  | L1=184.762 L2=184.714 L3=184.666 | market_bid=184.772 market_ask=184.795 | BUY_L1_TOO_CLOSE_OR_ABOVE_MARKET distance=0.0100000000 min=0.0345000000
+2858:EURJPY     | BASKET_REJECT | 1-3 | BUY  | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+2864:BTCUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=79758.51 L2=79798.51 L3=79838.51 | market_bid=79631.4 market_ask=79681.4 | distance=77.1100000000 max_dist=40.0000000000
+2865:BTCUSD     | BASKET_REJECT | 1-3 | SELL | 0.001800   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3205:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29379.1 L2=29367.1 L3=29355.1 | market_bid=29408.1 market_ask=29409.9 | distance=29.0000000000 max_dist=6.4000000000
+3206:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3216:USDJPY     | BASKET_REJECT | 1-3 | SELL | 1800.000000 | TRADEABLE | precheck=BOLLINGER_WIDTH_TOO_SMALL aucun ordre envoye
+3219:EURJPY     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | BUY  | L1=184.756 L2=184.708 L3=184.66 | market_bid=184.772 market_ask=184.795 | BUY_L1_TOO_CLOSE_OR_ABOVE_MARKET distance=0.0160000000 min=0.0345000000
+3220:EURJPY     | BASKET_REJECT | 1-3 | BUY  | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+3388:US100      | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | BUY  | L1=29378.9 L2=29366.9 L3=29354.9 | market_bid=29408.1 market_ask=29409.9 | distance=29.2000000000 max_dist=6.4000000000
+3389:US100      | BASKET_REJECT | 1-3 | BUY  | 0.042000   | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+3395:EURUSD     | BASKET_FILL | 1   | BUY  | 1500.000000 | TRADEABLE | deal=000055...6ca4 limit=1.16961 entry=1.16961
+3758:EURJPY     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | BUY  | L1=184.753 L2=184.705 L3=184.657 | market_bid=184.772 market_ask=184.795 | BUY_L1_TOO_CLOSE_OR_ABOVE_MARKET distance=0.0190000000 min=0.0345000000
+3759:EURJPY     | BASKET_REJECT | 1-3 | BUY  | 1800.000000 | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+3940:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=4690.97375 BB_MID=4700.01975 BB_HIGH=4709.06575 width=18.09199 required=8.00000 L1=4689.37 L2=4685.37 L3=4681.37 dist=8.6200000000 max_dist=22.0000000000 dist_ratio=0.392
+3941:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4690.97375 | BB_MID=4700.01975 | BB_HIGH=4709.06575 | L1=4689.37 | L2=4685.37 | L3=4681.37 | BUFFER=1.6 | STEP=4.0
+3942:GOLD       | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4689.37 L2=4685.37 dist=8.6200000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.155 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+
+========================================================================================================================
+7) FOCUS EURUSD — L1/L2/L3, FILL, CANCEL, MARGE, LOCAL
+========================================================================================================================
+214:LOCAL          | SUPPORT    |  49837.29375 -> 49883.19125  | centre=49860.2425   | larg=45.8975   | 1.0949 ATR | force=126    | dist=-6.2279 ATR | score=1188.4036
+225:LOCAL+PSYCHO+MAJOR | SUPPORT    | 24204.406121 -> 24256.460358 | centre=24229.968675 | larg=52.054237 | 1.8023 ATR | force=1071   | dist=-6.6244 ATR | score=2284.39  | psycho=24200 MINOR
+226:LOCAL          | SUPPORT    |  24249.10875 -> 24300.45375  | centre=24274.78125  | larg=51.345    | 1.7777 ATR | force=228    | dist=-5.0729 ATR | score=1252.9783
+227:LOCAL          | SUPPORT    | 24295.972411 -> 24362.40288  | centre=24329.187645 | larg=66.430469 | 2.3   ATR | force=297    | dist=-3.1892 ATR | score=1324.2206
+229:LOCAL+MAJOR    | ACTIVE     | 24415.240064 -> 24481.670533 | centre=24448.455299 | larg=66.430469 | 2.3   ATR | force=1665   | dist=0.9402  ATR | score=1626.4953
+236:LOCAL+PSYCHO+MAJOR | SUPPORT    |   7993.08035 -> 8017.153683  | centre=8005.117016  | larg=24.073333 | 2.3   ATR | force=2248   | dist=-5.7691 ATR | score=2605.7731 | psycho=8000 BIG
+237:LOCAL          | SUPPORT    |      8020.65 -> 8038.33      | centre=8030.225     | larg=17.68     | 1.6892 ATR | force=456    | dist=-3.3702 ATR | score=1375.3444
+238:LOCAL          | SUPPORT    |       8038.8 -> 8053.62      | centre=8046.21      | larg=14.82     | 1.4159 ATR | force=843    | dist=-1.843  ATR | score=1548.9752
+239:LOCAL          | ACTIVE     |      8056.28 -> 8067.97      | centre=8060.92659   | larg=11.69     | 1.1169 ATR | force=305    | dist=-0.4369 ATR | score=1395.8263
+247:LOCAL          | SUPPORT    |   10272.7795 -> 10287.994    | centre=10280.38675  | larg=15.2145   | 1.5398 ATR | force=203    | dist=-8.442  ATR | score=1159.9997
+248:MAJOR+PSYCHO+LOCAL | SUPPORT    | 10302.652728 -> 10325.378405 | centre=10314.015566 | larg=22.725677 | 2.3   ATR | force=1837   | dist=-5.0385 ATR | score=2324.0365 | psycho=10300 MINOR
+249:LOCAL          | SUPPORT    |   10320.1135 -> 10337.582    | centre=10328.84775  | larg=17.4685   | 1.7679 ATR | force=178    | dist=-3.5374 ATR | score=1273.8646
+250:LOCAL          | SUPPORT    |   10339.2725 -> 10355.614    | centre=10346.650505 | larg=16.3415   | 1.6539 ATR | force=381    | dist=-1.7357 ATR | score=1389.9587
+251:LOCAL          | ACTIVE     |   10359.5585 -> 10366.3205   | centre=10362.9395   | larg=6.762     | 0.6844 ATR | force=87     | dist=-0.0871 ATR | score=1328.2728
+261:LOCAL          | SUPPORT    |    62228.862 -> 62327.1585   | centre=62278.01025  | larg=98.2965   | 0.8874 ATR | force=195    | dist=-5.2052 ATR | score=1238.1188
+262:LOCAL          | SUPPORT    |    62363.373 -> 62497.884    | centre=62430.6285   | larg=134.511   | 1.2143 ATR | force=185    | dist=-3.8275 ATR | score=1269.0634
+263:LOCAL          | SUPPORT    |    62497.884 -> 62657.866    | centre=62580.097762 | larg=159.982   | 1.4443 ATR | force=1141   | dist=-2.4781 ATR | score=1588.0473
+264:LOCAL          | SUPPORT    |   62647.9155 -> 62813.4675   | centre=62730.6915   | larg=165.552   | 1.4945 ATR | force=369    | dist=-1.1186 ATR | score=1401.1849
+265:LOCAL+PSYCHO+MAJOR | ACTIVE     | 62776.351724 -> 63031.12464  | centre=62903.738182 | larg=254.772917 | 2.3   ATR | force=2552   | dist=0.4436  ATR | score=2438.9099 | psycho=63000 MINOR
+266:LOCAL+PSYCHO   | RESISTANCE |    63025.581 -> 63175.6125   | centre=63101.713539 | larg=150.0315  | 1.3544 ATR | force=271    | dist=2.2309  ATR | score=2139.0787 | psycho=63000 MINOR
+267:LOCAL          | RESISTANCE |    63180.786 -> 63335.991    | centre=63258.3885   | larg=155.205   | 1.4011 ATR | force=331    | dist=3.6453  ATR | score=1324.7185
+268:LOCAL          | RESISTANCE |   63330.8175 -> 63552.8815   | centre=63459.677683 | larg=222.064   | 2.0047 ATR | force=336    | dist=5.4624  ATR | score=1281.0393
+269:LOCAL          | RESISTANCE |   63548.1045 -> 63749.871    | centre=63650.02823  | larg=201.7665  | 1.8215 ATR | force=179    | dist=7.1808  ATR | score=1183.1289
+273:EURUSD | close=1.16974 | ATR local=0.000385 | psycho minor=0.002 medium=0.005 major=0.01 | zones=9 | confluences=4
+278:LOCAL+PSYCHO+MAJOR | ACTIVE     |     1.169453 -> 1.170337     | centre=1.169948     | larg=0.000884  | 2.3   ATR | force=1779   | dist=0.5416  ATR | score=2736.46  | psycho=1.17 BIG
+279:LOCAL          | RESISTANCE |     1.170502 -> 1.171126     | centre=1.170814     | larg=0.000624  | 1.622 ATR | force=291    | dist=2.7929  ATR | score=1332.028
+280:MAJOR+PSYCHO+LOCAL | RESISTANCE |     1.171103 -> 1.171927     | centre=1.171462     | larg=0.000824  | 2.1438 ATR | force=1210   | dist=4.4784  ATR | score=2338.0398 | psycho=1.172 MINOR
+281:LOCAL          | RESISTANCE |     1.173112 -> 1.173598     | centre=1.173355     | larg=0.000485  | 1.2615 ATR | force=200    | dist=9.4009  ATR | score=1134.9768
+290:LOCAL          | RESISTANCE |     1.351006 -> 1.35206      | centre=1.351533     | larg=0.001054  | 1.6835 ATR | force=398    | dist=1.3056  ATR | score=1406.6605
+291:LOCAL          | RESISTANCE |     1.352018 -> 1.352735     | centre=1.352376     | larg=0.000717  | 1.1448 ATR | force=412    | dist=2.6524  ATR | score=1377.8906
+292:LOCAL          | RESISTANCE |     1.352693 -> 1.353367     | centre=1.35303      | larg=0.000675  | 1.0774 ATR | force=709    | dist=3.6961  ATR | score=1455.7465
+293:LOCAL          | RESISTANCE |     1.353622 -> 1.354253     | centre=1.353926     | larg=0.000631  | 1.0071 ATR | force=558    | dist=5.1271  ATR | score=1367.1223
+303:LOCAL          | SUPPORT    |     157.5845 -> 157.668875   | centre=157.626688   | larg=0.084375  | 1.6153 ATR | force=317    | dist=-6.5917 ATR | score=1246.1579
+304:LOCAL          | SUPPORT    |    157.66575 -> 157.750125   | centre=157.71       | larg=0.084375  | 1.6153 ATR | force=450    | dist=-4.9967 ATR | score=1332.5823
+305:LOCAL          | SUPPORT    |     157.7845 -> 157.862625   | centre=157.823563   | larg=0.078125  | 1.4957 ATR | force=293    | dist=-2.8226 ATR | score=1331.9846
+306:LOCAL          | SUPPORT    |   157.851642 -> 157.94075    | centre=157.889288   | larg=0.089108  | 1.7059 ATR | force=499    | dist=-1.5643 ATR | score=1435.5415
+316:LOCAL+MAJOR    | SUPPORT    |   184.645222 -> 184.782227   | centre=184.713725   | larg=0.137006  | 2.3   ATR | force=1166   | dist=-1.2133 ATR | score=1619.6667
+317:LOCAL          | RESISTANCE |   184.809611 -> 184.891965   | centre=184.855325   | larg=0.082353  | 1.3825 ATR | force=547    | dist=1.1638  ATR | score=1462.3549
+318:LOCAL+PSYCHO+MAJOR | RESISTANCE |   184.906287 -> 185.043292   | centre=184.974789   | larg=0.137006  | 2.3   ATR | force=3877   | dist=3.1693  ATR | score=2520.7669 | psycho=185.0 MAJOR
+327:LOCAL+PSYCHO+MAJOR | ACTIVE     |  4687.567601 -> 4707.216189  | centre=4697.391895  | larg=19.648589 | 2.3   ATR | force=3072   | dist=0.0225  ATR | score=2599.4384 | psycho=4700 MAJOR
+328:LOCAL          | RESISTANCE |     4711.422 -> 4726.305     | centre=4719.017889  | larg=14.883    | 1.7422 ATR | force=505    | dist=2.5539  ATR | score=1412.9017
+329:LOCAL          | RESISTANCE |   4725.96675 -> 4733.7465    | centre=4729.856625  | larg=7.77975   | 0.9107 ATR | force=181    | dist=3.8227  ATR | score=1267.783
+337:LOCAL          | SUPPORT    |    83.493085 -> 84.509098    | centre=84.001091    | larg=1.016013  | 2.3   ATR | force=1040   | dist=-5.0502 ATR | score=1523.7445
+338:LOCAL+PSYCHO+MAJOR | SUPPORT    |     84.56828 -> 85.476789    | centre=84.992938    | larg=0.908509  | 2.0566 ATR | force=875    | dist=-2.8049 ATR | score=2336.1268 | psycho=85 MINOR
+339:LOCAL          | ACTIVE     |    85.547533 -> 86.236073    | centre=85.949722    | larg=0.68854   | 1.5587 ATR | force=760    | dist=-0.639  ATR | score=1550.0248
+340:LOCAL          | RESISTANCE |    86.277823 -> 87.0076      | centre=86.699263    | larg=0.729777  | 1.652 ATR | force=1046   | dist=1.0578  ATR | score=1623.5558
+341:LOCAL          | RESISTANCE |    86.933167 -> 87.71325     | centre=87.310676    | larg=0.780082  | 1.7659 ATR | force=590    | dist=2.4419  ATR | score=1445.4537
+342:LOCAL          | RESISTANCE |     87.71325 -> 88.028602    | centre=87.870926    | larg=0.315353  | 0.7139 ATR | force=452    | dist=3.7101  ATR | score=1365.447
+343:LOCAL          | RESISTANCE |    88.161382 -> 88.476735    | centre=88.319059    | larg=0.315353  | 0.7139 ATR | force=60     | dist=4.7246  ATR | score=1202.8855
+352:LOCAL          | SUPPORT    |    94.734656 -> 95.360906    | centre=95.047781    | larg=0.62625   | 1.5787 ATR | force=449    | dist=-5.1331 ATR | score=1328.8219
+353:LOCAL+PSYCHO   | SUPPORT    |     95.83141 -> 96.315938    | centre=96.035335    | larg=0.484527  | 1.2214 ATR | force=701    | dist=-2.6436 ATR | score=2279.2602 | psycho=96 MINOR
+354:LOCAL          | SUPPORT    |    96.300281 -> 97.020469    | centre=96.634743    | larg=0.720188  | 1.8155 ATR | force=226    | dist=-1.1325 ATR | score=1350.7866
+355:LOCAL          | RESISTANCE |    97.364906 -> 97.646719    | centre=97.505813    | larg=0.281813  | 0.7104 ATR | force=301    | dist=1.0634  ATR | score=1378.7662
+356:LOCAL+PSYCHO+MAJOR | RESISTANCE |    97.665761 -> 98.57813     | centre=98.109893    | larg=0.912369  | 2.3   ATR | force=4553   | dist=2.5862  ATR | score=2385.3454 | psycho=98 MINOR
+357:LOCAL          | RESISTANCE |    98.648719 -> 98.930531    | centre=98.789625    | larg=0.281813  | 0.7104 ATR | force=286    | dist=4.2997  ATR | score=1292.6069
+365:LOCAL+PSYCHO   | SUPPORT    | 78884.643069 -> 79285.799605 | centre=79085.221337 | larg=401.156536 | 2.3   ATR | force=993    | dist=-3.2357 ATR | score=2366.658 | psycho=79000 MINOR
+366:LOCAL          | SUPPORT    |  79342.61725 -> 79453.664875 | centre=79398.141062 | larg=111.047625 | 0.6367 ATR | force=167    | dist=-1.4416 ATR | score=1322.4106
+367:LOCAL          | ACTIVE     | 79431.237547 -> 79757.982328 | centre=79603.887748 | larg=326.744781 | 1.8734 ATR | force=627    | dist=-0.2619 ATR | score=1512.9014
+368:MAJOR+PSYCHO+LOCAL | RESISTANCE | 79699.765004 -> 80100.92154  | centre=79889.344809 | larg=401.156536 | 2.3   ATR | force=2238   | dist=1.3747  ATR | score=2715.6325 | psycho=80000 BIG
+369:LOCAL          | RESISTANCE |  80489.76905 -> 80890.925587 | centre=80725.083447 | larg=401.156536 | 2.3   ATR | force=1475   | dist=6.1663  ATR | score=1495.8414
+370:LOCAL+PSYCHO   | RESISTANCE | 80866.314547 -> 81110.837125 | centre=80986.080431 | larg=244.522578 | 1.402 ATR | force=410    | dist=7.6628  ATR | score=2051.9312 | psycho=81000 MINOR
+378:LOCAL+PSYCHO   | SUPPORT    |  2242.030304 -> 2256.055752  | centre=2249.043028  | larg=14.025448 | 2.3   ATR | force=575    | dist=-1.6615 ATR | score=2259.712 | psycho=2250 MINOR
+379:LOCAL          | ACTIVE     |  2254.325406 -> 2263.861594  | centre=2258.701519  | larg=9.536187  | 1.5638 ATR | force=895    | dist=-0.0776 ATR | score=1611.3089
+380:LOCAL          | RESISTANCE |  2263.851375 -> 2269.72875   | centre=2266.790062  | larg=5.877375  | 0.9638 ATR | force=233    | dist=1.2488  ATR | score=1350.3306
+381:LOCAL          | RESISTANCE |    2272.5275 -> 2278.125     | centre=2275.32625   | larg=5.5975    | 0.9179 ATR | force=411    | dist=2.6486  ATR | score=1377.6349
+382:LOCAL+MAJOR    | RESISTANCE |  2277.986758 -> 2292.012206  | centre=2284.999482  | larg=14.025448 | 2.3   ATR | force=1495   | dist=4.2349  ATR | score=1544.1276
+383:LOCAL          | RESISTANCE |  2289.599875 -> 2295.47725   | centre=2292.538562  | larg=5.877375  | 0.9638 ATR | force=121    | dist=5.4712  ATR | score=1205.5697
+403:2026-05-14 12:45:47,171 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+409:2026-05-14 12:45:47,309 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+424:EURUSD     |    34 | 1.169800     | 1.169870     | 1.169835     | 0.000070     | 0.000070     | 2.3s
+449:EURUSD     |    44 | 1.169800     | 1.169870     | 1.169835     | 0.000070     | 0.000070     | 4.2s
+471:US100      | BUY      |     3 | SELL     | TREND_UP   | NONE                 | 29410.900000 | 15.0  | 43.200000   | 1.800000 | 1.800000 | True  | 4.1   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+473:DE40       | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 24421.250000 | 10.6  | 40.400000   | 1.500000 | 1.500000 | True  | 5.3   | LOCAL+MAJOR:active       | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+474:FR40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 8066.000000  | 28.6  | 4.200000    | 0.800000 | 0.800000 | False | 9.3   | LOCAL:active             | True      | False      | spread=LEARNING_71/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+475:UK100      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 10361.700000 | 6.5   | 4.600000    | 1.000000 | 1.000000 | False | 8.3   | LOCAL:active             | True      | False      | spread=LEARNING_81/150, range_pas_assez_haut, pas_micro_rejet
+476:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62872.600000 | 16.9  | 74.600000   | 10.000000 | 10.000000 | False | 5.4   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | spread=LEARNING_107/150, range_pas_assez_haut, pas_micro_rejet
+477:EURUSD     | BUY      |     2 | SELL     | RANGE      | NONE                 | 1.169835     | 17.9  | 0.000280    | 0.000070 | 0.000070 | True  | 8.4   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+481:GOLD       | BUY      |     3 | SELL     | TREND_UP   | NONE                 | 4697.815000  | 7.6   | 11.050000   | 0.750000 | 0.500000 | True  | 4.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+482:SILVER     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 86.324000    | 5.0   | 0.399000    | 0.050000 | 0.050000 | True  | 6.7   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+483:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 97.013000    | 86.0  | 0.385000    | 0.040000 | 0.040000 | True  | 5.7   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+484:BTCUSD     | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 79681.450000 | 98.6  | 287.600000  | 50.000000 | 50.000000 | True  | 5.7   | LOCAL:active             | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+485:ETHUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 2259.915000  | 97.6  | 6.710000    | 1.750000 | 1.750000 | True  | 4.8   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+501:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+523:- EURUSD     L1 BUY size=1500.0 cycle=457dc8cc-b18
+539:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+557:EURUSD     | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=0.00115 required=0.00040 ratio=2.871 ok=True abs_min=0.00040 spread_min=0.00021
+558:EURUSD     | PRICE_AUDIT | BUY  | stream_bid=1.1698 stream_ask=1.16987 snapshot_bid=1.16972 snapshot_ask=1.16979 BB_LOW=1.1696981465685519 BB_MID=1.1702722499999996 BB_HIGH=1.1708463534314473 L1=1.16962 L2=1.16938 L3=1.16914 dist=9.999999999998899e-05
+559:EURUSD     | BASKET_REJECT_MARKETABLE_LIMIT | 1-3 | BUY  | L1=1.16962 L2=1.16938 L3=1.16914 | market_bid=1.16972 market_ask=1.16979 | BUY_L1_TOO_CLOSE_OR_ABOVE_MARKET distance=0.0001000000 min=0.0001050000
+560:EURUSD     | BASKET_REJECT | 1-3 | BUY  | 1500.000000 | TRADEABLE | precheck=BASKET_REJECT_MARKETABLE_LIMIT aucun ordre envoye
+597:2026-05-14 12:46:46,601 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+603:2026-05-14 12:46:46,809 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+618:EURUSD     |    19 | 1.169870     | 1.169940     | 1.169905     | 0.000070     | 0.000070     | 0.8s
+643:EURUSD     |    22 | 1.169880     | 1.169950     | 1.169915     | 0.000070     | 0.000070     | 1.6s
+665:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29421.500000 | 44.2  | 38.700000   | 1.800000 | 1.800000 | True  | 4.3   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+667:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24425.350000 | 20.8  | 40.400000   | 1.500000 | 1.500000 | True  | 5.4   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+669:UK100      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 10362.700000 | 32.7  | 4.900000    | 1.000000 | 1.000000 | False | 4.5   | LOCAL:active             | True      | False      | spread=LEARNING_70/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+670:J225       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 62886.900000 | 36.1  | 74.600000   | 10.000000 | 10.000000 | False | 5.5   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | spread=LEARNING_104/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+671:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169915     | 46.4  | 0.000280    | 0.000070 | 0.000070 | False | 5.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | spread=LEARNING_102/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+675:GOLD       | BUY      |     4 | NEUTRAL  | RANGE      | NONE                 | 4698.970000  | 18.1  | 11.050000   | 0.500000 | 0.500000 | True  | 4.7   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+676:SILVER     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 86.368000    | 16.0  | 0.399000    | 0.050000 | 0.050000 | True  | 4.8   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+677:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.826000    | 37.4  | 0.385000    | 0.032000 | 0.040000 | True  | 4.8   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+678:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79709.700000 | 97.7  | 303.600000  | 50.000000 | 50.000000 | True  | 5.9   | MAJOR+PSYCHO+LOCAL:resis | True      | False      | range_pas_assez_bas, pas_micro_rejet
+679:ETHUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 2260.465000  | 95.8  | 6.240000    | 1.750000 | 1.750000 | True  | 4.9   | LOCAL:active             | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+695:EURUSD     | IDLE         | aucun signal
+729:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+741:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+775:2026-05-14 12:47:43,986 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+781:2026-05-14 12:47:44,202 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+796:EURUSD     |    25 | 1.169960     | 1.170030     | 1.169995     | 0.000070     | 0.000070     | 1.2s
+821:EURUSD     |    33 | 1.169960     | 1.170030     | 1.169995     | 0.000070     | 0.000070     | 2.0s
+843:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29420.100000 | 84.4  | 18.600000   | 1.800000 | 1.800000 | True  | 3.9   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+845:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24423.150000 | 60.8  | 10.200000   | 1.500000 | 1.500000 | True  | 4.0   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+846:FR40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 8067.000000  | 66.7  | 3.000000    | 0.800000 | 0.800000 | False | 4.1   | LOCAL:active             | True      | False      | spread=LEARNING_72/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+847:UK100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 10362.000000 | 33.3  | 2.700000    | 1.000000 | 1.000000 | False | 8.1   | LOCAL:active             | False     | True       | spread=LEARNING_58/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+848:J225       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 62887.000000 | 80.1  | 33.700000   | 10.000000 | 10.000000 | False | 4.1   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | spread=LEARNING_104/150, range_pas_assez_bas, pas_micro_rebond
+849:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169995     | 95.5  | 0.000220    | 0.000070 | 0.000070 | False | 5.2   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | spread=LEARNING_99/150, range_pas_assez_bas, pas_micro_rejet
+850:GBPUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 1.351015     | 100.0 | 0.000220    | 0.000130 | 0.000130 | False | 4.2   | LOCAL:resistance         | True      | False      | spread=LEARNING_149/150, pas_micro_rejet
+852:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.810000   | 78.9  | 0.028500    | 0.020000 | 0.020000 | True  | 4.3   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+853:GOLD       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 4700.500000  | 82.5  | 4.280000    | 0.500000 | 0.500000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+854:SILVER     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 86.387000    | 67.5  | 0.123000    | 0.080000 | 0.050000 | True  | 4.4   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+855:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.873000    | 20.5  | 0.244000    | 0.040000 | 0.040000 | True  | 4.4   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+856:BTCUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 79706.400000 | 82.5  | 59.200000   | 50.000000 | 50.000000 | True  | 4.5   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+857:ETHUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 2260.665000  | 95.0  | 1.210000    | 1.750000 | 1.750000 | True  | 4.5   | LOCAL:active             | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+873:EURUSD     | IDLE         | aucun signal
+908:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+920:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+953:2026-05-14 12:48:40,538 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+959:2026-05-14 12:48:40,677 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+974:EURUSD     |    43 | 1.169940     | 1.170010     | 1.169975     | 0.000070     | 0.000070     | 0.6s
+999:EURUSD     |    56 | 1.170000     | 1.170070     | 1.170035     | 0.000070     | 0.000070     | 1.6s
+1021:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29414.900000 | 56.5  | 18.600000   | 1.800000 | 1.800000 | True  | 3.8   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1023:DE40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 24425.150000 | 80.4  | 10.200000   | 1.500000 | 1.500000 | True  | 4.9   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, pas_micro_rejet
+1024:FR40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 8067.500000  | 83.3  | 3.000000    | 0.800000 | 0.800000 | False | 5.0   | LOCAL:active             | True      | False      | spread=LEARNING_94/150, range_pas_assez_bas, pas_micro_rejet
+1025:UK100      | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 10364.900000 | 92.7  | 4.100000    | 1.000000 | 1.000000 | False | 5.0   | LOCAL:active             | True      | False      | spread=LEARNING_82/150, range_pas_assez_bas, pas_micro_rejet
+1026:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62876.400000 | 48.7  | 33.700000   | 10.000000 | 10.000000 | False | 5.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | spread=LEARNING_130/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1027:EURUSD     | SELL     |     4 | NEUTRAL  | RANGE      | NONE                 | 1.170035     | 92.6  | 0.000270    | 0.000070 | 0.000070 | True  | 5.1   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+1028:GBPUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 1.351025     | 100.0 | 0.000230    | 0.000130 | 0.000130 | True  | 6.1   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+1030:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.825000   | 100.0 | 0.037500    | 0.020000 | 0.020000 | True  | 5.2   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+1031:GOLD       | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 4702.320000  | 100.0 | 5.350000    | 0.500000 | 0.500000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+1032:SILVER     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 86.487000    | 100.0 | 0.183000    | 0.050000 | 0.050000 | True  | 4.3   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+1033:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 97.008000    | 75.8  | 0.244000    | 0.040000 | 0.040000 | True  | 5.4   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+1034:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79703.450000 | 77.5  | 59.200000   | 50.000000 | 50.000000 | True  | 8.4   | MAJOR+PSYCHO+LOCAL:resis | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1035:ETHUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 2260.465000  | 78.5  | 1.210000    | 1.750000 | 1.750000 | True  | 4.5   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1051:EURUSD     | OPEN_L1      | SELL | entry=1.170000 | size=1500.000000 | tp=0.2000
+1070:- EURUSD     L1 SELL size=1500.0 cycle=f8f5c7c1-3f6
+1083:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1095:EURUSD     | BOLLINGER_WIDTH_OBSERVE | --  | SELL | --         | FILTER    | width=0.00110 required=0.00040 ratio=2.753 ok=True abs_min=0.00040 spread_min=0.00021
+1096:EURUSD     | PRICE_AUDIT | SELL | stream_bid=1.17 stream_ask=1.17007 snapshot_bid=1.16972 snapshot_ask=1.16979 BB_LOW=1.1697310933465395 BB_MID=1.1702817499999996 BB_HIGH=1.1708324066534597 L1=1.17091 L2=1.17115 L3=1.17139 dist=0.0011199999999997878
+1097:EURUSD     | BASKET_REJECT_BOLLINGER_TOO_FAR | 1-3 | SELL | L1=1.17091 L2=1.17115 L3=1.17139 | market_bid=1.16972 market_ask=1.16979 | distance=0.0011200000 max_dist=0.0010000000
+1098:EURUSD     | BASKET_REJECT | 1-3 | SELL | 1500.000000 | TRADEABLE | precheck=BASKET_REJECT_BOLLINGER_TOO_FAR aucun ordre envoye
+1126:2026-05-14 12:49:37,110 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+1132:2026-05-14 12:49:37,244 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1147:EURUSD     |    42 | 1.170000     | 1.170070     | 1.170035     | 0.000070     | 0.000070     | 0.2s
+1172:EURUSD     |    59 | 1.169960     | 1.170030     | 1.169995     | 0.000070     | 0.000070     | 1.1s
+1194:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29416.700000 | 66.1  | 18.600000   | 1.800000 | 1.800000 | True  | 2.7   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1196:DE40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 24435.550000 | 100.0 | 18.600000   | 1.500000 | 1.500000 | True  | 2.7   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, pas_micro_rejet
+1198:UK100      | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 10365.600000 | 93.8  | 4.800000    | 1.000000 | 1.000000 | False | 2.8   | LOCAL:active             | True      | False      | spread=LEARNING_107/150, range_pas_assez_bas, pas_micro_rejet
+1199:J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 62888.700000 | 85.2  | 33.700000   | 10.000000 | 10.000000 | True  | 2.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+1200:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169995     | 75.0  | 0.000280    | 0.000070 | 0.000070 | True  | 3.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1201:GBPUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 1.351085     | 85.3  | 0.000340    | 0.000130 | 0.000130 | True  | 3.8   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+1203:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.817500   | 80.0  | 0.037500    | 0.021000 | 0.020000 | True  | 2.9   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+1204:GOLD       | SELL     |     2 | BUY      | RANGE      | NONE                 | 4704.160000  | 99.7  | 7.210000    | 0.500000 | 0.500000 | True  | 3.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+1205:SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 86.616000    | 97.8  | 0.319000    | 0.080000 | 0.050000 | True  | 2.9   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+1206:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 97.015000    | 71.1  | 0.270000    | 0.040000 | 0.040000 | True  | 3.0   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+1207:BTCUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 79714.650000 | 95.2  | 60.000000   | 50.000000 | 50.000000 | True  | 3.0   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+1208:ETHUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 2260.815000  | 86.1  | 1.510000    | 1.750000 | 1.750000 | True  | 3.0   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+1224:EURUSD     | IDLE         | aucun signal
+1259:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1271:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+1306:2026-05-14 12:50:32,992 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+1312:2026-05-14 12:50:33,127 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1327:EURUSD     |    40 | 1.169960     | 1.170030     | 1.169995     | 0.000070     | 0.000070     | 1.1s
+1352:EURUSD     |    66 | 1.169930     | 1.170000     | 1.169965     | 0.000070     | 0.000070     | 1.0s
+1374:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29418.000000 | 73.1  | 18.600000   | 1.800000 | 1.800000 | True  | 5.3   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1376:DE40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 24429.350000 | 58.5  | 21.200000   | 1.500000 | 1.500000 | True  | 5.5   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1378:UK100      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 10364.300000 | 65.3  | 4.900000    | 1.000000 | 1.000000 | False | 6.5   | LOCAL:active             | True      | False      | spread=LEARNING_125/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1379:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62871.700000 | 33.1  | 35.300000   | 10.000000 | 10.000000 | True  | 6.5   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1380:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169965     | 64.3  | 0.000280    | 0.000070 | 0.000070 | True  | 5.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1384:GOLD       | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 4702.500000  | 74.5  | 7.420000    | 0.500000 | 0.500000 | True  | 4.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1385:SILVER     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 86.525000    | 62.6  | 0.353000    | 0.050000 | 0.050000 | True  | 5.8   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+1387:BTCUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 79717.100000 | 91.8  | 64.900000   | 50.000000 | 50.000000 | True  | 5.9   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+1388:ETHUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 2260.235000  | 53.0  | 1.680000    | 1.750000 | 1.750000 | True  | 6.0   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1404:EURUSD     | IDLE         | aucun signal
+1437:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1449:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+1480:2026-05-14 12:51:30,986 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+1486:2026-05-14 12:51:31,159 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1501:EURUSD     |    39 | 1.169900     | 1.169970     | 1.169935     | 0.000070     | 0.000070     | 1.1s
+1526:EURUSD     |    51 | 1.169950     | 1.170020     | 1.169985     | 0.000070     | 0.000070     | 0.0s
+1547:US500      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 7466.600000  | 12.5  | 3.200000    | 0.600000 | 0.600000 | True  | 5.2   | LOCAL+MAJOR:support      | False     | True       | pas_micro_rebond
+1548:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29408.000000 | 19.4  | 18.600000   | 1.800000 | 1.800000 | True  | 4.3   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+1550:DE40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 24425.850000 | 42.0  | 21.200000   | 1.500000 | 1.500000 | True  | 4.4   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1552:UK100      | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 10365.000000 | 79.6  | 4.900000    | 1.000000 | 1.000000 | False | 13.5  | LOCAL:active             | True      | False      | spread=LEARNING_140/150, range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1553:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62863.000000 | 14.1  | 37.600000   | 10.000000 | 10.000000 | True  | 4.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+1554:EURUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 1.169985     | 71.4  | 0.000280    | 0.000070 | 0.000070 | True  | 3.6   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1557:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.819500   | 85.3  | 0.037500    | 0.019000 | 0.020000 | True  | 4.7   | LOCAL:resistance         | False     | False      | pas_micro_rejet
+1558:GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4702.190000  | 70.4  | 7.420000    | 0.500000 | 0.500000 | True  | 4.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1559:SILVER     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 86.529000    | 63.7  | 0.353000    | 0.080000 | 0.050000 | True  | 4.7   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+1561:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79700.200000 | 65.7  | 64.900000   | 50.000000 | 50.000000 | True  | 4.9   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1562:ETHUSD     | BUY      |     6 | BUY      | RANGE      | NONE                 | 2259.245000  | 17.2  | 2.150000    | 1.750000 | 1.750000 | True  | 4.9   | LOCAL:active             | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+1578:EURUSD     | IDLE         | aucun signal
+1610:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1622:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+1652:2026-05-14 12:52:27,839 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+1658:2026-05-14 12:52:27,999 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1673:EURUSD     |    34 | 1.170070     | 1.170140     | 1.170105     | 0.000070     | 0.000070     | 2.0s
+1698:EURUSD     |    57 | 1.170000     | 1.170070     | 1.170035     | 0.000070     | 0.000070     | 0.9s
+1719:US500      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 7465.600000  | 5.0   | 4.000000    | 0.600000 | 0.600000 | True  | 6.1   | LOCAL+MAJOR:support      | False     | True       | pas_micro_rebond
+1720:US100      | BUY      |     2 | SELL     | RANGE      | NONE                 | 29399.900000 | 17.8  | 28.100000   | 1.800000 | 1.800000 | True  | 3.1   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+1722:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24429.550000 | 59.4  | 21.200000   | 1.500000 | 1.500000 | True  | 6.2   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1725:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62850.000000 | 12.4  | 51.700000   | 10.000000 | 10.000000 | True  | 3.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+1726:EURUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 1.170035     | 71.4  | 0.000350    | 0.000070 | 0.000070 | True  | 3.3   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1729:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.828500   | 80.4  | 0.051000    | 0.021000 | 0.020000 | True  | 3.3   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+1730:GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4703.360000  | 86.1  | 7.420000    | 0.500000 | 0.500000 | True  | 3.3   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+1731:SILVER     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 86.527000    | 63.2  | 0.353000    | 0.080000 | 0.080000 | True  | 3.4   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+1733:BTCUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 79713.600000 | 86.4  | 64.900000   | 50.000000 | 50.000000 | True  | 3.4   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+1734:ETHUSD     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 2259.065000  | 31.2  | 2.850000    | 1.750000 | 1.750000 | True  | 3.5   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1751:EURUSD     | IDLE         | aucun signal
+1785:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1800:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+1831:2026-05-14 12:53:23,400 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+1837:2026-05-14 12:53:23,534 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1852:EURUSD     |    43 | 1.169930     | 1.170000     | 1.169965     | 0.000070     | 0.000070     | 3.5s
+1877:EURUSD     |    57 | 1.169910     | 1.169980     | 1.169945     | 0.000070     | 0.000070     | 0.4s
+1898:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7465.500000  | 11.4  | 4.400000    | 0.600000 | 0.600000 | True  | 4.5   | LOCAL+MAJOR:support      | False     | True       | pas_micro_rebond
+1899:US100      | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 29395.100000 | 4.8   | 29.300000   | 1.800000 | 1.800000 | True  | 3.5   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+1901:DE40       | SELL     |     1 | SELL     | TREND_UP   | NONE                 | 24436.950000 | 91.7  | 21.800000   | 1.500000 | 1.500000 | True  | 3.6   | LOCAL+MAJOR:active       | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+1904:J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 62858.100000 | 29.9  | 53.100000   | 10.000000 | 10.000000 | True  | 7.7   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1905:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169945     | 45.7  | 0.000350    | 0.000070 | 0.000070 | True  | 3.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1906:GBPUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 1.351045     | 79.5  | 0.000440    | 0.000130 | 0.000130 | True  | 3.8   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+1908:EURJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 184.811500   | 47.1  | 0.051000    | 0.021000 | 0.020000 | True  | 6.9   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+1909:GOLD       | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 4704.870000  | 100.0 | 7.900000    | 0.500000 | 0.500000 | True  | 3.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+1910:SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 86.579000    | 77.9  | 0.353000    | 0.080000 | 0.080000 | True  | 5.0   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+1912:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79694.700000 | 57.2  | 64.900000   | 50.000000 | 50.000000 | True  | 4.1   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+1913:ETHUSD     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 2259.455000  | 44.9  | 2.850000    | 1.750000 | 1.750000 | True  | 4.2   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+1929:EURUSD     | IDLE         | aucun signal
+1968:2026-05-14 12:54:18,732 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+1974:2026-05-14 12:54:18,990 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+1989:EURUSD     |    29 | 1.169860     | 1.169930     | 1.169895     | 0.000070     | 0.000070     | 6.0s
+2014:EURUSD     |    33 | 1.169870     | 1.169940     | 1.169905     | 0.000070     | 0.000070     | 3.7s
+2035:US500      | BUY      |     2 | SELL     | RANGE      | NONE                 | 7464.300000  | 7.3   | 5.500000    | 0.600000 | 0.600000 | True  | 3.1   | LOCAL+MAJOR:support      | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2036:US100      | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 29382.200000 | 2.2   | 41.700000   | 1.800000 | 1.800000 | True  | 3.1   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2038:DE40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 24443.250000 | 100.0 | 26.300000   | 1.500000 | 1.500000 | True  | 3.2   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2041:J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 62847.300000 | 9.6   | 53.100000   | 10.000000 | 10.000000 | True  | 3.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+2042:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169905     | 34.3  | 0.000350    | 0.000070 | 0.000070 | True  | 6.2   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2046:GOLD       | SELL     |     2 | BUY      | RANGE      | NONE                 | 4703.880000  | 87.5  | 7.900000    | 0.500000 | 0.500000 | True  | 3.3   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2047:SILVER     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 86.515000    | 59.8  | 0.353000    | 0.050000 | 0.080000 | True  | 4.4   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+2049:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79708.150000 | 78.0  | 64.900000   | 50.000000 | 50.000000 | True  | 4.4   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2050:ETHUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 2259.295000  | 39.3  | 2.850000    | 1.750000 | 1.750000 | True  | 3.5   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2067:EURUSD     | IDLE         | aucun signal
+2101:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+2116:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+2148:2026-05-14 12:55:14,447 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2154:2026-05-14 12:55:14,583 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2169:EURUSD     |    31 | 1.169900     | 1.169970     | 1.169935     | 0.000070     | 0.000070     | 3.6s
+2194:EURUSD     |    41 | 1.169880     | 1.169950     | 1.169915     | 0.000070     | 0.000070     | 0.5s
+2215:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7463.900000  | 14.1  | 6.400000    | 0.600000 | 0.600000 | True  | 5.1   | LOCAL+MAJOR:support      | False     | True       | pas_micro_rebond
+2216:US100      | BUY      |     2 | SELL     | RANGE      | NONE                 | 29375.200000 | 5.7   | 50.700000   | 1.800000 | 1.800000 | True  | 3.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2218:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24442.250000 | 87.5  | 28.900000   | 1.500000 | 1.500000 | True  | 3.3   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2221:J225       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 62859.300000 | 39.7  | 59.700000   | 10.000000 | 10.000000 | True  | 4.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2222:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169915     | 37.1  | 0.000350    | 0.000070 | 0.000070 | True  | 3.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2226:GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4703.210000  | 79.0  | 7.900000    | 0.500000 | 0.500000 | True  | 3.7   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2227:SILVER     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 86.518000    | 60.6  | 0.353000    | 0.050000 | 0.080000 | True  | 4.7   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+2228:OIL_CRUDE  | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 96.984000    | 34.0  | 0.474000    | 0.040000 | 0.040000 | True  | 3.8   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+2229:BTCUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 79716.300000 | 90.5  | 64.900000   | 50.000000 | 50.000000 | True  | 5.8   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2230:ETHUSD     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 2260.165000  | 69.8  | 2.850000    | 1.750000 | 1.750000 | True  | 4.8   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2247:EURUSD     | IDLE         | aucun signal
+2281:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+2296:EURUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+2327:2026-05-14 12:56:10,808 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2333:2026-05-14 12:56:11,005 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2348:EURUSD     |    33 | 1.169860     | 1.169930     | 1.169895     | 0.000070     | 0.000070     | 3.0s
+2373:EURUSD     |    71 | 1.169810     | 1.169880     | 1.169845     | 0.000070     | 0.000070     | 1.8s
+2394:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7465.800000  | 43.8  | 6.400000    | 0.600000 | 0.600000 | True  | 5.5   | LOCAL+MAJOR:support      | True      | False      | range_pas_assez_bas
+2395:US100      | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 29389.100000 | 33.1  | 50.700000   | 1.800000 | 1.800000 | True  | 3.5   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2397:DE40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 24437.250000 | 70.2  | 28.900000   | 1.500000 | 1.500000 | True  | 3.6   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2399:UK100      | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 10366.000000 | 52.1  | 9.400000    | 1.000000 | 1.000000 | True  | 3.6   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2400:J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 62862.600000 | 45.2  | 59.700000   | 10.000000 | 10.000000 | True  | 6.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2401:EURUSD     | BUY      |     2 | SELL     | RANGE      | NONE                 | 1.169845     | 17.1  | 0.000350    | 0.000070 | 0.000070 | True  | 4.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2405:GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4703.790000  | 86.3  | 7.900000    | 0.500000 | 0.500000 | True  | 3.7   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2406:SILVER     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 86.603000    | 84.7  | 0.353000    | 0.080000 | 0.080000 | True  | 3.8   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+2407:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.864000    | 8.6   | 0.474000    | 0.040000 | 0.040000 | True  | 3.8   | LOCAL:support            | False     | True       | pas_micro_rebond
+2408:BTCUSD     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 79733.650000 | 98.2  | 77.500000   | 50.000000 | 50.000000 | True  | 3.8   | MAJOR+PSYCHO+LOCAL:resis | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2409:ETHUSD     | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 2260.625000  | 86.0  | 2.850000    | 1.750000 | 1.750000 | True  | 3.9   | LOCAL:active             | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2425:EURUSD     | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+2426:EURUSD     | OPEN_L1      | BUY  | entry=1.169880 | size=1500.000000 | tp=0.2000
+2445:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+2458:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+2470:EURUSD     | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=0.00101 required=0.00040 ratio=2.535 ok=True abs_min=0.00040 spread_min=0.00021
+2471:EURUSD     | PRICE_AUDIT | BUY  | stream_bid=1.16981 stream_ask=1.16988 snapshot_bid=1.16972 snapshot_ask=1.16979 BB_LOW=1.1696917305230567 BB_MID=1.1701987500000002 BB_HIGH=1.1707057694769436 L1=1.16961 L2=1.16937 L3=1.16913 dist=0.0001100000000000545
+2472:EURUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=1.16969 BB_MID=1.17020 BB_HIGH=1.17071 width=0.00101 required=0.00040 L1=1.16961 L2=1.16937 L3=1.16913 dist=0.0001100000 max_dist=0.0010000000 dist_ratio=0.110
+2473:EURUSD     | BOLLINGER_M5 | BUY  | BB_LOW=1.16969 | BB_MID=1.17020 | BB_HIGH=1.17071 | L1=1.16961 | L2=1.16937 | L3=1.16913 | BUFFER=8e-05 | STEP=0.00023999999999999998
+2474:EURUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=1.169610 stopLevel≈0.919130 stopDistance=0.250480 step=0.000240 spread=0.000070 minStop=0.250000
+2475:EURUSD     | LIMIT_REQUEST | 1   | BUY  | 1500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 1500.0, "guaranteedStop": true, "stopDistance": 0.25048, "type": "LIMIT", "level": 1.16961}
+2476:EURUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.16961
+2477:EURUSD     | LIMIT_OK      | 1   | BUY  | 1500.000000 | TRADEABLE | ref=o_f296...f130 limit=1.16961
+2478:EURUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=1.169370 stopLevel≈0.919130 stopDistance=0.250240 step=0.000240 spread=0.000070 minStop=0.250000
+2479:EURUSD     | LIMIT_REQUEST | 2   | BUY  | 3000.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 3000.0, "guaranteedStop": true, "stopDistance": 0.25024, "type": "LIMIT", "level": 1.16937}
+2480:EURUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.16937
+2481:EURUSD     | LIMIT_OK      | 2   | BUY  | 3000.000000 | TRADEABLE | ref=o_87c0...9107 limit=1.16937
+2482:EURUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=1.169130 stopLevel≈0.919130 stopDistance=0.250000 step=0.000240 spread=0.000070 minStop=0.250000
+2483:EURUSD     | LIMIT_REQUEST | 3   | BUY  | 4500.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "BUY", "size": 4500.0, "guaranteedStop": true, "stopDistance": 0.25, "type": "LIMIT", "level": 1.16913}
+2484:EURUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.16913
+2485:EURUSD     | LIMIT_OK      | 3   | BUY  | 4500.000000 | TRADEABLE | ref=o_6eb8...7e44 limit=1.16913
+2486:EURUSD     | BASKET_NEW  | 1-3 | BUY  | 1500.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+2514:2026-05-14 12:57:07,087 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2520:2026-05-14 12:57:07,224 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2535:EURUSD     |    24 | 1.169800     | 1.169870     | 1.169835     | 0.000070     | 0.000070     | 7.2s
+2560:EURUSD     |    32 | 1.169760     | 1.169830     | 1.169795     | 0.000070     | 0.000070     | 2.2s
+2581:US500      | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 7466.700000  | 57.8  | 6.400000    | 0.600000 | 0.600000 | True  | 3.9   | LOCAL+MAJOR:support      | True      | False      | range_pas_assez_bas
+2582:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29395.800000 | 46.4  | 50.700000   | 1.800000 | 1.800000 | True  | 3.9   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2584:DE40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 24444.550000 | 95.5  | 28.900000   | 1.500000 | 1.500000 | True  | 5.0   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2587:J225       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 62869.000000 | 55.9  | 59.700000   | 10.000000 | 10.000000 | True  | 4.0   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2588:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169795     | 2.9   | 0.000350    | 0.000070 | 0.000070 | True  | 5.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+2592:GOLD       | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 4704.240000  | 92.0  | 7.900000    | 0.500000 | 0.500000 | True  | 3.1   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2593:SILVER     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 86.595000    | 79.1  | 0.368000    | 0.050000 | 0.080000 | True  | 3.2   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+2594:OIL_CRUDE  | BUY      |     7 | BUY      | TREND_UP   | NONE                 | 96.905000    | 17.3  | 0.474000    | 0.040000 | 0.040000 | True  | 4.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2595:BTCUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 79750.700000 | 95.4  | 97.650000   | 50.000000 | 50.000000 | True  | 4.2   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2596:ETHUSD     | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 2260.275000  | 73.7  | 2.850000    | 1.750000 | 1.750000 | True  | 4.3   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2612:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+2632:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+2636:- EURUSD     L1 BUY size=1500.0 dealId=None
+2637:- EURUSD     L2 BUY size=3000.0 dealId=None
+2638:- EURUSD     L3 BUY size=4500.0 dealId=None
+2650:MARGIN_GUARD | margin_cfd=1925.47 max=3100.0 available=1582.18 min_available=0.0 block=False reasons=
+2662:EURUSD     | BASKET_ID_OK | 1   | BUY  | 1500.000000 | TRADEABLE | workingId=000055...6c90
+2663:EURUSD     | BASKET_ID_OK | 2   | BUY  | 3000.000000 | TRADEABLE | workingId=000055...6c91
+2664:EURUSD     | BASKET_ID_OK | 3   | BUY  | 4500.000000 | TRADEABLE | workingId=000055...6c92
+2665:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2699:2026-05-14 12:58:04,579 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2705:2026-05-14 12:58:04,718 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2720:EURUSD     |    29 | 1.169680     | 1.169750     | 1.169715     | 0.000070     | 0.000070     | 1.7s
+2745:EURUSD     |    46 | 1.169680     | 1.169750     | 1.169715     | 0.000070     | 0.000070     | 0.6s
+2766:US500      | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 7466.600000  | 56.3  | 6.400000    | 0.600000 | 0.600000 | True  | 5.9   | LOCAL+MAJOR:support      | True      | False      | range_pas_assez_bas
+2767:US100      | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 29394.400000 | 43.6  | 50.700000   | 1.800000 | 1.800000 | True  | 3.0   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2769:DE40       | SELL     |     6 | SELL     | RANGE      | NONE                 | 24444.250000 | 94.5  | 28.900000   | 1.500000 | 1.500000 | True  | 4.0   | LOCAL+MAJOR:active       | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2772:J225       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 62873.200000 | 63.0  | 59.700000   | 10.000000 | 10.000000 | True  | 4.1   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2773:EURUSD     | BUY      |     2 | SELL     | RANGE      | NONE                 | 1.169715     | 6.7   | 0.000450    | 0.000070 | 0.000070 | True  | 3.1   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2776:EURJPY     | BUY      |     2 | SELL     | RANGE      | NONE                 | 184.780500   | 0.9   | 0.058500    | 0.019000 | 0.020000 | True  | 3.2   | LOCAL+MAJOR:support      | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2777:GOLD       | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 4704.200000  | 91.5  | 7.900000    | 0.500000 | 0.500000 | True  | 3.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2778:SILVER     | SELL     |    -1 | NEUTRAL  | TREND_UP   | NONE                 | 86.617000    | 85.1  | 0.368000    | 0.050000 | 0.080000 | True  | 4.2   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2779:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.798000    | 2.2   | 0.510000    | 0.040000 | 0.040000 | True  | 3.3   | LOCAL:support            | False     | True       | pas_micro_rebond
+2780:BTCUSD     | SELL     |     2 | BUY      | RANGE      | NONE                 | 79739.350000 | 83.8  | 97.650000   | 50.000000 | 50.000000 | True  | 4.3   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+2781:ETHUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 2259.785000  | 56.5  | 2.850000    | 1.750000 | 1.750000 | True  | 4.3   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2797:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+2819:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+2823:- EURUSD     L1 BUY size=1500.0 dealId=None
+2824:- EURUSD     L2 BUY size=3000.0 dealId=None
+2825:- EURUSD     L3 BUY size=4500.0 dealId=None
+2837:MARGIN_GUARD | margin_cfd=1925.6200000000001 max=3100.0 available=1582.03 min_available=0.0 block=False reasons=
+2852:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+2886:2026-05-14 12:59:01,203 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2892:2026-05-14 12:59:01,361 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+2907:EURUSD     |    30 | 1.169710     | 1.169780     | 1.169745     | 0.000070     | 0.000070     | 2.3s
+2932:EURUSD     |    49 | 1.169710     | 1.169780     | 1.169745     | 0.000070     | 0.000070     | 1.2s
+2953:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7466.100000  | 48.4  | 6.400000    | 0.600000 | 0.600000 | True  | 6.8   | LOCAL+MAJOR:support      | True      | False      | range_pas_assez_bas
+2954:US100      | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 29395.300000 | 45.4  | 50.700000   | 1.800000 | 1.800000 | True  | 2.8   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+2956:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24445.850000 | 94.4  | 30.600000   | 1.500000 | 1.500000 | True  | 2.8   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2959:J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 62872.500000 | 61.8  | 59.700000   | 10.000000 | 10.000000 | True  | 4.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2960:EURUSD     | BUY      |     2 | SELL     | RANGE      | NONE                 | 1.169745     | 13.3  | 0.000450    | 0.000070 | 0.000070 | True  | 3.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+2964:GOLD       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 4705.820000  | 93.9  | 9.420000    | 0.500000 | 0.500000 | True  | 3.0   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2965:SILVER     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 86.628000    | 88.0  | 0.368000    | 0.080000 | 0.080000 | True  | 4.1   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+2966:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.773000    | 2.8   | 0.539000    | 0.040000 | 0.040000 | True  | 3.1   | LOCAL:support            | False     | True       | pas_micro_rebond
+2967:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79744.200000 | 88.7  | 97.650000   | 50.000000 | 50.000000 | True  | 3.1   | MAJOR+PSYCHO+LOCAL:resis | True      | False      | range_pas_assez_bas, pas_micro_rejet
+2968:ETHUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 2260.015000  | 64.6  | 2.850000    | 1.750000 | 1.750000 | True  | 3.2   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+2984:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+3003:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+3005:- EURUSD     L1 BUY size=1500.0 dealId=None
+3006:- EURUSD     L2 BUY size=3000.0 dealId=None
+3007:- EURUSD     L3 BUY size=4500.0 dealId=None
+3019:MARGIN_GUARD | margin_cfd=1925.5900000000001 max=3100.0 available=1582.06 min_available=0.0 block=False reasons=
+3031:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3059:2026-05-14 12:59:56,936 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+3065:2026-05-14 12:59:57,076 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3080:EURUSD     |    47 | 1.169730     | 1.169800     | 1.169765     | 0.000070     | 0.000070     | 0.0s
+3105:EURUSD     |    81 | 1.169600     | 1.169670     | 1.169635     | 0.000070     | 0.000070     | 2.0s
+3126:US500      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 7464.300000  | 20.3  | 6.400000    | 0.600000 | 0.600000 | True  | 6.8   | LOCAL+MAJOR:support      | True      | False      | range_pas_assez_bas
+3127:US100      | BUY      |     2 | SELL     | RANGE      | NONE                 | 29376.100000 | 7.5   | 50.700000   | 1.800000 | 1.800000 | True  | 4.8   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3129:DE40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 24433.150000 | 50.2  | 28.900000   | 1.500000 | 1.500000 | True  | 5.0   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3132:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62858.900000 | 39.0  | 59.700000   | 10.000000 | 10.000000 | True  | 7.1   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3133:EURUSD     | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 1.169635     | 2.0   | 0.000510    | 0.000070 | 0.000070 | True  | 6.1   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3136:EURJPY     | BUY      |     2 | SELL     | RANGE      | NONE                 | 184.776000   | 0.8   | 0.063000    | 0.022000 | 0.020000 | True  | 5.2   | LOCAL+MAJOR:support      | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3137:GOLD       | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 4703.430000  | 52.3  | 9.300000    | 0.500000 | 0.500000 | True  | 5.3   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3138:SILVER     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 86.461000    | 31.1  | 0.428000    | 0.050000 | 0.080000 | True  | 5.3   | LOCAL:resistance         | True      | False      | range_pas_assez_haut, pas_micro_rejet
+3139:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.990000    | 45.6  | 0.564000    | 0.040000 | 0.040000 | True  | 5.3   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+3140:BTCUSD     | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 79712.600000 | 43.9  | 76.000000   | 50.000000 | 50.000000 | True  | 5.4   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3141:ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 2259.145000  | 34.0  | 2.850000    | 1.750000 | 1.750000 | True  | 5.4   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3158:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+3179:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+3183:- EURUSD     L1 BUY size=1500.0 dealId=None
+3184:- EURUSD     L2 BUY size=3000.0 dealId=None
+3185:- EURUSD     L3 BUY size=4500.0 dealId=None
+3197:MARGIN_GUARD | margin_cfd=1925.72 max=3100.0 available=1581.93 min_available=0.0 block=False reasons=
+3212:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+3245:2026-05-14 13:00:55,892 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+3251:2026-05-14 13:00:56,051 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3266:EURUSD     |    73 | 1.169480     | 1.169550     | 1.169515     | 0.000070     | 0.000070     | 1.0s
+3291:EURUSD     |   101 | 1.169530     | 1.169600     | 1.169565     | 0.000070     | 0.000070     | 0.9s
+3312:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7464.600000  | 25.0  | 6.400000    | 0.600000 | 0.600000 | True  | 4.5   | LOCAL+MAJOR:support      | False     | True       | range_pas_assez_bas, pas_micro_rebond
+3313:US100      | BUY      |     2 | SELL     | RANGE      | NONE                 | 29374.700000 | 7.6   | 52.300000   | 1.800000 | 1.800000 | True  | 4.5   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3315:DE40       | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 24436.450000 | 61.6  | 28.900000   | 1.500000 | 1.500000 | True  | 4.6   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3317:UK100      | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 10364.800000 | 39.4  | 9.400000    | 1.000000 | 1.000000 | True  | 5.7   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3318:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62849.200000 | 22.8  | 59.700000   | 10.000000 | 10.000000 | True  | 4.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3319:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169565     | 10.9  | 0.000640    | 0.000070 | 0.000070 | True  | 4.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3322:EURJPY     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 184.757500   | 0.0   | 0.081000    | 0.021000 | 0.020000 | True  | 4.9   | LOCAL+MAJOR:support      | False     | True       | pas_micro_rebond
+3323:GOLD       | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 4700.760000  | 16.8  | 8.550000    | 0.500000 | 0.500000 | True  | 4.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3324:SILVER     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 86.322000    | 10.1  | 0.483000    | 0.050000 | 0.080000 | True  | 5.0   | LOCAL:resistance         | False     | True       | range_pas_assez_haut
+3325:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.968000    | 41.7  | 0.564000    | 0.040000 | 0.040000 | True  | 5.0   | LOCAL:support            | False     | True       | range_pas_assez_bas, pas_micro_rebond
+3326:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79726.050000 | 61.6  | 76.000000   | 50.000000 | 50.000000 | True  | 5.0   | MAJOR+PSYCHO+LOCAL:resis | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3327:ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 2259.835000  | 58.2  | 2.850000    | 1.750000 | 1.750000 | True  | 5.1   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3344:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+3364:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+3366:- EURUSD     L1 BUY size=1500.0 dealId=None
+3367:- EURUSD     L2 BUY size=3000.0 dealId=None
+3368:- EURUSD     L3 BUY size=4500.0 dealId=None
+3380:MARGIN_GUARD | margin_cfd=1925.7600000000002 max=3100.0 available=1581.75 min_available=0.0 block=False reasons=
+3395:EURUSD     | BASKET_FILL | 1   | BUY  | 1500.000000 | TRADEABLE | deal=000055...6ca4 limit=1.16961 entry=1.16961
+3396:EURUSD     | PNL_AUDIT_LEG | L1   | BUY  | entry=1.169610 size=1500.000000 bid=1.169720 ask=1.169790 exit=1.169720 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.1410 pnl_dist=0.1410256410257109 pnl_mod=0.1410256410257109 raw=0.16500000000008175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.12 broker=position.upl=-0.12
+3397:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.1410 broker_upl=-0.1200 target=0.2
+3398:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.1200 tp_pnl=-0.1200 broker_count=1/1 internal=0.1410 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+3399:EURUSD     | BASKET_PARTIAL_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 age=287.0s max=180.0s reason=V24_PARTIAL_BASKET_PENDING_EXPIRED_CANCEL
+3427:2026-05-14 13:01:54,728 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+3433:2026-05-14 13:01:54,952 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3448:EURUSD     |    64 | 1.169530     | 1.169600     | 1.169565     | 0.000070     | 0.000070     | 0.9s
+3473:EURUSD     |    84 | 1.169470     | 1.169540     | 1.169505     | 0.000070     | 0.000070     | 2.7s
+3494:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7464.900000  | 31.7  | 6.000000    | 0.600000 | 0.600000 | True  | 3.7   | LOCAL+MAJOR:support      | False     | True       | range_pas_assez_bas, pas_micro_rebond
+3495:US100      | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 29387.300000 | 34.2  | 48.600000   | 1.800000 | 1.800000 | True  | 3.7   | MAJOR+PSYCHO+LOCAL:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3497:DE40       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 24428.750000 | 32.6  | 27.900000   | 1.500000 | 1.500000 | True  | 3.8   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3499:UK100      | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 10362.800000 | 14.4  | 9.000000    | 1.000000 | 1.000000 | True  | 9.8   | LOCAL:active             | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3500:J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 62853.500000 | 30.0  | 59.700000   | 10.000000 | 10.000000 | True  | 3.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3501:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169505     | 1.6   | 0.000640    | 0.000070 | 0.000070 | True  | 5.8   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3504:EURJPY     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 184.745000   | 0.0   | 0.093500    | 0.020000 | 0.020000 | True  | 4.9   | LOCAL+MAJOR:support      | False     | True       | pas_micro_rebond
+3505:GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4698.040000  | 0.0   | 9.830000    | 0.500000 | 0.500000 | True  | 3.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3506:SILVER     | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 86.157000    | 0.2   | 0.600000    | 0.050000 | 0.080000 | True  | 4.0   | LOCAL:active             | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3507:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.960000    | 40.2  | 0.564000    | 0.040000 | 0.040000 | True  | 4.0   | LOCAL:support            | True      | False      | range_pas_assez_bas
+3508:BTCUSD     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 79742.850000 | 83.8  | 76.000000   | 50.000000 | 50.000000 | True  | 4.0   | MAJOR+PSYCHO+LOCAL:resis | True      | False      | range_pas_assez_bas, pas_micro_rejet
+3509:ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2259.615000  | 50.5  | 2.850000    | 1.750000 | 1.750000 | True  | 4.1   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3525:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+3544:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+3546:- EURUSD     L1 BUY size=1500.0 dealId=00005552-0055-311e-0000-000081ea6ca4
+3547:- EURUSD     L2 BUY size=3000.0 dealId=None
+3548:- EURUSD     L3 BUY size=4500.0 dealId=None
+3560:MARGIN_GUARD | margin_cfd=321.2199999999998 max=3100.0 available=3186.25 min_available=0.0 block=False reasons=
+3572:EURUSD     | PNL_AUDIT_LEG | L1   | BUY  | entry=1.169610 size=1500.000000 bid=1.169720 ask=1.169790 exit=1.169720 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.1410 pnl_dist=0.1410256410257109 pnl_mod=0.1410256410257109 raw=0.16500000000008175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.18 broker=position.upl=-0.18
+3573:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.1410 broker_upl=-0.1800 target=0.2
+3574:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.1800 tp_pnl=-0.1800 broker_count=1/1 internal=0.1410 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+3575:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=0 pnl=0.1410 target=0.2
+3603:2026-05-14 13:02:50,640 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+3609:2026-05-14 13:02:50,768 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3624:EURUSD     |    62 | 1.169510     | 1.169580     | 1.169545     | 0.000070     | 0.000070     | 3.7s
+3649:EURUSD     |    91 | 1.169520     | 1.169590     | 1.169555     | 0.000070     | 0.000070     | 0.7s
+3670:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7465.100000  | 35.0  | 6.000000    | 0.600000 | 0.600000 | True  | 5.4   | LOCAL+MAJOR:support      | True      | False      | range_pas_assez_bas
+3671:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29385.600000 | 30.7  | 48.600000   | 1.800000 | 1.800000 | True  | 3.4   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3673:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24427.850000 | 20.9  | 24.900000   | 1.500000 | 1.500000 | True  | 3.5   | LOCAL+MAJOR:active       | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3675:UK100      | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 10363.800000 | 21.2  | 8.500000    | 1.000000 | 1.000000 | True  | 4.6   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3676:J225       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 62838.500000 | 4.9   | 59.700000   | 10.000000 | 10.000000 | True  | 3.6   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3677:EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.169555     | 9.4   | 0.000640    | 0.000070 | 0.000070 | True  | 3.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3680:EURJPY     | BUY      |     2 | SELL     | RANGE      | NONE                 | 184.761500   | 17.6  | 0.093500    | 0.021000 | 0.021000 | True  | 3.8   | LOCAL+MAJOR:support      | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3681:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4697.300000  | 9.1   | 11.630000   | 0.500000 | 0.500000 | True  | 3.8   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3682:SILVER     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 86.050000    | 11.1  | 0.794000    | 0.050000 | 0.080000 | True  | 3.9   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3684:BTCUSD     | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 79759.050000 | 62.8  | 127.200000  | 50.000000 | 50.000000 | True  | 3.9   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | range_pas_assez_haut
+3685:ETHUSD     | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 2259.665000  | 47.2  | 3.160000    | 1.750000 | 1.750000 | True  | 4.0   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3701:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+3721:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+3724:- EURUSD     L1 BUY size=1500.0 dealId=00005552-0055-311e-0000-000081ea6ca4
+3725:- EURUSD     L2 BUY size=3000.0 dealId=None
+3726:- EURUSD     L3 BUY size=4500.0 dealId=None
+3738:MARGIN_GUARD | margin_cfd=321.2800000000002 max=3100.0 available=3186.25 min_available=0.0 block=False reasons=
+3750:EURUSD     | PNL_AUDIT_LEG | L1   | BUY  | entry=1.169610 size=1500.000000 bid=1.169720 ask=1.169790 exit=1.169720 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.1410 pnl_dist=0.1410256410257109 pnl_mod=0.1410256410257109 raw=0.16500000000008175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.14 broker=position.upl=-0.14
+3751:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.1410 broker_upl=-0.1400 target=0.2
+3752:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.1400 tp_pnl=-0.1400 broker_count=1/1 internal=0.1410 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+3753:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=0 pnl=0.1410 target=0.2
+3784:2026-05-14 13:03:47,078 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+3790:2026-05-14 13:03:47,243 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+3805:EURUSD     |    48 | 1.169530     | 1.169600     | 1.169565     | 0.000070     | 0.000070     | 0.2s
+3830:EURUSD     |    58 | 1.169520     | 1.169590     | 1.169555     | 0.000070     | 0.000070     | 6.1s
+3851:US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7465.000000  | 36.4  | 5.500000    | 0.600000 | 0.600000 | True  | 3.6   | LOCAL+MAJOR:support      | False     | True       | range_pas_assez_bas, pas_micro_rebond
+3852:US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29385.200000 | 29.8  | 48.600000   | 1.800000 | 1.800000 | True  | 3.6   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3854:DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24430.150000 | 30.1  | 24.900000   | 1.500000 | 1.500000 | True  | 4.7   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+3856:UK100      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 10362.000000 | 2.3   | 8.700000    | 1.000000 | 1.000000 | True  | 16.7  | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3857:J225       | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 62844.600000 | 15.1  | 59.700000   | 10.000000 | 10.000000 | True  | 3.7   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3858:EURUSD     | BUY      |     2 | SELL     | RANGE      | NONE                 | 1.169555     | 9.4   | 0.000640    | 0.000070 | 0.000070 | True  | 8.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3861:EURJPY     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 184.767000   | 23.5  | 0.093500    | 0.020000 | 0.021000 | True  | 3.8   | LOCAL+MAJOR:support      | False     | True       | range_pas_assez_bas, pas_micro_rebond
+3862:GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4696.810000  | 4.9   | 11.630000   | 0.500000 | 0.500000 | True  | 2.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+3863:SILVER     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 86.082000    | 15.1  | 0.794000    | 0.080000 | 0.080000 | True  | 2.9   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+3864:OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.933000    | 35.5  | 0.564000    | 0.040000 | 0.040000 | True  | 3.9   | LOCAL:support            | True      | False      | range_pas_assez_bas
+3865:BTCUSD     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 79766.100000 | 68.3  | 127.200000  | 50.000000 | 50.000000 | True  | 3.0   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | range_pas_assez_haut
+3866:ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2259.845000  | 52.8  | 3.160000    | 1.750000 | 1.750000 | True  | 3.0   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+3882:EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+3902:- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+3905:- EURUSD     L1 BUY size=1500.0 dealId=00005552-0055-311e-0000-000081ea6ca4
+3906:- EURUSD     L2 BUY size=3000.0 dealId=None
+3907:- EURUSD     L3 BUY size=4500.0 dealId=None
+3919:MARGIN_GUARD | margin_cfd=321.2800000000002 max=3100.0 available=3186.25 min_available=0.0 block=False reasons=
+3931:EURUSD     | PNL_AUDIT_LEG | L1   | BUY  | entry=1.169610 size=1500.000000 bid=1.169720 ask=1.169790 exit=1.169720 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.1410 pnl_dist=0.1410256410257109 pnl_mod=0.1410256410257109 raw=0.16500000000008175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.14 broker=position.upl=-0.14
+3932:EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.1410 broker_upl=-0.1400 target=0.2
+3933:EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.1400 tp_pnl=-0.1400 broker_count=1/1 internal=0.1410 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+3934:EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=0 pnl=0.1410 target=0.2
+3966:2026-05-14 13:04:43,469 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+3972:2026-05-14 13:04:43,640 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+========================================================================================================================
+8) FOCUS V24.3.3 — ARMING DISTANCE
+========================================================================================================================
+569:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=4689.93136 BB_MID=4698.82050 BB_HIGH=4707.70964 width=17.77829 required=8.00000 L1=4688.33 L2=4684.33 L3=4680.33 dist=9.6600000000 max_dist=22.0000000000 dist_ratio=0.439
+571:GOLD       | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4688.33 L2=4684.33 dist=9.6600000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.415 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+747:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=4690.00252 BB_MID=4698.88000 BB_HIGH=4707.75748 width=17.75496 required=8.00000 L1=4688.4 L2=4684.4 L3=4680.4 dist=9.5900000000 max_dist=22.0000000000 dist_ratio=0.436
+749:GOLD       | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4688.4 L2=4684.4 dist=9.5900000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.398 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+1277:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=4690.11974 BB_MID=4699.41875 BB_HIGH=4708.71776 width=18.59803 required=8.00000 L1=4710.32 L2=4714.32 L3=4718.32 dist=11.8300000000 max_dist=22.0000000000 dist_ratio=0.538
+1279:GOLD       | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4710.32 L2=4714.32 dist=11.8300000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.957 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+2122:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=4690.14302 BB_MID=4699.39350 BB_HIGH=4708.64398 width=18.50097 required=8.00000 L1=4710.24 L2=4714.24 L3=4718.24 dist=11.7500000000 max_dist=22.0000000000 dist_ratio=0.534
+2124:GOLD       | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4710.24 L2=4714.24 dist=11.7500000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.938 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+2472:EURUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=1.16969 BB_MID=1.17020 BB_HIGH=1.17071 width=0.00101 required=0.00040 L1=1.16961 L2=1.16937 L3=1.16913 dist=0.0001100000 max_dist=0.0010000000 dist_ratio=0.110
+3940:GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=4690.97375 BB_MID=4700.01975 BB_HIGH=4709.06575 width=18.09199 required=8.00000 L1=4689.37 L2=4685.37 L3=4681.37 dist=8.6200000000 max_dist=22.0000000000 dist_ratio=0.392
+3942:GOLD       | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4689.37 L2=4685.37 dist=8.6200000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.155 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+
+========================================================================================================================
+9) MARGE / GUARDS
+========================================================================================================================
+539:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+540:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+729:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+730:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+908:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+909:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1083:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1084:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1259:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1260:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1437:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1438:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1610:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1611:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+1785:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+1786:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2101:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+2102:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2281:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+2282:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2458:MARGIN_GUARD | margin_cfd=0.0 max=3100.0 available=3507.65 min_available=0.0 block=False reasons=
+2459:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2474:EURUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=1.169610 stopLevel≈0.919130 stopDistance=0.250480 step=0.000240 spread=0.000070 minStop=0.250000
+2478:EURUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=1.169370 stopLevel≈0.919130 stopDistance=0.250240 step=0.000240 spread=0.000070 minStop=0.250000
+2482:EURUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=1.169130 stopLevel≈0.919130 stopDistance=0.250000 step=0.000240 spread=0.000070 minStop=0.250000
+2650:MARGIN_GUARD | margin_cfd=1925.47 max=3100.0 available=1582.18 min_available=0.0 block=False reasons=
+2651:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+2837:MARGIN_GUARD | margin_cfd=1925.6200000000001 max=3100.0 available=1582.03 min_available=0.0 block=False reasons=
+2838:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3019:MARGIN_GUARD | margin_cfd=1925.5900000000001 max=3100.0 available=1582.06 min_available=0.0 block=False reasons=
+3020:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3197:MARGIN_GUARD | margin_cfd=1925.72 max=3100.0 available=1581.93 min_available=0.0 block=False reasons=
+3198:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3380:MARGIN_GUARD | margin_cfd=1925.7600000000002 max=3100.0 available=1581.75 min_available=0.0 block=False reasons=
+3381:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3560:MARGIN_GUARD | margin_cfd=321.2199999999998 max=3100.0 available=3186.25 min_available=0.0 block=False reasons=
+3561:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3738:MARGIN_GUARD | margin_cfd=321.2800000000002 max=3100.0 available=3186.25 min_available=0.0 block=False reasons=
+3739:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+3919:MARGIN_GUARD | margin_cfd=321.2800000000002 max=3100.0 available=3186.25 min_available=0.0 block=False reasons=
+3920:STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+
+========================================================================================================================
+10) ÉTATS LOCAUX JSON — SYNTHÈSE
+========================================================================================================================
+========================================================================================================================
+CYCLE data/cycles/cycle_state.json exists= True
+========================================================================================================================
+updated_utc: 2026-05-14T13:11:18.799761+00:00
+status_count: {'IDLE': 16}
+non_idle_count: 0
+========================================================================================================================
+EXEC data/execution/cycle_execution_state.json exists= True
+========================================================================================================================
+root_keys: ['active', 'closed', 'rejected', 'reset_utc', 'reset_reason', 'updated_utc', 'last_cleanup_reason', 'cancelled', 'desync_reset', 'orphaned_resets', 'v243_margin_selector_last_cancel_utc', 'v243_margin_selector_last_cancel_asset', 'manual_flattened_before_patch']
+active: dict len=0
+cancelled: list len=145
+closed: list len=136
+rejected: list len=1146
+========================================================================================================================
+SIGNALS data/ticks/signals_latest.json exists= True
+========================================================================================================================
+SIGNALS_FORMAT: dict
+
+========================================================================================================================
+11) TABLEAU COMPTEURS PAR ACTIF DEPUIS RELANCE
+========================================================================================================================
+cycles_detected: 21
+
+ASSET      |  BOLLINGER_ENTRY_OBSERVE |    BASKET_ARMING_DELAYED | BASKET_ARMING_CHECK_ERROR |                 LIMIT_OK |             LIMIT_REJECT |               BASKET_NEW |              BASKET_FILL |             BASKET_TP_OK |        BASKET_TP_BLOCKED |    BASKET_PENDING_CANCEL |            BASKET_REJECT | BOLLINGER_WIDTH_TOO_SMALL |        BOLLINGER_TOO_FAR |         MARKETABLE_LIMIT |       GLOBAL_AIRBAG_STOP
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        2 |                        0 |                        2 |                        0 |                        0
+US100      |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                       10 |                        0 |                        8 |                        2 |                        0
+DE40       |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        4 |                        0 |                        4 |                        0 |                        0
+EURUSD     |                        1 |                        0 |                        0 |                        3 |                        0 |                        1 |                        1 |                        0 |                        0 |                        0 |                        4 |                        0 |                        2 |                        2 |                        3
+USDJPY     |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        1 |                        2 |                        0 |                        0 |                        0
+EURJPY     |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        8 |                        0 |                        0 |                        8 |                        0
+GOLD       |                        5 |                        5 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0
+OIL_CRUDE  |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        2 |                        0 |                        2 |                        0 |                        0
+BTCUSD     |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                       14 |                        0 |                        4 |                       10 |                        0
+ETHUSD     |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        0 |                        4 |                        8 |                        0 |                        0 |                        0
+
+========================================================================================================================
+12) DERNIÈRES 180 LIGNES BRUTES DU LOG
+========================================================================================================================
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    16 | 7464.700000  | 7465.300000  | 7465.000000  | 0.600000     | 0.600000     | 3.2s
+US100      |   128 | 29384.100000 | 29385.900000 | 29385.000000 | 1.800000     | 1.800000     | 0.2s
+US30       |    36 | 50118.100000 | 50120.100000 | 50119.100000 | 2.000000     | 2.000000     | 2.2s
+DE40       |    59 | 24425.200000 | 24426.700000 | 24425.950000 | 1.500000     | 1.500000     | 1.2s
+FR40       |    26 | 8069.900000  | 8070.700000  | 8070.300000  | 0.800000     | 0.800000     | 2.2s
+UK100      |    15 | 10361.400000 | 10362.400000 | 10361.900000 | 1.000000     | 1.000000     | 7.2s
+J225       |    25 | 62834.700000 | 62844.700000 | 62839.700000 | 10.000000    | 10.000000    | 1.2s
+EURUSD     |    48 | 1.169530     | 1.169600     | 1.169565     | 0.000070     | 0.000070     | 0.2s
+GBPUSD     |    37 | 1.350640     | 1.350770     | 1.350705     | 0.000130     | 0.000130     | 1.2s
+USDJPY     |    23 | 157.977000   | 157.989000   | 157.983000   | 0.012000     | 0.012000     | 1.2s
+EURJPY     |    65 | 184.757000   | 184.778000   | 184.767500   | 0.021000     | 0.022000     | 1.2s
+GOLD       |   278 | 4696.960000  | 4697.460000  | 4697.210000  | 0.500000     | 0.500000     | 0.2s
+SILVER     |   171 | 86.015000    | 86.065000    | 86.040000    | 0.050000     | 0.080000     | 0.2s
+OIL_CRUDE  |    66 | 96.940000    | 96.980000    | 96.960000    | 0.040000     | 0.040000     | 0.2s
+BTCUSD     |   125 | 79740.550000 | 79790.550000 | 79765.550000 | 50.000000    | 50.000000    | 1.2s
+ETHUSD     |   119 | 2258.890000  | 2260.640000  | 2259.765000  | 1.750000     | 1.750000     | 0.2s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+======================================================================================================================
+TICKS LIVE — Module 03
+======================================================================================================================
+ACTIF      | TICKS | BID          | ASK          | MID          | SPREAD       | SPREAD MED   | AGE
+----------------------------------------------------------------------------------------------------------------------
+US500      |    23 | 7464.700000  | 7465.300000  | 7465.000000  | 0.600000     | 0.600000     | 1.1s
+US100      |   185 | 29384.300000 | 29386.100000 | 29385.200000 | 1.800000     | 1.800000     | 1.1s
+US30       |    51 | 50123.500000 | 50125.500000 | 50124.500000 | 2.000000     | 2.000000     | 1.1s
+DE40       |    85 | 24429.400000 | 24430.900000 | 24430.150000 | 1.500000     | 1.500000     | 2.1s
+FR40       |    39 | 8071.100000  | 8071.900000  | 8071.500000  | 0.800000     | 0.800000     | 2.1s
+UK100      |    17 | 10361.500000 | 10362.500000 | 10362.000000 | 1.000000     | 1.000000     | 14.1s
+J225       |    38 | 62839.600000 | 62849.600000 | 62844.600000 | 10.000000    | 10.000000    | 1.1s
+EURUSD     |    58 | 1.169520     | 1.169590     | 1.169555     | 0.000070     | 0.000070     | 6.1s
+GBPUSD     |    70 | 1.350590     | 1.350720     | 1.350655     | 0.000130     | 0.000130     | 2.1s
+USDJPY     |    23 | 157.977000   | 157.989000   | 157.983000   | 0.012000     | 0.012000     | 16.1s
+EURJPY     |    83 | 184.757000   | 184.777000   | 184.767000   | 0.020000     | 0.021000     | 1.1s
+GOLD       |   394 | 4696.560000  | 4697.060000  | 4696.810000  | 0.500000     | 0.500000     | 0.1s
+SILVER     |   248 | 86.042000    | 86.122000    | 86.082000    | 0.080000     | 0.080000     | 0.1s
+OIL_CRUDE  |   102 | 96.913000    | 96.953000    | 96.933000    | 0.040000     | 0.040000     | 1.1s
+BTCUSD     |   204 | 79741.100000 | 79791.100000 | 79766.100000 | 50.000000    | 50.000000    | 0.1s
+ETHUSD     |   166 | 2258.970000  | 2260.720000  | 2259.845000  | 1.750000     | 1.750000     | 0.1s
+======================================================================================================================
+Fichier ticks : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+======================================================================================================================
+
+MODULE 04 — SIGNAUX
+Fichier ticks utilisé : /home/philippe_vacher06/bot-pivot/live/data/ticks/ticks_20260514.jsonl
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7465.000000  | 36.4  | 5.500000    | 0.600000 | 0.600000 | True  | 3.6   | LOCAL+MAJOR:support      | False     | True       | range_pas_assez_bas, pas_micro_rebond
+US100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 29385.200000 | 29.8  | 48.600000   | 1.800000 | 1.800000 | True  | 3.6   | MAJOR+PSYCHO+LOCAL:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 50124.500000 | 51.6  | 55.600000   | 2.000000 | 2.000000 | True  | 3.7   | --                       | True      | False      | hors_zone
+DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24430.150000 | 30.1  | 24.900000   | 1.500000 | 1.500000 | True  | 4.7   | LOCAL+MAJOR:active       | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+FR40       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 8071.500000  | 53.8  | 6.500000    | 0.800000 | 0.800000 | True  | 4.7   | --                       | True      | False      | hors_zone
+UK100      | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 10362.000000 | 2.3   | 8.700000    | 1.000000 | 1.000000 | True  | 16.7  | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+J225       | BUY      |    -3 | SELL     | TREND_DOWN | NONE                 | 62844.600000 | 15.1  | 59.700000   | 10.000000 | 10.000000 | True  | 3.7   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+EURUSD     | BUY      |     2 | SELL     | RANGE      | NONE                 | 1.169555     | 9.4   | 0.000640    | 0.000070 | 0.000070 | True  | 8.8   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+GBPUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.350655     | 5.9   | 0.000510    | 0.000130 | 0.000130 | True  | 4.8   | --                       | False     | True       | hors_zone
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 157.983000   | 96.4  | 0.028000    | 0.012000 | 0.012000 | True  | 18.8  | PSYCHO:active:158.0      | True      | False      | range_pas_assez_bas, pas_micro_rejet
+EURJPY     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 184.767000   | 23.5  | 0.093500    | 0.020000 | 0.021000 | True  | 3.8   | LOCAL+MAJOR:support      | False     | True       | range_pas_assez_bas, pas_micro_rebond
+GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4696.810000  | 4.9   | 11.630000   | 0.500000 | 0.500000 | True  | 2.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+SILVER     | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 86.082000    | 15.1  | 0.794000    | 0.080000 | 0.080000 | True  | 2.9   | LOCAL:active             | False     | True       | range_pas_assez_haut, pas_micro_rebond
+OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 96.933000    | 35.5  | 0.564000    | 0.040000 | 0.040000 | True  | 3.9   | LOCAL:support            | True      | False      | range_pas_assez_bas
+BTCUSD     | WAIT     |     0 | BUY      | TREND_UP   | NO_SIGNAL            | 79766.100000 | 68.3  | 127.200000  | 50.000000 | 50.000000 | True  | 3.0   | MAJOR+PSYCHO+LOCAL:resis | False     | True       | range_pas_assez_haut
+ETHUSD     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 2259.845000  | 52.8  | 3.160000    | 1.750000 | 1.750000 | True  | 3.0   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | IDLE         | aucun signal
+US100      | IDLE         | aucun signal
+US30       | IDLE         | aucun signal
+DE40       | IDLE         | aucun signal
+FR40       | IDLE         | aucun signal
+UK100      | IDLE         | aucun signal
+J225       | IDLE_PHASE_VETO | signal BUY ignoré | cursor=1.0 | score=-3 | phase=TREND_DOWN | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; PHASE_VETO_buy_contre_trend_down:-4
+EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+GBPUSD     | IDLE         | aucun signal
+USDJPY     | IDLE         | aucun signal
+EURJPY     | IDLE         | aucun signal
+GOLD       | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_active:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+GOLD       | OPEN_L1      | BUY  | entry=4697.060000 | size=0.270000 | tp=0.2000
+SILVER     | IDLE         | aucun signal
+OIL_CRUDE  | IDLE         | aucun signal
+BTCUSD     | IDLE         | aucun signal
+ETHUSD     | IDLE         | aucun signal
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 2
+- EURUSD     L1 BUY size=1500.0 cycle=f21630e1-5d0
+- GOLD       L1 BUY size=0.27 cycle=74dbf064-d7d
+Deals réels DEMO suivis : 3
+- EURUSD     L1 BUY size=1500.0 dealId=00005552-0055-311e-0000-000081ea6ca4
+- EURUSD     L2 BUY size=3000.0 dealId=None
+- EURUSD     L3 BUY size=4500.0 dealId=None
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+
+==========================================================================================================================================================================
+06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+==========================================================================================================================================================================
+SEND_REAL_ORDERS      : True
+Positions broker HTTP : 200
+MARGIN_GUARD | margin_cfd=321.2800000000002 max=3100.0 available=3186.25 min_available=0.0 block=False reasons=
+STORM_GUARD | mode=OFF alerts=0 assets= systemic=False
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACTIF      | ACTION         | LVL | DIR  | SIZE       | MARKET    | RAISON / PAYLOAD
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | IDLE         | --  | --   | --         | --        | aucun cycle
+US100      | IDLE         | --  | --   | --         | --        | aucun cycle
+US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+DE40       | IDLE         | --  | --   | --         | --        | aucun cycle
+FR40       | IDLE         | --  | --   | --         | --        | aucun cycle
+UK100      | IDLE         | --  | --   | --         | --        | aucun cycle
+J225       | IDLE         | --  | --   | --         | --        | aucun cycle
+EURUSD     | PNL_AUDIT_LEG | L1   | BUY  | entry=1.169610 size=1500.000000 bid=1.169720 ask=1.169790 exit=1.169720 side=BID_LOW_SIDE_FOR_BUY pnl_sel=0.1410 pnl_dist=0.1410256410257109 pnl_mod=0.1410256410257109 raw=0.16500000000008175 src=CONSERVATIVE_MIN_DISTANCE_MODULE broker_upl=-0.14 broker=position.upl=-0.14
+EURUSD     | PNL_AUDIT_TOTAL | 1-3 | BUY  | open=1 pnl=0.1410 broker_upl=-0.1400 target=0.2
+EURUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.1400 tp_pnl=-0.1400 broker_count=1/1 internal=0.1410 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+EURUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=0 pnl=0.1410 target=0.2
+GBPUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+USDJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+EURJPY     | IDLE         | --  | --   | --         | --        | aucun cycle
+GOLD       | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=18.09199 required=8.00000 ratio=2.261 ok=True abs_min=8.00000 spread_min=1.50000
+GOLD       | PRICE_AUDIT | BUY  | stream_bid=4696.56 stream_ask=4697.06 snapshot_bid=4697.99 snapshot_ask=4698.49 BB_LOW=4690.973753938205 BB_MID=4700.0197499999995 BB_HIGH=4709.065746061794 L1=4689.37 L2=4685.37 L3=4681.37 dist=8.61999999999989
+GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=4690.97375 BB_MID=4700.01975 BB_HIGH=4709.06575 width=18.09199 required=8.00000 L1=4689.37 L2=4685.37 L3=4681.37 dist=8.6200000000 max_dist=22.0000000000 dist_ratio=0.392
+GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4690.97375 | BB_MID=4700.01975 | BB_HIGH=4709.06575 | L1=4689.37 | L2=4685.37 | L3=4681.37 | BUFFER=1.6 | STEP=4.0
+GOLD       | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=4689.37 L2=4685.37 dist=8.6200000000 step=4.0000000000 max_allowed=6.0000000000 dist_step_ratio=2.155 mult=1.500 old_max_dist=22.0 aucun ordre envoye
+SILVER     | IDLE         | --  | --   | --         | --        | aucun cycle
+OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+BTCUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+ETHUSD     | IDLE         | --  | --   | --         | --        | aucun cycle
+==========================================================================================================================================================================
+06G2 bloc 3/3 terminé : ouverture + fermeture sécurisées, anti-empilement actif.
+Execution state : /home/philippe_vacher06/bot-pivot/live/data/execution/cycle_execution_state.json
+==========================================================================================================================================================================
+
+Pause 5s...
+
+########################################################################################################################
+07D — CYCLE 21 — 2026-05-14T13:04:42Z
+########################################################################################################################
+
+FRAÎCHEUR CONTEXTE :
+- markets age : 1167s / seuil 7200s
+- zones age   : 1136s / seuil 43200s
+- history age : 1137s / seuil 86400s
+
+MODULE 03 — TICKS
+2026-05-14 13:04:43,469 - INFO - ============================================================
+2026-05-14 13:04:43,469 - INFO - BOT_PIVOT_03_TICK_STREAM
+2026-05-14 13:04:43,469 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+2026-05-14 13:04:43,469 - INFO - Nb actifs    : 16
+2026-05-14 13:04:43,469 - INFO - Stream URL   : wss://api-streaming-capital.backend-capital.com/connect
+2026-05-14 13:04:43,470 - INFO - Durée test   : 45 sec
+2026-05-14 13:04:43,470 - INFO - ============================================================
+2026-05-14 13:04:43,611 - INFO - [SUBSCRIBE] envoyé
+2026-05-14 13:04:43,640 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}

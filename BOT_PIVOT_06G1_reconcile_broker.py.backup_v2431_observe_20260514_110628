@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+# 06G1 — Diagnostic broker / interne — lecture seule
+
+import json
+from collections import defaultdict
+from pathlib import Path
+
+import BOT_PIVOT_06G_execution_from_cycle_state as B
+
+ASSETS = list(B.CFG.ASSETS)
+
+def short(x):
+    if not x:
+        return "--"
+    x = str(x)
+    return x[:6] + "..." + x[-4:] if len(x) > 14 else x
+
+def pos_epic(item):
+    return B.broker_position_epic(item)
+
+def pos_deal(item):
+    return B.broker_position_deal_id(item)
+
+def pos_dir(item):
+    return item.get("position", {}).get("direction")
+
+def pos_size(item):
+    return item.get("position", {}).get("size")
+
+def main():
+    print("=" * 120)
+    print("BOT_PIVOT_06G1 — RECONCILIATION LECTURE SEULE")
+    print("=" * 120)
+    print("Aucun ordre envoyé.")
+    print()
+
+    B.load_env()
+    headers = B.login()
+
+    status, positions, _ = B.broker_positions(headers)
+    cycles = B.current_cycles()
+    exec_state = B.load_json(B.EXEC_STATE_FILE, {"active": {}})
+    active = exec_state.get("active", {})
+
+    by_asset = defaultdict(list)
+    for p in positions:
+        epic = pos_epic(p)
+        if epic:
+            by_asset[epic].append(p)
+
+    print("GET /positions :", status)
+    print("Total positions broker :", len(positions))
+    print()
+
+    print(f"{'ACTIF':10s} | {'BROKER':>6s} | {'CYCLE':24s} | {'EXEC_STATE':32s} | ANOMALIE")
+    print("-" * 120)
+
+    for asset in ASSETS:
+        bpos = by_asset.get(asset, [])
+        c = cycles.get(asset)
+        e = active.get(asset)
+
+        cycle_txt = "--"
+        if c:
+            cycle_txt = f"L{c.get('level')} {c.get('direction')} size={c.get('size')}"
+
+        exec_txt = "--"
+        if e:
+            exec_txt = f"L{e.get('level')} {e.get('direction')} size={e.get('size')} deal={short(e.get('dealId'))}"
+
+        anomalies = []
+
+        if len(bpos) > 1:
+            anomalies.append("MULTI_POS_BROKER")
+
+        if bpos and not e:
+            anomalies.append("BROKER_NON_SUIVI")
+
+        if bpos and not c:
+            anomalies.append("BROKER_ALORS_CYCLE_IDLE")
+
+        if c and e:
+            if c.get("cycle_id") != e.get("cycle_id"):
+                anomalies.append("CYCLE_ID_DIFF")
+            if int(c.get("level", -1)) != int(e.get("level", -1)):
+                anomalies.append("LEVEL_DIFF")
+
+        if e:
+            broker_deals = [pos_deal(x) for x in bpos]
+            if e.get("dealId") not in broker_deals:
+                anomalies.append("DEAL_EXEC_ABSENT_BROKER")
+
+        print(
+            f"{asset:10s} | {len(bpos):>6d} | "
+            f"{cycle_txt:24s} | {exec_txt:32s} | "
+            f"{', '.join(anomalies) if anomalies else 'OK'}"
+        )
+
+        for p in bpos:
+            print(
+                f"{'':10s} | {'':6s} | "
+                f"broker -> {pos_dir(p)} size={pos_size(p)} deal={short(pos_deal(p))}"
+            )
+
+    print("=" * 120)
+
+if __name__ == "__main__":
+    main()

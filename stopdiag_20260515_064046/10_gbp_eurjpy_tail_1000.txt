@@ -1,0 +1,177 @@
+5:Actifs          : US500,US100,US30,DE40,FR40,UK100,J225,EURUSD,GBPUSD,USDJPY,EURJPY,GOLD,SILVER,OIL_CRUDE,BTCUSD,ETHUSD
+29:UK100      | 200  | TRADEABLE  | 10396.9      | 10398.9      | 0.01       | 1250       | 1          | GBP
+32:GBPUSD     | 200  | TRADEABLE  | 1.34214      | 1.34227      | 100        | 40000000   | 1          | USD
+34:EURJPY     | 200  | TRADEABLE  | 184.736      | 184.755      | 100        | 22500000   | 1          | JPY
+53:2026-05-14 17:39:42,767 - INFO - Actifs     : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+100:2026-05-14 17:39:59,518 - INFO - GBPUSD : MINUTE_15 2026-04-14T17:39:00 -> 2026-04-24T15:09:00
+101:2026-05-14 17:39:59,818 - INFO - GBPUSD : MINUTE_15 2026-04-24T15:09:01 -> 2026-05-04T12:39:01
+102:2026-05-14 17:40:00,101 - INFO - GBPUSD : MINUTE_15 2026-05-04T12:39:02 -> 2026-05-14T10:09:02
+103:2026-05-14 17:40:00,428 - INFO - GBPUSD : MINUTE_15 2026-05-14T10:09:03 -> 2026-05-14T17:39:00
+104:2026-05-14 17:40:00,778 - INFO - [OK] GBPUSD : 2112 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/GBPUSD_MINUTE_15_30d.json
+110:2026-05-14 17:40:03,214 - INFO - EURJPY : MINUTE_15 2026-04-14T17:40:00 -> 2026-04-24T15:10:00
+111:2026-05-14 17:40:03,992 - INFO - EURJPY : MINUTE_15 2026-04-24T15:10:01 -> 2026-05-04T12:40:01
+112:2026-05-14 17:40:04,273 - INFO - EURJPY : MINUTE_15 2026-05-04T12:40:02 -> 2026-05-14T10:10:02
+113:2026-05-14 17:40:04,547 - INFO - EURJPY : MINUTE_15 2026-05-14T10:10:03 -> 2026-05-14T17:40:00
+114:2026-05-14 17:40:04,860 - INFO - [OK] EURJPY : 2112 bougies -> /home/philippe_vacher06/bot-pivot/live/data/history/EURJPY_MINUTE_15_30d.json
+151:2026-05-14 17:40:14,986 - INFO - Actifs      : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+165:2026-05-14 17:40:15,292 - INFO - [OK] GBPUSD     | zones= 7 | local=0 | major=2 | psycho=7 | confl=2 | S=3 R=4 A=0 | close=1.342205 | ATR local=0.000681 | psycho minor=0.005 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_GBPUSD.json
+167:2026-05-14 17:40:15,362 - INFO - [OK] EURJPY     | zones= 9 | local=4 | major=3 | psycho=6 | confl=3 | S=4 R=5 A=0 | close=184.7405 | ATR local=0.074354 | psycho minor=0.5 | fichier=/home/philippe_vacher06/bot-pivot/live/data/zones/zones_EURJPY.json
+288:GBPUSD | close=1.342205 | ATR local=0.000681 | psycho minor=0.005 medium=0.01 major=0.02 | zones=7 | confluences=2
+312:EURJPY | close=184.7405 | ATR local=0.074354 | psycho minor=0.5 medium=1.0 major=2 | zones=9 | confluences=3
+404:2026-05-14 17:40:16,101 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+410:2026-05-14 17:40:16,284 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+426:GBPUSD     |    41 | 1.342080     | 1.342210     | 1.342145     | 0.000130     | 0.000130     | 0.3s
+428:EURJPY     |    56 | 184.734000   | 184.756000   | 184.745000   | 0.022000     | 0.021500     | 0.3s
+451:GBPUSD     |    60 | 1.341970     | 1.342100     | 1.342035     | 0.000130     | 0.000130     | 2.1s
+453:EURJPY     |    86 | 184.729000   | 184.751000   | 184.740000   | 0.022000     | 0.021000     | 0.1s
+479:GBPUSD     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 1.342035     | 0.0   | 0.000740    | 0.000130 | 0.000130 | True  | 7.7   | --                       | False     | True       | hors_zone
+481:EURJPY     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 184.740000   | 84.0  | 0.050000    | 0.022000 | 0.022000 | True  | 5.8   | --                       | False     | True       | hors_zone
+506:GBPUSD     | DEMO_SAMPLE_SIGNAL | BUY  | reason=rpos=0.0<=25.0
+507:GBPUSD     | OPEN_L1      | BUY  | entry=1.342100 | size=1200.000000 | tp=0.2000
+509:EURJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+531:- GBPUSD     L1 BUY size=1200.0 cycle=a9e8b380-48b
+532:- EURJPY     L1 BUY size=1800.0 cycle=d7232e7f-220
+557:US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29514.45598 BB_MID=29601.87250 BB_HIGH=29689.28902 width=174.83303 required=30.00000 L1=29689.7 L2=29701.7 L3=29713.7 dist=100.6000000000 max_dist=6.4000000000 dist_ratio=15.719
+563:US30       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=49964.79036 BB_MID=50062.15500 BB_HIGH=50159.51964 width=194.72929 required=50.00000 L1=50160.3 L2=50180.3 L3=50200.3 dist=105.1000000000 max_dist=19.4400000000 dist_ratio=5.406
+565:US30       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=50160.300000 stopLevel≈50360.300000 stopDistance=200.000000 step=20.000000 spread=2.000000 minStop=0.100000
+566:US30       | LIMIT_REQUEST | 1   | SELL | 0.024000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.024, "guaranteedStop": true, "stopDistance": 200.0, "type": "LIMIT", "level": 50160.3}
+568:US30       | LIMIT_OK      | 1   | SELL | 0.024000   | TRADEABLE | ref=o_37bc...8526 limit=50160.3
+569:US30       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=50180.300000 stopLevel≈50360.300000 stopDistance=180.000000 step=20.000000 spread=2.000000 minStop=0.100000
+570:US30       | LIMIT_REQUEST | 2   | SELL | 0.048000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.048, "guaranteedStop": true, "stopDistance": 180.0, "type": "LIMIT", "level": 50180.3}
+572:US30       | LIMIT_OK      | 2   | SELL | 0.048000   | TRADEABLE | ref=o_5489...4685 limit=50180.3
+573:US30       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=50200.300000 stopLevel≈50360.300000 stopDistance=160.000000 step=20.000000 spread=2.000000 minStop=0.100000
+574:US30       | LIMIT_REQUEST | 3   | SELL | 0.072000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.07200000000000001, "guaranteedStop": true, "stopDistance": 160.0, "type": "LIMIT", "level": 50200.3}
+576:US30       | LIMIT_OK      | 3   | SELL | 0.072000   | TRADEABLE | ref=o_2ebe...f9bf limit=50200.3
+584:J225       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=62774.50522 BB_MID=62895.48000 BB_HIGH=63016.45478 width=241.94957 required=100.00000 L1=63017.3 L2=63057.3 L3=63097.3 dist=134.2000000000 max_dist=28.0000000000 dist_ratio=4.793
+586:J225       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=63017.300000 stopLevel≈63417.300000 stopDistance=400.000000 step=40.000000 spread=10.000000 minStop=0.500000
+587:J225       | LIMIT_REQUEST | 1   | SELL | 1.500000   | TRADEABLE | {"epic": "J225", "direction": "SELL", "size": 1.5, "guaranteedStop": true, "stopDistance": 400.0, "type": "LIMIT", "level": 63017.3}
+589:J225       | V24_STOP_GUARD | guaranteedStop=false | stopDistance=400.0
+592:J225       | LIMIT_OK      | 1   | SELL | 1.500000   | TRADEABLE | ref=o_7510...4a69 limit=63017.3
+593:J225       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=63057.300000 stopLevel≈63417.300000 stopDistance=360.000000 step=40.000000 spread=10.000000 minStop=0.500000
+594:J225       | LIMIT_REQUEST | 2   | SELL | 3.000000   | TRADEABLE | {"epic": "J225", "direction": "SELL", "size": 3.0, "guaranteedStop": true, "stopDistance": 360.0, "type": "LIMIT", "level": 63057.3}
+596:J225       | V24_STOP_GUARD | guaranteedStop=false | stopDistance=360.0
+599:J225       | LIMIT_OK      | 2   | SELL | 3.000000   | TRADEABLE | ref=o_23b6...cc94 limit=63057.3
+600:J225       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=63097.300000 stopLevel≈63417.300000 stopDistance=320.000000 step=40.000000 spread=10.000000 minStop=0.500000
+601:J225       | LIMIT_REQUEST | 3   | SELL | 4.500000   | TRADEABLE | {"epic": "J225", "direction": "SELL", "size": 4.5, "guaranteedStop": true, "stopDistance": 320.0, "type": "LIMIT", "level": 63097.3}
+603:J225       | V24_STOP_GUARD | guaranteedStop=false | stopDistance=320.0
+608:J225       | LIMIT_OK      | 3   | SELL | 4.500000   | TRADEABLE | ref=o_c5b9...852f limit=63097.3
+612:EURUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.16725 BB_MID=1.16768 BB_HIGH=1.16811 width=0.00086 required=0.00040 L1=1.16812 L2=1.16836 L3=1.1686 dist=0.0001100000 max_dist=0.0010000000 dist_ratio=0.110
+614:EURUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=1.168120 stopLevel≈1.418600 stopDistance=0.250480 step=0.000240 spread=0.000070 minStop=0.250000
+615:EURUSD     | LIMIT_REQUEST | 1   | SELL | 450.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 450.0, "guaranteedStop": true, "stopDistance": 0.25048, "type": "LIMIT", "level": 1.16812}
+617:EURUSD     | LIMIT_OK      | 1   | SELL | 450.000000 | TRADEABLE | ref=o_4326...80fb limit=1.16812
+618:EURUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=1.168360 stopLevel≈1.418600 stopDistance=0.250240 step=0.000240 spread=0.000070 minStop=0.250000
+619:EURUSD     | LIMIT_REQUEST | 2   | SELL | 900.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 900.0, "guaranteedStop": true, "stopDistance": 0.25024, "type": "LIMIT", "level": 1.16836}
+621:EURUSD     | LIMIT_OK      | 2   | SELL | 900.000000 | TRADEABLE | ref=o_e41e...782a limit=1.16836
+622:EURUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=1.168600 stopLevel≈1.418600 stopDistance=0.250000 step=0.000240 spread=0.000070 minStop=0.250000
+623:EURUSD     | LIMIT_REQUEST | 3   | SELL | 1350.000000 | TRADEABLE | {"epic": "EURUSD", "direction": "SELL", "size": 1350.0, "guaranteedStop": true, "stopDistance": 0.25, "type": "LIMIT", "level": 1.1686}
+625:EURUSD     | LIMIT_OK      | 3   | SELL | 1350.000000 | TRADEABLE | ref=o_3bbf...4b0c limit=1.1686
+627:GBPUSD     | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=0.00525 required=0.00050 ratio=10.490 ok=True abs_min=0.00050 spread_min=0.00039
+628:GBPUSD     | PRICE_AUDIT | BUY  | stream_bid=1.34197 stream_ask=1.3421 snapshot_bid=1.34214 snapshot_ask=1.34227 BB_LOW=1.3412854432322638 BB_MID=1.3439080000000003 BB_HIGH=1.3465305567677368 L1=1.34128 L2=1.341 L3=1.34072 dist=0.0008600000000000829
+629:GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=1.34129 BB_MID=1.34391 BB_HIGH=1.34653 width=0.00525 required=0.00050 L1=1.34128 L2=1.341 L3=1.34072 dist=0.0006900000 max_dist=0.0012000000 dist_ratio=0.575
+630:GBPUSD     | BOLLINGER_M5 | BUY  | BB_LOW=1.34129 | BB_MID=1.34391 | BB_HIGH=1.34653 | L1=1.34128 | L2=1.341 | L3=1.34072 | BUFFER=9.600000000000001e-06 | STEP=0.00028000000000000003
+631:GBPUSD     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=1.341280 stopLevel≈1.240720 stopDistance=0.100570 step=0.000280 spread=0.000130 minStop=0.100000
+632:GBPUSD     | LIMIT_REQUEST | 1   | BUY  | 1200.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 1200.0, "guaranteedStop": true, "stopDistance": 0.10057, "type": "LIMIT", "level": 1.34128}
+633:GBPUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.34128
+634:GBPUSD     | LIMIT_OK      | 1   | BUY  | 1200.000000 | TRADEABLE | ref=o_b40c...3d33 limit=1.34128
+635:GBPUSD     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=1.341000 stopLevel≈1.240720 stopDistance=0.100290 step=0.000280 spread=0.000130 minStop=0.100000
+636:GBPUSD     | LIMIT_REQUEST | 2   | BUY  | 2400.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 2400.0, "guaranteedStop": true, "stopDistance": 0.10029, "type": "LIMIT", "level": 1.341}
+637:GBPUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.341
+638:GBPUSD     | LIMIT_OK      | 2   | BUY  | 2400.000000 | TRADEABLE | ref=o_2e62...d7df limit=1.341
+639:GBPUSD     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=1.340720 stopLevel≈1.240720 stopDistance=0.100010 step=0.000280 spread=0.000130 minStop=0.100000
+640:GBPUSD     | LIMIT_REQUEST | 3   | BUY  | 3600.000000 | TRADEABLE | {"epic": "GBPUSD", "direction": "BUY", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.10001, "type": "LIMIT", "level": 1.34072}
+641:GBPUSD     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=1.34072
+642:GBPUSD     | LIMIT_OK      | 3   | BUY  | 3600.000000 | TRADEABLE | ref=o_7ed9...1038 limit=1.34072
+643:GBPUSD     | BASKET_NEW  | 1-3 | BUY  | 1200.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+645:EURJPY     | BOLLINGER_WIDTH_OBSERVE | --  | BUY  | --         | FILTER    | width=0.10996 required=0.10000 ratio=1.100 ok=True abs_min=0.10000 spread_min=0.05700
+646:EURJPY     | PRICE_AUDIT | BUY  | stream_bid=184.729 stream_ask=184.751 snapshot_bid=184.736 snapshot_ask=184.755 BB_LOW=184.6365427528651 BB_MID=184.69152499999996 BB_HIGH=184.74650724713482 L1=184.635 L2=184.587 L3=184.539 dist=0.10099999999999909
+647:EURJPY     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=184.63654 BB_MID=184.69152 BB_HIGH=184.74651 width=0.10996 required=0.10000 L1=184.635 L2=184.587 L3=184.539 dist=0.0940000000 max_dist=0.1800000000 dist_ratio=0.522
+648:EURJPY     | BOLLINGER_M5 | BUY  | BB_LOW=184.63654 | BB_MID=184.69152 | BB_HIGH=184.74651 | L1=184.635 | L2=184.587 | L3=184.539 | BUFFER=0.0012000000000000001 | STEP=0.048
+649:EURJPY     | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=184.635000 stopLevel≈184.155000 stopDistance=0.481000 step=0.048000 spread=0.019000 minStop=0.100000
+650:EURJPY     | LIMIT_REQUEST | 1   | BUY  | 1800.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 1800.0, "guaranteedStop": true, "stopDistance": 0.481, "type": "LIMIT", "level": 184.635}
+651:EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.635
+652:EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.481
+653:EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+654:EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_99d17626-264e-4d6a-9aaf-55fac72e6305'}
+655:EURJPY     | LIMIT_OK      | 1   | BUY  | 1800.000000 | TRADEABLE | ref=o_99d1...6305 limit=184.635
+656:EURJPY     | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=184.587000 stopLevel≈184.155000 stopDistance=0.433000 step=0.048000 spread=0.019000 minStop=0.100000
+657:EURJPY     | LIMIT_REQUEST | 2   | BUY  | 3600.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 3600.0, "guaranteedStop": true, "stopDistance": 0.433, "type": "LIMIT", "level": 184.587}
+658:EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.587
+659:EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.433
+660:EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+661:EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_d4031e97-84ec-464a-b245-4fdc4d49fa7a'}
+662:EURJPY     | LIMIT_OK      | 2   | BUY  | 3600.000000 | TRADEABLE | ref=o_d403...fa7a limit=184.587
+663:EURJPY     | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=184.539000 stopLevel≈184.155000 stopDistance=0.385000 step=0.048000 spread=0.019000 minStop=0.100000
+664:EURJPY     | LIMIT_REQUEST | 3   | BUY  | 5400.000000 | TRADEABLE | {"epic": "EURJPY", "direction": "BUY", "size": 5400.0, "guaranteedStop": true, "stopDistance": 0.385, "type": "LIMIT", "level": 184.539}
+665:EURJPY     | V24_LIMIT_SIDE_GUARD_V242_NO_MOVE | BUY  | level=184.539
+666:EURJPY     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=0.385
+667:EURJPY     | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_GUARANTEED_REQUIRED_TRUE old_error=error.vallidation.guaranteed-stop-loss.required
+668:EURJPY     | V24_WORKING_ORDER_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_7fca996e-f190-4396-a636-32468e9fd870'}
+669:EURJPY     | LIMIT_OK      | 3   | BUY  | 5400.000000 | TRADEABLE | ref=o_7fca...d870 limit=184.539
+670:EURJPY     | BASKET_NEW  | 1-3 | BUY  | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+679:BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=81171.92161 BB_MID=81559.78250 BB_HIGH=81947.64339 width=775.72178 required=150.00000 L1=81948.44 L2=81988.44 L3=82028.44 dist=367.5900000000 max_dist=40.0000000000 dist_ratio=9.190
+684:ETHUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=2295.69880 BB_MID=2306.53350 BB_HIGH=2317.36820 width=21.66941 required=15.00000 L1=2317.77 L2=2321.77 L3=2325.77 dist=11.9700000000 max_dist=28.0000000000 dist_ratio=0.427
+686:ETHUSD     | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=2317.770000 stopLevel≈2357.770000 stopDistance=40.000000 step=4.000000 spread=1.750000 minStop=0.500000
+687:ETHUSD     | LIMIT_REQUEST | 1   | SELL | 0.060000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.06, "guaranteedStop": true, "stopDistance": 40.0, "type": "LIMIT", "level": 2317.77}
+689:ETHUSD     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=40.0
+692:ETHUSD     | LIMIT_OK      | 1   | SELL | 0.060000   | TRADEABLE | ref=o_347f...62e6 limit=2317.77
+693:ETHUSD     | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=2321.770000 stopLevel≈2357.770000 stopDistance=36.000000 step=4.000000 spread=1.750000 minStop=0.500000
+694:ETHUSD     | LIMIT_REQUEST | 2   | SELL | 0.120000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.12, "guaranteedStop": true, "stopDistance": 36.0, "type": "LIMIT", "level": 2321.77}
+696:ETHUSD     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=36.0
+699:ETHUSD     | LIMIT_OK      | 2   | SELL | 0.120000   | TRADEABLE | ref=o_b18c...ca7f limit=2321.77
+700:ETHUSD     | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=2325.770000 stopLevel≈2357.770000 stopDistance=32.000000 step=4.000000 spread=1.750000 minStop=0.500000
+701:ETHUSD     | LIMIT_REQUEST | 3   | SELL | 0.180000   | TRADEABLE | {"epic": "ETHUSD", "direction": "SELL", "size": 0.18, "guaranteedStop": true, "stopDistance": 32.0, "type": "LIMIT", "level": 2325.77}
+703:ETHUSD     | V24_STOP_GUARD | guaranteedStop=false | stopDistance=32.0
+706:ETHUSD     | LIMIT_OK      | 3   | SELL | 0.180000   | TRADEABLE | ref=o_65ab...08b4 limit=2325.77
+727:2026-05-14 17:41:24,347 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+733:2026-05-14 17:41:24,544 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+749:GBPUSD     |    51 | 1.341940     | 1.342070     | 1.342005     | 0.000130     | 0.000130     | 2.5s
+751:EURJPY     |    46 | 184.727000   | 184.748000   | 184.737500   | 0.021000     | 0.021000     | 2.5s
+774:GBPUSD     |    59 | 1.341950     | 1.342080     | 1.342015     | 0.000130     | 0.000130     | 4.4s
+776:EURJPY     |    66 | 184.727000   | 184.746000   | 184.736500   | 0.019000     | 0.021000     | 1.4s
+802:GBPUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.342015     | 10.6  | 0.000850    | 0.000130 | 0.000130 | True  | 9.5   | --                       | True      | False      | hors_zone
+804:EURJPY     | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 184.736500   | 77.0  | 0.050000    | 0.019000 | 0.021000 | True  | 6.5   | --                       | False     | False      | hors_zone
+828:GBPUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+830:EURJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+853:- GBPUSD     L1 BUY size=1200.0 cycle=a9e8b380-48b
+854:- EURJPY     L1 BUY size=1800.0 cycle=d7232e7f-220
+868:- GBPUSD     L1 BUY size=1200.0 dealId=None
+869:- GBPUSD     L2 BUY size=2400.0 dealId=None
+870:- GBPUSD     L3 BUY size=3600.0 dealId=None
+871:- EURJPY     L1 BUY size=1800.0 dealId=None
+872:- EURJPY     L2 BUY size=3600.0 dealId=None
+873:- EURJPY     L3 BUY size=5400.0 dealId=None
+896:US500      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=7485.16302 BB_MID=7499.83000 BB_HIGH=7514.49698 width=29.33397 required=10.00000 L1=7514.9 L2=7518.9 L3=7522.9 dist=16.2000000000 max_dist=3.2000000000 dist_ratio=5.062
+898:US500      | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=7514.900000 stopLevel≈7554.900000 stopDistance=40.000000 step=4.000000 spread=0.400000 minStop=0.100000
+899:US500      | LIMIT_REQUEST | 1   | SELL | 0.150000   | TRADEABLE | {"epic": "US500", "direction": "SELL", "size": 0.15, "guaranteedStop": true, "stopDistance": 40.0, "type": "LIMIT", "level": 7514.9}
+901:US500      | LIMIT_OK      | 1   | SELL | 0.150000   | TRADEABLE | ref=o_9e3f...f49e limit=7514.9
+902:US500      | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=7518.900000 stopLevel≈7554.900000 stopDistance=36.000000 step=4.000000 spread=0.400000 minStop=0.100000
+903:US500      | LIMIT_REQUEST | 2   | SELL | 0.300000   | TRADEABLE | {"epic": "US500", "direction": "SELL", "size": 0.3, "guaranteedStop": true, "stopDistance": 36.0, "type": "LIMIT", "level": 7518.9}
+905:US500      | LIMIT_OK      | 2   | SELL | 0.300000   | TRADEABLE | ref=o_fd5a...5700 limit=7518.9
+906:US500      | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=7522.900000 stopLevel≈7554.900000 stopDistance=32.000000 step=4.000000 spread=0.400000 minStop=0.100000
+907:US500      | LIMIT_REQUEST | 3   | SELL | 0.450000   | TRADEABLE | {"epic": "US500", "direction": "SELL", "size": 0.44999999999999996, "guaranteedStop": true, "stopDistance": 32.0, "type": "LIMIT", "level": 7522.9}
+909:US500      | LIMIT_OK      | 3   | SELL | 0.450000   | TRADEABLE | ref=o_e56f...ac9f limit=7522.9
+914:US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29514.19205 BB_MID=29601.69000 BB_HIGH=29689.18795 width=174.99590 required=30.00000 L1=29689.6 L2=29701.6 L3=29713.6 dist=98.6000000000 max_dist=6.4000000000 dist_ratio=15.406
+930:GBPUSD     | BASKET_ID_OK | 1   | BUY  | 1200.000000 | TRADEABLE | workingId=000070...212f
+931:GBPUSD     | BASKET_ID_OK | 2   | BUY  | 2400.000000 | TRADEABLE | workingId=000070...2130
+932:GBPUSD     | BASKET_ID_OK | 3   | BUY  | 3600.000000 | TRADEABLE | workingId=000070...2131
+933:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+935:EURJPY     | BASKET_ID_OK | 1   | BUY  | 1800.000000 | TRADEABLE | workingId=000055...06f5
+936:EURJPY     | BASKET_ID_OK | 2   | BUY  | 3600.000000 | TRADEABLE | workingId=000055...06f6
+937:EURJPY     | BASKET_ID_OK | 3   | BUY  | 5400.000000 | TRADEABLE | workingId=000055...06f7
+938:EURJPY     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+943:OIL_CRUDE  | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=96.73587 BB_MID=97.41855 BB_HIGH=98.10123 width=1.36536 required=0.50000 L1=98.11 L2=98.31 L3=98.51 dist=0.1170000000 max_dist=0.5000000000 dist_ratio=0.234
+945:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=98.110000 stopLevel≈100.110000 stopDistance=2.001000 step=0.200000 spread=0.040000 minStop=1.500000
+946:OIL_CRUDE  | LIMIT_REQUEST | 1   | SELL | 4.000000   | TRADEABLE | {"epic": "OIL_CRUDE", "direction": "SELL", "size": 4.0, "guaranteedStop": true, "stopDistance": 2.001, "type": "LIMIT", "level": 98.11}
+948:OIL_CRUDE  | V24_STOP_GUARD | guaranteedStop=false | stopDistance=2.001
+951:OIL_CRUDE  | LIMIT_OK      | 1   | SELL | 4.000000   | TRADEABLE | ref=o_4be3...9e24 limit=98.11
+952:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=98.310000 stopLevel≈100.110000 stopDistance=1.801000 step=0.200000 spread=0.040000 minStop=1.500000
+953:OIL_CRUDE  | LIMIT_REQUEST | 2   | SELL | 8.000000   | TRADEABLE | {"epic": "OIL_CRUDE", "direction": "SELL", "size": 8.0, "guaranteedStop": true, "stopDistance": 1.801, "type": "LIMIT", "level": 98.31}
+955:OIL_CRUDE  | V24_STOP_GUARD | guaranteedStop=false | stopDistance=1.801
+958:OIL_CRUDE  | LIMIT_OK      | 2   | SELL | 8.000000   | TRADEABLE | ref=o_1ff0...9f67 limit=98.31
+959:OIL_CRUDE  | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=98.510000 stopLevel≈100.110000 stopDistance=1.601000 step=0.200000 spread=0.040000 minStop=1.500000
+960:OIL_CRUDE  | LIMIT_REQUEST | 3   | SELL | 12.000000  | TRADEABLE | {"epic": "OIL_CRUDE", "direction": "SELL", "size": 12.0, "guaranteedStop": true, "stopDistance": 1.601, "type": "LIMIT", "level": 98.51}
+962:OIL_CRUDE  | V24_STOP_GUARD | guaranteedStop=false | stopDistance=1.601
+965:OIL_CRUDE  | LIMIT_OK      | 3   | SELL | 12.000000  | TRADEABLE | ref=o_73b6...da53 limit=98.51
+970:BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=81173.24197 BB_MID=81561.11250 BB_HIGH=81948.98303 width=775.74105 required=150.00000 L1=81949.78 L2=81989.78 L3=82029.78 dist=350.0800000000 max_dist=40.0000000000 dist_ratio=8.752
+996:2026-05-14 17:42:33,734 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+1002:2026-05-14 17:42:33,947 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}

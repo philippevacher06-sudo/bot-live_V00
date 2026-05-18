@@ -1,0 +1,38 @@
+==============================================================================================================
+==================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 3
+- US500      L1 SELL size=0.15 cycle=c04c9b8f-ae8
+- US30       L1 SELL size=0.024 cycle=f647dbea-397
+- GBPUSD     L1 BUY size=1200.0 cycle=1729df59-567
+Deals réels DEMO suivis : 9
+- US500      L1 SELL size=0.15 dealId=None
+- US500      L2 SELL size=0.3 dealId=None
+- US500      L3 SELL size=0.44999999999999996 dealId=None
+- US30       L1 SELL size=0.024 dealId=None
+- US30       L2 SELL size=0.048 dealId=None
+- US30       L3 SELL size=0.07200000000000001 dealId=None
+- GBPUSD     L1 BUY size=1200.0 dealId=None
+- GBPUSD     L2 BUY size=2400.0 dealId=None
+- GBPUSD     L3 BUY size=3600.0 dealId=None
+
+MODE : ORDRES DEMO ACTIFS
+Verrou reçu : OK_ENVOI_DEMO
+Limite cycles : 999999
+Envoi/gestion possible uniquement sur compte DEMO.
+Traceback (most recent call last):
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06H_execution_demo_guarded.py", line 240, in <module>
+    main()
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06H_execution_demo_guarded.py", line 235, in main
+    headers = G.login()
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06G2_execution_secure.py", line 36, in login
+    return B.login()
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06G_execution_from_cycle_state.py", line 133, in logi
+n
+    raise RuntimeError(f"Login Capital.com refusé HTTP {r.status_code} : {r.text[:300]}")
+RuntimeError: Login Capital.com refusé HTTP 429 : {"errorCode":"error.too-many.requests"}
+
+Pause 5s...
+^C
+(venv) philippe_vacher06@bot-rsi:~/bot-pivot/live$ ^C
+(venv) philippe_vacher06@bot-rsi:~/bot-pivot/live$

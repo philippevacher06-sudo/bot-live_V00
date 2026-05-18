@@ -1,0 +1,519 @@
+# BOT_PIVOT_24_4_forced_audit_runner.py
+# V24.4 — DIRECT BROKER SAFE
+# ETHUSD uniquement.
+# GOLD protégé.
+# Ouverture validée seulement si :
+# 1) POST /positions retourne dealReference
+# 2) GET /confirms/{dealReference} retourne dealStatus=ACCEPTED
+# 3) Le vrai dealId est visible dans GET /positions
+# Sinon : blocage anti-boucle.
+
+from __future__ import annotations
+
+import os
+import time
+import uuid
+import traceback
+from typing import Any, Dict, List, Optional, Tuple
+
+import requests
+
+import BOT_PIVOT_06G2_execution_secure as G
+import BOT_PIVOT_24_4_forced_audit_sampling as FAS
+
+
+ASSET = os.getenv("V244_TRADED_ASSET", "ETHUSD").upper()
+PROTECTED_ASSETS = {"GOLD"}
+
+BASE = os.getenv(
+    "CAPITAL_BASE_URL",
+    "https://demo-api-capital.backend-capital.com/api/v1"
+).rstrip("/")
+
+SLEEP_SEC = float(os.getenv("V244_RUNNER_SLEEP_SEC", "20"))
+TARGET_OPENINGS_PER_MIN = int(os.getenv("V244_TARGET_OPENINGS_PER_MIN", "2"))
+
+# Sécurité volontairement plus basse pour audit.
+MAX_POSITIONS = int(os.getenv("V244_MAX_OPEN_POSITIONS", "4"))
+
+SIDE_MODE = os.getenv("V244_SIDE_MODE", "BUY_ONLY").upper()
+
+STOP_DISTANCE = float(os.getenv("V244_STOP_DISTANCE", "25"))
+GUARANTEED_STOP = os.getenv("V244_GUARANTEED_STOP", "1") == "1"
+
+CONFIRM_POLL_SEC = float(os.getenv("V244_CONFIRM_POLL_SEC", "1"))
+POSITION_POLL_TRIES = int(os.getenv("V244_POSITION_POLL_TRIES", "5"))
+POSITION_POLL_SLEEP = float(os.getenv("V244_POSITION_POLL_SLEEP", "1"))
+
+LOCK_FILE = "data/execution/V244_FORCED_RUNNER_LOCK"
+
+
+def log(event: str, **kw: Any) -> None:
+    FAS.audit_log(event, **kw)
+
+
+def ensure_headers(headers: Dict[str, str]) -> Dict[str, str]:
+    h = dict(headers or {})
+    h.setdefault("Content-Type", "application/json")
+    h.setdefault("Accept", "application/json")
+    return h
+
+
+def lock_runner(reason: str, **kw: Any) -> None:
+    os.makedirs("data/execution", exist_ok=True)
+    with open(LOCK_FILE, "w", encoding="utf-8") as f:
+        f.write(reason + "\n")
+        for k, v in kw.items():
+            f.write(f"{k}={v}\n")
+
+    log("RUNNER_LOCKED", asset=ASSET, reason=reason, **kw)
+
+
+def is_locked() -> bool:
+    return os.path.exists(LOCK_FILE)
+
+
+def clear_lock() -> None:
+    if os.path.exists(LOCK_FILE):
+        os.remove(LOCK_FILE)
+        log("RUNNER_LOCK_CLEARED", asset=ASSET)
+
+
+def api_get(headers: Dict[str, str], path: str) -> Tuple[int, Any]:
+    url = BASE + path
+    h = ensure_headers(headers)
+
+    if "demo-api-capital" not in url:
+        return 0, {"BLOCKED": True, "reason": "DEMO_ONLY_URL_REQUIRED", "url": url}
+
+    r = requests.get(url, headers=h, timeout=20)
+    try:
+        data = r.json()
+    except Exception:
+        data = {"text": r.text}
+    return int(r.status_code), data
+
+
+def api_post(headers: Dict[str, str], path: str, payload: Dict[str, Any]) -> Tuple[int, Any]:
+    url = BASE + path
+    h = ensure_headers(headers)
+
+    if "demo-api-capital" not in url:
+        return 0, {"BLOCKED": True, "reason": "DEMO_ONLY_URL_REQUIRED", "url": url}
+
+    r = requests.post(url, headers=h, json=payload, timeout=20)
+    try:
+        data = r.json()
+    except Exception:
+        data = {"text": r.text}
+    return int(r.status_code), data
+
+
+def api_delete(headers: Dict[str, str], path: str) -> Tuple[int, Any]:
+    url = BASE + path
+    h = ensure_headers(headers)
+
+    if "demo-api-capital" not in url:
+        return 0, {"BLOCKED": True, "reason": "DEMO_ONLY_URL_REQUIRED", "url": url}
+
+    r = requests.delete(url, headers=h, timeout=20)
+    try:
+        data = r.json()
+    except Exception:
+        data = {"text": r.text}
+    return int(r.status_code), data
+
+
+def get_positions_raw(headers: Dict[str, str]) -> List[Dict[str, Any]]:
+    status, data = api_get(headers, "/positions")
+
+    log("RUNNER_GET_POSITIONS_RAW", asset=ASSET, status=status, response=data)
+
+    if status != 200:
+        raise RuntimeError(f"GET /positions failed status={status} data={data}")
+
+    return data.get("positions", []) if isinstance(data, dict) else []
+
+
+def epic_of_position(item: Dict[str, Any]) -> str:
+    market = item.get("market", {}) if isinstance(item, dict) else {}
+    position = item.get("position", {}) if isinstance(item, dict) else {}
+
+    for src in (market, position, item):
+        for k in ("epic", "instrumentName", "symbol"):
+            if src.get(k):
+                return str(src.get(k)).upper()
+
+    return ""
+
+
+def normalize_position(item: Dict[str, Any]) -> Dict[str, Any]:
+    market = item.get("market", {}) if isinstance(item, dict) else {}
+    position = item.get("position", {}) if isinstance(item, dict) else {}
+
+    return {
+        "epic": str(market.get("epic") or position.get("epic") or item.get("epic") or "").upper(),
+        "dealId": position.get("dealId") or item.get("dealId"),
+        "dealReference": position.get("dealReference") or item.get("dealReference"),
+        "size": float(position.get("size") or item.get("size") or 0),
+        "direction": position.get("direction") or item.get("direction"),
+        "level": position.get("level") or item.get("level"),
+        "upl": float(position.get("upl") or item.get("upl") or 0.0),
+        "raw": item,
+    }
+
+
+def asset_positions(headers: Dict[str, str]) -> List[Dict[str, Any]]:
+    raw = get_positions_raw(headers)
+    out = []
+
+    for item in raw:
+        epic = epic_of_position(item)
+
+        if epic in PROTECTED_ASSETS:
+            continue
+
+        if epic == ASSET:
+            out.append(normalize_position(item))
+
+    return out
+
+
+def confirm_reference(headers: Dict[str, str], deal_ref: str) -> Tuple[bool, Dict[str, Any]]:
+    time.sleep(CONFIRM_POLL_SEC)
+
+    status, data = api_get(headers, f"/confirms/{deal_ref}")
+
+    ok = (
+        status == 200
+        and isinstance(data, dict)
+        and data.get("dealStatus") == "ACCEPTED"
+        and data.get("epic") == ASSET
+        and bool(data.get("dealId"))
+    )
+
+    log(
+        "RUNNER_CONFIRM_RESULT",
+        asset=ASSET,
+        dealReference=deal_ref,
+        status=status,
+        ok=ok,
+        confirm=data,
+    )
+
+    return ok, data if isinstance(data, dict) else {"raw": data}
+
+
+def wait_position_visible(headers: Dict[str, str], deal_id: str) -> Tuple[bool, Optional[Dict[str, Any]]]:
+    for i in range(POSITION_POLL_TRIES):
+        positions = asset_positions(headers)
+
+        for p in positions:
+            if p.get("dealId") == deal_id:
+                log(
+                    "RUNNER_POSITION_VISIBLE",
+                    asset=ASSET,
+                    dealId=deal_id,
+                    tries=i + 1,
+                    position=p,
+                )
+                return True, p
+
+        log(
+            "RUNNER_POSITION_NOT_VISIBLE_YET",
+            asset=ASSET,
+            dealId=deal_id,
+            tries=i + 1,
+            visible_count=len(positions),
+        )
+
+        time.sleep(POSITION_POLL_SLEEP)
+
+    return False, None
+
+
+def next_side_and_size() -> Tuple[str, float, int]:
+    side, size, seq = FAS.next_forced_order()
+
+    if SIDE_MODE == "BUY_ONLY":
+        side = "BUY"
+    elif SIDE_MODE == "SELL_ONLY":
+        side = "SELL"
+    elif SIDE_MODE == "ALTERNATE":
+        pass
+    else:
+        side = "BUY"
+
+    return side, float(size), int(seq)
+
+
+def open_market_confirmed(headers: Dict[str, str], side: str, size: float, seq: int) -> Tuple[bool, Dict[str, Any]]:
+    client_ref = f"V244_SAFE_{int(time.time())}_{seq}_{uuid.uuid4().hex[:6]}"
+
+    payload = {
+        "epic": ASSET,
+        "direction": side,
+        "size": float(size),
+        "orderType": "MARKET",
+        "guaranteedStop": GUARANTEED_STOP,
+        "forceOpen": True,
+        "stopDistance": STOP_DISTANCE,
+    }
+
+    log(
+        "RUNNER_DIRECT_OPEN_REQUEST",
+        asset=ASSET,
+        side=side,
+        size=size,
+        seq=seq,
+        client_ref=client_ref,
+        payload=payload,
+    )
+
+    status, data = api_post(headers, "/positions", payload)
+
+    log(
+        "RUNNER_DIRECT_OPEN_RESPONSE",
+        asset=ASSET,
+        side=side,
+        size=size,
+        seq=seq,
+        status=status,
+        response=data,
+    )
+
+    if status not in (200, 201) or not isinstance(data, dict) or not data.get("dealReference"):
+        return False, {
+            "stage": "POST_POSITION_FAILED",
+            "status": status,
+            "response": data,
+            "payload": payload,
+        }
+
+    deal_ref = data["dealReference"]
+
+    confirm_ok, confirm = confirm_reference(headers, deal_ref)
+
+    if not confirm_ok:
+        lock_runner(
+            "CONFIRM_NOT_ACCEPTED",
+            dealReference=deal_ref,
+            confirm=confirm,
+        )
+        return False, {
+            "stage": "CONFIRM_NOT_ACCEPTED",
+            "dealReference": deal_ref,
+            "confirm": confirm,
+        }
+
+    deal_id = confirm.get("dealId")
+
+    visible_ok, visible_position = wait_position_visible(headers, deal_id)
+
+    if not visible_ok:
+        lock_runner(
+            "CONFIRMED_BUT_NOT_VISIBLE_IN_POSITIONS",
+            dealReference=deal_ref,
+            dealId=deal_id,
+            confirm=confirm,
+        )
+        return False, {
+            "stage": "CONFIRMED_BUT_NOT_VISIBLE_IN_POSITIONS",
+            "dealReference": deal_ref,
+            "dealId": deal_id,
+            "confirm": confirm,
+        }
+
+    return True, {
+        "stage": "OPEN_CONFIRMED_AND_VISIBLE",
+        "dealReference": deal_ref,
+        "dealId": deal_id,
+        "confirm": confirm,
+        "position": visible_position,
+        "payload": payload,
+    }
+
+
+def close_pair_direct_if_available(headers: Dict[str, str]) -> None:
+    positions = asset_positions(headers)
+
+    records = []
+    for p in positions:
+        records.append({
+            "asset": ASSET,
+            "epic": ASSET,
+            "dealId": p.get("dealId"),
+            "brokerDealId": p.get("dealId"),
+            "size": p.get("size"),
+            "direction": p.get("direction"),
+            "broker_upl": p.get("upl"),
+            "raw": p,
+        })
+
+    pair = FAS.select_close_pair_from_records(ASSET, records)
+
+    if not pair:
+        return
+
+    weak, strong = pair
+
+    log(
+        "RUNNER_CLOSE_PAIR_SELECTED",
+        asset=ASSET,
+        weak=weak,
+        strong=strong,
+    )
+
+    closed = []
+
+    for rec in (weak, strong):
+        deal_id = rec.get("brokerDealId") or rec.get("dealId")
+
+        if not deal_id:
+            closed.append({"dealId": None, "ok": False, "reason": "MISSING_DEAL_ID"})
+            continue
+
+        status, data = api_delete(headers, f"/positions/{deal_id}")
+
+        closed.append({
+            "dealId": deal_id,
+            "status": status,
+            "response": data,
+        })
+
+        log(
+            "RUNNER_DIRECT_CLOSE_RESPONSE",
+            asset=ASSET,
+            dealId=deal_id,
+            status=status,
+            response=data,
+        )
+
+    FAS.register_close_pair(ASSET, weak, strong, reason="V244_DIRECT_PAIR_CLOSE")
+
+    log(
+        "RUNNER_CLOSE_PAIR_DONE",
+        asset=ASSET,
+        closed=closed,
+    )
+
+
+def main() -> None:
+    FAS.safety_banner()
+
+    if ASSET in PROTECTED_ASSETS:
+        raise RuntimeError(f"ASSET {ASSET} is protected")
+
+    clear_lock()
+
+    log(
+        "RUNNER_SAFE_START",
+        asset=ASSET,
+        protected_assets=list(PROTECTED_ASSETS),
+        target_openings_per_min=TARGET_OPENINGS_PER_MIN,
+        sleep_sec=SLEEP_SEC,
+        max_positions=MAX_POSITIONS,
+        side_mode=SIDE_MODE,
+        guaranteed_stop=GUARANTEED_STOP,
+        stop_distance=STOP_DISTANCE,
+    )
+
+    headers = ensure_headers(G.login())
+
+    log("RUNNER_LOGIN_OK", asset=ASSET)
+
+    while True:
+        try:
+            if is_locked():
+                log("RUNNER_HALTED_BY_LOCK", asset=ASSET, lock_file=LOCK_FILE)
+                time.sleep(60)
+                continue
+
+            positions = asset_positions(headers)
+
+            log(
+                "RUNNER_STATUS",
+                asset=ASSET,
+                open_positions=len(positions),
+                openings_last_60s=FAS.count_opens_last_60s(),
+                missing_openings=FAS.missing_openings(),
+                max_positions=MAX_POSITIONS,
+            )
+
+            close_pair_direct_if_available(headers)
+
+            positions = asset_positions(headers)
+
+            if len(positions) >= MAX_POSITIONS:
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason="MAX_POSITIONS_REACHED",
+                    open_positions=len(positions),
+                    max_positions=MAX_POSITIONS,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            missing = FAS.missing_openings()
+
+            for _ in range(missing):
+                positions = asset_positions(headers)
+
+                if len(positions) >= MAX_POSITIONS:
+                    log(
+                        "RUNNER_OPEN_BLOCKED",
+                        asset=ASSET,
+                        reason="MAX_POSITIONS_REACHED_INSIDE_LOOP",
+                        open_positions=len(positions),
+                        max_positions=MAX_POSITIONS,
+                    )
+                    break
+
+                side, size, seq = next_side_and_size()
+
+                ok, info = open_market_confirmed(headers, side, size, seq)
+
+                log(
+                    "RUNNER_OPEN_RESULT",
+                    asset=ASSET,
+                    side=side,
+                    size=size,
+                    seq=seq,
+                    ok=ok,
+                    info=info,
+                )
+
+                if ok:
+                    FAS.register_open(
+                        asset=ASSET,
+                        side=side,
+                        size=size,
+                        reason="FORCED_CONFIRMED_VISIBLE_OPEN",
+                        extra=info,
+                    )
+                else:
+                    break
+
+                time.sleep(2)
+
+            time.sleep(SLEEP_SEC)
+
+        except Exception as e:
+            log(
+                "RUNNER_EXCEPTION",
+                asset=ASSET,
+                exception=str(e),
+                traceback=traceback.format_exc().replace("\n", " / "),
+            )
+
+            if "429" in str(e) or "too-many" in str(e).lower() or "session" in str(e).lower():
+                time.sleep(120)
+                headers = ensure_headers(G.login())
+                log("RUNNER_RELOGIN_OK", asset=ASSET)
+            else:
+                time.sleep(20)
+
+
+if __name__ == "__main__":
+    main()

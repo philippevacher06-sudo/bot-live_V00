@@ -1,0 +1,27 @@
+========================================================================================================================
+BOT_PIVOT_06G1 — RECONCILIATION LECTURE SEULE
+========================================================================================================================
+Aucun ordre envoyé.
+
+GET /positions : 200
+Total positions broker : 0
+
+ACTIF      | BROKER | CYCLE                    | EXEC_STATE                       | ANOMALIE
+------------------------------------------------------------------------------------------------------------------------
+US500      |      0 | --                       | --                               | OK
+US100      |      0 | --                       | --                               | OK
+US30       |      0 | L5 BUY size=0.128        | L5 BUY size=0.128 deal=174f8d...20e9 | DEAL_EXEC_ABSENT_BROKER
+DE40       |      0 | --                       | --                               | OK
+FR40       |      0 | L2 BUY size=0.1          | L2 BUY size=0.1 deal=001832...06a7 | DEAL_EXEC_ABSENT_BROKER
+UK100      |      0 | L3 BUY size=0.16         | L3 BUY size=0.16 deal=152f6d...0945 | DEAL_EXEC_ABSENT_BROKER
+J225       |      0 | --                       | --                               | OK
+EURUSD     |      0 | --                       | --                               | OK
+GBPUSD     |      0 | --                       | --                               | OK
+USDJPY     |      0 | L2 BUY size=1200.0       | L2 BUY size=1200.0 deal=000154...0c0d | DEAL_EXEC_ABSENT_BROKER
+EURJPY     |      0 | --                       | --                               | OK
+GOLD       |      0 | --                       | --                               | OK
+SILVER     |      0 | --                       | --                               | OK
+OIL_CRUDE  |      0 | --                       | --                               | OK
+BTCUSD     |      0 | L5 SELL size=0.0096      | L5 SELL size=0.0096 deal=000940...7524 | DEAL_EXEC_ABSENT_BROKER
+ETHUSD     |      0 | L5 SELL size=0.272       | L5 SELL size=0.272 deal=001542...2134 | DEAL_EXEC_ABSENT_BROKER
+========================================================================================================================

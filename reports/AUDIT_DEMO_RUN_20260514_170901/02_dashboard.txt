@@ -1,0 +1,212 @@
+============================================================================================================================================
+BOT-PIVOT — DASHBOARD LOG
+============================================================================================================================================
+LOG              : logs/BOT_PIVOT_07D_24_7_DEMO_20260514_160916.log
+LIGNES           : 6992
+CYCLES           : 26
+PREMIER CYCLE    : 1 — 2026-05-14T16:09:54Z
+DERNIER CYCLE    : 26 — 2026-05-14T17:02:27Z
+DUREE LOG        : 52.5 min
+RYTHME CYCLES    : 29.69/h
+ERREURS          : 0
+
+============================================================================================================================================
+SYNTHESE FREQUENCE
+============================================================================================================================================
+BASKET_NEW                              46   52.52/h
+BASKET_FILL                             12   13.70/h
+BASKET_FILL_L1                           6   6.85/h
+BASKET_FILL_L2                           5   5.71/h
+BASKET_FILL_L3                           1   1.14/h
+BASKET_TP_OK                             4   4.57/h
+TP_MATRIX_TRIGGER                        0   0.00/h
+TP_MATRIX_CLOSE_OK                       0   0.00/h
+TP_MATRIX_CLOSE_FAIL                     0   0.00/h
+BASKET_TP_BLOCKED_BROKER_UPL            18   20.55/h
+BASKET_TP_BLOCKED_NO_BROKER_UPL          0   0.00/h
+BASKET_PARTIAL_PENDING_KEEP             23   26.26/h
+BASKET_PARTIAL_PENDING_CANCEL            0   0.00/h
+BASKET_PENDING_CANCEL                   36   41.10/h
+BASKET_ARMING_DELAYED                   10   11.42/h
+BASKET_REJECT                           41   46.81/h
+BOLLINGER_ENTRY_OBSERVE                 56   63.94/h
+LIMIT_REQUEST                          138   157.56/h
+LIMIT_OK                               138   157.56/h
+LIMIT_REJECT                             0   0.00/h
+BASKET_L123_ABORT_L1_REJECT              0   0.00/h
+BASKET_L123_ATOMIC_CANCEL                0   0.00/h
+
+============================================================================================================================================
+PAR ACTIF — FLUX L1/L2/L3 / TP / REJETS
+============================================================================================================================================
+ACTIF       NEW FILL  F1  F2  F3  TP MTRIG MCLOSE BLOCK   BB  ARM  LREJ  L123  PCAN
+-----------------------------------------------------------------------------------
+US500         5    1   1   0   0   0     0      0     2    5    0     0     0     0
+US100         5    0   0   0   0   0     0      0     0    5    0     0     0     0
+US30          4    2   1   1   0   0     0      0     2    5    1     0     0     0
+DE40          2    3   2   1   0   2     0      0     4    2    0     0     0     0
+FR40          0    0   0   0   0   0     0      0     0    0    0     0     0     0
+UK100         3    1   1   0   0   1     0      0     3    3    0     0     0     0
+J225          1    0   0   0   0   0     0      0     0    1    0     0     0     0
+EURUSD        3    0   0   0   0   0     0      0     0    3    0     0     0     0
+GBPUSD        2    2   0   1   1   0     0      0     1    6    4     0     0     0
+USDJPY        4    0   0   0   0   0     0      0     0    4    0     0     0     0
+EURJPY        3    0   0   0   0   0     0      0     0    3    0     0     0     0
+GOLD          4    1   0   1   0   0     0      0     2    4    0     0     0     0
+SILVER        0    0   0   0   0   0     0      0     0    0    0     0     0     0
+OIL_CRUDE     5    1   1   0   0   1     0      0     4    5    0     0     0     0
+BTCUSD        2    0   0   0   0   0     0      0     0    7    5     0     0     0
+ETHUSD        3    1   0   1   0   0     0      0     0    3    0     0     0     0
+
+============================================================================================================================================
+BOLLINGER — DERNIERES OBSERVATIONS
+============================================================================================================================================
+US500      count=  5 last_dir=BUY  width=19.538720 required=10.000000 dist_ratio_last=0.500 dist_ratio_avg=3.063 line=5930
+US100      count=  5 last_dir=SELL width=67.741610 required=30.000000 dist_ratio_last=5.766 dist_ratio_avg=5.853 line=6815
+US30       count=  5 last_dir=BUY  width=167.176470 required=50.000000 dist_ratio_last=0.864 dist_ratio_avg=3.466 line=5948
+DE40       count=  2 last_dir=BUY  width=81.002550 required=30.000000 dist_ratio_last=0.127 dist_ratio_avg=0.093 line=4970
+UK100      count=  3 last_dir=BUY  width=42.073480 required=20.000000 dist_ratio_last=1.143 dist_ratio_avg=0.875 line=3696
+J225       count=  1 last_dir=BUY  width=101.938920 required=100.000000 dist_ratio_last=2.468 dist_ratio_avg=2.468 line=2893
+EURUSD     count=  3 last_dir=SELL width=0.000710 required=0.000400 dist_ratio_last=0.370 dist_ratio_avg=0.837 line=5975
+GBPUSD     count=  6 last_dir=SELL width=0.007070 required=0.000500 dist_ratio_last=4.133 dist_ratio_avg=3.171 line=6843
+USDJPY     count=  4 last_dir=BUY  width=0.139000 required=0.080000 dist_ratio_last=4.400 dist_ratio_avg=4.588 line=5999
+EURJPY     count=  3 last_dir=BUY  width=0.114530 required=0.100000 dist_ratio_last=0.311 dist_ratio_avg=0.328 line=6289
+GOLD       count=  4 last_dir=SELL width=18.169230 required=8.000000 dist_ratio_last=0.542 dist_ratio_avg=0.438 line=6577
+OIL_CRUDE  count=  5 last_dir=BUY  width=0.646980 required=0.500000 dist_ratio_last=0.768 dist_ratio_avg=0.557 line=6317
+BTCUSD     count=  7 last_dir=BUY  width=895.644140 required=150.000000 dist_ratio_last=10.178 dist_ratio_avg=11.017 line=6344
+ETHUSD     count=  3 last_dir=BUY  width=35.686560 required=15.000000 dist_ratio_last=0.543 dist_ratio_avg=0.580 line=6037
+
+============================================================================================================================================
+ARMING DELAYED — DISTANCE L1 TROP LOIN
+============================================================================================================================================
+US30       count=  1 ratio_last=8.925 ratio_avg=8.925 mult=8.000 line=1395
+GBPUSD     count=  4 ratio_last=17.714 ratio_avg=19.839 mult=8.000 line=6845
+BTCUSD     count=  5 ratio_last=10.178 ratio_avg=14.501 mult=8.000 line=6346
+
+============================================================================================================================================
+TP MATRIX — PREUVES TP
+============================================================================================================================================
+
+============================================================================================================================================
+TP LADDER — ECHANTILLONS
+============================================================================================================================================
+--------------------------------------------------------------------------------------------------------------------------------------------
+open=1 target=0.2000 decision=HOLD_BELOW_TARGET
+1951: OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.0100 tp_pnl=-0.0100 broker_count=1/1 internal=1.1487 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2144: UK100      | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.3200 tp_pnl=-0.3200 broker_count=1/1 internal=2.1185 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2160: OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.2200 tp_pnl=-0.2200 broker_count=1/1 internal=1.1487 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2367: UK100      | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=-0.7600 tp_pnl=-0.7600 broker_count=1/1 internal=2.1185 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+2389: OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.0600 tp_pnl=0.0600 broker_count=1/1 internal=1.1487 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+--------------------------------------------------------------------------------------------------------------------------------------------
+open=1 target=0.2000 decision=HOLD_NO_BROKER_UPL
+6810: US500      | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=none tp_pnl=none broker_count=0/1 internal=2.1154 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+--------------------------------------------------------------------------------------------------------------------------------------------
+open=1 target=0.2000 decision=TP_READY
+2888: UK100      | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.2500 tp_pnl=0.2500 broker_count=1/1 internal=2.1185 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+2967: OIL_CRUDE  | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.5400 tp_pnl=0.5400 broker_count=1/1 internal=1.1487 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+5258: DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=1 expected_target=0.2000 threshold=0.2000 broker_upl=0.2300 tp_pnl=0.2300 broker_count=1/1 internal=2.3970 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+--------------------------------------------------------------------------------------------------------------------------------------------
+open=2 target=0.4000 decision=HOLD_BELOW_TARGET
+622: GOLD       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.4900 tp_pnl=-0.4900 broker_count=2/2 internal=0.7731 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+663: ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.5200 tp_pnl=-0.5200 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+933: GOLD       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=0.0800 tp_pnl=0.0800 broker_count=2/2 internal=0.7731 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+948: ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.7500 tp_pnl=-0.7500 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+1181: ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=-0.4700 tp_pnl=-0.4700 broker_count=2/2 internal=0.0821 margin=0.0000 decision=HOLD_BELOW_TARGET source=BROKER_POSITION_UPL
+--------------------------------------------------------------------------------------------------------------------------------------------
+open=2 target=0.4000 decision=HOLD_NO_BROKER_UPL
+1173: GOLD       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=0.7731 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+1909: GBPUSD     | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=6.6769 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+1959: ETHUSD     | BASKET_TP_LADDER_CHECK | 1-3 | SELL | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=0.0821 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+6833: US30       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=none tp_pnl=none broker_count=0/2 internal=10.0472 margin=0.0000 decision=HOLD_NO_BROKER_UPL source=NO_BROKER_UPL_BLOCK_TP
+--------------------------------------------------------------------------------------------------------------------------------------------
+open=2 target=0.4000 decision=TP_READY
+4476: DE40       | BASKET_TP_LADDER_CHECK | 1-3 | BUY  | --         | TRADEABLE | open=2 expected_target=0.4000 threshold=0.4000 broker_upl=1.0600 tp_pnl=1.0600 broker_count=2/2 internal=5.1204 margin=0.0000 decision=TP_READY source=BROKER_POSITION_UPL
+
+============================================================================================================================================
+DERNIERS EVENEMENTS IMPORTANTS
+============================================================================================================================================
+4489: USDJPY     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=158.08223 BB_MID=158.14435 BB_HIGH=158.20647 width=0.12425 required=0.08000 L1=158.081 L2=158.041 L3=158.001 dist=0.0940000000 max_dist=0.0200000000 dist_ratio=4.700
+4512: USDJPY     | BASKET_NEW  | 1-3 | BUY  | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+4518: ETHUSD     | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=403.3s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4697: US500      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=404.0s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4701: US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29609.27501 BB_MID=29641.60250 BB_HIGH=29673.92999 width=64.65498 required=30.00000 L1=29674.3 L2=29686.3 L3=29698.3 dist=38.5000000000 max_dist=6.4000000000 dist_ratio=6.016
+4715: US100      | BASKET_NEW  | 1-3 | SELL | 0.042000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4716: US30       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=407.3s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4735: OIL_CRUDE  | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=396.6s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4739: BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=80725.88828 BB_MID=81235.64750 BB_HIGH=81745.40672 width=1019.51843 required=150.00000 L1=81746.21 L2=81786.21 L3=81826.21 dist=87.2100000000 max_dist=40.0000000000 dist_ratio=2.180
+4766: BTCUSD     | BASKET_NEW  | 1-3 | SELL | 0.001800   | TRADEABLE | LIMITS posés=3 rejetés=0
+4953: US30       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=50020.43889 BB_MID=50102.75500 BB_HIGH=50185.07111 width=164.63222 required=50.00000 L1=50019.6 L2=49999.6 L3=49979.6 dist=27.2000000000 max_dist=19.4400000000 dist_ratio=1.399
+4967: US30       | BASKET_NEW  | 1-3 | BUY  | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4970: DE40       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=24391.66373 BB_MID=24432.16500 BB_HIGH=24472.66627 width=81.00255 required=30.00000 L1=24391.3 L2=24379.3 L3=24367.3 dist=5.7000000000 max_dist=45.0000000000 dist_ratio=0.127
+4984: DE40       | BASKET_NEW  | 1-3 | BUY  | 0.051000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4991: GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=1.34298 BB_MID=1.34645 BB_HIGH=1.34992 width=0.00694 required=0.00050 L1=1.34297 L2=1.34269 L3=1.34241 dist=0.0002700000 max_dist=0.0012000000 dist_ratio=0.225
+5005: GBPUSD     | BASKET_NEW  | 1-3 | BUY  | 1200.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+5019: ETHUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=2278.44190 BB_MID=2297.66850 BB_HIGH=2316.89510 width=38.45321 required=15.00000 L1=2317.3 L2=2321.3 L3=2325.3 dist=5.4800000000 max_dist=28.0000000000 dist_ratio=0.196
+5042: ETHUSD     | BASKET_NEW  | 1-3 | SELL | 0.060000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5233: US500      | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=7497.22761 BB_MID=7507.01500 BB_HIGH=7516.80239 width=19.57479 required=10.00000 L1=7496.8 L2=7492.8 L3=7488.8 dist=2.1000000000 max_dist=3.2000000000 dist_ratio=0.656
+5247: US500      | BASKET_NEW  | 1-3 | BUY  | 0.150000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5255: DE40       | BASKET_FILL | 1   | BUY  | 0.051000   | TRADEABLE | deal=071016...819a limit=24391.3 entry=24391.0
+5259: DE40       | BASKET_TP_OK | 1-3 | BUY  | --         | TRADEABLE | pnl=0.2300 target=0.2000 internal=2.3970 source=BROKER_POSITION_UPL
+5270: USDJPY     | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=358.2s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5276: OIL_CRUDE  | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=96.82567 BB_MID=97.15065 BB_HIGH=97.47563 width=0.64995 required=0.50000 L1=96.82 L2=96.62 L3=96.42 dist=0.4310000000 max_dist=0.5000000000 dist_ratio=0.862
+5299: OIL_CRUDE  | BASKET_NEW  | 1-3 | BUY  | 4.000000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5496: US100      | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=357.8s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5511: GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=4671.78157 BB_MID=4681.31125 BB_HIGH=4690.84093 width=19.05936 required=8.00000 L1=4691.0 L2=4695.0 L3=4699.0 dist=14.9100000000 max_dist=22.0000000000 dist_ratio=0.678
+5540: GOLD       | BASKET_NEW  | 1-3 | SELL | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5548: BTCUSD     | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=364.3s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5728: US500      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=303.8s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5730: US30       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=416.3s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5736: GBPUSD     | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=418.1s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5746: ETHUSD     | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=415.6s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5930: US500      | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=7497.26064 BB_MID=7507.03000 BB_HIGH=7516.79936 width=19.53872 required=10.00000 L1=7496.9 L2=7492.9 L3=7488.9 dist=1.6000000000 max_dist=3.2000000000 dist_ratio=0.500
+5944: US500      | BASKET_NEW  | 1-3 | BUY  | 0.150000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5948: US30       | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=50018.64676 BB_MID=50102.23500 BB_HIGH=50185.82324 width=167.17647 required=50.00000 L1=50017.8 L2=49997.8 L3=49977.8 dist=16.8000000000 max_dist=19.4400000000 dist_ratio=0.864
+5962: US30       | BASKET_NEW  | 1-3 | BUY  | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5975: EURUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.16722 BB_MID=1.16758 BB_HIGH=1.16793 width=0.00071 required=0.00040 L1=1.16794 L2=1.16818 L3=1.16842 dist=0.0003700000 max_dist=0.0010000000 dist_ratio=0.370
+5989: EURUSD     | BASKET_NEW  | 1-3 | SELL | 450.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+5993: GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.34268 BB_MID=1.34625 BB_HIGH=1.34982 width=0.00714 required=0.00050 L1=1.34983 L2=1.35011 L3=1.35039 dist=0.0058400000 max_dist=0.0012000000 dist_ratio=4.867
+5995: GBPUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=1.34983 L2=1.35011 dist=0.0058400000 step=0.0002800000 max_allowed=0.0022400000 dist_step_ratio=20.857 mult=8.000 old_max_dist=0.0012000000000000001 aucun ordre envoye
+5999: USDJPY     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=158.07880 BB_MID=158.14830 BB_HIGH=158.21780 width=0.13900 required=0.08000 L1=158.078 L2=158.038 L3=157.998 dist=0.0880000000 max_dist=0.0200000000 dist_ratio=4.400
+6022: USDJPY     | BASKET_NEW  | 1-3 | BUY  | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+6028: OIL_CRUDE  | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=410.8s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+6032: BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=80798.73258 BB_MID=81266.01750 BB_HIGH=81733.30242 width=934.56984 required=150.00000 L1=80797.93 L2=80757.93 L3=80717.93 dist=334.3700000000 max_dist=40.0000000000 dist_ratio=8.359
+6034: BTCUSD     | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=80797.93 L2=80757.93 dist=334.3700000000 step=40.0000000000 max_allowed=320.0000000000 dist_step_ratio=8.359 mult=8.000 old_max_dist=40.0 aucun ordre envoye
+6037: ETHUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=2280.39972 BB_MID=2298.24300 BB_HIGH=2316.08628 width=35.68656 required=15.00000 L1=2280.0 L2=2276.0 L3=2272.0 dist=15.2000000000 max_dist=28.0000000000 dist_ratio=0.543
+6060: ETHUSD     | BASKET_NEW  | 1-3 | BUY  | 0.060000   | TRADEABLE | LIMITS posés=3 rejetés=0
+6250: US500      | BASKET_FILL | 1   | BUY  | 0.150000   | TRADEABLE | deal=004d06...b939 limit=7496.9 entry=7496.9
+6254: US500      | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=2.1154 broker_upl=0.1400 target=0.2000
+6255: US500      | BASKET_PARTIAL_PENDING_KEEP | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 age=120.6s reason=V24_3_5B_KEEP_REINFORCEMENTS_NO_AUTO_CANCEL
+6259: US30       | BASKET_FILL | 2   | BUY  | 0.048000   | TRADEABLE | deal=174f8d...6477 limit=49997.8 entry=49997.0
+6260: US30       | BASKET_FILL | 1   | BUY  | 0.024000   | TRADEABLE | deal=174f8d...6465 limit=50017.8 entry=50017.8
+6265: US30       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=10.0472 broker_upl=-1.5100 target=0.4000
+6266: US30       | BASKET_PARTIAL_PENDING_KEEP | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 age=129.8s reason=V24_3_5B_KEEP_REINFORCEMENTS_NO_AUTO_CANCEL
+6280: GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.34245 BB_MID=1.34605 BB_HIGH=1.34965 width=0.00720 required=0.00050 L1=1.34966 L2=1.34994 L3=1.35022 dist=0.0056500000 max_dist=0.0012000000 dist_ratio=4.708
+6282: GBPUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=1.34966 L2=1.34994 dist=0.0056500000 step=0.0002800000 max_allowed=0.0022400000 dist_step_ratio=20.179 mult=8.000 old_max_dist=0.0012000000000000001 aucun ordre envoye
+6289: EURJPY     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=184.59121 BB_MID=184.64847 BB_HIGH=184.70574 width=0.11453 required=0.10000 L1=184.59 L2=184.542 L3=184.494 dist=0.0560000000 max_dist=0.1800000000 dist_ratio=0.311
+6312: EURJPY     | BASKET_NEW  | 1-3 | BUY  | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+6313: GOLD       | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=418.9s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+6317: OIL_CRUDE  | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=96.84406 BB_MID=97.16755 BB_HIGH=97.49104 width=0.64698 required=0.50000 L1=96.84 L2=96.64 L3=96.44 dist=0.3840000000 max_dist=0.5000000000 dist_ratio=0.768
+6340: OIL_CRUDE  | BASKET_NEW  | 1-3 | BUY  | 4.000000   | TRADEABLE | LIMITS posés=3 rejetés=0
+6344: BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=80834.56543 BB_MID=81282.38750 BB_HIGH=81730.20957 width=895.64414 required=150.00000 L1=80833.77 L2=80793.77 L3=80753.77 dist=407.1300000000 max_dist=40.0000000000 dist_ratio=10.178
+6346: BTCUSD     | BASKET_ARMING_DELAYED | 1-3 | BUY  | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=80833.77 L2=80793.77 dist=407.1300000000 step=40.0000000000 max_allowed=320.0000000000 dist_step_ratio=10.178 mult=8.000 old_max_dist=40.0 aucun ordre envoye
+6545: US500      | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=2.1154 broker_upl=-0.0300 target=0.2000
+6546: US500      | BASKET_PARTIAL_PENDING_KEEP | 1-3 | BUY  | --         | TRADEABLE | open=1 pending=2 age=256.9s reason=V24_3_5B_KEEP_REINFORCEMENTS_NO_AUTO_CANCEL
+6553: US30       | BASKET_TP_BLOCKED_BROKER_UPL | 1-3 | BUY  | --         | TRADEABLE | internal=10.0472 broker_upl=-0.9100 target=0.4000
+6554: US30       | BASKET_PARTIAL_PENDING_KEEP | 1-3 | BUY  | --         | TRADEABLE | open=2 pending=1 age=265.3s reason=V24_3_5B_KEEP_REINFORCEMENTS_NO_AUTO_CANCEL
+6567: GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.34244 BB_MID=1.34605 BB_HIGH=1.34966 width=0.00721 required=0.00050 L1=1.34967 L2=1.34995 L3=1.35023 dist=0.0057700000 max_dist=0.0012000000 dist_ratio=4.808
+6569: GBPUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=1.34967 L2=1.34995 dist=0.0057700000 step=0.0002800000 max_allowed=0.0022400000 dist_step_ratio=20.607 mult=8.000 old_max_dist=0.0012000000000000001 aucun ordre envoye
+6577: GOLD       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=4671.36588 BB_MID=4680.45050 BB_HIGH=4689.53512 width=18.16923 required=8.00000 L1=4689.7 L2=4693.7 L3=4697.7 dist=11.9300000000 max_dist=22.0000000000 dist_ratio=0.542
+6606: GOLD       | BASKET_NEW  | 1-3 | SELL | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+6815: US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29604.43919 BB_MID=29638.31000 BB_HIGH=29672.18081 width=67.74161 required=30.00000 L1=29672.6 L2=29684.6 L3=29696.6 dist=36.9000000000 max_dist=6.4000000000 dist_ratio=5.766
+6829: US100      | BASKET_NEW  | 1-3 | SELL | 0.042000   | TRADEABLE | LIMITS posés=3 rejetés=0
+6839: EURUSD     | BASKET_PENDING_CANCEL | 1-3 | SELL | --         | TRADEABLE | open=0 pending=3 age=403.4s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+6843: GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.34238 BB_MID=1.34591 BB_HIGH=1.34945 width=0.00707 required=0.00050 L1=1.34946 L2=1.34974 L3=1.35002 dist=0.0049600000 max_dist=0.0012000000 dist_ratio=4.133
+6845: GBPUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=1.34946 L2=1.34974 dist=0.0049600000 step=0.0002800000 max_allowed=0.0022400000 dist_step_ratio=17.714 mult=8.000 old_max_dist=0.0012000000000000001 aucun ordre envoye
+6846: USDJPY     | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=420.0s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+6853: OIL_CRUDE  | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=306.9s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+6855: ETHUSD     | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=449.9s max=300.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+
+============================================================================================================================================
+SANTE
+============================================================================================================================================
+Aucune erreur critique détectée dans ce log.

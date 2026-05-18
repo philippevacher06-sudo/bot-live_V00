@@ -1,0 +1,1431 @@
+# BOT_PIVOT_24_4_forced_audit_runner.py
+# V24.4.2 — NETTING M15 VWAP ETH/BTC
+#
+# Règles stratégiques :
+# - ETHUSD exécuté.
+# - BTCUSD confirmation obligatoire.
+# - Signal M15 uniquement.
+# - VWAP ETH + VWAP BTC.
+# - Compte Capital.com en netting, pas en hedging.
+# - Changement BUY -> SELL : pas de DELETE, on envoie des ordres SELL progressifs.
+# - Changement SELL -> BUY : pas de DELETE, on envoie des ordres BUY progressifs.
+# - Jamais de fermeture directe volontaire d'une position perdante.
+# - Taille départ 0.05, palier +0.05.
+# - Marge = contrainte absolue.
+# - GOLD protégé, jamais fermé.
+
+from __future__ import annotations
+
+import os
+import time
+import json
+import uuid
+import math
+import traceback
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+import requests
+
+import BOT_PIVOT_06G2_execution_secure as G
+import BOT_PIVOT_24_4_forced_audit_sampling as FAS
+
+
+# ======================================================================
+# CONFIG
+# ======================================================================
+
+ASSET = os.getenv("V244_TRADED_ASSET", "ETHUSD").upper()
+CONFIRM_ASSET = os.getenv("V244_CONFIRM_ASSET", "BTCUSD").upper()
+PROTECTED_ASSETS = {"GOLD"}
+
+BASE = os.getenv(
+    "CAPITAL_BASE_URL",
+    "https://demo-api-capital.backend-capital.com/api/v1"
+).rstrip("/")
+
+SLEEP_SEC = float(os.getenv("V244_RUNNER_SLEEP_SEC", "10"))
+
+SIGNAL_TIMEFRAME = os.getenv("V244_SIGNAL_TIMEFRAME", "MINUTE_15")
+SIGNAL_BARS = int(os.getenv("V244_SIGNAL_BARS", "96"))
+VWAP_SLOPE_LOOKBACK = int(os.getenv("V244_VWAP_SLOPE_LOOKBACK", "4"))
+VWAP_FLAT_TOLERANCE = float(os.getenv("V244_VWAP_FLAT_TOLERANCE", "0.0"))
+
+BASE_SIZE = float(os.getenv("V244_BASE_SIZE", "0.05"))
+SIZE_STEP = float(os.getenv("V244_SIZE_STEP", "0.05"))
+MAX_SIZE = float(os.getenv("V244_MAX_SIZE", "1.00"))
+
+TARGET_OPENINGS_PER_MIN = int(os.getenv("V244_TARGET_OPENINGS_PER_MIN", "2"))
+MAX_OPEN_POSITIONS = int(os.getenv("V244_MAX_OPEN_POSITIONS", "20"))
+
+STOP_DISTANCE = float(os.getenv("V244_STOP_DISTANCE", "25"))
+GUARANTEED_STOP = os.getenv("V244_GUARANTEED_STOP", "1") == "1"
+CONFIRM_POLL_SEC = float(os.getenv("V244_CONFIRM_POLL_SEC", "1"))
+
+POSITION_BACKOFFS = [
+    float(x.strip())
+    for x in os.getenv("V244_POSITION_BACKOFFS", "1,1.5,2,3,5,8").split(",")
+    if x.strip()
+]
+
+MAX_MARGIN_EST = float(os.getenv("V244_MAX_MARGIN_EST", "3000"))
+MARGIN_BUFFER_RATIO = float(os.getenv("V244_MARGIN_BUFFER_RATIO", "0.95"))
+COUNT_PROTECTED_MARGIN = os.getenv("V244_COUNT_PROTECTED_MARGIN", "1") == "1"
+
+# Efficacite / garde-fous d'execution.
+# Le signal reste M15, donc par defaut on n'autorise qu'une execution par bougie
+# M15 confirmee. Cela evite de rejouer 20 a 30 fois le meme signal.
+ONE_ORDER_PER_SIGNAL_BAR = os.getenv("V244_ONE_ORDER_PER_SIGNAL_BAR", "1") == "1"
+REQUIRE_CLOSED_SIGNAL_BAR = os.getenv("V244_REQUIRE_CLOSED_SIGNAL_BAR", "1") == "1"
+MAX_NET_EXPOSURE = float(os.getenv("V244_MAX_NET_EXPOSURE", "1.00"))
+
+# Filtre de spread. 0 desactive la contrainte correspondante.
+MAX_SPREAD_ABS = float(os.getenv("V244_MAX_SPREAD_ABS", "0"))
+MAX_SPREAD_BPS = float(os.getenv("V244_MAX_SPREAD_BPS", "25"))
+
+# La marge broker reste souveraine. Ici on ajoute un garde-fou sur le disponible.
+ACCOUNT_AVAILABLE_BUFFER_RATIO = float(os.getenv("V244_ACCOUNT_AVAILABLE_BUFFER_RATIO", "0.90"))
+ACCOUNT_CACHE_TTL_SEC = float(os.getenv("V244_ACCOUNT_CACHE_TTL_SEC", "10"))
+REQUIRE_ACCOUNT_NETTING = os.getenv("V244_REQUIRE_ACCOUNT_NETTING", "1") == "1"
+
+ALLOW_DIRECT_LOSS_CLOSE = os.getenv("V244_ALLOW_DIRECT_LOSS_CLOSE", "0") == "1"
+ALLOW_OPPOSITE_NETTING = os.getenv("V244_ALLOW_OPPOSITE_NETTING", "1") == "1"
+
+LOCK_FILE = Path("data/execution/V244_FORCED_RUNNER_LOCK")
+STATE_FILE = Path("data/execution/V2442_NETTING_STATE.json")
+
+_open_ts_window: List[float] = []
+
+
+# ======================================================================
+# LOG / LOCK / STATE
+# ======================================================================
+
+def log(event: str, **kw: Any) -> None:
+    try:
+        FAS.audit_log(event, **kw)
+    except Exception:
+        print(event, kw)
+
+
+def ensure_headers(headers: Dict[str, str]) -> Dict[str, str]:
+    h = dict(headers or {})
+    h.setdefault("Content-Type", "application/json")
+    h.setdefault("Accept", "application/json")
+    return h
+
+
+
+def default_state() -> Dict[str, Any]:
+    return {
+        "active_bias": None,
+        "sequence_count": 0,
+        "last_signal_ts": None,
+        "last_traded_bar_ts": None,
+    }
+
+
+
+def default_state() -> Dict[str, Any]:
+    return {
+        "active_bias": None,
+        "sequence_count": 0,
+        "last_signal_ts": None,
+        "last_traded_bar_ts": None,
+    }
+
+
+
+def default_state() -> Dict[str, Any]:
+    return {
+        "active_bias": None,
+        "sequence_count": 0,
+        "last_signal_ts": None,
+        "last_traded_bar_ts": None,
+    }
+
+
+def load_state() -> Dict[str, Any]:
+    state = default_state()
+
+    if STATE_FILE.exists():
+        try:
+            loaded = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+            if isinstance(loaded, dict):
+                state.update(loaded)
+        except Exception as e:
+            log("RUNNER_STATE_LOAD_ERROR", asset=ASSET, state_file=str(STATE_FILE), exception=repr(e))
+
+    try:
+        state["sequence_count"] = int(state.get("sequence_count") or 0)
+    except Exception:
+        state["sequence_count"] = 0
+
+    return state
+
+def save_state(state: Dict[str, Any]) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def lock_runner(reason: str, **kw: Any) -> None:
+    LOCK_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with LOCK_FILE.open("w", encoding="utf-8") as f:
+        f.write(f"reason={reason}\n")
+        f.write(f"ts_utc={time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}\n")
+        for k, v in kw.items():
+            try:
+                f.write(f"{k}={json.dumps(v, ensure_ascii=False)}\n")
+            except Exception:
+                f.write(f"{k}={repr(v)}\n")
+    log("RUNNER_LOCKED", asset=ASSET, reason=reason, **kw)
+
+
+def is_locked() -> bool:
+    return LOCK_FILE.exists()
+
+
+def refuse_if_lock_present() -> None:
+    if is_locked():
+        log("RUNNER_LOCK_PRESENT_AT_START", asset=ASSET, lock_file=str(LOCK_FILE))
+        raise RuntimeError(f"LOCK actif : {LOCK_FILE}")
+
+
+# ======================================================================
+# API CAPITAL.COM DEMO
+# ======================================================================
+
+def _demo_guard(url: str) -> Optional[Dict[str, Any]]:
+    if "demo-api-capital" not in url:
+        return {
+            "BLOCKED": True,
+            "reason": "DEMO_ONLY_URL_REQUIRED",
+            "url": url,
+        }
+    return None
+
+
+def api_get(headers: Dict[str, str], path: str) -> Tuple[int, Any]:
+    url = BASE + path
+    blocked = _demo_guard(url)
+    if blocked:
+        return 0, blocked
+
+    try:
+        r = requests.get(url, headers=ensure_headers(headers), timeout=20)
+        try:
+            data = r.json()
+        except Exception:
+            data = {"text": r.text}
+        return int(r.status_code), data
+    except Exception as e:
+        return 0, {
+            "REQUEST_EXCEPTION": True,
+            "method": "GET",
+            "path": path,
+            "exception": repr(e),
+        }
+
+
+def api_post(headers: Dict[str, str], path: str, payload: Dict[str, Any]) -> Tuple[int, Any]:
+    url = BASE + path
+    blocked = _demo_guard(url)
+    if blocked:
+        return 0, blocked
+
+    try:
+        r = requests.post(url, headers=ensure_headers(headers), json=payload, timeout=20)
+        try:
+            data = r.json()
+        except Exception:
+            data = {"text": r.text}
+        return int(r.status_code), data
+    except Exception as e:
+        return 0, {
+            "REQUEST_EXCEPTION": True,
+            "method": "POST",
+            "path": path,
+            "payload": payload,
+            "exception": repr(e),
+        }
+
+
+
+# ======================================================================
+# ACCOUNT / EXECUTION GUARDS
+# ======================================================================
+
+_account_snapshot_cache: Dict[str, Any] = {
+    "ts": 0.0,
+    "session": None,
+    "preferences": None,
+}
+
+
+def safe_float(v: Any, default: float = 0.0) -> float:
+    try:
+        if v is None:
+            return default
+        return float(v)
+    except Exception:
+        return default
+
+
+def get_account_session(headers: Dict[str, str], *, force: bool = False) -> Dict[str, Any]:
+    now = time.time()
+    cached = _account_snapshot_cache.get("session")
+    if cached is not None and not force and now - float(_account_snapshot_cache.get("ts") or 0.0) <= ACCOUNT_CACHE_TTL_SEC:
+        return cached
+
+    status, data = api_get(headers, "/session")
+    if status != 200 or not isinstance(data, dict):
+        log("RUNNER_ACCOUNT_SESSION_ERROR", asset=ASSET, status=status, response=data)
+        return {}
+
+    _account_snapshot_cache["ts"] = now
+    _account_snapshot_cache["session"] = data
+    return data
+
+
+def get_account_available(headers: Dict[str, str]) -> float:
+    session = get_account_session(headers)
+    info = session.get("accountInfo", {}) if isinstance(session.get("accountInfo"), dict) else {}
+    available = safe_float(info.get("available"), -1.0)
+    if available >= 0:
+        return available
+
+    status, data = api_get(headers, "/accounts")
+    if status != 200 or not isinstance(data, dict):
+        log("RUNNER_ACCOUNTS_ERROR", asset=ASSET, status=status, response=data)
+        return 0.0
+
+    for account in data.get("accounts", []) or []:
+        if isinstance(account, dict) and account.get("preferred"):
+            bal = account.get("balance", {}) if isinstance(account.get("balance"), dict) else {}
+            return safe_float(bal.get("available"), 0.0)
+
+    return 0.0
+
+
+def get_account_preferences(headers: Dict[str, str], *, force: bool = False) -> Dict[str, Any]:
+    cached = _account_snapshot_cache.get("preferences")
+    if cached is not None and not force:
+        return cached
+
+    status, data = api_get(headers, "/accounts/preferences")
+    if status != 200 or not isinstance(data, dict):
+        log("RUNNER_ACCOUNT_PREFERENCES_ERROR", asset=ASSET, status=status, response=data)
+        return {}
+
+    _account_snapshot_cache["preferences"] = data
+    return data
+
+
+def assert_account_netting(headers: Dict[str, str]) -> None:
+    prefs = get_account_preferences(headers, force=True)
+    hedging = bool(prefs.get("hedgingMode"))
+
+    log("RUNNER_ACCOUNT_MODE", asset=ASSET, hedgingMode=hedging, preferences=prefs)
+
+    if hedging and REQUIRE_ACCOUNT_NETTING:
+        lock_runner(
+            "HEDGING_MODE_ENABLED",
+            hedgingMode=hedging,
+            preferences=prefs,
+            rule="V2442_REQUIRES_NETTING_HEDGINGMODE_FALSE",
+        )
+        raise RuntimeError("Compte en hedgingMode=true alors que V24.4.2 exige le netting")
+
+
+def current_crypto_leverage(headers: Dict[str, str], fallback: float = 2.0) -> float:
+    prefs = get_account_preferences(headers)
+    leverages = prefs.get("leverages", {}) if isinstance(prefs.get("leverages"), dict) else {}
+    crypto = leverages.get("CRYPTOCURRENCIES", {}) if isinstance(leverages.get("CRYPTOCURRENCIES"), dict) else {}
+    lev = safe_float(crypto.get("current"), fallback)
+    return lev or fallback
+
+
+def usable_signal_bars(bars: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    if REQUIRE_CLOSED_SIGNAL_BAR and len(bars) > 1:
+        return bars[:-1]
+    return bars
+
+
+def signal_bar_already_traded(state: Dict[str, Any], signal: Dict[str, Any]) -> bool:
+    if not ONE_ORDER_PER_SIGNAL_BAR:
+        return False
+    bar_ts = signal.get("signal_bar_ts")
+    return bool(bar_ts and state.get("last_traded_bar_ts") == bar_ts)
+
+
+def mark_signal_bar_traded(state: Dict[str, Any], signal: Dict[str, Any]) -> Dict[str, Any]:
+    bar_ts = signal.get("signal_bar_ts")
+    if bar_ts:
+        state["last_traded_bar_ts"] = bar_ts
+    return state
+
+
+def sync_state_with_broker_exposure(state: Dict[str, Any], net: float, net_side: str) -> Dict[str, Any]:
+    if net_side == "FLAT" and (state.get("active_bias") is not None or int(state.get("sequence_count") or 0) != 0):
+        log(
+            "RUNNER_STATE_RESET_ON_FLAT_EXPOSURE",
+            asset=ASSET,
+            previous_state=state,
+            net_exposure=net,
+            net_side=net_side,
+        )
+        state["active_bias"] = None
+        state["sequence_count"] = 0
+        save_state(state)
+    return state
+
+
+def projected_net_after_order(net: float, side: str, size: float) -> float:
+    if side == "BUY":
+        return round(net + size, 10)
+    if side == "SELL":
+        return round(net - size, 10)
+    return net
+
+
+def net_exposure_allows_order(net: float, side: str, size: float) -> Tuple[bool, Dict[str, Any]]:
+    projected = projected_net_after_order(net, side, size)
+    ok = abs(projected) <= MAX_NET_EXPOSURE
+    info = {
+        "ok": ok,
+        "net_before": net,
+        "side": side,
+        "size": size,
+        "net_after_projected": projected,
+        "max_net_exposure": MAX_NET_EXPOSURE,
+    }
+    log("RUNNER_NET_EXPOSURE_CHECK", asset=ASSET, **info)
+    return ok, info
+
+
+def spread_allows_order(headers: Dict[str, str]) -> Tuple[bool, Dict[str, Any]]:
+    q = get_latest_mid(headers, ASSET)
+    bid = safe_float(q.get("bid"))
+    offer = safe_float(q.get("offer"))
+    mid = safe_float(q.get("mid"))
+    spread = max(0.0, offer - bid) if bid and offer else 0.0
+    spread_bps = (spread / mid * 10000.0) if mid else 0.0
+
+    abs_ok = True if MAX_SPREAD_ABS <= 0 else spread <= MAX_SPREAD_ABS
+    bps_ok = True if MAX_SPREAD_BPS <= 0 else spread_bps <= MAX_SPREAD_BPS
+    ok = bool(mid and abs_ok and bps_ok)
+
+    info = {
+        "ok": ok,
+        "bid": bid,
+        "offer": offer,
+        "mid": mid,
+        "spread": spread,
+        "spread_bps": spread_bps,
+        "max_spread_abs": MAX_SPREAD_ABS,
+        "max_spread_bps": MAX_SPREAD_BPS,
+    }
+    log("RUNNER_SPREAD_CHECK", asset=ASSET, **info)
+    return ok, info
+
+# ======================================================================
+# POSITIONS / NETTING / MARGE
+# ======================================================================
+
+def get_positions_raw(headers: Dict[str, str]) -> List[Dict[str, Any]]:
+    status, data = api_get(headers, "/positions")
+    if status != 200:
+        log("RUNNER_GET_POSITIONS_ERROR", asset=ASSET, status=status, response=data)
+        raise RuntimeError(f"GET /positions failed status={status} data={data}")
+
+    positions = data.get("positions", []) if isinstance(data, dict) else []
+    log("RUNNER_GET_POSITIONS_OK", asset=ASSET, total_positions=len(positions), raw=data)
+    return positions
+
+
+def position_epic(item: Dict[str, Any]) -> str:
+    market = item.get("market", {}) if isinstance(item.get("market"), dict) else {}
+    position = item.get("position", {}) if isinstance(item.get("position"), dict) else {}
+    return str(market.get("epic") or position.get("epic") or item.get("epic") or "").upper()
+
+
+def normalize_position(item: Dict[str, Any]) -> Dict[str, Any]:
+    market = item.get("market", {}) if isinstance(item.get("market"), dict) else {}
+    pos = item.get("position", {}) if isinstance(item.get("position"), dict) else {}
+
+    def fnum(v: Any, default: float = 0.0) -> float:
+        try:
+            if v is None:
+                return default
+            return float(v)
+        except Exception:
+            return default
+
+    return {
+        "epic": str(market.get("epic") or pos.get("epic") or item.get("epic") or "").upper(),
+        "dealId": pos.get("dealId") or item.get("dealId"),
+        "dealReference": pos.get("dealReference") or item.get("dealReference"),
+        "workingOrderId": pos.get("workingOrderId") or item.get("workingOrderId"),
+        "size": fnum(pos.get("size") or item.get("size")),
+        "direction": str(pos.get("direction") or item.get("direction") or "").upper(),
+        "level": fnum(pos.get("level") or item.get("level")),
+        "upl": fnum(pos.get("upl") or item.get("upl")),
+        "leverage": fnum(pos.get("leverage") or item.get("leverage"), 1.0),
+        "guaranteedStop": bool(pos.get("guaranteedStop") or item.get("guaranteedStop")),
+        "raw": item,
+    }
+
+
+def all_positions(headers: Dict[str, str]) -> List[Dict[str, Any]]:
+    return [normalize_position(x) for x in get_positions_raw(headers)]
+
+
+def asset_positions(headers: Dict[str, str], asset: str = ASSET) -> List[Dict[str, Any]]:
+    out = []
+    for p in all_positions(headers):
+        epic = p.get("epic", "")
+        if epic in PROTECTED_ASSETS:
+            log("RUNNER_PROTECTED_POSITION_SEEN", asset=ASSET, protected_epic=epic, dealId=p.get("dealId"))
+            continue
+        if epic == asset:
+            out.append(p)
+
+    log(
+        "RUNNER_ASSET_POSITIONS",
+        asset=asset,
+        count=len(out),
+        dealIds=[p.get("dealId") for p in out],
+        dirs=[p.get("direction") for p in out],
+        sizes=[p.get("size") for p in out],
+        upls=[p.get("upl") for p in out],
+    )
+    return out
+
+
+def position_ids(positions: List[Dict[str, Any]]) -> set:
+    return {str(p.get("dealId")) for p in positions if p.get("dealId")}
+
+
+def net_exposure(positions: List[Dict[str, Any]]) -> float:
+    net = 0.0
+    for p in positions:
+        size = float(p.get("size") or 0.0)
+        direction = str(p.get("direction") or "").upper()
+        if direction == "BUY":
+            net += size
+        elif direction == "SELL":
+            net -= size
+    return round(net, 10)
+
+
+def net_side_from_exposure(net: float) -> str:
+    if net > 0:
+        return "BUY"
+    if net < 0:
+        return "SELL"
+    return "FLAT"
+
+
+def opposite_side(side: str) -> str:
+    return "SELL" if side == "BUY" else "BUY"
+
+
+def estimate_position_margin(p: Dict[str, Any]) -> float:
+    size = abs(float(p.get("size") or 0.0))
+    level = abs(float(p.get("level") or 0.0))
+    leverage = abs(float(p.get("leverage") or 1.0)) or 1.0
+    return (size * level) / leverage
+
+
+def estimate_used_margin(headers: Dict[str, str]) -> Tuple[float, List[Dict[str, Any]]]:
+    positions = all_positions(headers)
+    details = []
+    total = 0.0
+
+    for p in positions:
+        epic = p.get("epic")
+        if epic in PROTECTED_ASSETS and not COUNT_PROTECTED_MARGIN:
+            continue
+
+        m = estimate_position_margin(p)
+        total += m
+        details.append({
+            "epic": epic,
+            "dealId": p.get("dealId"),
+            "direction": p.get("direction"),
+            "size": p.get("size"),
+            "level": p.get("level"),
+            "leverage": p.get("leverage"),
+            "margin_est": m,
+        })
+
+    return total, details
+
+
+def estimate_new_order_margin(headers: Dict[str, str], side: str, size: float) -> float:
+    prices = get_latest_mid(headers, ASSET)
+    level = prices.get("mid") or prices.get("offer") or prices.get("bid") or 0.0
+    leverage = 2.0
+    return abs(float(size) * float(level)) / leverage
+
+
+
+
+
+def margin_allows_order(headers: Dict[str, str], side: str, size: float) -> Tuple[bool, Dict[str, Any]]:
+    positions = all_positions(headers)
+    eth_positions = [p for p in positions if p.get("epic") == ASSET]
+    net = net_exposure(eth_positions)
+    net_side = net_side_from_exposure(net)
+
+    current_margin = 0.0
+    current_asset_margin = 0.0
+    details = []
+
+    for p in positions:
+        epic = p.get("epic")
+        if epic in PROTECTED_ASSETS and not COUNT_PROTECTED_MARGIN:
+            continue
+        m = estimate_position_margin(p)
+        current_margin += m
+        if epic == ASSET:
+            current_asset_margin += m
+        details.append({
+            "epic": epic,
+            "dealId": p.get("dealId"),
+            "direction": p.get("direction"),
+            "size": p.get("size"),
+            "level": p.get("level"),
+            "leverage": p.get("leverage"),
+            "margin_est": m,
+        })
+
+    q = get_latest_mid(headers, ASSET)
+    level = safe_float(q.get("mid") or q.get("offer") or q.get("bid"))
+    leverage = current_crypto_leverage(headers, fallback=2.0)
+
+    projected_net = projected_net_after_order(net, side, size)
+    projected_asset_margin = abs(projected_net) * level / (leverage or 1.0)
+    projected = max(0.0, current_margin - current_asset_margin + projected_asset_margin)
+
+    available = get_account_available(headers)
+    new_margin_delta = max(0.0, projected - current_margin)
+
+    hard_limit = MAX_MARGIN_EST * MARGIN_BUFFER_RATIO
+    fixed_limit_ok = projected <= hard_limit
+    available_ok = new_margin_delta <= (available * ACCOUNT_AVAILABLE_BUFFER_RATIO)
+    ok = fixed_limit_ok and available_ok
+
+    info = {
+        "ok": ok,
+        "side": side,
+        "size": size,
+        "current_margin_est": current_margin,
+        "current_asset_margin_est": current_asset_margin,
+        "projected_asset_margin_est": projected_asset_margin,
+        "projected_margin_est": projected,
+        "new_margin_delta_est": new_margin_delta,
+        "account_available": available,
+        "account_available_buffer_ratio": ACCOUNT_AVAILABLE_BUFFER_RATIO,
+        "fixed_limit_ok": fixed_limit_ok,
+        "available_ok": available_ok,
+        "max_margin_est": MAX_MARGIN_EST,
+        "buffer_ratio": MARGIN_BUFFER_RATIO,
+        "hard_limit": hard_limit,
+        "level": level,
+        "leverage": leverage,
+        "net_exposure": net,
+        "net_side": net_side,
+        "projected_net_exposure": projected_net,
+        "details": details,
+    }
+
+    log("RUNNER_MARGIN_CHECK", asset=ASSET, **info)
+    return ok, info
+
+
+# ======================================================================
+# PRIX / VWAP / SIGNAL M15
+# ======================================================================
+
+def _mid_from_price_obj(obj: Dict[str, Any]) -> Optional[float]:
+    if not isinstance(obj, dict):
+        return None
+
+    bid = obj.get("bid")
+    ask = obj.get("ask") or obj.get("offer")
+
+    try:
+        if bid is not None and ask is not None:
+            return (float(bid) + float(ask)) / 2.0
+        if bid is not None:
+            return float(bid)
+        if ask is not None:
+            return float(ask)
+    except Exception:
+        return None
+
+    return None
+
+
+def get_latest_mid(headers: Dict[str, str], epic: str) -> Dict[str, float]:
+    status, data = api_get(headers, f"/markets/{epic}")
+    if status != 200 or not isinstance(data, dict):
+        return {"bid": 0.0, "offer": 0.0, "mid": 0.0}
+
+    snap = data.get("snapshot", {}) if isinstance(data.get("snapshot"), dict) else {}
+    bid = snap.get("bid")
+    offer = snap.get("offer") or snap.get("ask")
+
+    try:
+        bid_f = float(bid or 0.0)
+        offer_f = float(offer or 0.0)
+        mid = (bid_f + offer_f) / 2.0 if bid_f and offer_f else bid_f or offer_f
+    except Exception:
+        bid_f = offer_f = mid = 0.0
+
+    return {"bid": bid_f, "offer": offer_f, "mid": mid}
+
+
+def get_price_bars(headers: Dict[str, str], epic: str) -> List[Dict[str, Any]]:
+    path = f"/prices/{epic}?resolution={SIGNAL_TIMEFRAME}&max={SIGNAL_BARS}"
+    status, data = api_get(headers, path)
+
+    if status != 200 or not isinstance(data, dict):
+        log("RUNNER_PRICE_BARS_ERROR", epic=epic, status=status, response=data)
+        return []
+
+    prices = data.get("prices") or []
+    if not isinstance(prices, list):
+        prices = []
+
+    log("RUNNER_PRICE_BARS_OK", epic=epic, count=len(prices), timeframe=SIGNAL_TIMEFRAME)
+    return prices
+
+
+def extract_bar_price_and_volume(bar: Dict[str, Any]) -> Optional[Tuple[float, float, str]]:
+    if not isinstance(bar, dict):
+        return None
+
+    close_obj = (
+        bar.get("closePrice")
+        or bar.get("close")
+        or bar.get("lastPrice")
+        or {}
+    )
+
+    price = _mid_from_price_obj(close_obj)
+
+    if price is None:
+        for key in ("close", "last", "price"):
+            try:
+                if bar.get(key) is not None:
+                    price = float(bar.get(key))
+                    break
+            except Exception:
+                pass
+
+    if price is None:
+        return None
+
+    vol = (
+        bar.get("lastTradedVolume")
+        or bar.get("volume")
+        or bar.get("tickVolume")
+        or 1.0
+    )
+
+    try:
+        vol_f = float(vol)
+        if vol_f <= 0:
+            vol_f = 1.0
+    except Exception:
+        vol_f = 1.0
+
+    ts = str(
+        bar.get("snapshotTimeUTC")
+        or bar.get("snapshotTime")
+        or bar.get("time")
+        or ""
+    )
+
+    return float(price), vol_f, ts
+
+
+def compute_vwap_series(bars: List[Dict[str, Any]]) -> Dict[str, Any]:
+    prices = []
+    volumes = []
+    times = []
+
+    for bar in bars:
+        extracted = extract_bar_price_and_volume(bar)
+        if not extracted:
+            continue
+        p, v, ts = extracted
+        prices.append(p)
+        volumes.append(v)
+        times.append(ts)
+
+    if len(prices) < max(10, VWAP_SLOPE_LOOKBACK + 2):
+        return {
+            "ok": False,
+            "reason": "NOT_ENOUGH_BARS",
+            "count": len(prices),
+        }
+
+    cum_pv = 0.0
+    cum_v = 0.0
+    vwaps = []
+
+    for p, v in zip(prices, volumes):
+        cum_pv += p * v
+        cum_v += v
+        vwaps.append(cum_pv / cum_v if cum_v else p)
+
+    last_price = prices[-1]
+    last_vwap = vwaps[-1]
+    prev_vwap = vwaps[-1 - VWAP_SLOPE_LOOKBACK]
+    slope = last_vwap - prev_vwap
+
+    return {
+        "ok": True,
+        "count": len(prices),
+        "last_price": last_price,
+        "last_vwap": last_vwap,
+        "prev_vwap": prev_vwap,
+        "slope": slope,
+        "last_time": times[-1] if times else None,
+    }
+
+
+def vwap_bias(v: Dict[str, Any]) -> str:
+    if not v.get("ok"):
+        return "WAIT"
+
+    price = float(v.get("last_price"))
+    vwap = float(v.get("last_vwap"))
+    slope = float(v.get("slope"))
+
+    if price > vwap and slope >= -VWAP_FLAT_TOLERANCE:
+        return "BUY"
+
+    if price < vwap and slope <= VWAP_FLAT_TOLERANCE:
+        return "SELL"
+
+    return "WAIT"
+
+
+
+
+
+def compute_m15_vwap_signal(headers: Dict[str, str]) -> Dict[str, Any]:
+    eth_bars = usable_signal_bars(get_price_bars(headers, ASSET))
+    btc_bars = usable_signal_bars(get_price_bars(headers, CONFIRM_ASSET))
+
+    eth_vwap = compute_vwap_series(eth_bars)
+    btc_vwap = compute_vwap_series(btc_bars)
+
+    eth_bias = vwap_bias(eth_vwap)
+    btc_bias = vwap_bias(btc_vwap)
+
+    if eth_bias in ("BUY", "SELL") and eth_bias == btc_bias:
+        final_bias = eth_bias
+        reason = "ETH_BTC_VWAP_ALIGNED"
+    else:
+        final_bias = "WAIT"
+        reason = "ETH_BTC_NOT_ALIGNED"
+
+    signal = {
+        "asset": ASSET,
+        "confirm_asset": CONFIRM_ASSET,
+        "timeframe": SIGNAL_TIMEFRAME,
+        "bias": final_bias,
+        "reason": reason,
+        "eth_bias": eth_bias,
+        "btc_bias": btc_bias,
+        "eth_vwap": eth_vwap,
+        "btc_vwap": btc_vwap,
+        "signal_bar_ts": eth_vwap.get("last_time") if isinstance(eth_vwap, dict) else None,
+        "confirm_bar_ts": btc_vwap.get("last_time") if isinstance(btc_vwap, dict) else None,
+        "closed_bar_required": REQUIRE_CLOSED_SIGNAL_BAR,
+    }
+
+    log("RUNNER_M15_VWAP_SIGNAL", **signal)
+    return signal
+
+
+# ======================================================================
+# CONFIRM / DEAL ID RESOLUTION
+# ======================================================================
+
+def extract_deal_candidates(confirm: Dict[str, Any]) -> List[Dict[str, Any]]:
+    candidates = []
+
+    main = confirm.get("dealId")
+    if main:
+        candidates.append({
+            "source": "confirm.dealId",
+            "dealId": str(main),
+            "status": confirm.get("status"),
+        })
+
+    affected = confirm.get("affectedDeals") or []
+    if isinstance(affected, list):
+        for i, item in enumerate(affected):
+            if isinstance(item, dict) and item.get("dealId"):
+                candidates.append({
+                    "source": f"affectedDeals[{i}].dealId",
+                    "dealId": str(item.get("dealId")),
+                    "status": item.get("status"),
+                })
+
+    seen = set()
+    unique = []
+    for c in candidates:
+        did = c.get("dealId")
+        if did and did not in seen:
+            unique.append(c)
+            seen.add(did)
+
+    return unique
+
+
+def confirm_reference(headers: Dict[str, str], deal_ref: str) -> Tuple[bool, Dict[str, Any]]:
+    time.sleep(CONFIRM_POLL_SEC)
+
+    status, data = api_get(headers, f"/confirms/{deal_ref}")
+
+    epic = data.get("epic") if isinstance(data, dict) else None
+    epic_ok = (not epic) or str(epic).upper() == ASSET
+
+    ok = (
+        status == 200
+        and isinstance(data, dict)
+        and data.get("dealStatus") == "ACCEPTED"
+        and epic_ok
+        and bool(data.get("dealId") or data.get("affectedDeals"))
+    )
+
+    log(
+        "RUNNER_CONFIRM_RESULT",
+        asset=ASSET,
+        dealReference=deal_ref,
+        status=status,
+        ok=ok,
+        epic_present=bool(epic),
+        epic=epic,
+        confirm=data,
+    )
+
+    return ok, data if isinstance(data, dict) else {"raw": data}
+
+
+def resolve_real_deal_id(headers: Dict[str, str], confirm: Dict[str, Any]) -> Tuple[bool, Optional[str], Optional[Dict[str, Any]], Dict[str, Any]]:
+    candidates = extract_deal_candidates(confirm)
+    candidate_ids = [c["dealId"] for c in candidates if c.get("dealId")]
+
+    log(
+        "RUNNER_DEAL_ID_CANDIDATES",
+        asset=ASSET,
+        candidates=candidates,
+        dealReference=confirm.get("dealReference"),
+    )
+
+    if not candidate_ids:
+        return False, None, None, {
+            "reason": "NO_DEAL_ID_CANDIDATES",
+            "confirm": confirm,
+        }
+
+    last_positions = []
+
+    for attempt, delay in enumerate(POSITION_BACKOFFS, start=1):
+        time.sleep(delay)
+        positions = asset_positions(headers, ASSET)
+        last_positions = positions
+        visible_ids = [str(p.get("dealId")) for p in positions if p.get("dealId")]
+
+        log(
+            "RUNNER_RESOLVE_DEAL_ID_ATTEMPT",
+            asset=ASSET,
+            attempt=attempt,
+            delay=delay,
+            candidate_ids=candidate_ids,
+            visible_ids=visible_ids,
+        )
+
+        for p in positions:
+            did = str(p.get("dealId"))
+            if did in candidate_ids:
+                log(
+                    "RUNNER_REAL_DEAL_ID_RESOLVED",
+                    asset=ASSET,
+                    real_deal_id=did,
+                    matched_position=p,
+                    attempt=attempt,
+                )
+                return True, did, p, {
+                    "attempt": attempt,
+                    "candidate_ids": candidate_ids,
+                    "visible_ids": visible_ids,
+                }
+
+    return False, None, None, {
+        "reason": "NO_CANDIDATE_VISIBLE_AFTER_BACKOFF",
+        "candidate_ids": candidate_ids,
+        "last_positions": last_positions,
+        "confirm": confirm,
+    }
+
+
+# ======================================================================
+# SIZE LADDER / NETTING ORDER
+# ======================================================================
+
+def update_sequence_for_signal(state: Dict[str, Any], bias: str) -> Dict[str, Any]:
+    previous = state.get("active_bias")
+
+    if bias not in ("BUY", "SELL"):
+        return state
+
+    if previous != bias:
+        log(
+            "RUNNER_SIGNAL_SIDE_CHANGED",
+            previous_bias=previous,
+            new_bias=bias,
+            rule="NETTING_OPPOSITE_SEQUENCE_RESTARTS_AT_0_05",
+        )
+        state["active_bias"] = bias
+        state["sequence_count"] = 0
+
+    return state
+
+
+def next_ladder_size(state: Dict[str, Any]) -> float:
+    n = int(state.get("sequence_count") or 0)
+    size = BASE_SIZE + (n * SIZE_STEP)
+    size = min(size, MAX_SIZE)
+    return round(size, 2)
+
+
+def advance_ladder(state: Dict[str, Any]) -> Dict[str, Any]:
+    state["sequence_count"] = int(state.get("sequence_count") or 0) + 1
+    state["last_signal_ts"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    save_state(state)
+    return state
+
+
+
+
+
+def open_market_netting_safe(
+    headers: Dict[str, str],
+    side: str,
+    size: float,
+    signal: Dict[str, Any],
+    state: Dict[str, Any],
+) -> Tuple[bool, Dict[str, Any]]:
+    if side not in ("BUY", "SELL"):
+        return False, {"stage": "INVALID_SIDE", "side": side}
+
+    if side == "SELL" and not ALLOW_OPPOSITE_NETTING:
+        return False, {"stage": "OPPOSITE_NETTING_DISABLED"}
+
+    spread_ok, spread_info = spread_allows_order(headers)
+    if not spread_ok:
+        return False, {
+            "stage": "SPREAD_BLOCKED",
+            "spread_info": spread_info,
+        }
+
+    margin_ok, margin_info = margin_allows_order(headers, side, size)
+    if not margin_ok:
+        return False, {
+            "stage": "MARGIN_BLOCKED",
+            "margin_info": margin_info,
+        }
+
+    positions_before = asset_positions(headers, ASSET)
+    before_ids = position_ids(positions_before)
+
+    client_ref = f"V2442_NETTING_{int(time.time())}_{side}_{uuid.uuid4().hex[:6]}"
+
+    # Capital.com documente POST /positions comme un ordre au marche.
+    # On evite les champs non documentes pour rester en netting.
+    payload = {
+        "epic": ASSET,
+        "direction": side,
+        "size": float(size),
+        "guaranteedStop": GUARANTEED_STOP,
+        "stopDistance": STOP_DISTANCE,
+    }
+
+    log(
+        "RUNNER_NETTING_OPEN_REQUEST",
+        asset=ASSET,
+        side=side,
+        size=size,
+        client_ref=client_ref,
+        payload=payload,
+        signal=signal,
+        state=state,
+        spread_info=spread_info,
+        margin_info=margin_info,
+    )
+
+    status, data = api_post(headers, "/positions", payload)
+
+    log(
+        "RUNNER_NETTING_OPEN_RESPONSE",
+        asset=ASSET,
+        side=side,
+        size=size,
+        status=status,
+        response=data,
+    )
+
+    if status not in (200, 201) or not isinstance(data, dict) or not data.get("dealReference"):
+        return False, {
+            "stage": "POST_POSITION_FAILED",
+            "status": status,
+            "response": data,
+            "payload": payload,
+        }
+
+    deal_ref = data["dealReference"]
+    confirm_ok, confirm = confirm_reference(headers, deal_ref)
+
+    if not confirm_ok:
+        return False, {
+            "stage": "CONFIRM_NOT_ACCEPTED",
+            "dealReference": deal_ref,
+            "confirm": confirm,
+            "payload": payload,
+        }
+
+    resolved_ok, real_deal_id, visible_position, resolve_debug = resolve_real_deal_id(headers, confirm)
+
+    positions_after = asset_positions(headers, ASSET)
+    after_ids = position_ids(positions_after)
+    net_after = net_exposure(positions_after)
+
+    if not resolved_ok:
+        log(
+            "RUNNER_NETTING_NO_NEW_DEAL_VISIBLE_AFTER_ACCEPT",
+            asset=ASSET,
+            side=side,
+            size=size,
+            before_ids=sorted(before_ids),
+            after_ids=sorted(after_ids),
+            net_after=net_after,
+            confirm=confirm,
+            resolve_debug=resolve_debug,
+            note="POSSIBLE_NETTING_REDUCTION",
+        )
+
+        return True, {
+            "stage": "ORDER_ACCEPTED_POSSIBLE_NETTING_REDUCTION",
+            "dealReference": deal_ref,
+            "real_deal_id": None,
+            "confirm": confirm,
+            "positions_before": positions_before,
+            "positions_after": positions_after,
+            "net_after": net_after,
+            "resolve_debug": resolve_debug,
+            "payload": payload,
+        }
+
+    return True, {
+        "stage": "OPEN_CONFIRMED_AND_VISIBLE",
+        "dealReference": deal_ref,
+        "real_deal_id": real_deal_id,
+        "confirm": confirm,
+        "position": visible_position,
+        "positions_before": positions_before,
+        "positions_after": positions_after,
+        "net_after": net_after,
+        "resolve_debug": resolve_debug,
+        "payload": payload,
+    }
+
+
+# ======================================================================
+# RATE LIMITER
+# ======================================================================
+
+def prune_open_window(now: Optional[float] = None) -> None:
+    now = now or time.time()
+    cutoff = now - 60.0
+    while _open_ts_window and _open_ts_window[0] < cutoff:
+        _open_ts_window.pop(0)
+
+
+def opens_last_60s() -> int:
+    prune_open_window()
+    return len(_open_ts_window)
+
+
+def can_open_now() -> Tuple[bool, Dict[str, Any]]:
+    now = time.time()
+    prune_open_window(now)
+
+    count = len(_open_ts_window)
+
+    if count >= TARGET_OPENINGS_PER_MIN:
+        return False, {
+            "reason": "RATE_LIMIT_REACHED",
+            "opens_last_60s": count,
+            "target_openings_per_min": TARGET_OPENINGS_PER_MIN,
+            "window": list(_open_ts_window),
+        }
+
+    return True, {
+        "reason": "RATE_LIMIT_OK",
+        "opens_last_60s": count,
+        "target_openings_per_min": TARGET_OPENINGS_PER_MIN,
+    }
+
+
+def register_open_window() -> None:
+    _open_ts_window.append(time.time())
+    prune_open_window()
+
+
+# ======================================================================
+# NO DIRECT LOSS CLOSE SAFETY
+# ======================================================================
+
+def direct_close_is_allowed(position: Dict[str, Any]) -> bool:
+    upl = float(position.get("upl") or 0.0)
+
+    if upl < 0 and not ALLOW_DIRECT_LOSS_CLOSE:
+        log(
+            "RUNNER_DIRECT_LOSS_CLOSE_FORBIDDEN",
+            asset=ASSET,
+            dealId=position.get("dealId"),
+            upl=upl,
+            rule="NO_DELETE_ON_LOSING_POSITION",
+        )
+        return False
+
+    return True
+
+
+# ======================================================================
+# MAIN
+# ======================================================================
+
+
+
+
+def main() -> None:
+    FAS.safety_banner()
+
+    if ASSET in PROTECTED_ASSETS:
+        raise RuntimeError(f"{ASSET} est protege, impossible de le trader")
+
+    refuse_if_lock_present()
+
+    log(
+        "RUNNER_V2442_NETTING_M15_START",
+        asset=ASSET,
+        confirm_asset=CONFIRM_ASSET,
+        protected_assets=list(PROTECTED_ASSETS),
+        mode="NETTING_NO_HEDGE",
+        signal_timeframe=SIGNAL_TIMEFRAME,
+        base_size=BASE_SIZE,
+        size_step=SIZE_STEP,
+        max_size=MAX_SIZE,
+        target_openings_per_min=TARGET_OPENINGS_PER_MIN,
+        max_open_positions=MAX_OPEN_POSITIONS,
+        max_net_exposure=MAX_NET_EXPOSURE,
+        max_margin_est=MAX_MARGIN_EST,
+        margin_buffer_ratio=MARGIN_BUFFER_RATIO,
+        account_available_buffer_ratio=ACCOUNT_AVAILABLE_BUFFER_RATIO,
+        one_order_per_signal_bar=ONE_ORDER_PER_SIGNAL_BAR,
+        require_closed_signal_bar=REQUIRE_CLOSED_SIGNAL_BAR,
+        max_spread_abs=MAX_SPREAD_ABS,
+        max_spread_bps=MAX_SPREAD_BPS,
+        guaranteed_stop=GUARANTEED_STOP,
+        stop_distance=STOP_DISTANCE,
+        allow_direct_loss_close=ALLOW_DIRECT_LOSS_CLOSE,
+        allow_opposite_netting=ALLOW_OPPOSITE_NETTING,
+    )
+
+    headers = ensure_headers(G.login())
+    log("RUNNER_LOGIN_OK", asset=ASSET)
+    assert_account_netting(headers)
+
+    state = load_state()
+    save_state(state)
+
+    while True:
+        try:
+            if is_locked():
+                log("RUNNER_HALTED_BY_LOCK", asset=ASSET, lock_file=str(LOCK_FILE))
+                time.sleep(60)
+                continue
+
+            positions = asset_positions(headers, ASSET)
+            net = net_exposure(positions)
+            net_side = net_side_from_exposure(net)
+            state = sync_state_with_broker_exposure(state, net, net_side)
+
+            signal = compute_m15_vwap_signal(headers)
+            bias = signal.get("bias")
+
+            rate_ok, rate_info = can_open_now()
+
+            log(
+                "RUNNER_STATUS",
+                asset=ASSET,
+                confirm_asset=CONFIRM_ASSET,
+                signal_bias=bias,
+                signal_reason=signal.get("reason"),
+                signal_bar_ts=signal.get("signal_bar_ts"),
+                eth_bias=signal.get("eth_bias"),
+                btc_bias=signal.get("btc_bias"),
+                open_positions=len(positions),
+                open_dealIds=[p.get("dealId") for p in positions],
+                net_exposure=net,
+                net_side=net_side,
+                opens_last_60s=opens_last_60s(),
+                rate_ok=rate_ok,
+                rate_info=rate_info,
+                state=state,
+            )
+
+            if bias not in ("BUY", "SELL"):
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason="NO_M15_VWAP_BTC_SIGNAL",
+                    signal=signal,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            if signal_bar_already_traded(state, signal):
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason="SIGNAL_BAR_ALREADY_TRADED",
+                    signal_bar_ts=signal.get("signal_bar_ts"),
+                    state=state,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            state = update_sequence_for_signal(state, bias)
+            save_state(state)
+
+            side = bias
+            size = next_ladder_size(state)
+
+            same_side_as_net = net_side == side
+            opposite_to_net = net_side in ("BUY", "SELL") and side == opposite_side(net_side)
+
+            net_ok, net_info = net_exposure_allows_order(net, side, size)
+            if not net_ok:
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason="MAX_NET_EXPOSURE_REACHED",
+                    net_info=net_info,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            if len(positions) >= MAX_OPEN_POSITIONS and same_side_as_net:
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason="MAX_OPEN_POSITIONS_REACHED_SAME_SIDE",
+                    open_positions=len(positions),
+                    max_open_positions=MAX_OPEN_POSITIONS,
+                    side=side,
+                    net_side=net_side,
+                    net_exposure=net,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            if opposite_to_net:
+                log(
+                    "RUNNER_OPPOSITE_NETTING_SEQUENCE",
+                    asset=ASSET,
+                    previous_net_side=net_side,
+                    new_signal_side=side,
+                    rule="NO_DELETE_SEND_OPPOSITE_ORDER_FROM_0_05_SEQUENCE",
+                    next_size=size,
+                )
+
+            if not rate_ok:
+                log(
+                    "RUNNER_OPEN_BLOCKED",
+                    asset=ASSET,
+                    reason=rate_info.get("reason"),
+                    rate_info=rate_info,
+                )
+                time.sleep(SLEEP_SEC)
+                continue
+
+            ok, info = open_market_netting_safe(
+                headers=headers,
+                side=side,
+                size=size,
+                signal=signal,
+                state=state,
+            )
+
+            log(
+                "RUNNER_OPEN_RESULT",
+                asset=ASSET,
+                side=side,
+                size=size,
+                ok=ok,
+                info=info,
+            )
+
+            if ok:
+                register_open_window()
+                state = mark_signal_bar_traded(state, signal)
+                state = advance_ladder(state)
+
+                try:
+                    FAS.register_open(
+                        asset=ASSET,
+                        side=side,
+                        size=size,
+                        reason="V2442_M15_VWAP_BTC_NETTING_ORDER",
+                        extra=info,
+                    )
+                except Exception as e:
+                    log(
+                        "RUNNER_FAS_REGISTER_OPEN_EXCEPTION",
+                        asset=ASSET,
+                        exception=repr(e),
+                        info=info,
+                    )
+
+            time.sleep(SLEEP_SEC)
+
+        except Exception as e:
+            msg = str(e)
+            log(
+                "RUNNER_EXCEPTION",
+                asset=ASSET,
+                exception=msg,
+                traceback=traceback.format_exc().replace("\n", " / "),
+            )
+
+            if "429" in msg or "too-many" in msg.lower() or "session" in msg.lower():
+                time.sleep(120)
+                headers = ensure_headers(G.login())
+                log("RUNNER_RELOGIN_OK", asset=ASSET)
+                assert_account_netting(headers)
+            else:
+                time.sleep(20)
+
+if __name__ == "__main__":
+    main()

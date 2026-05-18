@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd /home/philippe_vacher06/bot-pivot/live
+
+LOG=$(ls -t logs/v24_4_forced_audit/console_*.log | head -1)
+echo "LOG=$LOG"
+date -u +"NOW_UTC=%Y-%m-%dT%H:%M:%SZ"
+
+echo "PROCESS:"
+pgrep -af BOT_PIVOT_24_4_forced_audit_runner || true
+tmux ls 2>/dev/null | grep v244_forced_runner || true
+
+echo "V2446I CHECK:"
+grep -E "RUNNER_V2446I_CASCADE_RULES_ACTIVE|RUNNER_ADVERSE_STEP_EFFECTIVE_STEP|RUNNER_V2446I_DYNAMIC_STEP|RUNNER_ETH_BASKET_DECISION|RUNNER_V2446I_L1_MARGIN_CHECK|RUNNER_V2446I_OPEN_BLOCKED_MAX_LEGS|RUNNER_V2446I_OPEN_BLOCKED_ANTI_YOYO|RUNNER_V2446I_HARD_CLOSE_ALL_START|RUNNER_V2446I_HARD_CLOSE_RESULT|RUNNER_V2446I_HARD_CLOSE_ALL_DONE|RUNNER_RESET_COOLDOWN_ACTIVE|RUNNER_RESET_COOLDOWN_DONE|RUNNER_ETH_EMPTY_RESET_PENDING_CONFIRMATION|RUNNER_ETH_EMPTY_CONFIRMED_STATE_RESET|FIRST_OPEN|HARD_BLOCK|api_delete|TypeError|NameError|Traceback|RUNNER_EXCEPTION" "$LOG" | tail -400
+
+echo "STATE:"
+cat data/execution/v2446_adverse_steps_state.json || true
+
+echo "RECONCILE:"
+python3 BOT_PIVOT_06G1_reconcile_broker.py

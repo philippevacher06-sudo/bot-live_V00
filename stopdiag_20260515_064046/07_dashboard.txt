@@ -1,0 +1,120 @@
+============================================================================================================================================
+BOT-PIVOT — DASHBOARD LOG
+============================================================================================================================================
+LOG              : logs/BOT_PIVOT_07D_24_7_DEMO_20260514_173938.log
+LIGNES           : 1002
+CYCLES           : 3
+PREMIER CYCLE    : 1 — 2026-05-14T17:40:15Z
+DERNIER CYCLE    : 3 — 2026-05-14T17:42:33Z
+DUREE LOG        : 2.3 min
+RYTHME CYCLES    : 78.26/h
+ERREURS          : 0
+
+============================================================================================================================================
+SYNTHESE FREQUENCE
+============================================================================================================================================
+BASKET_NEW                               8   208.70/h
+BASKET_FILL                              0   0.00/h
+BASKET_FILL_L1                           0   0.00/h
+BASKET_FILL_L2                           0   0.00/h
+BASKET_FILL_L3                           0   0.00/h
+BASKET_TP_OK                             0   0.00/h
+TP_MATRIX_TRIGGER                        0   0.00/h
+TP_MATRIX_CLOSE_OK                       0   0.00/h
+TP_MATRIX_CLOSE_FAIL                     0   0.00/h
+BASKET_TP_BLOCKED_BROKER_UPL             0   0.00/h
+BASKET_TP_BLOCKED_NO_BROKER_UPL          0   0.00/h
+BASKET_PARTIAL_PENDING_KEEP              0   0.00/h
+BASKET_PARTIAL_PENDING_CANCEL            0   0.00/h
+BASKET_PENDING_CANCEL                    0   0.00/h
+BASKET_ARMING_DELAYED                    4   104.35/h
+BASKET_REJECT                            1   26.09/h
+BOLLINGER_ENTRY_OBSERVE                 12   313.04/h
+LIMIT_REQUEST                           24   626.09/h
+LIMIT_OK                                24   626.09/h
+LIMIT_REJECT                             0   0.00/h
+BASKET_L123_ABORT_L1_REJECT              0   0.00/h
+BASKET_L123_ATOMIC_CANCEL                0   0.00/h
+
+============================================================================================================================================
+PAR ACTIF — FLUX L1/L2/L3 / TP / REJETS
+============================================================================================================================================
+ACTIF       NEW FILL  F1  F2  F3  TP MTRIG MCLOSE BLOCK   BB  ARM  LREJ  L123  PCAN
+-----------------------------------------------------------------------------------
+US500         1    0   0   0   0   0     0      0     0    1    0     0     0     0
+US100         0    0   0   0   0   0     0      0     0    2    2     0     0     0
+US30          1    0   0   0   0   0     0      0     0    1    0     0     0     0
+DE40          0    0   0   0   0   0     0      0     0    0    0     0     0     0
+FR40          0    0   0   0   0   0     0      0     0    0    0     0     0     0
+UK100         0    0   0   0   0   0     0      0     0    0    0     0     0     0
+J225          1    0   0   0   0   0     0      0     0    1    0     0     0     0
+EURUSD        1    0   0   0   0   0     0      0     0    1    0     0     0     0
+GBPUSD        1    0   0   0   0   0     0      0     0    1    0     0     0     0
+USDJPY        0    0   0   0   0   0     0      0     0    0    0     0     0     0
+EURJPY        1    0   0   0   0   0     0      0     0    1    0     0     0     0
+GOLD          0    0   0   0   0   0     0      0     0    0    0     0     0     0
+SILVER        0    0   0   0   0   0     0      0     0    0    0     0     0     0
+OIL_CRUDE     1    0   0   0   0   0     0      0     0    1    0     0     0     0
+BTCUSD        0    0   0   0   0   0     0      0     0    2    2     0     0     0
+ETHUSD        1    0   0   0   0   0     0      0     0    1    0     0     0     0
+
+============================================================================================================================================
+BOLLINGER — DERNIERES OBSERVATIONS
+============================================================================================================================================
+US500      count=  1 last_dir=SELL width=29.333970 required=10.000000 dist_ratio_last=5.062 dist_ratio_avg=5.062 line=896
+US100      count=  2 last_dir=SELL width=174.995900 required=30.000000 dist_ratio_last=15.406 dist_ratio_avg=15.562 line=914
+US30       count=  1 last_dir=SELL width=194.729290 required=50.000000 dist_ratio_last=5.406 dist_ratio_avg=5.406 line=563
+J225       count=  1 last_dir=SELL width=241.949570 required=100.000000 dist_ratio_last=4.793 dist_ratio_avg=4.793 line=584
+EURUSD     count=  1 last_dir=SELL width=0.000860 required=0.000400 dist_ratio_last=0.110 dist_ratio_avg=0.110 line=612
+GBPUSD     count=  1 last_dir=BUY  width=0.005250 required=0.000500 dist_ratio_last=0.575 dist_ratio_avg=0.575 line=629
+EURJPY     count=  1 last_dir=BUY  width=0.109960 required=0.100000 dist_ratio_last=0.522 dist_ratio_avg=0.522 line=647
+OIL_CRUDE  count=  1 last_dir=SELL width=1.365360 required=0.500000 dist_ratio_last=0.234 dist_ratio_avg=0.234 line=943
+BTCUSD     count=  2 last_dir=SELL width=775.741050 required=150.000000 dist_ratio_last=8.752 dist_ratio_avg=8.971 line=970
+ETHUSD     count=  1 last_dir=SELL width=21.669410 required=15.000000 dist_ratio_last=0.427 dist_ratio_avg=0.427 line=684
+
+============================================================================================================================================
+ARMING DELAYED — DISTANCE L1 TROP LOIN
+============================================================================================================================================
+US100      count=  2 ratio_last=8.217 ratio_avg=8.300 mult=8.000 line=916
+BTCUSD     count=  2 ratio_last=8.752 ratio_avg=8.971 mult=8.000 line=972
+
+============================================================================================================================================
+TP MATRIX — PREUVES TP
+============================================================================================================================================
+
+============================================================================================================================================
+TP LADDER — ECHANTILLONS
+============================================================================================================================================
+
+============================================================================================================================================
+DERNIERS EVENEMENTS IMPORTANTS
+============================================================================================================================================
+557: US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29514.45598 BB_MID=29601.87250 BB_HIGH=29689.28902 width=174.83303 required=30.00000 L1=29689.7 L2=29701.7 L3=29713.7 dist=100.6000000000 max_dist=6.4000000000 dist_ratio=15.719
+559: US100      | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=29689.7 L2=29701.7 dist=100.6000000000 step=12.0000000000 max_allowed=96.0000000000 dist_step_ratio=8.383 mult=8.000 old_max_dist=6.4 aucun ordre envoye
+563: US30       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=49964.79036 BB_MID=50062.15500 BB_HIGH=50159.51964 width=194.72929 required=50.00000 L1=50160.3 L2=50180.3 L3=50200.3 dist=105.1000000000 max_dist=19.4400000000 dist_ratio=5.406
+577: US30       | BASKET_NEW  | 1-3 | SELL | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+584: J225       | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=62774.50522 BB_MID=62895.48000 BB_HIGH=63016.45478 width=241.94957 required=100.00000 L1=63017.3 L2=63057.3 L3=63097.3 dist=134.2000000000 max_dist=28.0000000000 dist_ratio=4.793
+609: J225       | BASKET_NEW  | 1-3 | SELL | 1.500000   | TRADEABLE | LIMITS posés=3 rejetés=0
+612: EURUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=1.16725 BB_MID=1.16768 BB_HIGH=1.16811 width=0.00086 required=0.00040 L1=1.16812 L2=1.16836 L3=1.1686 dist=0.0001100000 max_dist=0.0010000000 dist_ratio=0.110
+626: EURUSD     | BASKET_NEW  | 1-3 | SELL | 450.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+629: GBPUSD     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=1.34129 BB_MID=1.34391 BB_HIGH=1.34653 width=0.00525 required=0.00050 L1=1.34128 L2=1.341 L3=1.34072 dist=0.0006900000 max_dist=0.0012000000 dist_ratio=0.575
+643: GBPUSD     | BASKET_NEW  | 1-3 | BUY  | 1200.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+647: EURJPY     | BOLLINGER_ENTRY_OBSERVE | --  | BUY  | --         | OBSERVE   | BB_LOW=184.63654 BB_MID=184.69152 BB_HIGH=184.74651 width=0.10996 required=0.10000 L1=184.635 L2=184.587 L3=184.539 dist=0.0940000000 max_dist=0.1800000000 dist_ratio=0.522
+670: EURJPY     | BASKET_NEW  | 1-3 | BUY  | 1800.000000 | TRADEABLE | LIMITS posés=3 rejetés=0
+679: BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=81171.92161 BB_MID=81559.78250 BB_HIGH=81947.64339 width=775.72178 required=150.00000 L1=81948.44 L2=81988.44 L3=82028.44 dist=367.5900000000 max_dist=40.0000000000 dist_ratio=9.190
+681: BTCUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=81948.44 L2=81988.44 dist=367.5900000000 step=40.0000000000 max_allowed=320.0000000000 dist_step_ratio=9.190 mult=8.000 old_max_dist=40.0 aucun ordre envoye
+684: ETHUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=2295.69880 BB_MID=2306.53350 BB_HIGH=2317.36820 width=21.66941 required=15.00000 L1=2317.77 L2=2321.77 L3=2325.77 dist=11.9700000000 max_dist=28.0000000000 dist_ratio=0.427
+707: ETHUSD     | BASKET_NEW  | 1-3 | SELL | 0.060000   | TRADEABLE | LIMITS posés=3 rejetés=0
+896: US500      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=7485.16302 BB_MID=7499.83000 BB_HIGH=7514.49698 width=29.33397 required=10.00000 L1=7514.9 L2=7518.9 L3=7522.9 dist=16.2000000000 max_dist=3.2000000000 dist_ratio=5.062
+910: US500      | BASKET_NEW  | 1-3 | SELL | 0.150000   | TRADEABLE | LIMITS posés=3 rejetés=0
+914: US100      | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=29514.19205 BB_MID=29601.69000 BB_HIGH=29689.18795 width=174.99590 required=30.00000 L1=29689.6 L2=29701.6 L3=29713.6 dist=98.6000000000 max_dist=6.4000000000 dist_ratio=15.406
+916: US100      | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=29689.6 L2=29701.6 dist=98.6000000000 step=12.0000000000 max_allowed=96.0000000000 dist_step_ratio=8.217 mult=8.000 old_max_dist=6.4 aucun ordre envoye
+943: OIL_CRUDE  | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=96.73587 BB_MID=97.41855 BB_HIGH=98.10123 width=1.36536 required=0.50000 L1=98.11 L2=98.31 L3=98.51 dist=0.1170000000 max_dist=0.5000000000 dist_ratio=0.234
+966: OIL_CRUDE  | BASKET_NEW  | 1-3 | SELL | 4.000000   | TRADEABLE | LIMITS posés=3 rejetés=0
+970: BTCUSD     | BOLLINGER_ENTRY_OBSERVE | --  | SELL | --         | OBSERVE   | BB_LOW=81173.24197 BB_MID=81561.11250 BB_HIGH=81948.98303 width=775.74105 required=150.00000 L1=81949.78 L2=81989.78 L3=82029.78 dist=350.0800000000 max_dist=40.0000000000 dist_ratio=8.752
+972: BTCUSD     | BASKET_ARMING_DELAYED | 1-3 | SELL | --         | FILTER    | reason=TOO_FAR_FOR_ARMING L1=81949.78 L2=81989.78 dist=350.0800000000 step=40.0000000000 max_allowed=320.0000000000 dist_step_ratio=8.752 mult=8.000 old_max_dist=40.0 aucun ordre envoye
+
+============================================================================================================================================
+SANTE
+============================================================================================================================================
+Aucune erreur critique détectée dans ce log.

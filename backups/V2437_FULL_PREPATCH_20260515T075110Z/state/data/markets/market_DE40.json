@@ -1,0 +1,96 @@
+{
+  "instrument": {
+    "epic": "DE40",
+    "symbol": "DE40",
+    "expiry": "-",
+    "name": "Germany 40",
+    "lotSize": 1,
+    "type": "INDICES",
+    "guaranteedStopAllowed": true,
+    "streamingPricesAvailable": true,
+    "currency": "EUR",
+    "marginFactor": 100,
+    "marginFactorUnit": "PERCENTAGE",
+    "openingHours": {
+      "mon": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "tue": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "wed": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "thu": [
+        "00:00 - 21:00",
+        "21:05 - 00:00"
+      ],
+      "fri": [
+        "00:00 - 21:00"
+      ],
+      "sat": [],
+      "sun": [
+        "22:00 - 00:00"
+      ],
+      "zone": "UTC"
+    },
+    "country": "Germany",
+    "overnightFee": {
+      "longRate": -0.0165933,
+      "shortRate": -0.0056289,
+      "swapChargeTimestamp": 1778878800000,
+      "swapChargeInterval": 1440
+    }
+  },
+  "dealingRules": {
+    "minStepDistance": {
+      "unit": "POINTS",
+      "value": 0.1
+    },
+    "minDealSize": {
+      "unit": "POINTS",
+      "value": 0.001
+    },
+    "maxDealSize": {
+      "unit": "POINTS",
+      "value": 1000
+    },
+    "minSizeIncrement": {
+      "unit": "POINTS",
+      "value": 0.001
+    },
+    "minGuaranteedStopDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.1
+    },
+    "minStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 0.01
+    },
+    "maxStopOrProfitDistance": {
+      "unit": "PERCENTAGE",
+      "value": 100
+    },
+    "marketOrderPreference": "AVAILABLE_DEFAULT_ON",
+    "trailingStopsPreference": "NOT_AVAILABLE"
+  },
+  "snapshot": {
+    "marketStatus": "TRADEABLE",
+    "netChange": 6.0,
+    "percentageChange": -0.21,
+    "updateTime": "2026-05-15T09:20:59.841",
+    "delayTime": 0,
+    "bid": 24271.1,
+    "offer": 24272.6,
+    "high": 24354.2,
+    "low": 24074.6,
+    "decimalPlacesFactor": 1,
+    "scalingFactor": 1,
+    "marketModes": [
+      "REGULAR"
+    ]
+  }
+}

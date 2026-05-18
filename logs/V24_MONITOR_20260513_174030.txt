@@ -1,0 +1,1406 @@
+
+====================================================================================================
+MONITOR PASS 1/20 — 2026-05-13 17:40:30
+====================================================================================================
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260513_172208.log
+
+====================================================================================================
+POSITIONS BROKER
+====================================================================================================
+Aucune position broker ouverte
+
+====================================================================================================
+WORKING ORDERS BROKER
+====================================================================================================
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b3b",
+  "direction": "BUY",
+  "size": 0.042,
+  "level": 29356.8,
+  "stopDistance": -66.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:39:59.926"
+}
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b3c",
+  "direction": "BUY",
+  "size": 0.084,
+  "level": 29355.3,
+  "stopDistance": -54.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:40:00.129"
+}
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b3d",
+  "direction": "BUY",
+  "size": 0.126,
+  "level": 29343.3,
+  "stopDistance": -42.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:40:00.318"
+}
+{
+  "epic": "GOLD",
+  "name": "Gold",
+  "dealId": "00601567-0055-311e-0000-000084ab4a01",
+  "direction": "BUY",
+  "size": 0.27,
+  "level": 4690.1,
+  "stopDistance": -55.4,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:39:25.795"
+}
+{
+  "epic": "GOLD",
+  "name": "Gold",
+  "dealId": "00601567-0055-311e-0000-000084ab4a02",
+  "direction": "BUY",
+  "size": 0.54,
+  "level": 4690.1,
+  "stopDistance": -55.4,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:39:26.299"
+}
+{
+  "epic": "GOLD",
+  "name": "Gold",
+  "dealId": "00601567-0055-311e-0000-000084ab4a03",
+  "direction": "BUY",
+  "size": 0.81,
+  "level": 4690.1,
+  "stopDistance": -55.4,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:39:26.806"
+}
+
+====================================================================================================
+LOCAL STATE / EXEC STATE
+====================================================================================================
+STATE actifs non-IDLE = 2 ['US100', 'GOLD']
+EXEC active = 2 ['GOLD', 'US100']
+
+----------------------------------------------------------------------------------------------------
+DERNIERS EVENTS PNL / CLOSE / HOLD
+----------------------------------------------------------------------------------------------------
+4317:GOLD       | LIMIT_REQUEST | 3   | BUY  | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.81, "guaranteedStop": true, "stopDistance": 14.0, "type": "LIMIT", "level": 4690.15}
+4318:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=14.0
+4319:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.75
+4320:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=14.0 new=55.4 required_level=4642.75 kind=maxvalue extra=8.0
+4321:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.75
+4322:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_45be4ca6-2bf5-43bf-8f32-c8d12ed7005c'}
+4323:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_45be...005c limit=4690.15
+4324:GOLD       | BASKET_NEW  | 1-3 | BUY  | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4325:SILVER     | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=75.3s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4326:OIL_CRUDE  | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=75.3s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4348:2026-05-13 17:36:42,664 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4354:2026-05-13 17:36:42,801 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4364:US30       |    52 | 49603.100000 | 49605.100000 | 49604.100000 | 2.000000     | 2.000000     | 0.7s
+4373:GOLD       |   123 | 4691.940000  | 4692.440000  | 4692.190000  | 0.500000     | 0.500000     | 0.7s
+4375:OIL_CRUDE  |    36 | 98.145000    | 98.185000    | 98.165000    | 0.040000     | 0.040000     | 0.7s
+4392:US30       | BUY      |     4 | NEUTRAL  | RANGE      | NONE                 | 49604.100000 | 10.9  | 42.100000   | 2.000000 | 2.000000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+4401:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.190000  | 17.1  | 10.725000   | 0.500000 | 0.500000 | True  | 1.8   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4403:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.165000    | 37.4  | 0.337000    | 0.040000 | 0.040000 | True  | 1.8   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4416:US30       | OPEN_L1      | BUY  | entry=49605.100000 | size=0.024000 | tp=0.2000
+4425:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4427:OIL_CRUDE  | IDLE         | aucun signal
+4441:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4442:- GOLD       L1 BUY size=0.27 cycle=6cbf1f0e-11b
+4447:- GOLD       L1 BUY size=0.27 dealId=None
+4448:- GOLD       L2 BUY size=0.54 dealId=None
+4449:- GOLD       L3 BUY size=0.81 dealId=None
+4457:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4465:US100      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=74.9s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4466:US30       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=49520.7 | final_L1=49608.3 | raw_dist=102.00000 | max_dist=14.40000 | cursor=0.80
+4467:US30       | BOLLINGER_M5 | BUY  | BB_LOW=49528.73181 | BB_MID=49594.54000 | BB_HIGH=49660.34819 | L1=49608.3 | L2=49588.3 | L3=49568.3 | BUFFER=8.0 | STEP=20.0
+4468:US30       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=49608.300000 stopLevel≈49498.300000 stopDistance=110.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4469:US30       | LIMIT_REQUEST | 1   | BUY  | 0.024000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.024, "guaranteedStop": true, "stopDistance": 110.0, "type": "LIMIT", "level": 49608.3}
+4470:US30       | V24_LIMIT_SIDE_GUARD | BUY  | old=49608.3 new=49600.1 bid=49603.1 ask=49605.1 gap=3.0
+4471:US30       | LIMIT_OK      | 1   | BUY  | 0.024000   | TRADEABLE | ref=o_6a47...de4c limit=49600.1
+4472:US30       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=49520.7 | final_L1=49608.3 | raw_dist=102.00000 | max_dist=14.40000 | cursor=0.80
+4473:US30       | BOLLINGER_M5 | BUY  | BB_LOW=49528.73181 | BB_MID=49594.54000 | BB_HIGH=49660.34819 | L1=49608.3 | L2=49588.3 | L3=49568.3 | BUFFER=8.0 | STEP=20.0
+4474:US30       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=49588.300000 stopLevel≈49498.300000 stopDistance=90.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4475:US30       | LIMIT_REQUEST | 2   | BUY  | 0.048000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.048, "guaranteedStop": true, "stopDistance": 90.0, "type": "LIMIT", "level": 49588.3}
+4476:US30       | LIMIT_OK      | 2   | BUY  | 0.048000   | TRADEABLE | ref=o_8c10...8fe1 limit=49588.3
+4477:US30       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=49520.7 | final_L1=49608.3 | raw_dist=102.00000 | max_dist=14.40000 | cursor=0.80
+4478:US30       | BOLLINGER_M5 | BUY  | BB_LOW=49528.73181 | BB_MID=49594.54000 | BB_HIGH=49660.34819 | L1=49608.3 | L2=49588.3 | L3=49568.3 | BUFFER=8.0 | STEP=20.0
+4479:US30       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=49568.300000 stopLevel≈49498.300000 stopDistance=70.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4480:US30       | LIMIT_REQUEST | 3   | BUY  | 0.072000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.07200000000000001, "guaranteedStop": true, "stopDistance": 70.0, "type": "LIMIT", "level": 49568.3}
+4481:US30       | LIMIT_OK      | 3   | BUY  | 0.072000   | TRADEABLE | ref=o_0c46...4c25 limit=49568.3
+4482:US30       | BASKET_NEW  | 1-3 | BUY  | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4491:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...49be
+4492:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...49c0
+4493:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...49c1
+4494:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4496:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4518:2026-05-13 17:37:17,821 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4524:2026-05-13 17:37:17,957 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4534:US30       |    33 | 49607.200000 | 49609.200000 | 49608.200000 | 2.000000     | 2.000000     | 3.9s
+4543:GOLD       |    75 | 4691.410000  | 4692.160000  | 4691.785000  | 0.750000     | 0.500000     | 0.9s
+4545:OIL_CRUDE  |    31 | 98.171000    | 98.211000    | 98.191000    | 0.040000     | 0.040000     | 3.9s
+4562:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49608.200000 | 20.7  | 42.100000   | 2.000000 | 2.000000 | True  | 4.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4571:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.785000  | 13.8  | 10.325000   | 0.750000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4573:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.191000    | 45.1  | 0.337000    | 0.040000 | 0.040000 | True  | 5.1   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4586:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4595:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4597:OIL_CRUDE  | IDLE         | aucun signal
+4610:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4611:- GOLD       L1 BUY size=0.27 cycle=6cbf1f0e-11b
+4613:- GOLD       L1 BUY size=0.27 dealId=None
+4614:- GOLD       L2 BUY size=0.54 dealId=None
+4615:- GOLD       L3 BUY size=0.81 dealId=None
+4616:- US30       L1 BUY size=0.024 dealId=None
+4617:- US30       L2 BUY size=0.048 dealId=None
+4618:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4626:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4635:US30       | BASKET_ID_OK | 1   | BUY  | 0.024000   | TRADEABLE | workingId=174f8d...44ac
+4636:US30       | BASKET_ID_OK | 2   | BUY  | 0.048000   | TRADEABLE | workingId=174f8d...44ad
+4637:US30       | BASKET_ID_OK | 3   | BUY  | 0.072000   | TRADEABLE | workingId=174f8d...44ae
+4638:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4647:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=70.8s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4649:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4671:2026-05-13 17:37:52,271 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4677:2026-05-13 17:37:52,411 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4687:US30       |    48 | 49613.700000 | 49615.700000 | 49614.700000 | 2.000000     | 2.000000     | 1.3s
+4696:GOLD       |   124 | 4691.960000  | 4692.460000  | 4692.210000  | 0.500000     | 0.500000     | 0.3s
+4698:OIL_CRUDE  |    23 | 98.192000    | 98.224000    | 98.208000    | 0.032000     | 0.040000     | 2.3s
+4715:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49614.700000 | 36.1  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4724:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.210000  | 18.9  | 9.825000    | 0.500000 | 0.500000 | True  | 1.4   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4726:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.208000    | 50.1  | 0.337000    | 0.032000 | 0.040000 | True  | 3.5   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4739:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4748:GOLD       | IDLE         | aucun signal
+4750:OIL_CRUDE  | IDLE         | aucun signal
+4763:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4765:- US30       L1 BUY size=0.024 dealId=None
+4766:- US30       L2 BUY size=0.048 dealId=None
+4767:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4775:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4784:US30       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=68.5s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4793:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+4795:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4817:2026-05-13 17:38:25,920 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4823:2026-05-13 17:38:26,049 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4833:US30       |    46 | 49622.200000 | 49624.200000 | 49623.200000 | 2.000000     | 2.000000     | 0.9s
+4842:GOLD       |   119 | 4691.760000  | 4692.260000  | 4692.010000  | 0.500000     | 0.500000     | 0.9s
+4844:OIL_CRUDE  |    31 | 98.194000    | 98.234000    | 98.214000    | 0.040000     | 0.040000     | 0.9s
+4861:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49623.200000 | 56.3  | 42.100000   | 2.000000 | 2.000000 | True  | 1.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4870:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.010000  | 16.8  | 9.825000    | 0.500000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4872:OIL_CRUDE  | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 98.214000    | 52.2  | 0.335000    | 0.040000 | 0.040000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4885:US30       | IDLE         | aucun signal
+4894:GOLD       | IDLE         | aucun signal
+4896:OIL_CRUDE  | IDLE         | aucun signal
+4929:2026-05-13 17:38:58,061 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4935:2026-05-13 17:38:58,199 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4945:US30       |    78 | 49617.300000 | 49619.300000 | 49618.300000 | 2.000000     | 2.000000     | 0.1s
+4954:GOLD       |    89 | 4690.850000  | 4691.350000  | 4691.100000  | 0.500000     | 0.500000     | 2.1s
+4956:OIL_CRUDE  |    36 | 98.174000    | 98.214000    | 98.194000    | 0.040000     | 0.040000     | 3.1s
+4973:US30       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 49618.300000 | 44.7  | 42.100000   | 2.000000 | 2.000000 | True  | 1.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4982:GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4691.100000  | 7.6   | 9.825000    | 0.500000 | 0.500000 | True  | 3.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+4984:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.194000    | 46.4  | 0.334000    | 0.040000 | 0.040000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4997:US30       | IDLE         | aucun signal
+5006:GOLD       | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+5007:GOLD       | OPEN_L1      | BUY  | entry=4691.350000 | size=0.270000 | tp=0.2000
+5009:OIL_CRUDE  | IDLE         | aucun signal
+5022:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5031:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5040:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5049:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5050:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5051:GOLD       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=4698.150000 stopLevel≈4676.150000 stopDistance=22.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5052:GOLD       | LIMIT_REQUEST | 1   | BUY  | 0.270000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.27, "guaranteedStop": true, "stopDistance": 22.0, "type": "LIMIT", "level": 4698.15}
+5053:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4698.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5054:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=22.0
+5055:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5056:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=22.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5057:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5058:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_03f61e8c-be08-4958-8fef-894c13c90344'}
+5059:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_03f6...0344 limit=4690.1
+5060:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5061:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5062:GOLD       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=4694.150000 stopLevel≈4676.150000 stopDistance=18.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5063:GOLD       | LIMIT_REQUEST | 2   | BUY  | 0.540000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.54, "guaranteedStop": true, "stopDistance": 18.0, "type": "LIMIT", "level": 4694.15}
+5064:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4694.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5065:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=18.0
+5066:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5067:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=18.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5068:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5069:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_e14e9b6e-0438-44ed-a257-1244aad49468'}
+5070:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_e14e...9468 limit=4690.1
+5071:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5072:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5073:GOLD       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=4690.150000 stopLevel≈4676.150000 stopDistance=14.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5074:GOLD       | LIMIT_REQUEST | 3   | BUY  | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.81, "guaranteedStop": true, "stopDistance": 14.0, "type": "LIMIT", "level": 4690.15}
+5075:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4690.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5076:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=14.0
+5077:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5078:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=14.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5079:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5080:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_c5bbb422-cb96-4d41-8b8a-f06b304f288f'}
+5081:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c5bb...288f limit=4690.1
+5082:GOLD       | BASKET_NEW  | 1-3 | BUY  | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5084:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5106:2026-05-13 17:39:32,525 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5112:2026-05-13 17:39:32,661 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5122:US30       |    45 | 49625.800000 | 49627.800000 | 49626.800000 | 2.000000     | 2.000000     | 0.6s
+5131:GOLD       |   118 | 4690.890000  | 4691.390000  | 4691.140000  | 0.500000     | 0.500000     | 0.6s
+5133:OIL_CRUDE  |    23 | 98.173000    | 98.205000    | 98.189000    | 0.032000     | 0.040000     | 0.6s
+5150:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49626.800000 | 64.8  | 42.100000   | 2.000000 | 2.000000 | True  | 1.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5159:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.140000  | 8.0   | 9.825000    | 0.500000 | 0.500000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5161:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.189000    | 49.7  | 0.302000    | 0.032000 | 0.040000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5175:US30       | IDLE         | aucun signal
+5184:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5186:OIL_CRUDE  | IDLE         | aucun signal
+5201:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5203:- GOLD       L1 BUY size=0.27 dealId=None
+5204:- GOLD       L2 BUY size=0.54 dealId=None
+5205:- GOLD       L3 BUY size=0.81 dealId=None
+5213:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5238:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5253:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...4a01
+5254:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...4a02
+5255:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...4a03
+5256:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5258:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5280:2026-05-13 17:40:09,703 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5286:2026-05-13 17:40:09,850 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+====================================================================================================
+MONITOR PASS 2/20 — 2026-05-13 17:41:01
+====================================================================================================
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260513_172208.log
+
+====================================================================================================
+POSITIONS BROKER
+====================================================================================================
+Aucune position broker ouverte
+
+====================================================================================================
+WORKING ORDERS BROKER
+====================================================================================================
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b3b",
+  "direction": "BUY",
+  "size": 0.042,
+  "level": 29356.8,
+  "stopDistance": -66.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:39:59.926"
+}
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b3c",
+  "direction": "BUY",
+  "size": 0.084,
+  "level": 29355.3,
+  "stopDistance": -54.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:40:00.129"
+}
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b3d",
+  "direction": "BUY",
+  "size": 0.126,
+  "level": 29343.3,
+  "stopDistance": -42.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:40:00.318"
+}
+
+====================================================================================================
+LOCAL STATE / EXEC STATE
+====================================================================================================
+STATE actifs non-IDLE = 1 ['US100']
+EXEC active = 1 ['US100']
+
+----------------------------------------------------------------------------------------------------
+DERNIERS EVENTS PNL / CLOSE / HOLD
+----------------------------------------------------------------------------------------------------
+4427:OIL_CRUDE  | IDLE         | aucun signal
+4441:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4442:- GOLD       L1 BUY size=0.27 cycle=6cbf1f0e-11b
+4447:- GOLD       L1 BUY size=0.27 dealId=None
+4448:- GOLD       L2 BUY size=0.54 dealId=None
+4449:- GOLD       L3 BUY size=0.81 dealId=None
+4457:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4465:US100      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=74.9s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4466:US30       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=49520.7 | final_L1=49608.3 | raw_dist=102.00000 | max_dist=14.40000 | cursor=0.80
+4467:US30       | BOLLINGER_M5 | BUY  | BB_LOW=49528.73181 | BB_MID=49594.54000 | BB_HIGH=49660.34819 | L1=49608.3 | L2=49588.3 | L3=49568.3 | BUFFER=8.0 | STEP=20.0
+4468:US30       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=49608.300000 stopLevel≈49498.300000 stopDistance=110.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4469:US30       | LIMIT_REQUEST | 1   | BUY  | 0.024000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.024, "guaranteedStop": true, "stopDistance": 110.0, "type": "LIMIT", "level": 49608.3}
+4470:US30       | V24_LIMIT_SIDE_GUARD | BUY  | old=49608.3 new=49600.1 bid=49603.1 ask=49605.1 gap=3.0
+4471:US30       | LIMIT_OK      | 1   | BUY  | 0.024000   | TRADEABLE | ref=o_6a47...de4c limit=49600.1
+4472:US30       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=49520.7 | final_L1=49608.3 | raw_dist=102.00000 | max_dist=14.40000 | cursor=0.80
+4473:US30       | BOLLINGER_M5 | BUY  | BB_LOW=49528.73181 | BB_MID=49594.54000 | BB_HIGH=49660.34819 | L1=49608.3 | L2=49588.3 | L3=49568.3 | BUFFER=8.0 | STEP=20.0
+4474:US30       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=49588.300000 stopLevel≈49498.300000 stopDistance=90.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4475:US30       | LIMIT_REQUEST | 2   | BUY  | 0.048000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.048, "guaranteedStop": true, "stopDistance": 90.0, "type": "LIMIT", "level": 49588.3}
+4476:US30       | LIMIT_OK      | 2   | BUY  | 0.048000   | TRADEABLE | ref=o_8c10...8fe1 limit=49588.3
+4477:US30       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=49520.7 | final_L1=49608.3 | raw_dist=102.00000 | max_dist=14.40000 | cursor=0.80
+4478:US30       | BOLLINGER_M5 | BUY  | BB_LOW=49528.73181 | BB_MID=49594.54000 | BB_HIGH=49660.34819 | L1=49608.3 | L2=49588.3 | L3=49568.3 | BUFFER=8.0 | STEP=20.0
+4479:US30       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=49568.300000 stopLevel≈49498.300000 stopDistance=70.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4480:US30       | LIMIT_REQUEST | 3   | BUY  | 0.072000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.07200000000000001, "guaranteedStop": true, "stopDistance": 70.0, "type": "LIMIT", "level": 49568.3}
+4481:US30       | LIMIT_OK      | 3   | BUY  | 0.072000   | TRADEABLE | ref=o_0c46...4c25 limit=49568.3
+4482:US30       | BASKET_NEW  | 1-3 | BUY  | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4491:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...49be
+4492:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...49c0
+4493:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...49c1
+4494:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4496:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4518:2026-05-13 17:37:17,821 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4524:2026-05-13 17:37:17,957 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4534:US30       |    33 | 49607.200000 | 49609.200000 | 49608.200000 | 2.000000     | 2.000000     | 3.9s
+4543:GOLD       |    75 | 4691.410000  | 4692.160000  | 4691.785000  | 0.750000     | 0.500000     | 0.9s
+4545:OIL_CRUDE  |    31 | 98.171000    | 98.211000    | 98.191000    | 0.040000     | 0.040000     | 3.9s
+4562:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49608.200000 | 20.7  | 42.100000   | 2.000000 | 2.000000 | True  | 4.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4571:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.785000  | 13.8  | 10.325000   | 0.750000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4573:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.191000    | 45.1  | 0.337000    | 0.040000 | 0.040000 | True  | 5.1   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4586:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4595:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4597:OIL_CRUDE  | IDLE         | aucun signal
+4610:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4611:- GOLD       L1 BUY size=0.27 cycle=6cbf1f0e-11b
+4613:- GOLD       L1 BUY size=0.27 dealId=None
+4614:- GOLD       L2 BUY size=0.54 dealId=None
+4615:- GOLD       L3 BUY size=0.81 dealId=None
+4616:- US30       L1 BUY size=0.024 dealId=None
+4617:- US30       L2 BUY size=0.048 dealId=None
+4618:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4626:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4635:US30       | BASKET_ID_OK | 1   | BUY  | 0.024000   | TRADEABLE | workingId=174f8d...44ac
+4636:US30       | BASKET_ID_OK | 2   | BUY  | 0.048000   | TRADEABLE | workingId=174f8d...44ad
+4637:US30       | BASKET_ID_OK | 3   | BUY  | 0.072000   | TRADEABLE | workingId=174f8d...44ae
+4638:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4647:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=70.8s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4649:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4671:2026-05-13 17:37:52,271 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4677:2026-05-13 17:37:52,411 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4687:US30       |    48 | 49613.700000 | 49615.700000 | 49614.700000 | 2.000000     | 2.000000     | 1.3s
+4696:GOLD       |   124 | 4691.960000  | 4692.460000  | 4692.210000  | 0.500000     | 0.500000     | 0.3s
+4698:OIL_CRUDE  |    23 | 98.192000    | 98.224000    | 98.208000    | 0.032000     | 0.040000     | 2.3s
+4715:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49614.700000 | 36.1  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4724:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.210000  | 18.9  | 9.825000    | 0.500000 | 0.500000 | True  | 1.4   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4726:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.208000    | 50.1  | 0.337000    | 0.032000 | 0.040000 | True  | 3.5   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4739:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4748:GOLD       | IDLE         | aucun signal
+4750:OIL_CRUDE  | IDLE         | aucun signal
+4763:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4765:- US30       L1 BUY size=0.024 dealId=None
+4766:- US30       L2 BUY size=0.048 dealId=None
+4767:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4775:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4784:US30       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=68.5s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4793:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+4795:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4817:2026-05-13 17:38:25,920 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4823:2026-05-13 17:38:26,049 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4833:US30       |    46 | 49622.200000 | 49624.200000 | 49623.200000 | 2.000000     | 2.000000     | 0.9s
+4842:GOLD       |   119 | 4691.760000  | 4692.260000  | 4692.010000  | 0.500000     | 0.500000     | 0.9s
+4844:OIL_CRUDE  |    31 | 98.194000    | 98.234000    | 98.214000    | 0.040000     | 0.040000     | 0.9s
+4861:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49623.200000 | 56.3  | 42.100000   | 2.000000 | 2.000000 | True  | 1.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4870:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.010000  | 16.8  | 9.825000    | 0.500000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4872:OIL_CRUDE  | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 98.214000    | 52.2  | 0.335000    | 0.040000 | 0.040000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4885:US30       | IDLE         | aucun signal
+4894:GOLD       | IDLE         | aucun signal
+4896:OIL_CRUDE  | IDLE         | aucun signal
+4929:2026-05-13 17:38:58,061 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4935:2026-05-13 17:38:58,199 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4945:US30       |    78 | 49617.300000 | 49619.300000 | 49618.300000 | 2.000000     | 2.000000     | 0.1s
+4954:GOLD       |    89 | 4690.850000  | 4691.350000  | 4691.100000  | 0.500000     | 0.500000     | 2.1s
+4956:OIL_CRUDE  |    36 | 98.174000    | 98.214000    | 98.194000    | 0.040000     | 0.040000     | 3.1s
+4973:US30       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 49618.300000 | 44.7  | 42.100000   | 2.000000 | 2.000000 | True  | 1.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4982:GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4691.100000  | 7.6   | 9.825000    | 0.500000 | 0.500000 | True  | 3.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+4984:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.194000    | 46.4  | 0.334000    | 0.040000 | 0.040000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4997:US30       | IDLE         | aucun signal
+5006:GOLD       | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+5007:GOLD       | OPEN_L1      | BUY  | entry=4691.350000 | size=0.270000 | tp=0.2000
+5009:OIL_CRUDE  | IDLE         | aucun signal
+5022:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5031:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5040:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5049:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5050:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5051:GOLD       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=4698.150000 stopLevel≈4676.150000 stopDistance=22.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5052:GOLD       | LIMIT_REQUEST | 1   | BUY  | 0.270000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.27, "guaranteedStop": true, "stopDistance": 22.0, "type": "LIMIT", "level": 4698.15}
+5053:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4698.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5054:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=22.0
+5055:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5056:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=22.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5057:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5058:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_03f61e8c-be08-4958-8fef-894c13c90344'}
+5059:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_03f6...0344 limit=4690.1
+5060:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5061:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5062:GOLD       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=4694.150000 stopLevel≈4676.150000 stopDistance=18.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5063:GOLD       | LIMIT_REQUEST | 2   | BUY  | 0.540000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.54, "guaranteedStop": true, "stopDistance": 18.0, "type": "LIMIT", "level": 4694.15}
+5064:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4694.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5065:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=18.0
+5066:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5067:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=18.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5068:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5069:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_e14e9b6e-0438-44ed-a257-1244aad49468'}
+5070:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_e14e...9468 limit=4690.1
+5071:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5072:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5073:GOLD       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=4690.150000 stopLevel≈4676.150000 stopDistance=14.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5074:GOLD       | LIMIT_REQUEST | 3   | BUY  | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.81, "guaranteedStop": true, "stopDistance": 14.0, "type": "LIMIT", "level": 4690.15}
+5075:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4690.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5076:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=14.0
+5077:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5078:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=14.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5079:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5080:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_c5bbb422-cb96-4d41-8b8a-f06b304f288f'}
+5081:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c5bb...288f limit=4690.1
+5082:GOLD       | BASKET_NEW  | 1-3 | BUY  | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5084:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5106:2026-05-13 17:39:32,525 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5112:2026-05-13 17:39:32,661 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5122:US30       |    45 | 49625.800000 | 49627.800000 | 49626.800000 | 2.000000     | 2.000000     | 0.6s
+5131:GOLD       |   118 | 4690.890000  | 4691.390000  | 4691.140000  | 0.500000     | 0.500000     | 0.6s
+5133:OIL_CRUDE  |    23 | 98.173000    | 98.205000    | 98.189000    | 0.032000     | 0.040000     | 0.6s
+5150:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49626.800000 | 64.8  | 42.100000   | 2.000000 | 2.000000 | True  | 1.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5159:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.140000  | 8.0   | 9.825000    | 0.500000 | 0.500000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5161:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.189000    | 49.7  | 0.302000    | 0.032000 | 0.040000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5175:US30       | IDLE         | aucun signal
+5184:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5186:OIL_CRUDE  | IDLE         | aucun signal
+5201:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5203:- GOLD       L1 BUY size=0.27 dealId=None
+5204:- GOLD       L2 BUY size=0.54 dealId=None
+5205:- GOLD       L3 BUY size=0.81 dealId=None
+5213:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5238:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5253:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...4a01
+5254:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...4a02
+5255:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...4a03
+5256:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5258:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5280:2026-05-13 17:40:09,703 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5286:2026-05-13 17:40:09,850 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5296:US30       |    46 | 49630.400000 | 49632.400000 | 49631.400000 | 2.000000     | 2.000000     | 0.8s
+5305:GOLD       |   111 | 4692.490000  | 4692.990000  | 4692.740000  | 0.500000     | 0.500000     | 0.8s
+5307:OIL_CRUDE  |    45 | 98.162000    | 98.194000    | 98.178000    | 0.032000     | 0.032000     | 0.8s
+5324:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49631.400000 | 75.8  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5333:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.740000  | 24.3  | 9.825000    | 0.500000 | 0.500000 | True  | 2.4   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5335:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.178000    | 46.0  | 0.302000    | 0.032000 | 0.040000 | True  | 2.5   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+5348:US30       | IDLE         | aucun signal
+5357:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5359:OIL_CRUDE  | IDLE         | aucun signal
+5373:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5375:- GOLD       L1 BUY size=0.27 dealId=None
+5376:- GOLD       L2 BUY size=0.54 dealId=None
+5377:- GOLD       L3 BUY size=0.81 dealId=None
+5388:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5399:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5400:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5409:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.4s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5411:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5433:2026-05-13 17:40:44,980 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5439:2026-05-13 17:40:45,113 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+====================================================================================================
+MONITOR PASS 3/20 — 2026-05-13 17:41:32
+====================================================================================================
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260513_172208.log
+
+====================================================================================================
+POSITIONS BROKER
+====================================================================================================
+Aucune position broker ouverte
+
+====================================================================================================
+WORKING ORDERS BROKER
+====================================================================================================
+Aucun ordre pending broker
+
+====================================================================================================
+LOCAL STATE / EXEC STATE
+====================================================================================================
+STATE actifs non-IDLE = 0 []
+EXEC active = 0 []
+
+----------------------------------------------------------------------------------------------------
+DERNIERS EVENTS PNL / CLOSE / HOLD
+----------------------------------------------------------------------------------------------------
+4474:US30       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=49588.300000 stopLevel≈49498.300000 stopDistance=90.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4475:US30       | LIMIT_REQUEST | 2   | BUY  | 0.048000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.048, "guaranteedStop": true, "stopDistance": 90.0, "type": "LIMIT", "level": 49588.3}
+4476:US30       | LIMIT_OK      | 2   | BUY  | 0.048000   | TRADEABLE | ref=o_8c10...8fe1 limit=49588.3
+4477:US30       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=49520.7 | final_L1=49608.3 | raw_dist=102.00000 | max_dist=14.40000 | cursor=0.80
+4478:US30       | BOLLINGER_M5 | BUY  | BB_LOW=49528.73181 | BB_MID=49594.54000 | BB_HIGH=49660.34819 | L1=49608.3 | L2=49588.3 | L3=49568.3 | BUFFER=8.0 | STEP=20.0
+4479:US30       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=49568.300000 stopLevel≈49498.300000 stopDistance=70.000000 step=20.000000 spread=2.000000 minStop=0.100000
+4480:US30       | LIMIT_REQUEST | 3   | BUY  | 0.072000   | TRADEABLE | {"epic": "US30", "direction": "BUY", "size": 0.07200000000000001, "guaranteedStop": true, "stopDistance": 70.0, "type": "LIMIT", "level": 49568.3}
+4481:US30       | LIMIT_OK      | 3   | BUY  | 0.072000   | TRADEABLE | ref=o_0c46...4c25 limit=49568.3
+4482:US30       | BASKET_NEW  | 1-3 | BUY  | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+4491:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...49be
+4492:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...49c0
+4493:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...49c1
+4494:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4496:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4518:2026-05-13 17:37:17,821 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4524:2026-05-13 17:37:17,957 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4534:US30       |    33 | 49607.200000 | 49609.200000 | 49608.200000 | 2.000000     | 2.000000     | 3.9s
+4543:GOLD       |    75 | 4691.410000  | 4692.160000  | 4691.785000  | 0.750000     | 0.500000     | 0.9s
+4545:OIL_CRUDE  |    31 | 98.171000    | 98.211000    | 98.191000    | 0.040000     | 0.040000     | 3.9s
+4562:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49608.200000 | 20.7  | 42.100000   | 2.000000 | 2.000000 | True  | 4.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4571:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.785000  | 13.8  | 10.325000   | 0.750000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4573:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.191000    | 45.1  | 0.337000    | 0.040000 | 0.040000 | True  | 5.1   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4586:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4595:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4597:OIL_CRUDE  | IDLE         | aucun signal
+4610:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4611:- GOLD       L1 BUY size=0.27 cycle=6cbf1f0e-11b
+4613:- GOLD       L1 BUY size=0.27 dealId=None
+4614:- GOLD       L2 BUY size=0.54 dealId=None
+4615:- GOLD       L3 BUY size=0.81 dealId=None
+4616:- US30       L1 BUY size=0.024 dealId=None
+4617:- US30       L2 BUY size=0.048 dealId=None
+4618:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4626:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4635:US30       | BASKET_ID_OK | 1   | BUY  | 0.024000   | TRADEABLE | workingId=174f8d...44ac
+4636:US30       | BASKET_ID_OK | 2   | BUY  | 0.048000   | TRADEABLE | workingId=174f8d...44ad
+4637:US30       | BASKET_ID_OK | 3   | BUY  | 0.072000   | TRADEABLE | workingId=174f8d...44ae
+4638:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4647:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=70.8s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4649:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4671:2026-05-13 17:37:52,271 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4677:2026-05-13 17:37:52,411 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4687:US30       |    48 | 49613.700000 | 49615.700000 | 49614.700000 | 2.000000     | 2.000000     | 1.3s
+4696:GOLD       |   124 | 4691.960000  | 4692.460000  | 4692.210000  | 0.500000     | 0.500000     | 0.3s
+4698:OIL_CRUDE  |    23 | 98.192000    | 98.224000    | 98.208000    | 0.032000     | 0.040000     | 2.3s
+4715:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49614.700000 | 36.1  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4724:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.210000  | 18.9  | 9.825000    | 0.500000 | 0.500000 | True  | 1.4   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4726:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.208000    | 50.1  | 0.337000    | 0.032000 | 0.040000 | True  | 3.5   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4739:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4748:GOLD       | IDLE         | aucun signal
+4750:OIL_CRUDE  | IDLE         | aucun signal
+4763:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4765:- US30       L1 BUY size=0.024 dealId=None
+4766:- US30       L2 BUY size=0.048 dealId=None
+4767:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4775:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4784:US30       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=68.5s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4793:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+4795:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4817:2026-05-13 17:38:25,920 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4823:2026-05-13 17:38:26,049 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4833:US30       |    46 | 49622.200000 | 49624.200000 | 49623.200000 | 2.000000     | 2.000000     | 0.9s
+4842:GOLD       |   119 | 4691.760000  | 4692.260000  | 4692.010000  | 0.500000     | 0.500000     | 0.9s
+4844:OIL_CRUDE  |    31 | 98.194000    | 98.234000    | 98.214000    | 0.040000     | 0.040000     | 0.9s
+4861:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49623.200000 | 56.3  | 42.100000   | 2.000000 | 2.000000 | True  | 1.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4870:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.010000  | 16.8  | 9.825000    | 0.500000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4872:OIL_CRUDE  | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 98.214000    | 52.2  | 0.335000    | 0.040000 | 0.040000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4885:US30       | IDLE         | aucun signal
+4894:GOLD       | IDLE         | aucun signal
+4896:OIL_CRUDE  | IDLE         | aucun signal
+4929:2026-05-13 17:38:58,061 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4935:2026-05-13 17:38:58,199 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4945:US30       |    78 | 49617.300000 | 49619.300000 | 49618.300000 | 2.000000     | 2.000000     | 0.1s
+4954:GOLD       |    89 | 4690.850000  | 4691.350000  | 4691.100000  | 0.500000     | 0.500000     | 2.1s
+4956:OIL_CRUDE  |    36 | 98.174000    | 98.214000    | 98.194000    | 0.040000     | 0.040000     | 3.1s
+4973:US30       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 49618.300000 | 44.7  | 42.100000   | 2.000000 | 2.000000 | True  | 1.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4982:GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4691.100000  | 7.6   | 9.825000    | 0.500000 | 0.500000 | True  | 3.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+4984:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.194000    | 46.4  | 0.334000    | 0.040000 | 0.040000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4997:US30       | IDLE         | aucun signal
+5006:GOLD       | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+5007:GOLD       | OPEN_L1      | BUY  | entry=4691.350000 | size=0.270000 | tp=0.2000
+5009:OIL_CRUDE  | IDLE         | aucun signal
+5022:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5031:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5040:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5049:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5050:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5051:GOLD       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=4698.150000 stopLevel≈4676.150000 stopDistance=22.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5052:GOLD       | LIMIT_REQUEST | 1   | BUY  | 0.270000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.27, "guaranteedStop": true, "stopDistance": 22.0, "type": "LIMIT", "level": 4698.15}
+5053:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4698.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5054:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=22.0
+5055:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5056:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=22.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5057:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5058:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_03f61e8c-be08-4958-8fef-894c13c90344'}
+5059:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_03f6...0344 limit=4690.1
+5060:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5061:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5062:GOLD       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=4694.150000 stopLevel≈4676.150000 stopDistance=18.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5063:GOLD       | LIMIT_REQUEST | 2   | BUY  | 0.540000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.54, "guaranteedStop": true, "stopDistance": 18.0, "type": "LIMIT", "level": 4694.15}
+5064:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4694.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5065:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=18.0
+5066:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5067:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=18.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5068:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5069:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_e14e9b6e-0438-44ed-a257-1244aad49468'}
+5070:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_e14e...9468 limit=4690.1
+5071:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5072:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5073:GOLD       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=4690.150000 stopLevel≈4676.150000 stopDistance=14.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5074:GOLD       | LIMIT_REQUEST | 3   | BUY  | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.81, "guaranteedStop": true, "stopDistance": 14.0, "type": "LIMIT", "level": 4690.15}
+5075:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4690.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5076:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=14.0
+5077:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5078:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=14.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5079:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5080:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_c5bbb422-cb96-4d41-8b8a-f06b304f288f'}
+5081:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c5bb...288f limit=4690.1
+5082:GOLD       | BASKET_NEW  | 1-3 | BUY  | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5084:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5106:2026-05-13 17:39:32,525 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5112:2026-05-13 17:39:32,661 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5122:US30       |    45 | 49625.800000 | 49627.800000 | 49626.800000 | 2.000000     | 2.000000     | 0.6s
+5131:GOLD       |   118 | 4690.890000  | 4691.390000  | 4691.140000  | 0.500000     | 0.500000     | 0.6s
+5133:OIL_CRUDE  |    23 | 98.173000    | 98.205000    | 98.189000    | 0.032000     | 0.040000     | 0.6s
+5150:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49626.800000 | 64.8  | 42.100000   | 2.000000 | 2.000000 | True  | 1.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5159:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.140000  | 8.0   | 9.825000    | 0.500000 | 0.500000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5161:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.189000    | 49.7  | 0.302000    | 0.032000 | 0.040000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5175:US30       | IDLE         | aucun signal
+5184:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5186:OIL_CRUDE  | IDLE         | aucun signal
+5201:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5203:- GOLD       L1 BUY size=0.27 dealId=None
+5204:- GOLD       L2 BUY size=0.54 dealId=None
+5205:- GOLD       L3 BUY size=0.81 dealId=None
+5213:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5238:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5253:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...4a01
+5254:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...4a02
+5255:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...4a03
+5256:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5258:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5280:2026-05-13 17:40:09,703 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5286:2026-05-13 17:40:09,850 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5296:US30       |    46 | 49630.400000 | 49632.400000 | 49631.400000 | 2.000000     | 2.000000     | 0.8s
+5305:GOLD       |   111 | 4692.490000  | 4692.990000  | 4692.740000  | 0.500000     | 0.500000     | 0.8s
+5307:OIL_CRUDE  |    45 | 98.162000    | 98.194000    | 98.178000    | 0.032000     | 0.032000     | 0.8s
+5324:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49631.400000 | 75.8  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5333:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.740000  | 24.3  | 9.825000    | 0.500000 | 0.500000 | True  | 2.4   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5335:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.178000    | 46.0  | 0.302000    | 0.032000 | 0.040000 | True  | 2.5   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+5348:US30       | IDLE         | aucun signal
+5357:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5359:OIL_CRUDE  | IDLE         | aucun signal
+5373:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5375:- GOLD       L1 BUY size=0.27 dealId=None
+5376:- GOLD       L2 BUY size=0.54 dealId=None
+5377:- GOLD       L3 BUY size=0.81 dealId=None
+5388:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5399:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5400:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5409:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.4s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5411:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5433:2026-05-13 17:40:44,980 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5439:2026-05-13 17:40:45,113 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5449:US30       |    52 | 49624.800000 | 49626.800000 | 49625.800000 | 2.000000     | 2.000000     | 1.0s
+5458:GOLD       |   101 | 4691.930000  | 4692.430000  | 4692.180000  | 0.500000     | 0.500000     | 1.0s
+5460:OIL_CRUDE  |    37 | 98.192000    | 98.232000    | 98.212000    | 0.040000     | 0.040000     | 1.0s
+5477:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49625.800000 | 62.5  | 42.100000   | 2.000000 | 2.000000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5486:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.180000  | 18.6  | 9.825000    | 0.500000 | 0.500000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5488:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.212000    | 57.3  | 0.302000    | 0.040000 | 0.040000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5501:US30       | IDLE         | aucun signal
+5510:GOLD       | IDLE         | aucun signal
+5512:OIL_CRUDE  | IDLE         | aucun signal
+5538:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5546:US100      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.3s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5547:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5562:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5564:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5586:2026-05-13 17:41:21,651 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5592:2026-05-13 17:41:21,787 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+====================================================================================================
+MONITOR PASS 4/20 — 2026-05-13 17:42:03
+====================================================================================================
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260513_172208.log
+
+====================================================================================================
+POSITIONS BROKER
+====================================================================================================
+Aucune position broker ouverte
+
+====================================================================================================
+WORKING ORDERS BROKER
+====================================================================================================
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b5d",
+  "direction": "BUY",
+  "size": 0.084,
+  "level": 29355.3,
+  "stopDistance": -54.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:49.285"
+}
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b5e",
+  "direction": "BUY",
+  "size": 0.126,
+  "level": 29343.3,
+  "stopDistance": -42.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:49.474"
+}
+{
+  "epic": "GBPUSD",
+  "name": "GBP/USD",
+  "dealId": "00007090-0055-311e-0000-0000811c197b",
+  "direction": "BUY",
+  "size": 1200.0,
+  "level": 1.35126,
+  "stopDistance": -0.10057,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:49.919"
+}
+{
+  "epic": "GBPUSD",
+  "name": "GBP/USD",
+  "dealId": "00007090-0055-311e-0000-0000811c197c",
+  "direction": "BUY",
+  "size": 2400.0,
+  "level": 1.35121,
+  "stopDistance": -0.10029,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:50.109"
+}
+{
+  "epic": "GBPUSD",
+  "name": "GBP/USD",
+  "dealId": "00007090-0055-311e-0000-0000811c197d",
+  "direction": "BUY",
+  "size": 3600.0,
+  "level": 1.35093,
+  "stopDistance": -0.10001,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:50.303"
+}
+{
+  "epic": "US100",
+  "name": "US Tech 100",
+  "dealId": "00384627-0055-311e-0000-0000833f8b5c",
+  "direction": "BUY",
+  "size": 0.042,
+  "level": 29356.4,
+  "stopDistance": -66.0,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:49.099"
+}
+
+====================================================================================================
+LOCAL STATE / EXEC STATE
+====================================================================================================
+STATE actifs non-IDLE = 2 ['US100', 'GBPUSD']
+EXEC active = 2 ['US100', 'GBPUSD']
+
+----------------------------------------------------------------------------------------------------
+DERNIERS EVENTS PNL / CLOSE / HOLD
+----------------------------------------------------------------------------------------------------
+4524:2026-05-13 17:37:17,957 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4534:US30       |    33 | 49607.200000 | 49609.200000 | 49608.200000 | 2.000000     | 2.000000     | 3.9s
+4543:GOLD       |    75 | 4691.410000  | 4692.160000  | 4691.785000  | 0.750000     | 0.500000     | 0.9s
+4545:OIL_CRUDE  |    31 | 98.171000    | 98.211000    | 98.191000    | 0.040000     | 0.040000     | 3.9s
+4562:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49608.200000 | 20.7  | 42.100000   | 2.000000 | 2.000000 | True  | 4.9   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4571:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.785000  | 13.8  | 10.325000   | 0.750000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4573:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.191000    | 45.1  | 0.337000    | 0.040000 | 0.040000 | True  | 5.1   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4586:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4595:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4597:OIL_CRUDE  | IDLE         | aucun signal
+4610:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4611:- GOLD       L1 BUY size=0.27 cycle=6cbf1f0e-11b
+4613:- GOLD       L1 BUY size=0.27 dealId=None
+4614:- GOLD       L2 BUY size=0.54 dealId=None
+4615:- GOLD       L3 BUY size=0.81 dealId=None
+4616:- US30       L1 BUY size=0.024 dealId=None
+4617:- US30       L2 BUY size=0.048 dealId=None
+4618:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4626:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4635:US30       | BASKET_ID_OK | 1   | BUY  | 0.024000   | TRADEABLE | workingId=174f8d...44ac
+4636:US30       | BASKET_ID_OK | 2   | BUY  | 0.048000   | TRADEABLE | workingId=174f8d...44ad
+4637:US30       | BASKET_ID_OK | 3   | BUY  | 0.072000   | TRADEABLE | workingId=174f8d...44ae
+4638:US30       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+4647:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=70.8s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4649:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4671:2026-05-13 17:37:52,271 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4677:2026-05-13 17:37:52,411 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4687:US30       |    48 | 49613.700000 | 49615.700000 | 49614.700000 | 2.000000     | 2.000000     | 1.3s
+4696:GOLD       |   124 | 4691.960000  | 4692.460000  | 4692.210000  | 0.500000     | 0.500000     | 0.3s
+4698:OIL_CRUDE  |    23 | 98.192000    | 98.224000    | 98.208000    | 0.032000     | 0.040000     | 2.3s
+4715:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49614.700000 | 36.1  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4724:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.210000  | 18.9  | 9.825000    | 0.500000 | 0.500000 | True  | 1.4   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4726:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.208000    | 50.1  | 0.337000    | 0.032000 | 0.040000 | True  | 3.5   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+4739:US30       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+4748:GOLD       | IDLE         | aucun signal
+4750:OIL_CRUDE  | IDLE         | aucun signal
+4763:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4765:- US30       L1 BUY size=0.024 dealId=None
+4766:- US30       L2 BUY size=0.048 dealId=None
+4767:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4775:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4784:US30       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=68.5s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4793:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+4795:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4817:2026-05-13 17:38:25,920 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4823:2026-05-13 17:38:26,049 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4833:US30       |    46 | 49622.200000 | 49624.200000 | 49623.200000 | 2.000000     | 2.000000     | 0.9s
+4842:GOLD       |   119 | 4691.760000  | 4692.260000  | 4692.010000  | 0.500000     | 0.500000     | 0.9s
+4844:OIL_CRUDE  |    31 | 98.194000    | 98.234000    | 98.214000    | 0.040000     | 0.040000     | 0.9s
+4861:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49623.200000 | 56.3  | 42.100000   | 2.000000 | 2.000000 | True  | 1.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4870:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.010000  | 16.8  | 9.825000    | 0.500000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4872:OIL_CRUDE  | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 98.214000    | 52.2  | 0.335000    | 0.040000 | 0.040000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4885:US30       | IDLE         | aucun signal
+4894:GOLD       | IDLE         | aucun signal
+4896:OIL_CRUDE  | IDLE         | aucun signal
+4929:2026-05-13 17:38:58,061 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4935:2026-05-13 17:38:58,199 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4945:US30       |    78 | 49617.300000 | 49619.300000 | 49618.300000 | 2.000000     | 2.000000     | 0.1s
+4954:GOLD       |    89 | 4690.850000  | 4691.350000  | 4691.100000  | 0.500000     | 0.500000     | 2.1s
+4956:OIL_CRUDE  |    36 | 98.174000    | 98.214000    | 98.194000    | 0.040000     | 0.040000     | 3.1s
+4973:US30       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 49618.300000 | 44.7  | 42.100000   | 2.000000 | 2.000000 | True  | 1.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4982:GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4691.100000  | 7.6   | 9.825000    | 0.500000 | 0.500000 | True  | 3.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+4984:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.194000    | 46.4  | 0.334000    | 0.040000 | 0.040000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4997:US30       | IDLE         | aucun signal
+5006:GOLD       | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+5007:GOLD       | OPEN_L1      | BUY  | entry=4691.350000 | size=0.270000 | tp=0.2000
+5009:OIL_CRUDE  | IDLE         | aucun signal
+5022:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5031:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5040:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5049:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5050:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5051:GOLD       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=4698.150000 stopLevel≈4676.150000 stopDistance=22.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5052:GOLD       | LIMIT_REQUEST | 1   | BUY  | 0.270000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.27, "guaranteedStop": true, "stopDistance": 22.0, "type": "LIMIT", "level": 4698.15}
+5053:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4698.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5054:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=22.0
+5055:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5056:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=22.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5057:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5058:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_03f61e8c-be08-4958-8fef-894c13c90344'}
+5059:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_03f6...0344 limit=4690.1
+5060:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5061:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5062:GOLD       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=4694.150000 stopLevel≈4676.150000 stopDistance=18.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5063:GOLD       | LIMIT_REQUEST | 2   | BUY  | 0.540000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.54, "guaranteedStop": true, "stopDistance": 18.0, "type": "LIMIT", "level": 4694.15}
+5064:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4694.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5065:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=18.0
+5066:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5067:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=18.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5068:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5069:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_e14e9b6e-0438-44ed-a257-1244aad49468'}
+5070:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_e14e...9468 limit=4690.1
+5071:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5072:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5073:GOLD       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=4690.150000 stopLevel≈4676.150000 stopDistance=14.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5074:GOLD       | LIMIT_REQUEST | 3   | BUY  | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.81, "guaranteedStop": true, "stopDistance": 14.0, "type": "LIMIT", "level": 4690.15}
+5075:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4690.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5076:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=14.0
+5077:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5078:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=14.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5079:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5080:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_c5bbb422-cb96-4d41-8b8a-f06b304f288f'}
+5081:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c5bb...288f limit=4690.1
+5082:GOLD       | BASKET_NEW  | 1-3 | BUY  | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5084:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5106:2026-05-13 17:39:32,525 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5112:2026-05-13 17:39:32,661 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5122:US30       |    45 | 49625.800000 | 49627.800000 | 49626.800000 | 2.000000     | 2.000000     | 0.6s
+5131:GOLD       |   118 | 4690.890000  | 4691.390000  | 4691.140000  | 0.500000     | 0.500000     | 0.6s
+5133:OIL_CRUDE  |    23 | 98.173000    | 98.205000    | 98.189000    | 0.032000     | 0.040000     | 0.6s
+5150:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49626.800000 | 64.8  | 42.100000   | 2.000000 | 2.000000 | True  | 1.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5159:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.140000  | 8.0   | 9.825000    | 0.500000 | 0.500000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5161:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.189000    | 49.7  | 0.302000    | 0.032000 | 0.040000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5175:US30       | IDLE         | aucun signal
+5184:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5186:OIL_CRUDE  | IDLE         | aucun signal
+5201:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5203:- GOLD       L1 BUY size=0.27 dealId=None
+5204:- GOLD       L2 BUY size=0.54 dealId=None
+5205:- GOLD       L3 BUY size=0.81 dealId=None
+5213:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5238:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5253:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...4a01
+5254:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...4a02
+5255:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...4a03
+5256:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5258:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5280:2026-05-13 17:40:09,703 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5286:2026-05-13 17:40:09,850 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5296:US30       |    46 | 49630.400000 | 49632.400000 | 49631.400000 | 2.000000     | 2.000000     | 0.8s
+5305:GOLD       |   111 | 4692.490000  | 4692.990000  | 4692.740000  | 0.500000     | 0.500000     | 0.8s
+5307:OIL_CRUDE  |    45 | 98.162000    | 98.194000    | 98.178000    | 0.032000     | 0.032000     | 0.8s
+5324:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49631.400000 | 75.8  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5333:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.740000  | 24.3  | 9.825000    | 0.500000 | 0.500000 | True  | 2.4   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5335:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.178000    | 46.0  | 0.302000    | 0.032000 | 0.040000 | True  | 2.5   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+5348:US30       | IDLE         | aucun signal
+5357:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5359:OIL_CRUDE  | IDLE         | aucun signal
+5373:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5375:- GOLD       L1 BUY size=0.27 dealId=None
+5376:- GOLD       L2 BUY size=0.54 dealId=None
+5377:- GOLD       L3 BUY size=0.81 dealId=None
+5388:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5399:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5400:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5409:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.4s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5411:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5433:2026-05-13 17:40:44,980 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5439:2026-05-13 17:40:45,113 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5449:US30       |    52 | 49624.800000 | 49626.800000 | 49625.800000 | 2.000000     | 2.000000     | 1.0s
+5458:GOLD       |   101 | 4691.930000  | 4692.430000  | 4692.180000  | 0.500000     | 0.500000     | 1.0s
+5460:OIL_CRUDE  |    37 | 98.192000    | 98.232000    | 98.212000    | 0.040000     | 0.040000     | 1.0s
+5477:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49625.800000 | 62.5  | 42.100000   | 2.000000 | 2.000000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5486:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.180000  | 18.6  | 9.825000    | 0.500000 | 0.500000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5488:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.212000    | 57.3  | 0.302000    | 0.040000 | 0.040000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5501:US30       | IDLE         | aucun signal
+5510:GOLD       | IDLE         | aucun signal
+5512:OIL_CRUDE  | IDLE         | aucun signal
+5538:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5546:US100      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.3s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5547:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5562:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5564:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5586:2026-05-13 17:41:21,651 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5592:2026-05-13 17:41:21,787 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5602:US30       |    38 | 49635.400000 | 49637.400000 | 49636.400000 | 2.000000     | 2.000000     | 0.7s
+5611:GOLD       |   147 | 4691.890000  | 4692.640000  | 4692.265000  | 0.750000     | 0.500000     | 0.7s
+5613:OIL_CRUDE  |    26 | 98.204000    | 98.236000    | 98.220000    | 0.032000     | 0.040000     | 4.7s
+5630:US30       | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 49636.400000 | 87.6  | 42.100000   | 2.000000 | 2.000000 | True  | 1.6   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+5639:GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4692.265000  | 19.4  | 9.825000    | 0.750000 | 0.500000 | True  | 1.8   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5641:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.220000    | 59.9  | 0.302000    | 0.032000 | 0.040000 | True  | 5.9   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5655:US30       | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-3 | phase=TREND_UP | vwap=BUY | trigger_M1:+1; zone_resistance:+1; micro_rejet:+1; vwap_contre:-2; PHASE_VETO_sell_contre_trend_up:-4
+5664:GOLD       | IDLE         | aucun signal
+5666:OIL_CRUDE  | IDLE         | aucun signal
+5690:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5715:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5746:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5748:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5770:2026-05-13 17:41:59,021 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5776:2026-05-13 17:41:59,158 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+====================================================================================================
+MONITOR PASS 5/20 — 2026-05-13 17:42:34
+====================================================================================================
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260513_172208.log
+
+Traceback (most recent call last):
+  File "/home/philippe_vacher06/bot-pivot/live/audit_v24_global_state.py", line 14, in <module>
+    headers=G.login(); base=getattr(G,'BASE_URL','https://demo-api-capital.backend-capital.com/api/v1').rstrip('/')
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06G2_execution_secure.py", line 36, in login
+    return B.login()
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06G_execution_from_cycle_state.py", line 133, in login
+    raise RuntimeError(f"Login Capital.com refusé HTTP {r.status_code} : {r.text[:300]}")
+RuntimeError: Login Capital.com refusé HTTP 429 : {"errorCode":"error.too-many.requests"}
+
+----------------------------------------------------------------------------------------------------
+DERNIERS EVENTS PNL / CLOSE / HOLD
+----------------------------------------------------------------------------------------------------
+4750:OIL_CRUDE  | IDLE         | aucun signal
+4763:- US30       L1 BUY size=0.024 cycle=dd21aad6-444
+4765:- US30       L1 BUY size=0.024 dealId=None
+4766:- US30       L2 BUY size=0.048 dealId=None
+4767:- US30       L3 BUY size=0.07200000000000001 dealId=None
+4775:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+4784:US30       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=68.5s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+4793:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+4795:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+4817:2026-05-13 17:38:25,920 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4823:2026-05-13 17:38:26,049 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4833:US30       |    46 | 49622.200000 | 49624.200000 | 49623.200000 | 2.000000     | 2.000000     | 0.9s
+4842:GOLD       |   119 | 4691.760000  | 4692.260000  | 4692.010000  | 0.500000     | 0.500000     | 0.9s
+4844:OIL_CRUDE  |    31 | 98.194000    | 98.234000    | 98.214000    | 0.040000     | 0.040000     | 0.9s
+4861:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49623.200000 | 56.3  | 42.100000   | 2.000000 | 2.000000 | True  | 1.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4870:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.010000  | 16.8  | 9.825000    | 0.500000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4872:OIL_CRUDE  | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 98.214000    | 52.2  | 0.335000    | 0.040000 | 0.040000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4885:US30       | IDLE         | aucun signal
+4894:GOLD       | IDLE         | aucun signal
+4896:OIL_CRUDE  | IDLE         | aucun signal
+4929:2026-05-13 17:38:58,061 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4935:2026-05-13 17:38:58,199 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4945:US30       |    78 | 49617.300000 | 49619.300000 | 49618.300000 | 2.000000     | 2.000000     | 0.1s
+4954:GOLD       |    89 | 4690.850000  | 4691.350000  | 4691.100000  | 0.500000     | 0.500000     | 2.1s
+4956:OIL_CRUDE  |    36 | 98.174000    | 98.214000    | 98.194000    | 0.040000     | 0.040000     | 3.1s
+4973:US30       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 49618.300000 | 44.7  | 42.100000   | 2.000000 | 2.000000 | True  | 1.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4982:GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4691.100000  | 7.6   | 9.825000    | 0.500000 | 0.500000 | True  | 3.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+4984:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.194000    | 46.4  | 0.334000    | 0.040000 | 0.040000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4997:US30       | IDLE         | aucun signal
+5006:GOLD       | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+5007:GOLD       | OPEN_L1      | BUY  | entry=4691.350000 | size=0.270000 | tp=0.2000
+5009:OIL_CRUDE  | IDLE         | aucun signal
+5022:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5031:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5040:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5049:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5050:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5051:GOLD       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=4698.150000 stopLevel≈4676.150000 stopDistance=22.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5052:GOLD       | LIMIT_REQUEST | 1   | BUY  | 0.270000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.27, "guaranteedStop": true, "stopDistance": 22.0, "type": "LIMIT", "level": 4698.15}
+5053:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4698.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5054:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=22.0
+5055:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5056:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=22.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5057:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5058:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_03f61e8c-be08-4958-8fef-894c13c90344'}
+5059:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_03f6...0344 limit=4690.1
+5060:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5061:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5062:GOLD       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=4694.150000 stopLevel≈4676.150000 stopDistance=18.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5063:GOLD       | LIMIT_REQUEST | 2   | BUY  | 0.540000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.54, "guaranteedStop": true, "stopDistance": 18.0, "type": "LIMIT", "level": 4694.15}
+5064:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4694.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5065:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=18.0
+5066:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5067:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=18.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5068:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5069:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_e14e9b6e-0438-44ed-a257-1244aad49468'}
+5070:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_e14e...9468 limit=4690.1
+5071:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5072:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5073:GOLD       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=4690.150000 stopLevel≈4676.150000 stopDistance=14.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5074:GOLD       | LIMIT_REQUEST | 3   | BUY  | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.81, "guaranteedStop": true, "stopDistance": 14.0, "type": "LIMIT", "level": 4690.15}
+5075:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4690.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5076:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=14.0
+5077:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5078:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=14.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5079:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5080:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_c5bbb422-cb96-4d41-8b8a-f06b304f288f'}
+5081:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c5bb...288f limit=4690.1
+5082:GOLD       | BASKET_NEW  | 1-3 | BUY  | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5084:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5106:2026-05-13 17:39:32,525 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5112:2026-05-13 17:39:32,661 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5122:US30       |    45 | 49625.800000 | 49627.800000 | 49626.800000 | 2.000000     | 2.000000     | 0.6s
+5131:GOLD       |   118 | 4690.890000  | 4691.390000  | 4691.140000  | 0.500000     | 0.500000     | 0.6s
+5133:OIL_CRUDE  |    23 | 98.173000    | 98.205000    | 98.189000    | 0.032000     | 0.040000     | 0.6s
+5150:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49626.800000 | 64.8  | 42.100000   | 2.000000 | 2.000000 | True  | 1.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5159:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.140000  | 8.0   | 9.825000    | 0.500000 | 0.500000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5161:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.189000    | 49.7  | 0.302000    | 0.032000 | 0.040000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5175:US30       | IDLE         | aucun signal
+5184:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5186:OIL_CRUDE  | IDLE         | aucun signal
+5201:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5203:- GOLD       L1 BUY size=0.27 dealId=None
+5204:- GOLD       L2 BUY size=0.54 dealId=None
+5205:- GOLD       L3 BUY size=0.81 dealId=None
+5213:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5238:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5253:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...4a01
+5254:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...4a02
+5255:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...4a03
+5256:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5258:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5280:2026-05-13 17:40:09,703 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5286:2026-05-13 17:40:09,850 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5296:US30       |    46 | 49630.400000 | 49632.400000 | 49631.400000 | 2.000000     | 2.000000     | 0.8s
+5305:GOLD       |   111 | 4692.490000  | 4692.990000  | 4692.740000  | 0.500000     | 0.500000     | 0.8s
+5307:OIL_CRUDE  |    45 | 98.162000    | 98.194000    | 98.178000    | 0.032000     | 0.032000     | 0.8s
+5324:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49631.400000 | 75.8  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5333:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.740000  | 24.3  | 9.825000    | 0.500000 | 0.500000 | True  | 2.4   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5335:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.178000    | 46.0  | 0.302000    | 0.032000 | 0.040000 | True  | 2.5   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+5348:US30       | IDLE         | aucun signal
+5357:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5359:OIL_CRUDE  | IDLE         | aucun signal
+5373:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5375:- GOLD       L1 BUY size=0.27 dealId=None
+5376:- GOLD       L2 BUY size=0.54 dealId=None
+5377:- GOLD       L3 BUY size=0.81 dealId=None
+5388:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5399:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5400:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5409:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.4s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5411:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5433:2026-05-13 17:40:44,980 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5439:2026-05-13 17:40:45,113 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5449:US30       |    52 | 49624.800000 | 49626.800000 | 49625.800000 | 2.000000     | 2.000000     | 1.0s
+5458:GOLD       |   101 | 4691.930000  | 4692.430000  | 4692.180000  | 0.500000     | 0.500000     | 1.0s
+5460:OIL_CRUDE  |    37 | 98.192000    | 98.232000    | 98.212000    | 0.040000     | 0.040000     | 1.0s
+5477:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49625.800000 | 62.5  | 42.100000   | 2.000000 | 2.000000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5486:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.180000  | 18.6  | 9.825000    | 0.500000 | 0.500000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5488:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.212000    | 57.3  | 0.302000    | 0.040000 | 0.040000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5501:US30       | IDLE         | aucun signal
+5510:GOLD       | IDLE         | aucun signal
+5512:OIL_CRUDE  | IDLE         | aucun signal
+5538:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5546:US100      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.3s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5547:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5562:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5564:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5586:2026-05-13 17:41:21,651 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5592:2026-05-13 17:41:21,787 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5602:US30       |    38 | 49635.400000 | 49637.400000 | 49636.400000 | 2.000000     | 2.000000     | 0.7s
+5611:GOLD       |   147 | 4691.890000  | 4692.640000  | 4692.265000  | 0.750000     | 0.500000     | 0.7s
+5613:OIL_CRUDE  |    26 | 98.204000    | 98.236000    | 98.220000    | 0.032000     | 0.040000     | 4.7s
+5630:US30       | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 49636.400000 | 87.6  | 42.100000   | 2.000000 | 2.000000 | True  | 1.6   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+5639:GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4692.265000  | 19.4  | 9.825000    | 0.750000 | 0.500000 | True  | 1.8   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5641:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.220000    | 59.9  | 0.302000    | 0.032000 | 0.040000 | True  | 5.9   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5655:US30       | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-3 | phase=TREND_UP | vwap=BUY | trigger_M1:+1; zone_resistance:+1; micro_rejet:+1; vwap_contre:-2; PHASE_VETO_sell_contre_trend_up:-4
+5664:GOLD       | IDLE         | aucun signal
+5666:OIL_CRUDE  | IDLE         | aucun signal
+5690:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5715:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5746:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5748:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5770:2026-05-13 17:41:59,021 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5776:2026-05-13 17:41:59,158 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5786:US30       |    57 | 49634.700000 | 49636.700000 | 49635.700000 | 2.000000     | 2.000000     | 1.0s
+5795:GOLD       |   144 | 4691.140000  | 4691.640000  | 4691.390000  | 0.500000     | 0.500000     | 0.0s
+5797:OIL_CRUDE  |    46 | 98.173000    | 98.213000    | 98.193000    | 0.040000     | 0.036000     | 2.0s
+5814:US30       | SELL     |     2 | BUY      | RANGE      | NONE                 | 49635.700000 | 80.3  | 45.100000   | 2.000000 | 2.000000 | True  | 2.4   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+5823:GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4691.390000  | 10.5  | 9.825000    | 0.500000 | 0.500000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5825:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.193000    | 51.0  | 0.302000    | 0.040000 | 0.040000 | True  | 3.6   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5838:US30       | V24_RELAXED_VWAP_OK | signal SELL autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=BUY | trigger_M1:+1; zone_resistance:+1; micro_rejet:+1; vwap_contre:-2; phase_range:+1
+5839:US30       | OPEN_L1      | SELL | entry=49634.700000 | size=0.024000 | tp=0.2000
+5848:GOLD       | IDLE         | aucun signal
+5850:OIL_CRUDE  | IDLE         | aucun signal
+5864:- US30       L1 SELL size=0.024 cycle=1a101aee-176
+5880:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5891:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5892:US30       | BOLLINGER_SCALP_CLAMP | SELL | raw_L1=49670.1 | final_L1=49639.1 | raw_dist=45.40000 | max_dist=14.40000 | cursor=0.80
+5893:US30       | BOLLINGER_M5 | SELL | BB_LOW=49539.67030 | BB_MID=49600.89000 | BB_HIGH=49662.10970 | L1=49639.1 | L2=49659.1 | L3=49679.1 | BUFFER=8.0 | STEP=20.0
+5894:US30       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=49639.100000 stopLevel≈49749.100000 stopDistance=110.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5895:US30       | LIMIT_REQUEST | 1   | SELL | 0.024000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.024, "guaranteedStop": true, "stopDistance": 110.0, "type": "LIMIT", "level": 49639.1}
+5896:US30       | V24_LIMIT_SIDE_GUARD | SELL | old=49639.1 new=49639.7 bid=49634.7 ask=49636.7 gap=3.0
+5897:US30       | LIMIT_OK      | 1   | SELL | 0.024000   | TRADEABLE | ref=o_f077...2939 limit=49639.7
+5898:US30       | BOLLINGER_SCALP_CLAMP | SELL | raw_L1=49670.1 | final_L1=49639.1 | raw_dist=45.40000 | max_dist=14.40000 | cursor=0.80
+5899:US30       | BOLLINGER_M5 | SELL | BB_LOW=49539.67030 | BB_MID=49600.89000 | BB_HIGH=49662.10970 | L1=49639.1 | L2=49659.1 | L3=49679.1 | BUFFER=8.0 | STEP=20.0
+5900:US30       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=49659.100000 stopLevel≈49749.100000 stopDistance=90.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5901:US30       | LIMIT_REQUEST | 2   | SELL | 0.048000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.048, "guaranteedStop": true, "stopDistance": 90.0, "type": "LIMIT", "level": 49659.1}
+5902:US30       | LIMIT_OK      | 2   | SELL | 0.048000   | TRADEABLE | ref=o_baf7...d08d limit=49659.1
+5903:US30       | BOLLINGER_SCALP_CLAMP | SELL | raw_L1=49670.1 | final_L1=49639.1 | raw_dist=45.40000 | max_dist=14.40000 | cursor=0.80
+5904:US30       | BOLLINGER_M5 | SELL | BB_LOW=49539.67030 | BB_MID=49600.89000 | BB_HIGH=49662.10970 | L1=49639.1 | L2=49659.1 | L3=49679.1 | BUFFER=8.0 | STEP=20.0
+5905:US30       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=49679.100000 stopLevel≈49749.100000 stopDistance=70.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5906:US30       | LIMIT_REQUEST | 3   | SELL | 0.072000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.07200000000000001, "guaranteedStop": true, "stopDistance": 70.0, "type": "LIMIT", "level": 49679.1}
+5907:US30       | LIMIT_OK      | 3   | SELL | 0.072000   | TRADEABLE | ref=o_cafe...7c9a limit=49679.1
+5908:US30       | BASKET_NEW  | 1-3 | SELL | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5917:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5920:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5922:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5944:2026-05-13 17:42:34,356 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5950:2026-05-13 17:42:34,505 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+
+====================================================================================================
+MONITOR PASS 6/20 — 2026-05-13 17:43:04
+====================================================================================================
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260513_172208.log
+
+====================================================================================================
+POSITIONS BROKER
+====================================================================================================
+Aucune position broker ouverte
+
+====================================================================================================
+WORKING ORDERS BROKER
+====================================================================================================
+{
+  "epic": "GBPUSD",
+  "name": "GBP/USD",
+  "dealId": "00007090-0055-311e-0000-0000811c197c",
+  "direction": "BUY",
+  "size": 2400.0,
+  "level": 1.35121,
+  "stopDistance": -0.10029,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:50.109"
+}
+{
+  "epic": "GBPUSD",
+  "name": "GBP/USD",
+  "dealId": "00007090-0055-311e-0000-0000811c197d",
+  "direction": "BUY",
+  "size": 3600.0,
+  "level": 1.35093,
+  "stopDistance": -0.10001,
+  "guaranteedStop": true,
+  "createdDate": "2026-05-13T19:41:50.303"
+}
+
+====================================================================================================
+LOCAL STATE / EXEC STATE
+====================================================================================================
+STATE actifs non-IDLE = 2 ['GBPUSD', 'SILVER']
+EXEC active = 1 ['GBPUSD']
+
+----------------------------------------------------------------------------------------------------
+DERNIERS EVENTS PNL / CLOSE / HOLD
+----------------------------------------------------------------------------------------------------
+4817:2026-05-13 17:38:25,920 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4823:2026-05-13 17:38:26,049 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4833:US30       |    46 | 49622.200000 | 49624.200000 | 49623.200000 | 2.000000     | 2.000000     | 0.9s
+4842:GOLD       |   119 | 4691.760000  | 4692.260000  | 4692.010000  | 0.500000     | 0.500000     | 0.9s
+4844:OIL_CRUDE  |    31 | 98.194000    | 98.234000    | 98.214000    | 0.040000     | 0.040000     | 0.9s
+4861:US30       | WAIT     |     0 | NEUTRAL  | TREND_UP   | NO_SIGNAL            | 49623.200000 | 56.3  | 42.100000   | 2.000000 | 2.000000 | True  | 1.9   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+4870:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.010000  | 16.8  | 9.825000    | 0.500000 | 0.500000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+4872:OIL_CRUDE  | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 98.214000    | 52.2  | 0.335000    | 0.040000 | 0.040000 | True  | 2.1   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4885:US30       | IDLE         | aucun signal
+4894:GOLD       | IDLE         | aucun signal
+4896:OIL_CRUDE  | IDLE         | aucun signal
+4929:2026-05-13 17:38:58,061 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+4935:2026-05-13 17:38:58,199 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+4945:US30       |    78 | 49617.300000 | 49619.300000 | 49618.300000 | 2.000000     | 2.000000     | 0.1s
+4954:GOLD       |    89 | 4690.850000  | 4691.350000  | 4691.100000  | 0.500000     | 0.500000     | 2.1s
+4956:OIL_CRUDE  |    36 | 98.174000    | 98.214000    | 98.194000    | 0.040000     | 0.040000     | 3.1s
+4973:US30       | WAIT     |     0 | NEUTRAL  | TREND_DOWN | NO_SIGNAL            | 49618.300000 | 44.7  | 42.100000   | 2.000000 | 2.000000 | True  | 1.0   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+4982:GOLD       | BUY      |     2 | SELL     | RANGE      | NONE                 | 4691.100000  | 7.6   | 9.825000    | 0.500000 | 0.500000 | True  | 3.2   | LOCAL:support            | True      | False      | support/active + RangePosition bas + micro-rebond + spread OK
+4984:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.194000    | 46.4  | 0.334000    | 0.040000 | 0.040000 | True  | 4.3   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+4997:US30       | IDLE         | aucun signal
+5006:GOLD       | V24_RELAXED_VWAP_OK | signal BUY autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=SELL | trigger_M1:+1; zone_support:+1; micro_rebond:+1; vwap_contre:-2; phase_range:+1
+5007:GOLD       | OPEN_L1      | BUY  | entry=4691.350000 | size=0.270000 | tp=0.2000
+5009:OIL_CRUDE  | IDLE         | aucun signal
+5022:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5031:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5040:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5049:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5050:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5051:GOLD       | GLOBAL_AIRBAG_STOP | L1   | BUY  | entry=4698.150000 stopLevel≈4676.150000 stopDistance=22.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5052:GOLD       | LIMIT_REQUEST | 1   | BUY  | 0.270000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.27, "guaranteedStop": true, "stopDistance": 22.0, "type": "LIMIT", "level": 4698.15}
+5053:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4698.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5054:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=22.0
+5055:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5056:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=22.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5057:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5058:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_03f61e8c-be08-4958-8fef-894c13c90344'}
+5059:GOLD       | LIMIT_OK      | 1   | BUY  | 0.270000   | TRADEABLE | ref=o_03f6...0344 limit=4690.1
+5060:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5061:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5062:GOLD       | GLOBAL_AIRBAG_STOP | L2   | BUY  | entry=4694.150000 stopLevel≈4676.150000 stopDistance=18.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5063:GOLD       | LIMIT_REQUEST | 2   | BUY  | 0.540000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.54, "guaranteedStop": true, "stopDistance": 18.0, "type": "LIMIT", "level": 4694.15}
+5064:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4694.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5065:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=18.0
+5066:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5067:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=18.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5068:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5069:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_e14e9b6e-0438-44ed-a257-1244aad49468'}
+5070:GOLD       | LIMIT_OK      | 2   | BUY  | 0.540000   | TRADEABLE | ref=o_e14e...9468 limit=4690.1
+5071:GOLD       | BOLLINGER_SCALP_CLAMP | BUY  | raw_L1=4689.59 | final_L1=4698.15 | raw_dist=10.96000 | max_dist=2.40000 | cursor=0.80
+5072:GOLD       | BOLLINGER_M5 | BUY  | BB_LOW=4691.18795 | BB_MID=4699.33150 | BB_HIGH=4707.47505 | L1=4698.15 | L2=4694.15 | L3=4690.15 | BUFFER=1.6 | STEP=4.0
+5073:GOLD       | GLOBAL_AIRBAG_STOP | L3   | BUY  | entry=4690.150000 stopLevel≈4676.150000 stopDistance=14.000000 step=4.000000 spread=0.500000 minStop=1.000000
+5074:GOLD       | LIMIT_REQUEST | 3   | BUY  | 0.810000   | TRADEABLE | {"epic": "GOLD", "direction": "BUY", "size": 0.81, "guaranteedStop": true, "stopDistance": 14.0, "type": "LIMIT", "level": 4690.15}
+5075:GOLD       | V24_LIMIT_SIDE_GUARD | BUY  | old=4690.15 new=4690.1 bid=4690.85 ask=4691.35 gap=0.75
+5076:GOLD       | V24_STOP_GUARD_FORCE | guaranteedStop=true | stopDistance=14.0
+5077:GOLD       | V24_WORKING_ORDER_RETRY | BUY  | reason=STOPLOSS_RETRY_FORCE_GUARANTEED_TRUE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5078:GOLD       | V24_DYNAMIC_STOP_DISTANCE | BUY  | old=14.0 new=55.4 required_level=4642.7 kind=maxvalue extra=8.0
+5079:GOLD       | V24_WORKING_ORDER_SECOND_RETRY | BUY  | reason=DYNAMIC_STOP_DISTANCE old_error=error.invalid.stoploss.maxvalue: 4642.7
+5080:GOLD       | V24_WORKING_ORDER_SECOND_RETRY_RESULT | BUY  | HTTP=200 data={'dealReference': 'o_c5bbb422-cb96-4d41-8b8a-f06b304f288f'}
+5081:GOLD       | LIMIT_OK      | 3   | BUY  | 0.810000   | TRADEABLE | ref=o_c5bb...288f limit=4690.1
+5082:GOLD       | BASKET_NEW  | 1-3 | BUY  | 0.270000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5084:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5106:2026-05-13 17:39:32,525 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5112:2026-05-13 17:39:32,661 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5122:US30       |    45 | 49625.800000 | 49627.800000 | 49626.800000 | 2.000000     | 2.000000     | 0.6s
+5131:GOLD       |   118 | 4690.890000  | 4691.390000  | 4691.140000  | 0.500000     | 0.500000     | 0.6s
+5133:OIL_CRUDE  |    23 | 98.173000    | 98.205000    | 98.189000    | 0.032000     | 0.040000     | 0.6s
+5150:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49626.800000 | 64.8  | 42.100000   | 2.000000 | 2.000000 | True  | 1.5   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5159:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.140000  | 8.0   | 9.825000    | 0.500000 | 0.500000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5161:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.189000    | 49.7  | 0.302000    | 0.032000 | 0.040000 | True  | 1.7   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5175:US30       | IDLE         | aucun signal
+5184:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5186:OIL_CRUDE  | IDLE         | aucun signal
+5201:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5203:- GOLD       L1 BUY size=0.27 dealId=None
+5204:- GOLD       L2 BUY size=0.54 dealId=None
+5205:- GOLD       L3 BUY size=0.81 dealId=None
+5213:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5238:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5253:GOLD       | BASKET_ID_OK | 1   | BUY  | 0.270000   | TRADEABLE | workingId=006015...4a01
+5254:GOLD       | BASKET_ID_OK | 2   | BUY  | 0.540000   | TRADEABLE | workingId=006015...4a02
+5255:GOLD       | BASKET_ID_OK | 3   | BUY  | 0.810000   | TRADEABLE | workingId=006015...4a03
+5256:GOLD       | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5258:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5280:2026-05-13 17:40:09,703 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5286:2026-05-13 17:40:09,850 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5296:US30       |    46 | 49630.400000 | 49632.400000 | 49631.400000 | 2.000000     | 2.000000     | 0.8s
+5305:GOLD       |   111 | 4692.490000  | 4692.990000  | 4692.740000  | 0.500000     | 0.500000     | 0.8s
+5307:OIL_CRUDE  |    45 | 98.162000    | 98.194000    | 98.178000    | 0.032000     | 0.032000     | 0.8s
+5324:US30       | WAIT     |     0 | BUY      | RANGE      | NO_SIGNAL            | 49631.400000 | 75.8  | 42.100000   | 2.000000 | 2.000000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+5333:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.740000  | 24.3  | 9.825000    | 0.500000 | 0.500000 | True  | 2.4   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5335:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.178000    | 46.0  | 0.302000    | 0.032000 | 0.040000 | True  | 2.5   | LOCAL+PSYCHO+MAJOR:suppo | True      | False      | range_pas_assez_bas
+5348:US30       | IDLE         | aucun signal
+5357:GOLD       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+5359:OIL_CRUDE  | IDLE         | aucun signal
+5373:- GOLD       L1 BUY size=0.27 cycle=9d03d5e6-dee
+5375:- GOLD       L1 BUY size=0.27 dealId=None
+5376:- GOLD       L2 BUY size=0.54 dealId=None
+5377:- GOLD       L3 BUY size=0.81 dealId=None
+5388:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5399:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5400:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5409:GOLD       | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.4s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5411:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5433:2026-05-13 17:40:44,980 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5439:2026-05-13 17:40:45,113 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5449:US30       |    52 | 49624.800000 | 49626.800000 | 49625.800000 | 2.000000     | 2.000000     | 1.0s
+5458:GOLD       |   101 | 4691.930000  | 4692.430000  | 4692.180000  | 0.500000     | 0.500000     | 1.0s
+5460:OIL_CRUDE  |    37 | 98.192000    | 98.232000    | 98.212000    | 0.040000     | 0.040000     | 1.0s
+5477:US30       | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 49625.800000 | 62.5  | 42.100000   | 2.000000 | 2.000000 | True  | 2.0   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+5486:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4692.180000  | 18.6  | 9.825000    | 0.500000 | 0.500000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5488:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.212000    | 57.3  | 0.302000    | 0.040000 | 0.040000 | True  | 2.2   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5501:US30       | IDLE         | aucun signal
+5510:GOLD       | IDLE         | aucun signal
+5512:OIL_CRUDE  | IDLE         | aucun signal
+5538:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5546:US100      | BASKET_PENDING_CANCEL | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 age=72.3s max=60.0s reason=V24_PENDING_BASKET_EXPIRED_CANCEL
+5547:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5562:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5564:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5586:2026-05-13 17:41:21,651 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5592:2026-05-13 17:41:21,787 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5602:US30       |    38 | 49635.400000 | 49637.400000 | 49636.400000 | 2.000000     | 2.000000     | 0.7s
+5611:GOLD       |   147 | 4691.890000  | 4692.640000  | 4692.265000  | 0.750000     | 0.500000     | 0.7s
+5613:OIL_CRUDE  |    26 | 98.204000    | 98.236000    | 98.220000    | 0.032000     | 0.040000     | 4.7s
+5630:US30       | SELL     |    -3 | BUY      | TREND_UP   | NONE                 | 49636.400000 | 87.6  | 42.100000   | 2.000000 | 2.000000 | True  | 1.6   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+5639:GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4692.265000  | 19.4  | 9.825000    | 0.750000 | 0.500000 | True  | 1.8   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5641:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_UP   | NO_SIGNAL            | 98.220000    | 59.9  | 0.302000    | 0.032000 | 0.040000 | True  | 5.9   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5655:US30       | IDLE_PHASE_VETO | signal SELL ignoré | cursor=1.0 | score=-3 | phase=TREND_UP | vwap=BUY | trigger_M1:+1; zone_resistance:+1; micro_rejet:+1; vwap_contre:-2; PHASE_VETO_sell_contre_trend_up:-4
+5664:GOLD       | IDLE         | aucun signal
+5666:OIL_CRUDE  | IDLE         | aucun signal
+5690:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5715:US30       | IDLE         | --  | --   | --         | --        | aucun cycle
+5746:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5748:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5770:2026-05-13 17:41:59,021 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5776:2026-05-13 17:41:59,158 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5786:US30       |    57 | 49634.700000 | 49636.700000 | 49635.700000 | 2.000000     | 2.000000     | 1.0s
+5795:GOLD       |   144 | 4691.140000  | 4691.640000  | 4691.390000  | 0.500000     | 0.500000     | 0.0s
+5797:OIL_CRUDE  |    46 | 98.173000    | 98.213000    | 98.193000    | 0.040000     | 0.036000     | 2.0s
+5814:US30       | SELL     |     2 | BUY      | RANGE      | NONE                 | 49635.700000 | 80.3  | 45.100000   | 2.000000 | 2.000000 | True  | 2.4   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+5823:GOLD       | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 4691.390000  | 10.5  | 9.825000    | 0.500000 | 0.500000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5825:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.193000    | 51.0  | 0.302000    | 0.040000 | 0.040000 | True  | 3.6   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+5838:US30       | V24_RELAXED_VWAP_OK | signal SELL autorisé | score=2<4 mais démo V24 | phase=RANGE | vwap=BUY | trigger_M1:+1; zone_resistance:+1; micro_rejet:+1; vwap_contre:-2; phase_range:+1
+5839:US30       | OPEN_L1      | SELL | entry=49634.700000 | size=0.024000 | tp=0.2000
+5848:GOLD       | IDLE         | aucun signal
+5850:OIL_CRUDE  | IDLE         | aucun signal
+5864:- US30       L1 SELL size=0.024 cycle=1a101aee-176
+5880:06G2 — EXECUTION SECURISEE — BLOC 3/3 — OPEN + CLOSE CONFIRMES
+5891:US100      | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5892:US30       | BOLLINGER_SCALP_CLAMP | SELL | raw_L1=49670.1 | final_L1=49639.1 | raw_dist=45.40000 | max_dist=14.40000 | cursor=0.80
+5893:US30       | BOLLINGER_M5 | SELL | BB_LOW=49539.67030 | BB_MID=49600.89000 | BB_HIGH=49662.10970 | L1=49639.1 | L2=49659.1 | L3=49679.1 | BUFFER=8.0 | STEP=20.0
+5894:US30       | GLOBAL_AIRBAG_STOP | L1   | SELL | entry=49639.100000 stopLevel≈49749.100000 stopDistance=110.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5895:US30       | LIMIT_REQUEST | 1   | SELL | 0.024000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.024, "guaranteedStop": true, "stopDistance": 110.0, "type": "LIMIT", "level": 49639.1}
+5896:US30       | V24_LIMIT_SIDE_GUARD | SELL | old=49639.1 new=49639.7 bid=49634.7 ask=49636.7 gap=3.0
+5897:US30       | LIMIT_OK      | 1   | SELL | 0.024000   | TRADEABLE | ref=o_f077...2939 limit=49639.7
+5898:US30       | BOLLINGER_SCALP_CLAMP | SELL | raw_L1=49670.1 | final_L1=49639.1 | raw_dist=45.40000 | max_dist=14.40000 | cursor=0.80
+5899:US30       | BOLLINGER_M5 | SELL | BB_LOW=49539.67030 | BB_MID=49600.89000 | BB_HIGH=49662.10970 | L1=49639.1 | L2=49659.1 | L3=49679.1 | BUFFER=8.0 | STEP=20.0
+5900:US30       | GLOBAL_AIRBAG_STOP | L2   | SELL | entry=49659.100000 stopLevel≈49749.100000 stopDistance=90.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5901:US30       | LIMIT_REQUEST | 2   | SELL | 0.048000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.048, "guaranteedStop": true, "stopDistance": 90.0, "type": "LIMIT", "level": 49659.1}
+5902:US30       | LIMIT_OK      | 2   | SELL | 0.048000   | TRADEABLE | ref=o_baf7...d08d limit=49659.1
+5903:US30       | BOLLINGER_SCALP_CLAMP | SELL | raw_L1=49670.1 | final_L1=49639.1 | raw_dist=45.40000 | max_dist=14.40000 | cursor=0.80
+5904:US30       | BOLLINGER_M5 | SELL | BB_LOW=49539.67030 | BB_MID=49600.89000 | BB_HIGH=49662.10970 | L1=49639.1 | L2=49659.1 | L3=49679.1 | BUFFER=8.0 | STEP=20.0
+5905:US30       | GLOBAL_AIRBAG_STOP | L3   | SELL | entry=49679.100000 stopLevel≈49749.100000 stopDistance=70.000000 step=20.000000 spread=2.000000 minStop=0.100000
+5906:US30       | LIMIT_REQUEST | 3   | SELL | 0.072000   | TRADEABLE | {"epic": "US30", "direction": "SELL", "size": 0.07200000000000001, "guaranteedStop": true, "stopDistance": 70.0, "type": "LIMIT", "level": 49679.1}
+5907:US30       | LIMIT_OK      | 3   | SELL | 0.072000   | TRADEABLE | ref=o_cafe...7c9a limit=49679.1
+5908:US30       | BASKET_NEW  | 1-3 | SELL | 0.024000   | TRADEABLE | LIMITS posés=3 rejetés=0
+5917:GBPUSD     | BASKET_HOLD | 1-3 | BUY  | --         | TRADEABLE | open=0 pending=3 pnl=0.0000 target=None
+5920:GOLD       | IDLE         | --  | --   | --         | --        | aucun cycle
+5922:OIL_CRUDE  | IDLE         | --  | --   | --         | --        | aucun cycle
+5944:2026-05-13 17:42:34,356 - INFO - Actifs       : US500, US100, US30, DE40, FR40, UK100, J225, EURUSD, GBPUSD, USDJPY, EURJPY, GOLD, SILVER, OIL_CRUDE, BTCUSD, ETHUSD
+5950:2026-05-13 17:42:34,505 - INFO - [SUBSCRIBE RESPONSE] status=OK payload={'subscriptions': {'GOLD': 'PROCESSED', 'DE40': 'PROCESSED', 'US500': 'PROCESSED', 'EURJPY': 'PROCESSED', 'US100': 'PROCESSED', 'SILVER': 'PROCESSED', 'FR40': 'PROCESSED', 'J225': 'PROCESSED', 'BTCUSD': 'PROCESSED', 'UK100': 'PROCESSED', 'ETHUSD': 'PROCESSED', 'USDJPY': 'PROCESSED', 'EURUSD': 'PROCESSED', 'OIL_CRUDE': 'PROCESSED', 'US30': 'PROCESSED', 'GBPUSD': 'PROCESSED'}}
+5960:US30       |    47 | 49641.000000 | 49643.000000 | 49642.000000 | 2.000000     | 2.000000     | 1.4s
+5969:GOLD       |    83 | 4691.460000  | 4691.960000  | 4691.710000  | 0.500000     | 0.500000     | 0.4s
+5971:OIL_CRUDE  |    32 | 98.119000    | 98.151000    | 98.135000    | 0.032000     | 0.040000     | 0.4s
+5988:US30       | SELL     |     2 | BUY      | RANGE      | NONE                 | 49642.000000 | 90.8  | 46.800000   | 2.000000 | 2.000000 | True  | 2.4   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+5997:GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4691.710000  | 13.8  | 9.825000    | 0.500000 | 0.500000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:activ | False     | True       | range_pas_assez_haut, pas_micro_rebond
+5999:OIL_CRUDE  | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 98.135000    | 35.7  | 0.269000    | 0.032000 | 0.040000 | True  | 1.6   | LOCAL+PSYCHO+MAJOR:suppo | False     | True       | range_pas_assez_bas, pas_micro_rebond
+6012:US30       | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+6021:GOLD       | IDLE         | aucun signal
+6024:OIL_CRUDE  | IDLE         | aucun signal

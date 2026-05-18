@@ -1,0 +1,390 @@
+20:_V2436_RUNTIME_HEADERS = None
+21:_V2436_RUNTIME_ASSETS = []
+22:_V2436_CLEANUP_RUNNING = False
+321:    - stopDistance conservé
+452:# V24.1 BOT-PIVOT BOLLINGER
+456:V24_BOLLINGER_CACHE = {}
+458:BOLLINGER_BASKET_CONFIG = {
+489:# BOLLINGER_CURSOR :
+544:    return v241_cursor("BOLLINGER_CURSOR", 1.0, 0.5, 1.5)
+551:    return v241_cursor("BOLLINGER_BUFFER_CURSOR", 1.0, 0.0, 1.5)
+774:    return str(os.environ.get("V242_REJECT_BOLLINGER_TOO_FAR", "1")).strip().lower() in (
+801:    # V24.3.5H_STREAM_PRICE_GUARD:
+815:        use_stream_guard = str(__import__("os").getenv("V2435H_USE_STREAM_PRICE_GUARD", "0")).lower() in (
+873:    demo_force_samples = str(os.getenv("V2435F_DEMO_FORCE_ENTRY_SAMPLES", "0")).lower() in (
+876:    hard_distance_guard = v2436_env_bool("V2436_HARD_BOLLINGER_DISTANCE_GUARD", True)
+887:                "event": "BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN",
+895:                f"{asset:10s} | BASKET_DEMO_SAMPLE_BB_TOO_FAR_WARN | 1-3 | {direction:4s} | "
+899:            reason = "BASKET_REJECT_BOLLINGER_TOO_FAR"
+940:    WAIT, ou oppose a la direction du cycle. Cela evite de transformer une
+943:    if not v2436_env_bool("V2436_REQUIRE_STREAM_SIGNAL_FOR_LIMIT", True):
+952:    no_entry = {"", "WAIT", "IDLE", "NO_SIGNAL", "NONE", "HOLD"}
+958:        reason = "BASKET_REJECT_STREAM_NO_ENTRY"
+960:        reason = "BASKET_REJECT_STREAM_OPPOSED"
+962:        reason = "BASKET_REJECT_STREAM_OPPOSED"
+1021:    cached = V24_BOLLINGER_CACHE.get(cache_key)
+1037:                "event": "V24_BOLLINGER_M5_FETCH_FAIL",
+1052:        V24_BOLLINGER_CACHE[cache_key] = {
+1061:            "event": "V24_BOLLINGER_M5_EXCEPTION",
+1086:    conf = BOLLINGER_BASKET_CONFIG.get(asset_key, BOLLINGER_BASKET_CONFIG["_DEFAULT"])
+1096:    # BOLLINGER_CURSOR continue de piloter le step.
+1097:    # BOLLINGER_BUFFER_CURSOR rapproche uniquement L1 de la bande Bollinger.
+1135:# - rejeter proprement via BASKET_REJECT_BOLLINGER_TOO_FAR si besoin
+1137:# BOLLINGER_CURSOR < 1.0 : plus agressif, L1 plus proche
+1138:# BOLLINGER_CURSOR = 1.0 : réglage normal
+1139:# BOLLINGER_CURSOR > 1.0 : plus défensif, L1 plus éloigné
+1235:            "event": "V24_BOLLINGER_M5_UNAVAILABLE",
+1276:    if v24_bool_env("V243_BOLLINGER_OBSERVE_LOG", True):
+1282:                f"{asset:10s} | BOLLINGER_WIDTH_OBSERVE | --  | {str(enriched.get('direction', '--')):4s} | "
+1290:            print(f"{asset:10s} | BOLLINGER_WIDTH_OBSERVE_ERROR | --  | ---- | --         | FILTER    | err={_e}")
+1294:            f"{asset:10s} | BOLLINGER_WIDTH_TOO_SMALL | --  | {str(enriched.get('direction', '--')):4s} | "
+1301:            "event": "V24_BOLLINGER_WIDTH_TOO_SMALL",
+1315:            f"BOLLINGER_WIDTH_TOO_SMALL {asset}: "
+1361:    if v24_bool_env("V243_BOLLINGER_ENTRY_OBSERVE_LOG", True):
+1403:                f"{asset:10s} | BOLLINGER_ENTRY_OBSERVE | --  | {str(enriched.get('direction', '--')):4s} | "
+1408:                f"dist={_dist_s} max_dist={_max_s} dist_ratio={_ratio_s}"
+1411:            print(f"{asset:10s} | BOLLINGER_ENTRY_OBSERVE_ERROR | --  | ---- | --         | OBSERVE   | err={_e}")
+1415:        "event": "V24_BOLLINGER_LIMIT_LEVELS",
+1432:        f"{asset:10s} | BOLLINGER_M5 | "
+1448:            _v2433_os.getenv("V2433_LIMIT_ARMING_ENABLED", "1")
+1452:            _v2433_os.getenv("V2433_LIMIT_ARMING_STEP_MULT", "1.5")
+1514:        if v2436_env_bool("V2436_ARMING_CHECK_FAIL_CLOSED", True):
+1680:    Arrondit le stopDistance au pas broker si disponible.
+1700:    Applique un stopDistance global panier.
+1708:    Le broker reçoit un stopDistance propre à chaque jambe,
+1747:    # On impose uniquement stopDistance.
+1750:    payload["stopDistance"] = float(stop_distance)
+1755:        f"stopDistance={stop_distance:.6f} step={step:.6f} spread={spread:.6f} minStop={min_stop:.6f}"
+1821:    # V24.1 BOT-PIVOT BOLLINGER :
+1835:    Pose un ordre LIMIT via /api/v1/workingorders.
+1851:            "BOLLINGER_WIDTH_TOO_SMALL",
+1852:            "BASKET_REJECT_BOLLINGER_TOO_FAR",
+1856:            "BASKET_REJECT_STREAM_NO_ENTRY",
+1857:            "BASKET_REJECT_STREAM_OPPOSED",
+1882:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+1940:            "workingDealReference": dry_ref,
+1941:            "workingDealId": dry_ref,
+1953:    payload = v24sa_guard_working_payload(payload)
+1982:    status, data = B.api_post(headers, "/api/v1/workingorders", payload)
+1983:    status, data, payload = v24sa_retry_working_order(headers, payload, status, data)
+2020:        "workingDealReference": deal_ref,
+2021:        "workingDealId": None,
+2022:        "workingDealId_source": "PENDING_RESOLVE_FROM_GET_WORKINGORDERS",
+2039:        f"{asset:10s} | LIMIT_OK      | "
+2307:def working_order_items(data):
+2309:    Normalise la réponse GET /api/v1/workingorders.
+2310:    Capital.com peut encapsuler les ordres dans workingOrders.
+2316:        for key in ("workingOrders", "workingorders", "orders", "items"):
+2321:        if isinstance(data.get("workingOrderData"), dict):
+2328:def normalize_working_orders_response(data):
+2329:    return working_order_items(data)
+2332:def working_order_data(item):
+2335:    return item.get("workingOrderData") or item.get("workingOrder") or item
+2338:def working_order_deal_id(item):
+2339:    d = working_order_data(item)
+2342:        or d.get("workingOrderId")
+2345:        or item.get("workingOrderId")
+2350:def working_order_matches_exec(item, active_exec):
+2362:    d = working_order_data(item)
+2425:def v24_broker_pending_orders_for_asset(headers, asset, direction=None):
+2427:    Relit directement /workingorders côté broker pour savoir si un actif
+2430:    status, data = B.api_get(headers, "/api/v1/workingorders")
+2431:    items = normalize_working_orders_response(data)
+2438:        d = working_order_data(item)
+2456:def v24_cancel_broker_pending_for_asset(headers, asset, direction=None, reason="V24_BROKER_PENDING_CLEANUP"):
+2458:    Annule tous les working orders broker encore actifs pour l'actif.
+2461:    orders, status, raw = v24_broker_pending_orders_for_asset(
+2469:        working_id = working_order_deal_id(item)
+2470:        d = working_order_data(item)
+2472:        if not working_id:
+2481:            ok_cancel, cancel_info = cancel_working_order_secure(
+2484:                working_id=working_id,
+2491:                    "workingDealId": working_id,
+2498:            "working_id": working_id,
+2507:def resolve_working_order_id(headers, active_exec):
+2509:    Retrouve le vrai dealId du working order via GET /api/v1/workingorders.
+2510:    Retourne : working_id, reason, response
+2512:    existing = active_exec.get("workingDealId")
+2516:    status, data = B.api_get(headers, "/api/v1/workingorders")
+2522:    for item in working_order_items(data):
+2523:        if working_order_matches_exec(item, active_exec):
+2524:            wid = working_order_deal_id(item)
+2538:def cancel_working_order_secure(headers, asset, working_id, reason, old_exec=None):
+2541:    Annule un ordre LIMIT/STOP en attente via DELETE /api/v1/workingorders/{dealId}.
+2546:    if not working_id:
+2550:            "working_id": working_id,
+2562:            "working_id": working_id,
+2568:        event({"event": "CANCEL_LIMIT_OK_DRY_RUN", **info})
+2571:    status, response = B.api_delete(headers, f"/api/v1/workingorders/{working_id}")
+2578:        "working_id": working_id,
+2587:        "event": "CANCEL_LIMIT_OK" if ok else "CANCEL_LIMIT_FAILED",
+2716:        if reason.startswith("BOLLINGER_WIDTH_TOO_SMALL"):
+2717:            reason = "BOLLINGER_WIDTH_TOO_SMALL"
+2720:            or reason == "BOLLINGER_WIDTH_TOO_SMALL"
+2747:        reason = "BOLLINGER_M5_UNAVAILABLE_OR_INVALID"
+2769:        broker_cleanup_results = []
+2773:            working_id = rec.get("workingDealId")
+2775:            if not working_id:
+2776:                resolved_id, resolve_reason, resolve_response = resolve_working_order_id(headers, rec)
+2778:                    rec["workingDealId"] = resolved_id
+2779:                    rec["workingDealId_source"] = resolve_reason
+2780:                    rec["workingDealId_resolved_utc"] = utc()
+2781:                    working_id = resolved_id
+2783:            if working_id:
+2784:                ok_cancel, cancel_info = cancel_working_order_secure(
+2787:                    working_id=working_id,
+2806:                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+2813:                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+2832:            "broker_cleanup_results": broker_cleanup_results,
+2851:            "broker_cleanup_results": broker_cleanup_results,
+2882:                "reason": "V2435_L123_ATOMIC_INCOMPLETE_AFTER_LOOP",
+3364:    # Plusieurs scans courts : Capital.com peut transformer un working order
+3517:            working_id = rec.get("workingDealId")
+3519:            if not working_id:
+3520:                resolved_id, resolve_reason, resolve_response = resolve_working_order_id(headers, rec)
+3522:                    rec["workingDealId"] = resolved_id
+3523:                    rec["workingDealId_source"] = resolve_reason
+3524:                    rec["workingDealId_resolved_utc"] = utc()
+3525:                    working_id = resolved_id
+3527:            if working_id:
+3528:                ok, info = cancel_working_order_secure(
+3531:                    working_id=working_id,
+3592:def v24_pending_basket_max_age_sec():
+3773:    return v243_bool_env("V243_MARGIN_SELECTOR_ENABLED", True)
+3777:    return v243_env_float("V243_MARGIN_SELECTOR_THRESHOLD_EUR", 3100.0)
+3781:    return max(0.0, v243_env_float("V243_MARGIN_SELECTOR_COOLDOWN_SEC", 45.0))
+3807:def v243_margin_selector_pending_count(active_exec):
+3859:def v243_margin_selector_worst_pending(exec_state, positions=None):
+3866:        pending_count = v243_margin_selector_pending_count(rec)
+3867:        if pending_count <= 0:
+3887:            "pending_count": pending_count,
+3974:    return v243_bool_env("V243_STORM_GUARD_ENABLED", True)
+4032:        lookback_sec = v243_env_float("V243_STORM_LOOKBACK_SEC", 90.0)
+4034:        max_lines = v243_env_int("V243_STORM_TICK_TAIL_LINES", 20000)
+4074:    cfg = BOLLINGER_BASKET_CONFIG.get(asset) or BOLLINGER_BASKET_CONFIG.get("_DEFAULT", {})
+4095:        spread_mult = v243_asset_env_float("V243_STORM_SPREAD_MULT", asset, 3.0)
+4109:            move_mult = v243_asset_env_float("V243_STORM_MOVE_STEP_MULT", asset, 2.5)
+4110:            range_mult = v243_asset_env_float("V243_STORM_RANGE_STEP_MULT", asset, 3.0)
+4155:    global_count = v243_env_int("V243_STORM_GLOBAL_ALERT_COUNT", 4)
+4215:    return v243_bool_env("V243_STORM_EMERGENCY_CLOSE_ENABLED", True)
+4219:    per_leg = v243_env_float("V243_STORM_MAX_LOSS_PER_OPEN_LEG_EUR", 0.60)
+4220:    minimum = v243_env_float("V243_STORM_MAX_LOSS_MIN_EUR", 0.80)
+4225:    return v243_bool_env("V243_MAX_LOSS_GUARD_ENABLED", True)
+4232:        1: v243_env_float("V243_MAX_LOSS_1_OPEN_EUR", 1.50),
+4233:        2: v243_env_float("V243_MAX_LOSS_2_OPEN_EUR", 3.00),
+4234:        3: v243_env_float("V243_MAX_LOSS_3_OPEN_EUR", 5.00),
+4238:    # Si l'utilisateur force V243_MAX_LOSS_PER_OPEN_LEG_EUR, il reprend la main.
+4240:    if os.environ.get("V243_MAX_LOSS_PER_OPEN_LEG_EUR") not in (None, ""):
+4241:        per_leg = v243_env_float("V243_MAX_LOSS_PER_OPEN_LEG_EUR", 1.50)
+4242:        minimum = v243_env_float("V243_MAX_LOSS_MIN_EUR", 1.50)
+4248:def v24_cancel_all_pending_limits(headers, asset, levels, reason):
+4255:        working_id = rec.get("workingDealId")
+4257:        if not working_id:
+4259:                resolved_id, resolve_reason, resolve_response = resolve_working_order_id(headers, rec)
+4264:                rec["workingDealId"] = resolved_id
+4265:                rec["workingDealId_source"] = resolve_reason
+4266:                rec["workingDealId_resolved_utc"] = utc()
+4267:                working_id = resolved_id
+4273:                    rec["ghost_pending_detected_utc"] = utc()
+4291:            ok_cancel, cancel_info = cancel_working_order_secure(
+4294:                working_id=working_id,
+4308:            "workingDealId": working_id,
+4387:    # le signal est repassé WAIT / NO_SIGNAL.
+4431:    decision = v24_sig_text(sig, ["decision", "signal"], "WAIT").upper()
+4477:    signal_lost = decision in ("WAIT", "IDLE", "NO_SIGNAL", "NONE", "")
+4563:        return None, None, None, "NO_SIGNALS_FILE"
+4660:    - Le stopDistance reste conservé : le stop broker reste l'airbag.
+4686:                f"guaranteedStop=true | stopDistance={clean.get('stopDistance')}"
+4697:                f"guaranteedStop=false | stopDistance={clean.get('stopDistance')}"
+4706:def v24sa_guard_working_payload(payload):
+4719:    return v2436_env_float(f"V2436_MAX_STOP_DISTANCE_{asset}", default)
+4732:        stop_distance = float(payload.get("stopDistance") or 0.0)
+4741:            "stopDistance": stop_distance,
+4752:            f"{str(info.get('asset') or ''):10s} | V2436_STOP_TOO_WIDE_BLOCK | "
+4754:            f"level={info.get('level')} stopDistance={info.get('stopDistance')} "
+4808:    Si Capital.com donne un minvalue/maxvalue, on élargit stopDistance.
+4828:        old_distance = float(payload.get("stopDistance") or 0.0)
+4840:    clean["stopDistance"] = new_distance
+4864:def v24sa_retry_working_order(headers, payload, status, data):
+4877:        retry_payload = v24sa_guard_working_payload(dict(payload))
+4907:            "event": "V2436_STOP_TOO_WIDE_RETRY_BLOCKED",
+4921:        retry_status, retry_data = B.api_post(headers, "/api/v1/workingorders", retry_payload)
+4939:                    "event": "V2436_STOP_TOO_WIDE_SECOND_RETRY_BLOCKED",
+4953:                second_status, second_data = B.api_post(headers, "/api/v1/workingorders", second_payload)
+4967:        for key in ("stopDistance", "stopLevel", "stopAmount", "guaranteedStop"):
+4973:            last_status, last_data = B.api_post(headers, "/api/v1/workingorders", last_payload)
+4993:    - résolution workingDealId des LIMIT
+5001:    # 1. Résoudre les vrais workingDealId des LIMIT en attente.
+5003:        if str(rec.get("status", "")).startswith("PENDING_LIMIT") and not rec.get("workingDealId"):
+5004:            resolved_id, resolve_reason, resolve_response = resolve_working_order_id(headers, rec)
+5007:                rec["workingDealId"] = resolved_id
+5008:                rec["workingDealId_source"] = resolve_reason
+5009:                rec["workingDealId_resolved_utc"] = utc()
+5014:                    f"workingId={short_id(resolved_id)}"
+5022:                    "workingDealId": resolved_id,
+5026:                rec["workingDealId_resolve_last_reason"] = resolve_reason
+5027:                rec["workingDealId_resolve_last_utc"] = utc()
+5125:    if open_count > 0 and v24_bool_env("V243_TP_LADDER_CHECK_LOG", True):
+5164:    pending_count = len([
+5173:        and v24_bool_env("V2435J_TP_MATRIX_CLOSE_PROOF", True)
+5189:            tp_reason = "V2435J_TP_BROKER_CLOSE_PROOF"
+5197:            active_exec["tp_matrix_pending_count"] = int(pending_count)
+5214:                "pending_count": int(pending_count),
+5223:            broker_cleanup_results = []
+5225:            if pending_count > 0:
+5227:                    cancel_results = v24_cancel_all_pending_limits(
+5237:                    broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+5244:                    broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+5247:            active_exec["tp_matrix_broker_cleanup_results"] = broker_cleanup_results
+5252:                f"open={int(open_count)} pending={int(pending_count)} "
+5263:                "pending_count": int(pending_count),
+5268:                "broker_cleanup_results": v24_json_safe(broker_cleanup_results),
+5343:                    "pending_count": int(pending_count),
+5371:                "pending_count": int(pending_count),
+5387:            reason = "V243_BROKER_EMPTY_LOCAL_ZOMBIE_RESET"
+5390:                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+5397:                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+5402:            active_exec["broker_empty_reset_pending_count"] = int(pending_count)
+5404:            active_exec["broker_empty_reset_cleanup_results"] = broker_cleanup_results
+5425:                f"local_open={open_count} broker_open=0 pending={pending_count} "
+5437:                "pending_count": int(pending_count),
+5439:                "cleanup_results": broker_cleanup_results,
+5453:    if storm_blocked and pending_count > 0:
+5454:        reason = "V243_STORM_GUARD_CANCEL_PENDING"
+5456:        cancel_results = v24_cancel_all_pending_limits(
+5464:            broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+5471:            broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+5475:        active_exec["storm_guard_broker_cleanup_results"] = broker_cleanup_results
+5484:            "pending_count": pending_count,
+5487:            "broker_cleanup_results": broker_cleanup_results,
+5493:            f"open={open_count} pending={pending_count} reasons={','.join(storm_reasons[:4])}"
+5523:                reason="V243_STORM_GUARD_EMERGENCY_CLOSE",
+5534:                    "closed_reason": "V243_STORM_GUARD_EMERGENCY_CLOSE",
+5540:                reset_cycle_idle(asset, "V243_STORM_GUARD_EMERGENCY_CLOSE")
+5582:                max_loss_cancel_results = v24_cancel_all_pending_limits(
+5586:                    reason="V243_BASKET_MAX_LOSS_CANCEL_PENDING",
+5596:                reason="V243_BASKET_MAX_LOSS_BROKER_UPL",
+5607:                    "closed_reason": "V243_BASKET_MAX_LOSS_BROKER_UPL",
+5613:                reset_cycle_idle(asset, "V243_BASKET_MAX_LOSS_BROKER_UPL")
+5658:            cancel_results = v24_cancel_all_pending_limits(
+5742:                tp_pending_cancel_results = v24_cancel_broker_pending_for_asset(
+5748:                active_exec["tp_pending_cancel_results"] = tp_pending_cancel_results
+5750:                active_exec["tp_pending_cancel_error"] = str(e)
+5773:        # on garde le panier actif, mais on annule les pending restants
+5776:            tp_fail_cancel_results = v24_cancel_broker_pending_for_asset(
+5782:            active_exec["tp_fail_pending_cancel_results"] = tp_fail_cancel_results
+5784:            active_exec["tp_fail_pending_cancel_error"] = str(e)
+5815:    pending_count = len([
+5820:    active_exec["last_pending_count"] = int(pending_count)
+5827:    # V24.3 DEMO -- si marge >= 3100, on ne coupe qu'un mauvais panier pending-only.
+5828:    if pending_count > 0 and v243_margin_selector_active(margin_snapshot):
+5829:        selector_row = v243_margin_selector_worst_pending(exec_state, positions)
+5847:            reason = "V243_MARGIN_SELECTOR_CANCEL_WORST_PENDING"
+5849:            cancel_results = v24_cancel_all_pending_limits(
+5857:                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+5864:                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+5867:            active_exec["margin_selector_broker_cleanup_results"] = broker_cleanup_results
+5891:                f"threshold={v243_margin_selector_threshold_eur()} pending={pending_count} "
+5900:                "pending_count": pending_count,
+5904:                "broker_cleanup_results": broker_cleanup_results,
+5911:    # mais on libere les ordres pending L2/L3/L1 qui consomment la marge.
+5912:    if pending_count > 0 and v242_margin_guard_pressure(margin_snapshot) and not v243_margin_selector_active(margin_snapshot):
+5915:        cancel_results = v24_cancel_all_pending_limits(
+5923:            broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+5930:            broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+5934:        active_exec["margin_guard_broker_cleanup_results"] = broker_cleanup_results
+5944:            "pending_count": pending_count,
+5947:            "broker_cleanup_results": broker_cleanup_results,
+5953:            f"open={open_count} pending={pending_count} "
+5974:    # Ces pending restants ne doivent pas traîner trop longtemps.
+5976:    # Partial basket: one or more legs are open and reinforcement limits remain pending.
+5978:    if open_count > 0 and pending_count > 0:
+5982:        active_exec["partial_pending_keep_enabled"] = True
+5983:        active_exec["partial_pending_keep_reason"] = reason
+5984:        active_exec["partial_pending_keep_age_sec"] = age_sec
+5985:        active_exec["partial_pending_keep_utc"] = utc()
+5986:        active_exec["partial_pending_keep_open_count"] = int(open_count)
+5987:        active_exec["partial_pending_keep_pending_count"] = int(pending_count)
+5996:            "pending_count": pending_count,
+6004:            f"open={open_count} pending={pending_count} age={age_sec:.1f}s reason={reason}"
+6012:    if open_count <= 0 and pending_count <= 0:
+6019:        broker_pending_left, broker_pending_status, broker_pending_raw = v24_broker_pending_orders_for_asset(
+6025:        if broker_positions_left or broker_pending_left:
+6028:            cleanup_results = []
+6029:            if broker_pending_left:
+6030:                cleanup_results = v24_cancel_broker_pending_for_asset(
+6040:            active_exec["broker_pending_left_count"] = len(broker_pending_left)
+6041:            active_exec["orphan_pending_cleanup_results"] = cleanup_results
+6050:                f"broker_pending={len(broker_pending_left)} "
+6051:                f"cleanup={len(cleanup_results)}"
+6075:    if open_count <= 0 and pending_count > 0:
+6077:        max_age = v24_pending_basket_max_age_sec()
+6083:            cancel_results = v24_cancel_all_pending_limits(
+6092:            # working orders encore présents côté Capital.com.
+6094:                broker_cleanup_results = v24_cancel_broker_pending_for_asset(
+6101:                broker_cleanup_results = [{"ok": False, "exception": str(e)}]
+6104:            active_exec["broker_cleanup_results"] = broker_cleanup_results
+6117:                f"open=0 pending={pending_count} age={age_sec:.1f}s max={max_age:.1f}s reason={reason}"
+6124:        f"open={open_count} pending={pending_count} pnl={pnl_total:.4f} target={target}"
+6133:        "pending_count": pending_count,
+6230:                # on annule le working order au lieu d'appeler close_deal_secure().
+6232:                    working_id = active_exec.get("workingDealId")
+6235:                    if not working_id:
+6236:                        resolved_id, resolve_reason, resolve_response = resolve_working_order_id(headers, active_exec)
+6239:                            active_exec["workingDealId"] = resolved_id
+6240:                            active_exec["workingDealId_source"] = resolve_reason
+6241:                            active_exec["workingDealId_resolved_utc"] = utc()
+6244:                            working_id = resolved_id
+6247:                            active_exec["workingDealId_resolve_last_reason"] = resolve_reason
+6248:                            active_exec["workingDealId_resolve_last_utc"] = utc()
+6253:                                f"{asset:10s} | CANCEL_LIMIT_WAIT_ID | --  | --   | --         | --        | "
+6254:                                f"workingDealId introuvable, ordre LIMIT conservé localement | {resolve_reason}"
+6265:                    ok, cancel_info = cancel_working_order_secure(
+6268:                        working_id=working_id,
+6276:                            f"working={short_id(working_id)} non annulé, local conservé"
+6290:                        f"{asset:10s} | CANCEL_LIMIT_OK | --  | --   | --         | --        | "
+6291:                        f"working={short_id(working_id)} annulé car cycle IDLE"
+6369:        # Un ordre LIMIT posé via /workingorders n'est pas encore une position broker.
+6372:            pending_level = int(active_exec.get("level", level))
+6373:            pending_ref = active_exec.get("workingDealReference") or active_exec.get("workingDealId")
+6375:            # V24 : si le vrai workingDealId n'est pas encore connu,
+6376:            # on tente de le résoudre via GET /api/v1/workingorders.
+6377:            if not active_exec.get("workingDealId"):
+6378:                resolved_id, resolve_reason, resolve_response = resolve_working_order_id(headers, active_exec)
+6381:                    active_exec["workingDealId"] = resolved_id
+6382:                    active_exec["workingDealId_source"] = resolve_reason
+6383:                    active_exec["workingDealId_resolved_utc"] = utc()
+6386:                    pending_ref = resolved_id
+6389:                        f"{asset:10s} | LIMIT_ID_OK  | {pending_level:<3} | {direction:4s} | "
+6391:                        f"workingId={short_id(resolved_id)}"
+6398:                        "level": pending_level,
+6400:                        "workingDealId": resolved_id,
+6404:                    active_exec["workingDealId_resolve_last_reason"] = resolve_reason
+6405:                    active_exec["workingDealId_resolve_last_utc"] = utc()
+6413:                        "level": pending_level,
+6420:                    f"{asset:10s} | HOLD_LIMIT   | {pending_level:<3} | {direction:4s} | "
+6422:                    f"ordre LIMIT en attente ref={short_id(pending_ref)}"
+6429:                    "working_ref": pending_ref,
+6485:                            "level": pending_level,
+6494:                    f"{asset:10s} | LIMIT_FILLED | {pending_level:<3} | {direction:4s} | "
+6503:                    "level": pending_level,
+6513:                f"{asset:10s} | LIMIT_AMBIG  | {pending_level:<3} | {direction:4s} | "
+6907:def v2436_cleanup_all_broker_pending(headers, assets, reason):
+6915:            cancelled = v24_cancel_broker_pending_for_asset(
+6927:                    f"{asset:10s} | V2436_EXIT_PENDING_CLEANUP | --  | ---- | "
+6935:            "event": "V2436_EXIT_PENDING_CLEANUP_DONE",
+6946:    global _V2436_CLEANUP_RUNNING
+6947:    if _V2436_CLEANUP_RUNNING:
+6950:    _V2436_CLEANUP_RUNNING = True
+6951:    reason = f"V2436_SIGNAL_{int(signum)}_CLEANUP"
+6953:        print(f"V2436_SIGNAL_HANDLER | signal={signum} | cleanup pending broker orders")
+6954:        v2436_cleanup_all_broker_pending(
+6955:            headers=_V2436_RUNTIME_HEADERS,
+6956:            assets=_V2436_RUNTIME_ASSETS,
+6975:    global _V2436_RUNTIME_HEADERS, _V2436_RUNTIME_ASSETS
+6976:    _V2436_RUNTIME_ASSETS = list(assets)
+6984:    _V2436_RUNTIME_HEADERS = headers
+6986:    if v2436_env_bool("V2436_CLEANUP_PENDING_ON_SIGNAL", True):
+6996:        if v2436_env_bool("V2436_CLEANUP_PENDING_ON_EXIT", False):
+6997:            v2436_cleanup_all_broker_pending(
+7000:                reason="V2436_NORMAL_EXIT_PENDING_CLEANUP",

@@ -1,0 +1,165 @@
+LOG=logs/BOT_PIVOT_07D_24_7_DEMO_20260515_083138.log
+
+=== V2437 EVENTS ===
+978:{"event": "V2437_EXIT_CLEANUP_BEFORE", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T083137Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+980:{"event": "V2437_EXIT_CLEANUP_OK", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T083137Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "verify_results": []}
+982:V2437_RECONCILE_AFTER_EXIT_CLEANUP — 2026-05-15T08:35:41Z
+
+=== TRACEBACK LINES ===
+505:Traceback (most recent call last):
+653:Traceback (most recent call last):
+810:Traceback (most recent call last):
+965:Traceback (most recent call last):
+
+=== FINAL RECONCILE ===
+
+==========================================================================================================================================================================
+SIGNAL TICK — Module 04
+==========================================================================================================================================================================
+ACTIF      | DECISION | SCORE | VWAP     | PHASE      | CAM                  | MID          | R.Pos | R.Width     | Spread   | Med      | SprOK | Age   | Zone | Micro BUY | Micro SELL | Raison
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+US500      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7423.900000  | 96.7  | 9.200000    | 0.600000 | 0.600000 | True  | 0.7   | --                       | False     | True       | hors_zone
+US100      | SELL     |     6 | SELL     | RANGE      | NONE                 | 29145.500000 | 97.2  | 49.800000   | 1.800000 | 1.800000 | True  | 0.7   | LOCAL:resistance         | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+US30       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 49682.300000 | 85.4  | 40.400000   | 2.000000 | 2.000000 | True  | 0.7   | LOCAL:active             | True      | False      | range_pas_assez_bas, pas_micro_rejet
+DE40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 24025.850000 | 75.9  | 31.500000   | 1.500000 | 1.500000 | True  | 0.8   | LOCAL+PSYCHO:active:2400 | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+FR40       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 7968.400000  | 59.1  | 9.300000    | 0.800000 | 0.800000 | True  | 1.8   | --                       | False     | True       | hors_zone
+UK100      | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 10240.500000 | 71.7  | 9.900000    | 1.000000 | 1.000000 | True  | 1.8   | LOCAL:active             | False     | True       | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rebond
+J225       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 61486.200000 | 79.4  | 107.100000  | 10.000000 | 10.000000 | True  | 0.8   | --                       | True      | False      | hors_zone
+EURUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 1.163375     | 76.9  | 0.000260    | 0.000070 | 0.000070 | True  | 1.8   | --                       | False     | True       | hors_zone
+GBPUSD     | SELL     |     6 | SELL     | RANGE      | NONE                 | 1.335095     | 83.0  | 0.000470    | 0.000130 | 0.000130 | True  | 1.9   | LOCAL+PSYCHO:active:1.33 | False     | True       | résistance/active + RangePosition haut + micro-rejet + spread OK
+USDJPY     | WAIT     |     0 | NEUTRAL  | RANGE      | NO_SIGNAL            | 158.418000   | 21.5  | 0.065000    | 0.012000 | 0.012000 | True  | 1.9   | LOCAL:support            | True      | False      | range_pas_assez_bas
+EURJPY     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 184.296500   | 30.8  | 0.065000    | 0.021000 | 0.021000 | True  | 0.9   | --                       | True      | False      | hors_zone
+GOLD       | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 4555.890000  | 90.9  | 5.000000    | 0.500000 | 0.500000 | True  | 0.9   | --                       | True      | False      | hors_zone
+SILVER     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 78.080000    | 73.5  | 0.257000    | 0.080000 | 0.050000 | True  | 1.0   | LOCAL:active             | True      | False      | range_pas_assez_bas, range_pas_assez_haut, pas_micro_rejet
+OIL_CRUDE  | WAIT     |     0 | BUY      | TREND_DOWN | NO_SIGNAL            | 100.847000   | 6.2   | 0.305000    | 0.040000 | 0.040000 | True  | 2.0   | --                       | True      | False      | hors_zone
+BTCUSD     | WAIT     |     0 | SELL     | RANGE      | NO_SIGNAL            | 80613.450000 | 94.7  | 137.500000  | 50.000000 | 50.000000 | True  | 1.0   | LOCAL:resistance         | True      | False      | pas_micro_rejet
+ETHUSD     | WAIT     |     0 | SELL     | TREND_DOWN | NO_SIGNAL            | 2255.285000  | 80.6  | 3.760000    | 1.750000 | 1.750000 | True  | 1.0   | LOCAL+PSYCHO+MAJOR:activ | True      | False      | range_pas_assez_bas, pas_micro_rejet
+==========================================================================================================================================================================
+Snapshot signaux : /home/philippe_vacher06/bot-pivot/live/data/ticks/signals_latest.json
+
+MODULE 05 — CYCLE ENGINE
+
+==================================================================================================================================
+BOT_PIVOT_05 — CYCLE ENGINE SIMULATION
+==================================================================================================================================
+US500      | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+US100      | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+US30       | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=85.4>=75.0
+US30       | OPEN_L1      | SELL | entry=49681.300000 | size=0.024000 | tp=0.2000
+DE40       | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+FR40       | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+UK100      | IDLE         | aucun signal
+J225       | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+EURUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+GBPUSD     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+USDJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+EURJPY     | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+GOLD       | DEMO_SAMPLE_SIGNAL | SELL | reason=rpos=90.9>=75.0
+GOLD       | OPEN_L1      | SELL | entry=4555.640000 | size=0.270000 | tp=0.2000
+SILVER     | IDLE         | aucun signal
+OIL_CRUDE  | HOLD_BASKET_EXEC_OWNER | L1 | BUY  | pilotage panier délégué à 06G2
+BTCUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+ETHUSD     | HOLD_BASKET_EXEC_OWNER | L1 | SELL | pilotage panier délégué à 06G2
+==================================================================================================================================
+État : /home/philippe_vacher06/bot-pivot/live/data/cycles/cycle_state.json
+
+MODULE 06H — EXECUTION DEMO GARDEE
+
+================================================================================================================================================================
+06H — EXECUTION DEMO GARDEE
+================================================================================================================================================================
+BASE_URL : https://demo-api-capital.backend-capital.com
+Cycles actifs détectés : 14
+- US500      L1 SELL size=0.15 cycle=193af97e-527
+- US100      L1 BUY size=0.042 cycle=dedb9c7f-f5a
+- US30       L1 SELL size=0.024 cycle=b550b631-aa0
+- DE40       L1 BUY size=0.051 cycle=d75fa7bd-4c9
+- FR40       L1 SELL size=0.15 cycle=6dcf8e5b-d94
+- J225       L1 SELL size=1.5 cycle=610880c6-9ed
+- EURUSD     L1 SELL size=450.0 cycle=494cf7f2-962
+- GBPUSD     L1 BUY size=1200.0 cycle=6975cb20-908
+- USDJPY     L1 BUY size=1800.0 cycle=97d556e4-d12
+- EURJPY     L1 BUY size=1800.0 cycle=27872e17-072
+- GOLD       L1 SELL size=0.27 cycle=58172f9a-c40
+- OIL_CRUDE  L1 BUY size=4.0 cycle=794fd556-061
+- BTCUSD     L1 SELL size=0.0018 cycle=9dc6ce3b-375
+- ETHUSD     L1 SELL size=0.06 cycle=0351e43c-206
+Deals réels DEMO suivis : 0
+Traceback (most recent call last):
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06H_execution_demo_guarded.py", line 240, in <module>
+    main()
+  File "/home/philippe_vacher06/bot-pivot/live/BOT_PIVOT_06H_execution_demo_guarded.py", line 211, in main
+    raise RuntimeError(
+RuntimeError: REFUS : 14 cycles actifs > limite autorisée 1. Réduire les actifs ou augmenter volontairement --max-cycles.
+
+Pause 5s...
+
+============================================================================================================
+V2436 CLEANUP PENDING ON SIGINT — 2026-05-15T08:35:37Z
+============================================================================================================
+{"event": "V2436_EXIT_CLEANUP_BEFORE", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+{"event": "V2437_EXIT_CLEANUP_BEFORE", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T083137Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0}
+{"event": "V2436_EXIT_CLEANUP_AFTER", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "results": [{"asset": "US500", "results": []}, {"asset": "US100", "results": []}, {"asset": "US30", "results": []}, {"asset": "DE40", "results": []}, {"asset": "FR40", "results": []}, {"asset": "UK100", "results": []}, {"asset": "J225", "results": []}, {"asset": "EURUSD", "results": []}, {"asset": "GBPUSD", "results": []}, {"asset": "USDJPY", "results": []}, {"asset": "EURJPY", "results": []}, {"asset": "GOLD", "results": []}, {"asset": "SILVER", "results": []}, {"asset": "OIL_CRUDE", "results": []}, {"asset": "BTCUSD", "results": []}, {"asset": "ETHUSD", "results": []}]}
+{"event": "V2437_EXIT_CLEANUP_OK", "version": "V24.3.7_DEMO_MAX_PERMISSION_AUDIT", "run_id": "v2437_20260515T083137Z", "why": "SIGINT", "positions_status": 200, "positions_count": 0, "workingorders_status": 200, "workingorders_count": 0, "verify_results": []}
+
+V2437_RECONCILE_AFTER_EXIT_CLEANUP — 2026-05-15T08:35:41Z
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | L1 SELL size=0.15          | --                                             | OK
+US100      |   0 |    0 | L1 BUY size=0.042          | --                                             | OK
+US30       |   0 |    0 | L1 SELL size=0.024         | --                                             | OK
+DE40       |   0 |    0 | L1 BUY size=0.051          | --                                             | OK
+FR40       |   0 |    0 | L1 SELL size=0.15          | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | L1 SELL size=1.5           | --                                             | OK
+EURUSD     |   0 |    0 | L1 SELL size=450.0         | --                                             | OK
+GBPUSD     |   0 |    0 | L1 BUY size=1200.0         | --                                             | OK
+USDJPY     |   0 |    0 | L1 BUY size=1800.0         | --                                             | OK
+EURJPY     |   0 |    0 | L1 BUY size=1800.0         | --                                             | OK
+GOLD       |   0 |    0 | L1 SELL size=0.27          | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | L1 BUY size=4.0            | --                                             | OK
+BTCUSD     |   0 |    0 | L1 SELL size=0.0018        | --                                             | OK
+ETHUSD     |   0 |    0 | L1 SELL size=0.06          | --                                             | OK
+============================================================================================================================================
+
+=== LIVE RECONCILE NOW ===
+============================================================================================================================================
+BOT_PIVOT_06G1 - RECONCILIATION LECTURE SEULE - V24.3.1 PENDING-AWARE
+============================================================================================================================================
+Aucun ordre envoye.
+
+GET /positions     : 200
+Total positions    : 0
+GET /workingorders : 200
+Total pending      : 0
+
+ACTIF      | POS | PEND | CYCLE                      | EXEC_STATE                                     | ANOMALIE
+--------------------------------------------------------------------------------------------------------------------------------------------
+US500      |   0 |    0 | L1 SELL size=0.15          | --                                             | OK
+US100      |   0 |    0 | L1 BUY size=0.042          | --                                             | OK
+US30       |   0 |    0 | L1 SELL size=0.024         | --                                             | OK
+DE40       |   0 |    0 | L1 BUY size=0.051          | --                                             | OK
+FR40       |   0 |    0 | L1 SELL size=0.15          | --                                             | OK
+UK100      |   0 |    0 | --                         | --                                             | OK
+J225       |   0 |    0 | L1 SELL size=1.5           | --                                             | OK
+EURUSD     |   0 |    0 | L1 SELL size=450.0         | --                                             | OK
+GBPUSD     |   0 |    0 | L1 BUY size=1200.0         | --                                             | OK
+USDJPY     |   0 |    0 | L1 BUY size=1800.0         | --                                             | OK
+EURJPY     |   0 |    0 | L1 BUY size=1800.0         | --                                             | OK
+GOLD       |   0 |    0 | L1 SELL size=0.27          | --                                             | OK
+SILVER     |   0 |    0 | --                         | --                                             | OK
+OIL_CRUDE  |   0 |    0 | L1 BUY size=4.0            | --                                             | OK
+BTCUSD     |   0 |    0 | L1 SELL size=0.0018        | --                                             | OK
+ETHUSD     |   0 |    0 | L1 SELL size=0.06          | --                                             | OK
+============================================================================================================================================
