@@ -60,3 +60,43 @@ Fichier d'amendement :
 ```text
 00_COMMUN/AMENDEMENT_V2446_L3_H001_2026-05-18.md
 ```
+
+## 2026-05-18 - Classement GitHub V2446 H-001
+
+Decision : le modele canonique actuel V2446 est `run_V2446_ADVERSE_STEPS_US500_US100.sh`.
+
+Paire canonique : `US500 / US100 - H-001`.
+
+Classement :
+
+```text
+ACTIF CANONIQUE
+- run_V2446_ADVERSE_STEPS_US500_US100.sh
+
+ACTIF HISTORIQUE NON CANONIQUE
+- run_V2446_ADVERSE_STEPS_ETH_BTC.sh
+
+ACTIFS SECONDAIRES A HARMONISER
+- run_V2446_ADVERSE_STEPS_EURUSD_GBPUSD.sh
+- run_V2446_ADVERSE_STEPS_FR40_DE40.sh
+- run_V2446_ADVERSE_STEPS_GOLD_SILVER.sh
+- run_V2446_ADVERSE_STEPS_J225_USDJPY.sh
+- run_V2446_ADVERSE_STEPS_OIL_CRUDE_OIL_BRENT.sh
+- run_V2446_ADVERSE_STEPS_USDJPY_EURJPY.sh
+
+NOYAU PYTHON V2446
+- BOT_PIVOT_24_4_forced_audit_runner.py
+- BOT_PIVOT_06G2_execution_secure.py
+- v2446_adverse_steps_patch.py
+- BOT_PIVOT_00D_pair_director_authority.py
+- BOT_PIVOT_00B_pnl_eur.py
+- BOT_PIVOT_00_config.py
+
+RUNTIME LOCAL A DESINDEXER PLUS TARD, SANS SUPPRESSION SAUVAGE
+- data/
+- logs/
+- backup/
+- backups/
+```
+
+Regle : aucun nettoyage, deplacement ou suppression Git sans validation explicite separee.
