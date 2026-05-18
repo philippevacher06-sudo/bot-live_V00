@@ -43,3 +43,20 @@ Archive : l'ancienne structure a ete conservee sous :
 ```text
 99_ARCHIVES/2026-05-18_CONSOLIDATION_GITHUB/AVANT_CONSOLIDATION/
 ```
+
+## 2026-05-18 - Suppression coupe immediate automatique L3+
+
+Decision : supprimer la regle stricte qui imposait une coupe immediate automatique du panier a partir de L3 lorsque l'alignement M15/M5 est rompu.
+
+Nouvelle doctrine :
+
+- la verification directionnelle a partir de L3 reste obligatoire ;
+- une rupture M15/M5 ne coupe plus automatiquement le panier pour cette seule raison ;
+- elle active une gestion de risque stricte : logs, aucun renfort non valide, maximum de legs, PnL broker prioritaire, stop global et time stop/time slip ;
+- cette decision permet de tester H-001 avec L4 US100 de protection.
+
+Fichier d'amendement :
+
+```text
+00_COMMUN/AMENDEMENT_V2446_L3_H001_2026-05-18.md
+```
