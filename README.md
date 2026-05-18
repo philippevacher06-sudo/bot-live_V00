@@ -17,6 +17,20 @@ Lire dans cet ordre :
 00_COMMUN/QUESTIONS_OUVERTES_GLOBALES.md
 ```
 
+## Paquet H-001 - 2026-05-18
+
+Dernier paquet strategique publie par Codex :
+
+```text
+00_COMMUN/AMENDEMENT_V2446_L3_H001_2026-05-18.md
+01_CODEX/04_TESTS_VALIDATION/H-001_CROSS_HEDGE_US500_US100.md
+01_CODEX/04_TESTS_VALIDATION/FIXTURES_H001_CROSS_HEDGE.md
+01_CODEX/03_PATCHES_MICROTOUCHES/PLAN_PATCH_H001_CROSS_HEDGE.md
+04_SYNC/PAQUET_SESSION_CODEX_VERS_GPT_H001_2026-05-18.md
+```
+
+Statut : strategie documentee et prete pour validation offline, sans patch bot.
+
 ## Regle fondamentale
 
 ```text
