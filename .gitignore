@@ -21,13 +21,26 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
-# Système
+# Systeme
 .DS_Store
 Thumbs.db
 
-# Fichiers runtime lourds exclus GitHub
-data/ticks/*.jsonl
-logs/**/*.log
-backups/**/state/data/ticks/*.jsonl
+# Runtime local BOT-PIVOT - ne doit pas etre versionne
+data/
+data/**
+logs/
+logs/**
+backup/
+backup/**
+backups/
+backups/**
+
+# Archives lourdes / exports locaux
 *.tar.gz
 *.zip
+*.7z
+*.rar
+
+# Fichiers runtime lourds historiques
+*.jsonl
+*.log
