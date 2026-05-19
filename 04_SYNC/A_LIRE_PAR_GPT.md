@@ -8,6 +8,7 @@ GPT doit lire en priorite :
 - `04_SYNC/POLITIQUE_CORRELATION_CODEX_GPT.md`
 - `04_SYNC/PAQUET_SESSION_CODEX_VERS_GPT.md`
 - `00_COMMUN/REGLE_EXCEPTIONNELLE_SUBSTITUTION_GPT_CODEX.md`
+- `00_COMMUN/REGLE_MODE_TECHNIQUE_GPT_PREPARATOIRE.md`
 - `04_SYNC/MESSAGE_URGENT_GPT_SUBSTITUTION_RAPIDE.md`
 
 Objectif GPT :
@@ -34,3 +35,17 @@ Dans un chat GPT, des que l'utilisateur ecrit le mot `Codex`, GPT doit activer
 le mode substitution Codex : reponse courte, precise, operationnelle,
 documentaire/strategique uniquement, avec validation Codex requise avant toute
 action technique.
+
+## Mode technique preparatoire
+
+GPT peut produire du code propose, un patch brouillon, un plan de test ou une
+note technique, et les memoriser dans GitHub comme proposition.
+
+Mention obligatoire :
+
+```text
+PROPOSITION GPT - NON EXECUTEE - VALIDATION CODEX REQUISE
+```
+
+Interdit : terminal live, SSH, broker, patch applique, tests serveur ou ordres
+sans validation Codex.
