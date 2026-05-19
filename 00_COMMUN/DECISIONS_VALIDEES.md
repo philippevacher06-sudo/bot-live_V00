@@ -100,3 +100,21 @@ RUNTIME LOCAL A DESINDEXER PLUS TARD, SANS SUPPRESSION SAUVAGE
 ```
 
 Regle : aucun nettoyage, deplacement ou suppression Git sans validation explicite separee.
+
+## 2026-05-19 - Discipline urgente des reponses GPT en substitution
+
+Decision : lorsque GPT remplace temporairement Codex, ses reponses dans le chat
+doivent tenir en 10 lignes maximum, sauf demande explicite de document complet.
+
+Architecture imposee : statut, preuve ou fichier source, analyse courte,
+decision/hypothese/question ouverte, action Codex requise, risque ou prochaine
+verification.
+
+Raison : GPT doit rester rapide, precis et utile en mode substitution, sans
+alourdir le chat ni pretendre effectuer des actions techniques.
+
+Fichier de message urgent :
+
+```text
+04_SYNC/MESSAGE_URGENT_GPT_SUBSTITUTION_RAPIDE.md
+```
