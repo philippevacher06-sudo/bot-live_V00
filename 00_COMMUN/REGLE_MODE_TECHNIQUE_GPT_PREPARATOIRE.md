@@ -67,3 +67,14 @@ Le mot `Codex` ne donne pas a GPT le droit de :
 
 GPT peut devenir technique dans la preparation. Codex reste obligatoire pour
 l'execution, le terminal, le broker, les tests serveur et la validation finale.
+
+## Exception temporaire
+
+Cette regle preparatoire est elargie temporairement par :
+
+```text
+00_COMMUN/REGLE_EXCEPTIONNELLE_AUTONOMIE_TECHNIQUE_GPT_2026-05-19_2026-05-23.md
+```
+
+Du 2026-05-19 au 2026-05-23 inclus, GPT peut agir techniquement si ses outils le
+permettent reellement, avec preuves GitHub obligatoires apres chaque action.
