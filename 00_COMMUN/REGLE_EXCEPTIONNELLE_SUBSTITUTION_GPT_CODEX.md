@@ -58,6 +58,33 @@ chemins d'execution comme Codex.
 GPT ne peut pas publier du code comme applique ou operationnel tant que Codex n'a
 pas relu, teste ou valide selon le protocole technique.
 
+## Exception temporaire 2026-05-19 -> 2026-05-23
+
+En raison de la limite d'usage Codex annoncee jusqu'au 2026-05-23, l'utilisateur
+autorise exceptionnellement GPT a passer du mode technique preparatoire au mode
+technique controle.
+
+Pendant cette fenetre, si GPT dispose reellement d'un terminal, de fichiers ou de
+GitHub dans son environnement, il peut creer, modifier, tester et publier du code
+pour maintenir la continuite du projet.
+
+Chaque action technique doit etre memorisee dans GitHub avec preuve, intention,
+fichiers touches, commandes/resultats, tests et risques residuels.
+
+Formule obligatoire :
+
+```text
+Mode substitution technique GPT temporaire.
+Action technique autorisee du 2026-05-19 au 2026-05-23 inclus.
+Preuves GitHub obligatoires apres chaque action.
+```
+
+Reference :
+
+```text
+00_COMMUN/REGLE_EXCEPTIONNELLE_AUTONOMIE_TECHNIQUE_GPT_2026-05-19_2026-05-23.md
+```
+
 ## Ce que GPT peut faire en substitution
 
 - Lire les fichiers du projet.
@@ -69,9 +96,10 @@ pas relu, teste ou valide selon le protocole technique.
 - Maintenir la memoire du projet.
 - Signaler les contradictions avec les regles maitresses.
 
-## Ce que GPT ne doit pas pretendre faire
+## Ce que GPT ne doit pas pretendre faire sans preuve
 
-GPT ne doit pas pretendre avoir :
+GPT ne doit pas pretendre avoir fait une action qu'il n'a pas reellement faite
+avec preuve. Cela concerne notamment :
 
 - execute du code ;
 - lance des tests serveur ;
@@ -84,13 +112,19 @@ GPT ne doit pas pretendre avoir :
 
 ## Verrou technique
 
-Toute decision prise par GPT en substitution qui touche le code, SSH, broker,
-execution, positions, paniers, stops, PnL ou fermetures doit etre renvoyee a
-Codex pour validation technique avant patch.
+Hors fenetre d'exception technique temporaire, toute decision prise par GPT en
+substitution qui touche le code, SSH, broker, execution, positions, paniers,
+stops, PnL ou fermetures doit etre renvoyee a Codex pour validation technique
+avant patch.
+
+Pendant la fenetre 2026-05-19 -> 2026-05-23, GPT peut agir techniquement si ses
+outils le permettent reellement, mais il doit produire des preuves GitHub apres
+chaque action.
 
 ## Formule obligatoire
 
-Quand GPT agit en substitution, il doit ecrire clairement :
+Hors exception technique temporaire, quand GPT agit en substitution, il doit
+ecrire clairement :
 
 ```text
 Mode substitution GPT : Codex indisponible temporairement. Travail documentaire
@@ -141,4 +175,6 @@ Au retour de Codex, GPT doit transmettre :
 ## Regle finale
 
 La substitution GPT protege la continuite de la memoire. Elle ne remplace pas la
-validation technique Codex avant code, SSH, broker ou patch.
+validation technique Codex avant code, SSH, broker ou patch, sauf pendant la
+fenetre exceptionnelle 2026-05-19 -> 2026-05-23 ou GPT recoit une autonomie
+technique controlee avec preuves GitHub obligatoires.
