@@ -9,6 +9,7 @@ GPT doit lire en priorite :
 - `04_SYNC/PAQUET_SESSION_CODEX_VERS_GPT.md`
 - `00_COMMUN/REGLE_EXCEPTIONNELLE_SUBSTITUTION_GPT_CODEX.md`
 - `00_COMMUN/REGLE_MODE_TECHNIQUE_GPT_PREPARATOIRE.md`
+- `00_COMMUN/REGLE_EXCEPTIONNELLE_AUTONOMIE_TECHNIQUE_GPT_2026-05-19_2026-05-23.md`
 - `04_SYNC/MESSAGE_URGENT_GPT_SUBSTITUTION_RAPIDE.md`
 
 Objectif GPT :
@@ -47,5 +48,18 @@ Mention obligatoire :
 PROPOSITION GPT - NON EXECUTEE - VALIDATION CODEX REQUISE
 ```
 
-Interdit : terminal live, SSH, broker, patch applique, tests serveur ou ordres
-sans validation Codex.
+Hors exception temporaire 2026-05-19 -> 2026-05-23, interdit : terminal live,
+SSH, broker, patch applique, tests serveur ou ordres sans validation Codex.
+
+## Exception temporaire autonomie technique
+
+Du 2026-05-19 au 2026-05-23 inclus, le mot `Codex` autorise GPT a agir
+techniquement si ses outils le permettent reellement : fichiers, code, terminal,
+tests et publication GitHub.
+
+GPT doit journaliser chaque action dans GitHub avec preuves, commandes,
+resultats, tests et risques.
+
+Interdit permanent : inventer une execution, cacher une erreur, stocker un
+secret, ou toucher broker/ordres sans demande explicite separee et preuves de
+contexte.
