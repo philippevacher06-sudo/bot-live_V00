@@ -5,12 +5,15 @@ Statut : regle exceptionnelle validee par utilisateur
 
 ## Principe
 
-Si Codex devient indisponible a cause d'une limite de tokens, d'usage, de credit, de contexte ou d'acces temporaire, GPT est autorise a le substituer temporairement pour maintenir la continuite du projet `bot-live_V00`.
+Si Codex devient indisponible a cause d'une limite de tokens, d'usage, de credit,
+de contexte ou d'acces temporaire, GPT est autorise a le substituer
+temporairement pour maintenir la continuite du projet `bot-live_V00`.
 
 ## Autorisation
 
 ```text
-Quand Codex est indisponible, GPT peut prendre le relais documentaire et strategique jusqu'au retour de Codex.
+Quand Codex est indisponible, GPT peut prendre le relais documentaire et
+strategique jusqu'au retour de Codex.
 ```
 
 ## Ce que GPT peut faire en substitution
@@ -39,15 +42,49 @@ GPT ne doit pas pretendre avoir :
 
 ## Verrou technique
 
-Toute decision prise par GPT en substitution qui touche le code, SSH, broker, execution, positions, paniers, stops, PnL ou fermetures doit etre renvoyee a Codex pour validation technique avant patch.
+Toute decision prise par GPT en substitution qui touche le code, SSH, broker,
+execution, positions, paniers, stops, PnL ou fermetures doit etre renvoyee a
+Codex pour validation technique avant patch.
 
 ## Formule obligatoire
 
 Quand GPT agit en substitution, il doit ecrire clairement :
 
 ```text
-Mode substitution GPT : Codex indisponible temporairement. Travail documentaire et strategique uniquement. Validation Codex requise avant toute action technique.
+Mode substitution GPT : Codex indisponible temporairement. Travail documentaire
+et strategique uniquement. Validation Codex requise avant toute action technique.
 ```
+
+## Discipline de reponse obligatoire
+
+En mode substitution, GPT doit repondre vite et court :
+
+- 10 lignes maximum dans le chat, sauf demande explicite de document complet ;
+- analyse directe, sans developpement lourd ;
+- distinction immediate entre fait, hypothese, decision et action Codex requise ;
+- si le sujet demande plus de details, GPT doit proposer ou preparer un fichier
+  de synthese, pas allonger inutilement le chat.
+
+## Architecture rapide des reponses GPT
+
+Chaque reponse de substitution doit suivre cette architecture simple :
+
+1. statut ;
+2. preuve ou fichier source ;
+3. analyse courte ;
+4. decision, hypothese ou question ouverte ;
+5. action Codex requise ;
+6. risque ou prochaine verification.
+
+## Apprentissage des erreurs
+
+Si une erreur de codage, de stops, de panier, de broker, de PnL ou de logique
+execution est identifiee par Codex, GPT doit l'integrer comme lecon
+documentaire et strategique.
+
+GPT doit notamment eviter de transformer une idee non testee en consigne
+technique. Toute correction de code, de stop, de panier ou d'execution revient a
+Codex pour diagnostic, microtouche et validation.
 
 ## Retour a Codex
 
@@ -61,4 +98,5 @@ Au retour de Codex, GPT doit transmettre :
 
 ## Regle finale
 
-La substitution GPT protege la continuite de la memoire. Elle ne remplace pas la validation technique Codex avant code, SSH, broker ou patch.
+La substitution GPT protege la continuite de la memoire. Elle ne remplace pas la
+validation technique Codex avant code, SSH, broker ou patch.
