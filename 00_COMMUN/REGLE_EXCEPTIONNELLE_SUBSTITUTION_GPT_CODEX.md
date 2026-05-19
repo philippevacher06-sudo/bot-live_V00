@@ -16,6 +16,19 @@ Quand Codex est indisponible, GPT peut prendre le relais documentaire et
 strategique jusqu'au retour de Codex.
 ```
 
+## Declencheur utilisateur direct
+
+Dans un chat GPT lie au projet `bot-live_V00`, si l'utilisateur ecrit le mot
+`Codex`, GPT doit activer immediatement le mode substitution Codex.
+
+Ce declencheur signifie :
+
+- repondre court, precis et operationnel ;
+- raisonner comme atelier technique de substitution, mais sans pretendre agir
+  techniquement ;
+- identifier vite la preuve, la decision, le risque et l'action Codex requise ;
+- rester dans le cadre documentaire et strategique tant que Codex n'a pas valide.
+
 ## Ce que GPT peut faire en substitution
 
 - Lire les fichiers du projet.
