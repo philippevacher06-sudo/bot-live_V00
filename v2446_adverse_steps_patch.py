@@ -172,11 +172,13 @@ def _positions(headers=None):
     return []
 
 def _cur(side, ps):
+    # V2446I_H001_CUR_PATCH : doctrine prix de controle.
+    # SELL est controle sur l'OFFER/ASK, BUY est controle sur le BID.
     for p in reversed(ps):
-        if side == "SELL" and p.get("bid") is not None:
-            return p["bid"]
-        if side == "BUY" and p.get("offer") is not None:
+        if side == "SELL" and p.get("offer") is not None:
             return p["offer"]
+        if side == "BUY" and p.get("bid") is not None:
+            return p["bid"]
         if p.get("level") is not None:
             return p["level"]
     return None
@@ -445,6 +447,39 @@ def _gate(r):
         )
         return True, {"reason": "FIRST_OPEN_NO_ETH_POSITIONS_AND_NO_STATE", "current_level": c, "target_level": c}
 
+    # === V2446I_H001_GATE_BROKER_PRIORITY_START ===
+    # Patch H-001 : les positions broker reelles sont prioritaires sur le
+    # fichier state. Un vieux last_step_level pollue ne doit jamais bloquer
+    # l'ouverture de L3/L4. Reutilise `same`/`all_ps` deja lus en tete de
+    # _gate : aucun appel /positions supplementaire n'est ajoute ici.
+    broker_last = _seed(s, same) if same else None
+    if broker_last is not None:
+        if (
+            state_last is None
+            or state_side != s
+            or abs((state_last or 0.0) - broker_last) > 1e-9
+        ):
+            st_rebased = dict(_read())
+            st_rebased.update({
+                "side": s,
+                "last_step_level": broker_last,
+                "last_real_fill_level": broker_last,
+                "updated_ts": time.time(),
+                "rebase_source": "BROKER_POSITIONS",
+                "broker_positions_count": len(same),
+            })
+            _write(st_rebased)
+            _audit(
+                "RUNNER_ADVERSE_STATE_REBASED_FROM_BROKER_POSITIONS",
+                asset=a,
+                side=s,
+                state_last_before=state_last,
+                broker_last=broker_last,
+                broker_positions_count=len(same),
+            )
+        last = broker_last
+    # === V2446I_H001_GATE_BROKER_PRIORITY_END ===
+
     # Si des positions existent mais aucun état n'est encore exploitable, on seed depuis les niveaux broker.
     if last is None:
         last = _seed(s, same or ps)
@@ -601,11 +636,55 @@ def _after(r, gate, res):
     ok, info = _okinfo(res)
     if not ok:
         return
+    side = r.get("side")
     fill = _find_level(info)
-    new = gate.get("target_level") or fill or gate.get("current_level")
+
+    # === V2446I_H001_AFTER_BROKER_REREAD_START ===
+    broker_last = None
+    try:
+        ps_after = _positions(r.get("headers")) or []
+        same_after = [
+            p for p in ps_after
+            if p.get("epic") == _asset()
+            and p.get("direction") == side
+            and not _is_protected_position(p)
+        ]
+        broker_last = _seed(side, same_after) if same_after else None
+    except Exception as e:
+        _audit("RUNNER_ADVERSE_STEP_AFTER_POSITIONS_FAILED", error=repr(e))
+
+    new = broker_last
+    if new is None:
+        new = fill
+    if new is None:
+        new = gate.get("target_level") or gate.get("current_level")
+
+    source = (
+        "BROKER_POSITIONS_AFTER_OPEN" if broker_last is not None
+        else "DEAL_CONFIRM_FILL" if fill is not None
+        else "GATE_TARGET_FALLBACK"
+    )
+    # === V2446I_H001_AFTER_BROKER_REREAD_END ===
+
     if new is not None:
-        _write({"side": r.get("side"), "last_step_level": float(new), "last_real_fill_level": fill, "updated_ts": time.time()})
-        _audit("RUNNER_ADVERSE_STEP_STATE_UPDATED", asset=_asset(), side=r.get("side"), last_step_level=new, fill_level=fill)
+        st_after = dict(_read())
+        st_after.update({
+            "side": side,
+            "last_step_level": float(new),
+            "last_real_fill_level": fill if fill is not None else broker_last,
+            "updated_ts": time.time(),
+            "state_source": source,
+        })
+        _write(st_after)
+        _audit(
+            "RUNNER_ADVERSE_STEP_STATE_UPDATED",
+            asset=_asset(),
+            side=side,
+            last_step_level=new,
+            fill_level=fill,
+            broker_last=broker_last,
+            source=source,
+        )
 
 def _wrap_name(name):
     n = str(name).lower()

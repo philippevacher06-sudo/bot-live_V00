@@ -2509,6 +2509,272 @@ def _v2446i_close_all(headers, eth_positions, reason, total_upl):
 
 
 
+# === V2446I_L4_BROKER_GUARD_PATCH_START ===
+# L4 hedge broker-driven :
+# - ne dépend pas du signal M15/M5 ;
+# - lit les positions broker réelles ;
+# - ouvre US100/US30 en sens inverse dès que L3 est détectée ;
+# - évite les doublons par position hedge visible + cooldown state.
+
+def _v2446i_l4_num(v, default=0.0):
+    try:
+        if v is None:
+            return float(default)
+        return float(str(v).replace(",", "."))
+    except Exception:
+        return float(default)
+
+def _v2446i_l4_size(pos):
+    if not isinstance(pos, dict):
+        return 0.0
+    fn = globals().get("_v2445_get")
+    if callable(fn):
+        try:
+            v = fn(pos, "size")
+            if v not in (None, ""):
+                return abs(_v2446i_l4_num(v, 0.0))
+        except Exception:
+            pass
+    for k in ("size", "dealSize"):
+        if pos.get(k) not in (None, ""):
+            return abs(_v2446i_l4_num(pos.get(k), 0.0))
+    child = pos.get("position") if isinstance(pos.get("position"), dict) else {}
+    return abs(_v2446i_l4_num(child.get("size"), 0.0))
+
+def _v2446i_l4_state_file(main_asset, hedge_asset):
+    raw = _v2446i_os.getenv("V2446I_L4_HEDGE_STATE_FILE", "").strip()
+    if raw:
+        return Path(raw)
+    return Path("data/execution") / f"v2446_l4_hedge_state_{main_asset}_{hedge_asset}.json"
+
+def _v2446i_l4_read_state(main_asset, hedge_asset):
+    fp = _v2446i_l4_state_file(main_asset, hedge_asset)
+    try:
+        if fp.exists():
+            return json.loads(fp.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    return {}
+
+def _v2446i_l4_write_state(main_asset, hedge_asset, data):
+    fp = _v2446i_l4_state_file(main_asset, hedge_asset)
+    fp.parent.mkdir(parents=True, exist_ok=True)
+    tmp = fp.with_suffix(fp.suffix + ".tmp")
+    tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(fp)
+
+def _v2446i_l4_trigger_size(main_asset):
+    raw = _v2446i_os.getenv("V2446I_L4_TRIGGER_MAIN_SIZE", "").strip()
+    if raw:
+        return _v2446i_l4_num(raw, 0.0)
+
+    raw_sizes = _v2446i_os.getenv("V244_EXPLICIT_LEG_SIZES", "").strip()
+    if raw_sizes:
+        try:
+            vals = [float(x.strip()) for x in raw_sizes.replace(";", ",").split(",") if x.strip()]
+            if len(vals) >= 3:
+                return abs(vals[2])
+        except Exception:
+            pass
+
+    if main_asset == "US500":
+        return 0.21
+    if main_asset == "DE40":
+        return 0.08
+    return 0.0
+
+def _v2446i_l4_hedge_size(main_asset, hedge_asset):
+    for name in ("V2446I_HEDGE_L4_SIZE", "V244_HEDGE_L4_SIZE", "V2446I_L4_SIZE"):
+        raw = _v2446i_os.getenv(name, "").strip()
+        if raw:
+            return _v2446i_l4_num(raw, 0.0)
+
+    if main_asset == "US500" and hedge_asset == "US100":
+        return 0.08
+    if main_asset == "DE40" and hedge_asset == "US30":
+        return 0.05
+    return 0.01
+
+def _v2446i_l4_broker_guard(headers, main_asset, hedge_asset, main_positions, hedge_positions):
+    if not _v2446i_bool("V2446I_L4_BROKER_GUARD_ENABLED", True):
+        return False, {"stage": "L4_SKIP_DISABLED"}
+
+    if not isinstance(headers, dict):
+        return False, {"stage": "L4_SKIP_NO_HEADERS"}
+
+    main_asset = str(main_asset or "").upper().strip()
+    hedge_asset = str(hedge_asset or "").upper().strip()
+
+    if not main_asset or not hedge_asset:
+        return False, {"stage": "L4_SKIP_NO_ASSET"}
+
+    if hedge_positions:
+        return False, {
+            "stage": "L4_SKIP_HEDGE_ALREADY_VISIBLE",
+            "hedge_asset": hedge_asset,
+            "hedge_count": len(hedge_positions),
+        }
+
+    main_positions = list(main_positions or [])
+    main_count = len(main_positions)
+
+    if main_count <= 0:
+        try:
+            _v2446i_l4_write_state(main_asset, hedge_asset, {})
+        except Exception:
+            pass
+        return False, {"stage": "L4_SKIP_NO_MAIN_POSITION"}
+
+    main_sides = sorted(set(filter(None, [_v2446i_direction(p0) for p0 in main_positions])))
+    if len(main_sides) != 1 or main_sides[0] not in ("BUY", "SELL"):
+        return False, {
+            "stage": "L4_SKIP_MAIN_SIDE_AMBIGUOUS",
+            "main_sides": main_sides,
+            "main_count": main_count,
+        }
+
+    main_side = main_sides[0]
+    hedge_side = opposite_side(main_side) if callable(globals().get("opposite_side")) else ("BUY" if main_side == "SELL" else "SELL")
+
+    total_main_size = sum(_v2446i_l4_size(p0) for p0 in main_positions)
+    max_single_size = max([_v2446i_l4_size(p0) for p0 in main_positions] or [0.0])
+    total_main_upl = sum(_v2446i_upl(p0) for p0 in main_positions)
+
+    trigger_count = _v2446i_int("V2446I_L4_TRIGGER_MAIN_COUNT", 3)
+    trigger_size = _v2446i_l4_trigger_size(main_asset)
+    size_tol = _v2446i_float("V2446I_L4_TRIGGER_SIZE_TOL", 0.00001)
+    upl_max = _v2446i_float("V2446I_L4_TRIGGER_UPL_MAX", 0.0)
+
+    trigger = (
+        main_count >= trigger_count
+        or (trigger_size > 0 and max_single_size + size_tol >= trigger_size)
+    )
+
+    if not trigger:
+        return False, {
+            "stage": "L4_SKIP_TRIGGER_NOT_REACHED",
+            "main_count": main_count,
+            "trigger_count": trigger_count,
+            "total_main_size": round(total_main_size, 6),
+            "max_single_size": round(max_single_size, 6),
+            "trigger_size": trigger_size,
+        }
+
+    if total_main_upl > upl_max:
+        return False, {
+            "stage": "L4_SKIP_MAIN_NOT_LOSING",
+            "total_main_upl": round(total_main_upl, 4),
+            "upl_max": upl_max,
+        }
+
+    st = _v2446i_l4_read_state(main_asset, hedge_asset)
+    now = _v2446i_time.time()
+    cooldown = _v2446i_float("V2446I_L4_SENT_COOLDOWN_SEC", 25.0)
+    sent_ts = _v2446i_l4_num(st.get("sent_ts"), 0.0)
+
+    if st.get("status") in ("SENT", "CONFIRMED") and sent_ts and now - sent_ts < cooldown:
+        return True, {
+            "stage": "L4_WAIT_RECENT_ORDER_SENT",
+            "main_asset": main_asset,
+            "hedge_asset": hedge_asset,
+            "remaining_sec": round(cooldown - (now - sent_ts), 2),
+            "state": st,
+        }
+
+    hedge_size = _v2446i_l4_hedge_size(main_asset, hedge_asset)
+
+    payload = {
+        "epic": hedge_asset,
+        "direction": hedge_side,
+        "size": float(hedge_size),
+        "guaranteedStop": bool(globals().get("GUARANTEED_STOP", False)),
+        "stopDistance": float(globals().get("STOP_DISTANCE", 25.0)),
+    }
+
+    _v2446i_log(
+        "RUNNER_V2446I_L4_BROKER_GUARD_OPEN_REQUEST",
+        main_asset=main_asset,
+        hedge_asset=hedge_asset,
+        main_side=main_side,
+        hedge_side=hedge_side,
+        main_count=main_count,
+        total_main_size=round(total_main_size, 6),
+        max_single_size=round(max_single_size, 6),
+        total_main_upl=round(total_main_upl, 4),
+        payload=payload,
+        patch="V2446I_L4_BROKER_GUARD_PATCH",
+    )
+
+    fn_post = globals().get("api_post")
+    if not callable(fn_post):
+        return True, {"stage": "L4_BLOCKED_NO_API_POST", "payload": payload}
+
+    status, data = fn_post(headers, "/positions", payload)
+
+    deal_ref = data.get("dealReference") if isinstance(data, dict) else None
+
+    info = {
+        "stage": "L4_OPEN_SENT" if status in (200, 201) and deal_ref else "L4_OPEN_REQUEST_FAILED",
+        "status": status,
+        "response": data,
+        "dealReference": deal_ref,
+        "main_asset": main_asset,
+        "hedge_asset": hedge_asset,
+        "main_side": main_side,
+        "hedge_side": hedge_side,
+        "hedge_size": hedge_size,
+        "payload": payload,
+        "patch": "V2446I_L4_BROKER_GUARD_PATCH",
+    }
+
+    _v2446i_log("RUNNER_V2446I_L4_BROKER_GUARD_OPEN_RESPONSE", **info)
+
+    if status in (200, 201) and deal_ref:
+        confirm_status = None
+        confirm_data = None
+        try:
+            _v2446i_time.sleep(_v2446i_float("V2446I_L4_CONFIRM_POLL_SEC", 1.0))
+            fn_get = globals().get("api_get")
+            if callable(fn_get):
+                confirm_status, confirm_data = fn_get(headers, f"/confirms/{deal_ref}")
+        except Exception as exc:
+            confirm_data = {"exception": repr(exc)}
+
+        epic = None
+        if isinstance(confirm_data, dict):
+            epic = str(confirm_data.get("epic") or "").upper()
+
+        confirm_ok = (
+            confirm_status == 200
+            and isinstance(confirm_data, dict)
+            and confirm_data.get("dealStatus") == "ACCEPTED"
+            and (not epic or epic == hedge_asset)
+        )
+
+        state_data = {
+            "status": "CONFIRMED" if confirm_ok else "SENT",
+            "sent_ts": now,
+            "main_asset": main_asset,
+            "hedge_asset": hedge_asset,
+            "main_side": main_side,
+            "hedge_side": hedge_side,
+            "hedge_size": hedge_size,
+            "dealReference": deal_ref,
+            "confirm_status": confirm_status,
+            "confirm": confirm_data,
+            "patch": "V2446I_L4_BROKER_GUARD_PATCH",
+        }
+        _v2446i_l4_write_state(main_asset, hedge_asset, state_data)
+
+        info["confirm_status"] = confirm_status
+        info["confirm"] = confirm_data
+        info["confirm_ok"] = confirm_ok
+        info["stage"] = "L4_OPEN_CONFIRMED" if confirm_ok else "L4_OPEN_SENT_CONFIRM_PENDING"
+
+    return True, info
+# === V2446I_L4_BROKER_GUARD_PATCH_END ===
+
+
 _v2446i_previous_close_winning_basket_if_needed = globals().get("close_winning_basket_if_needed")
 
 
@@ -2550,6 +2816,31 @@ def close_winning_basket_if_needed(*args, **kwargs):
         elif hedge_asset and epic == hedge_asset:
             hedge_positions.append(p0)
 
+    # === V2446I_L4_HEDGE_REREAD_START ===
+    # Le main loop passe surtout les positions de l'actif principal.
+    # On relit donc le hedge asset directement depuis /positions pour que
+    # le TP/STOP panier voie bien MAIN + HEDGE.
+    if isinstance(headers, dict) and hedge_asset:
+        try:
+            fn_pos = globals().get("asset_positions")
+            if callable(fn_pos):
+                hedge_seen_ids = set(str(_v2446i_deal_id(p0)) for p0 in hedge_positions if _v2446i_deal_id(p0))
+                for hp in fn_pos(headers, hedge_asset) or []:
+                    did = str(_v2446i_deal_id(hp) or "")
+                    if did and did in hedge_seen_ids:
+                        continue
+                    hedge_positions.append(hp)
+                    if did:
+                        hedge_seen_ids.add(did)
+        except Exception as exc:
+            _v2446i_log(
+                "RUNNER_V2446I_L4_HEDGE_REREAD_ERROR",
+                asset=main_asset,
+                hedge_asset=hedge_asset,
+                exception=repr(exc),
+            )
+    # === V2446I_L4_HEDGE_REREAD_END ===
+
     basket_positions = main_positions + hedge_positions
 
     main_count = len(main_positions)
@@ -2557,6 +2848,24 @@ def close_winning_basket_if_needed(*args, **kwargs):
     count = len(basket_positions)
 
     total_upl = sum(_v2446i_upl(p0) for p0 in basket_positions)
+
+    # === V2446I_L4_BROKER_GUARD_CALL_START ===
+    l4_done, l4_info = _v2446i_l4_broker_guard(
+        headers=headers,
+        main_asset=main_asset,
+        hedge_asset=hedge_asset,
+        main_positions=main_positions,
+        hedge_positions=hedge_positions,
+    )
+    if l4_done:
+        _v2446i_log(
+            "RUNNER_V2446I_L4_BROKER_GUARD_RESULT",
+            asset=main_asset,
+            hedge_asset=hedge_asset,
+            info=l4_info,
+        )
+        return 0, l4_info
+    # === V2446I_L4_BROKER_GUARD_CALL_END ===
 
     # B1 : TP dynamique calculé AVANT décision.
     if hedge_count > 0:
