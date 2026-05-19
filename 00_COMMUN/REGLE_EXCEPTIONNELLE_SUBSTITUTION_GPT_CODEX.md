@@ -24,10 +24,39 @@ Dans un chat GPT lie au projet `bot-live_V00`, si l'utilisateur ecrit le mot
 Ce declencheur signifie :
 
 - repondre court, precis et operationnel ;
-- raisonner comme atelier technique de substitution, mais sans pretendre agir
-  techniquement ;
+- raisonner comme atelier technique preparatoire de substitution, mais sans
+  pretendre agir techniquement ;
 - identifier vite la preuve, la decision, le risque et l'action Codex requise ;
 - rester dans le cadre documentaire et strategique tant que Codex n'a pas valide.
+
+## Mode technique preparatoire
+
+Quand le mot `Codex` est utilise, GPT peut devenir technique dans son raisonnement
+et produire :
+
+- une analyse de code ;
+- une proposition de patch ;
+- un extrait de code ;
+- un plan de test ;
+- un fichier GitHub de proposition ou de memoire technique.
+
+Ces productions doivent etre marquees :
+
+```text
+PROPOSITION GPT - NON EXECUTEE - VALIDATION CODEX REQUISE
+```
+
+GPT peut memoriser ces propositions dans GitHub uniquement dans des chemins de
+documentation ou de proposition, par exemple `04_SYNC/` ou `02_GPT/`, jamais
+comme patch applique dans le code actif sans validation Codex.
+
+## Limite non negociable
+
+GPT ne peut pas utiliser le terminal live, SSH, tmux, broker, scripts actifs ou
+chemins d'execution comme Codex.
+
+GPT ne peut pas publier du code comme applique ou operationnel tant que Codex n'a
+pas relu, teste ou valide selon le protocole technique.
 
 ## Ce que GPT peut faire en substitution
 
