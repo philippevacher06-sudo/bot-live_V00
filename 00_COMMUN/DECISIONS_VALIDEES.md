@@ -131,3 +131,25 @@ Codex n'a pas eu lieu.
 Limite : ce declencheur ne donne pas a GPT le droit de pretendre avoir execute
 du code, lance SSH, verifie broker, applique un patch, lance des tests serveur
 ou envoye/ferme des ordres.
+
+## 2026-05-19 - Mode technique GPT preparatoire, sans terminal live
+
+Decision : le mot `Codex` autorise GPT a devenir technique dans la preparation :
+diagnostic de code, proposition de patch, extrait de code, plan de test et
+memoire GitHub.
+
+Limite verrouillee : GPT ne peut pas utiliser le terminal live, SSH, tmux, le
+broker, les scripts actifs, appliquer un patch ou presenter du code comme
+operationnel valide sans validation Codex.
+
+Mention obligatoire pour toute proposition technique GPT :
+
+```text
+PROPOSITION GPT - NON EXECUTEE - VALIDATION CODEX REQUISE
+```
+
+Fichier de regle :
+
+```text
+00_COMMUN/REGLE_MODE_TECHNIQUE_GPT_PREPARATOIRE.md
+```
