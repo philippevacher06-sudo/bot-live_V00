@@ -1114,15 +1114,43 @@ def update_sequence_for_signal(state: Dict[str, Any], bias: str) -> Dict[str, An
 
 
 def next_ladder_size(state: Dict[str, Any]) -> float:
-    # --- PATCH STRATEGIE V1 : TAILLE L4 HEDGE ---
+    # V2446I_EXPLICIT_SIZES_PATCH
     n = int(state.get("sequence_count") or 0)
-    if n >= 3:
-        return 0.08
-    # -----------------------------------------
-    n = int(state.get("sequence_count") or 0)
+
+    raw_sizes = os.getenv("V244_EXPLICIT_LEG_SIZES", "").strip()
+    if raw_sizes:
+        try:
+            sizes = [
+                float(x.strip())
+                for x in raw_sizes.replace(";", ",").split(",")
+                if x.strip()
+            ]
+            if sizes:
+                idx = min(max(n, 0), len(sizes) - 1)
+                size = min(float(sizes[idx]), MAX_SIZE)
+                log(
+                    "RUNNER_EXPLICIT_LEG_SIZE",
+                    asset=ASSET,
+                    sequence_count=n,
+                    selected_index=idx,
+                    size=size,
+                    sizes=sizes,
+                    patch="V2446I_EXPLICIT_SIZES_PATCH",
+                )
+                return round(size, 2)
+        except Exception as e:
+            log(
+                "RUNNER_EXPLICIT_LEG_SIZE_ERROR",
+                asset=ASSET,
+                raw_sizes=raw_sizes,
+                error=repr(e),
+                fallback="ADDITIVE_SIZE_MODEL",
+            )
+
     size = BASE_SIZE + (n * SIZE_STEP)
     size = min(size, MAX_SIZE)
     return round(size, 2)
+
 
 
 def advance_ladder(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -2492,68 +2520,96 @@ def close_winning_basket_if_needed(*args, **kwargs):
 
     headers = _v2446i_extract_headers(args, kwargs)
     positions = _v2446i_extract_positions(args, kwargs)
-    eth_positions = _v2446i_eth_positions(positions)
-    total_upl = sum(_v2446i_upl(p) for p in eth_positions)
-    count = len(eth_positions)
 
-    tp = _v2446i_float("V2446I_BASKET_TAKE_PROFIT_EUR", 5.0)
+    # V2446I_B1_B3_D3_PATCH
+    main_asset = str(
+        _v2446i_os.getenv("V244_MAIN_ASSET")
+        or _v2446i_os.getenv("V244_TRADED_ASSET")
+        or globals().get("ASSET", "")
+        or ""
+    ).upper().strip()
+
+    hedge_asset = str(
+        _v2446i_os.getenv("V244_HEDGE_ASSET")
+        or _v2446i_os.getenv("V244_CONFIRM_ASSET")
+        or ("US100" if main_asset == "US500" else "US30" if main_asset == "DE40" else "")
+    ).upper().strip()
+
+    main_positions = []
+    hedge_positions = []
+
+    for p0 in (positions or []):
+        epic = _v2446i_epic(p0)
+        did = _v2446i_deal_id(p0) or _v244_deal_id_from_position(p0)
+        if _v244_is_protected_deal_id(did):
+            _v2446i_log("RUNNER_V2446I_POSITION_IGNORED_PROTECTED_DEAL", asset=epic, dealId=did)
+            continue
+
+        if epic == main_asset:
+            main_positions.append(p0)
+        elif hedge_asset and epic == hedge_asset:
+            hedge_positions.append(p0)
+
+    basket_positions = main_positions + hedge_positions
+
+    main_count = len(main_positions)
+    hedge_count = len(hedge_positions)
+    count = len(basket_positions)
+
+    total_upl = sum(_v2446i_upl(p0) for p0 in basket_positions)
+
+    # B1 : TP dynamique calculé AVANT décision.
+    if hedge_count > 0:
+        tp = 1.00
+    elif main_count == 1:
+        tp = 1.00
+    elif main_count == 2:
+        tp = 2.00
+    elif main_count >= 3:
+        tp = 4.00
+    else:
+        tp = _v2446i_float("V2446I_BASKET_TAKE_PROFIT_EUR", 5.0)
+
     l1_stop = abs(_v2446i_float("V2446I_L1_STOP_LOSS_EUR", 3.0))
     max_loss = abs(_v2446i_float("V2446I_BASKET_MAX_LOSS_EUR", 15.0))
     max_legs = _v2446i_int("V2446I_MAX_LEGS", 5)
     time_stop = _v2446i_float("V2446I_TIME_STOP_SEC", 14400.0)
-    max_age = max([_v2446i_age(p) for p in eth_positions] or [0.0])
+    max_age = max([_v2446i_age(p0) for p0 in basket_positions] or [0.0])
 
     reasons = []
     close_reason = None
-    if not eth_positions:
-        reasons.append("NO_MAIN_ASSET_POSITION")
+
+    if not basket_positions:
+        reasons.append("NO_BASKET_POSITION")
+
     if count > 0 and total_upl >= tp:
         close_reason = "BASKET_TAKE_PROFIT_REACHED"
-    elif count == 1 and total_upl <= -l1_stop:
+    elif main_count == 1 and hedge_count == 0 and total_upl <= -l1_stop:
         close_reason = "L1_STOP_LOSS_REACHED"
     elif count >= 2 and total_upl <= -max_loss:
         close_reason = "BASKET_MAX_LOSS_REACHED"
-    elif count > 0 and time_stop > 0 and max_age >= time_stop and total_upl < 0:
-        close_reason = "TIME_STOP_LOSS_REACHED"
+    elif count > 0 and time_stop > 0 and max_age >= time_stop:
+        close_reason = "TIME_STOP_REACHED"
 
     if close_reason is None:
-        # ==========================================
-        # 🚀 PATCH PANIER CROSS-HEDGE : TP DYNAMIQUE
-        # ==========================================
-        if count == 1:
-            tp = 1.00
-        elif count == 2:
-            tp = 2.00
-        elif count == 3:
-            tp = 4.00
-        elif count >= 4:
-            tp = 1.00
-        # ==========================================
-        # ==========================================
-        # 🚀 PATCH PANIER CROSS-HEDGE : TP DYNAMIQUE
-        # ==========================================
-        if count == 1:
-            tp = 1.00
-        elif count == 2:
-            tp = 2.00
-        elif count == 3:
-            tp = 4.00
-        elif count >= 4:
-            tp = 1.00
-        # ==========================================
         if count > 0 and total_upl < tp:
             reasons.append("TOTAL_UPL_BELOW_TP")
-        if count >= max_legs:
-            reasons.append("MAX_LEGS_REACHED")
+        if main_count >= max_legs:
+            reasons.append("MAX_MAIN_LEGS_REACHED")
+        if hedge_count > 0:
+            reasons.append("HEDGE_INCLUDED_IN_BASKET_UPL")
 
     _v2446i_log(
         "RUNNER_BASKET_DECISION",
-        asset=_v2446i_asset(),
+        asset=main_asset,
+        hedge_asset=hedge_asset,
         ok=bool(close_reason),
         close_reason=close_reason,
         reasons=reasons,
+        main_positions_count=main_count,
+        hedge_positions_count=hedge_count,
         open_positions_count=count,
-        dealIds=[_v2446i_deal_id(p) for p in eth_positions if _v2446i_deal_id(p)],
+        dealIds=[_v2446i_deal_id(p0) for p0 in basket_positions if _v2446i_deal_id(p0)],
         total_upl=round(total_upl, 4),
         tp=tp,
         l1_stop=-l1_stop,
@@ -2561,10 +2617,12 @@ def close_winning_basket_if_needed(*args, **kwargs):
         max_age_sec=round(max_age, 2),
         time_stop_sec=time_stop,
         max_open_positions=max_legs,
+        pnl_scope="MAIN_PLUS_HEDGE",
+        patch="V2446I_B1_B3_D3_PATCH",
     )
 
     if close_reason:
-        return _v2446i_close_all(headers, eth_positions, close_reason, total_upl)
+        return _v2446i_close_all(headers, basket_positions, close_reason, total_upl)
 
     return 0, {
         "stage": "V2446I_BASKET_NOT_READY",
@@ -2572,7 +2630,12 @@ def close_winning_basket_if_needed(*args, **kwargs):
         "total_upl": round(total_upl, 4),
         "tp": tp,
         "max_open_positions": max_legs,
+        "main_positions_count": main_count,
+        "hedge_positions_count": hedge_count,
+        "pnl_scope": "MAIN_PLUS_HEDGE",
+        "patch": "V2446I_B1_B3_D3_PATCH",
     }
+
 
 
 _v2446i_previous_open_market_netting_safe = globals().get("open_market_netting_safe")

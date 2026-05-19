@@ -291,19 +291,50 @@ def _gate(r):
             effective_step=round(step, 5),
         )
 
-    step_pct = _envf("V2446I_STEP_PCT", 0.0007)
-    if c is not None and step_pct > 0:
+    step_points = _envf("V2446I_STEP_POINTS", 0.0)
+    if step_points > 0:
         previous_step = step
-        step = abs(float(c)) * step_pct
+        step = float(step_points)
         _audit(
-            "RUNNER_V2446I_DYNAMIC_STEP",
+            "RUNNER_V2446I_FIXED_STEP_POINTS",
             asset=a,
             side=s,
             current_level=c,
-            step_pct=step_pct,
+            step_points=step_points,
             previous_step=previous_step,
-            dynamic_step=step,
+            fixed_step=step,
         )
+    else:
+        # V2446I_STEP_POINTS_PATCH
+        # Mode H-002 : step absolu en points, ex. DE40 = 12 points.
+        explicit_points = _envf("V244_ADVERSE_STEP_POINTS", 0.0)
+
+        if explicit_points > 0:
+            previous_step = step
+            step = explicit_points
+            _audit(
+                "RUNNER_V2446I_ABSOLUTE_STEP",
+                asset=a,
+                side=s,
+                current_level=c,
+                previous_step=previous_step,
+                absolute_step=step,
+                patch="V2446I_STEP_POINTS_PATCH",
+            )
+        else:
+            step_pct = _envf("V2446I_STEP_PCT", 0.0007)
+            if c is not None and step_pct > 0:
+                previous_step = step
+                step = abs(float(c)) * step_pct
+                _audit(
+                    "RUNNER_V2446I_DYNAMIC_STEP",
+                    asset=a,
+                    side=s,
+                    current_level=c,
+                    step_pct=step_pct,
+                    previous_step=previous_step,
+                    dynamic_step=step,
+                )
 
     # Etat persistant V2446 : c'est notre garde-fou dur.
     st = _read()
@@ -444,27 +475,59 @@ def _gate(r):
 
 
     # ==========================================================
-    # 🚀 PATCH PANIER CROSS-HEDGE : BIFURCATION L4 SUR US100 🚀
+    # V2446I_B2_PATCH — BIFURCATION L4 HEDGE UNIQUE
     # ==========================================================
     if len(ps) >= 3:
-        _audit("RUNNER_CROSS_HEDGE_TRIGGER", msg="L3 plein. Blocage US500 et exécution Hedge US100.", open_positions=len(ps))
-        
-        hedge_asset = "US100"
+        hedge_asset = (os.getenv("V244_HEDGE_ASSET") or os.getenv("V244_CONFIRM_ASSET") or ("US100" if a == "US500" else "US30" if a == "DE40" else "US100")).upper().strip()
         hedge_side = "SELL" if s == "BUY" else "BUY"
-        hedge_size = 0.08
-        
+        hedge_size = _envf("V244_HEDGE_SIZE", 0.08 if hedge_asset == "US100" else 0.05)
+
+        hedge_positions = [
+            p for p in all_ps
+            if str(p.get("epic") or "").upper() == hedge_asset
+            and not _is_protected_position(p)
+        ]
+
+        st_l4 = _read()
+        if hedge_positions or st_l4.get("hedge_l4_opened"):
+            _audit(
+                "RUNNER_CROSS_HEDGE_ALREADY_EXISTS_BLOCK",
+                asset=a,
+                hedge_asset=hedge_asset,
+                hedge_positions=len(hedge_positions),
+                state_hedge_l4_opened=bool(st_l4.get("hedge_l4_opened")),
+                reason="L4_UNIQUE_HARD_LOCK",
+            )
+            return False, {
+                "reason": "HEDGE_L4_ALREADY_EXISTS_NO_MORE_MAIN_ASSET",
+                "hedge_asset": hedge_asset,
+                "hedge_positions": len(hedge_positions),
+                "current_level": c,
+                "target_level": target,
+            }
+
+        _audit(
+            "RUNNER_CROSS_HEDGE_TRIGGER",
+            msg="L3 plein. Blocage actif principal et execution hedge unique.",
+            asset=a,
+            hedge_asset=hedge_asset,
+            open_positions=len(ps),
+            hedge_side=hedge_side,
+            hedge_size=hedge_size,
+        )
+
         import inspect, requests
         frame = inspect.currentframe()
         headers = frame.f_back.f_locals.get('headers') or frame.f_locals.get('kwargs', {}).get('headers') or frame.f_locals.get('headers')
-        
+
         if headers:
             try:
                 url_price = f"https://demo-api-capital.backend-capital.com/api/v1/markets/{hedge_asset}"
                 res_price = requests.get(url_price, headers=headers, timeout=5).json()
                 hedge_price = res_price['snapshot']['offer'] if hedge_side == "BUY" else res_price['snapshot']['bid']
-                
+
                 sl = hedge_price - 150 if hedge_side == "BUY" else hedge_price + 150
-                
+
                 url_pos = "https://demo-api-capital.backend-capital.com/api/v1/positions"
                 payload = {
                     "epic": hedge_asset,
@@ -476,13 +539,39 @@ def _gate(r):
                     "forceOpen": True
                 }
                 res = requests.post(url_pos, json=payload, headers=headers, timeout=5)
-                _audit("RUNNER_CROSS_HEDGE_EXECUTED", payload=payload, status=res.status_code, response=res.text)
+                ok = 200 <= int(getattr(res, "status_code", 0)) < 300
+
+                if ok:
+                    st2 = dict(_read())
+                    st2.update({
+                        "hedge_l4_opened": True,
+                        "hedge_asset": hedge_asset,
+                        "hedge_side": hedge_side,
+                        "hedge_size": hedge_size,
+                        "hedge_opened_ts": time.time(),
+                        "updated_ts": time.time(),
+                    })
+                    _write(st2)
+
+                _audit(
+                    "RUNNER_CROSS_HEDGE_EXECUTED",
+                    payload=payload,
+                    status=res.status_code,
+                    ok=ok,
+                    response=res.text,
+                    patch="V2446I_B2_L4_UNIQUE_PATCH",
+                )
             except Exception as e:
-                _audit("RUNNER_CROSS_HEDGE_ERROR", error=str(e))
+                _audit("RUNNER_CROSS_HEDGE_ERROR", error=str(e), patch="V2446I_B2_L4_UNIQUE_PATCH")
         else:
-            _audit("RUNNER_CROSS_HEDGE_ERROR", error="Headers API introuvables.")
-        
-        return False, {"reason": "HEDGE_L4_EXECUTED_NO_MORE_US500", "current_level": c, "target_level": target}
+            _audit("RUNNER_CROSS_HEDGE_ERROR", error="Headers API introuvables.", patch="V2446I_B2_L4_UNIQUE_PATCH")
+
+        return False, {
+            "reason": "HEDGE_L4_EXECUTED_OR_ATTEMPTED_NO_MORE_MAIN_ASSET",
+            "hedge_asset": hedge_asset,
+            "current_level": c,
+            "target_level": target,
+        }
     # ==========================================================
     _audit("RUNNER_ADVERSE_STEP_OPEN_ALLOWED", asset=a, side=s, current_level=c, target_level=target, last_step_level=last)
     return True, {"reason": "ADVERSE_LEVEL_REACHED", "current_level": c, "target_level": target, "last_step_level": last}
