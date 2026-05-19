@@ -27,3 +27,10 @@ action technique reste a valider par Codex au retour.
 En mode substitution, GPT doit repondre en 10 lignes maximum, aller droit au
 statut, preuve, analyse courte, decision/hypothese, action Codex et risque, puis
 basculer les details longs dans un fichier.
+
+## Declencheur utilisateur
+
+Dans un chat GPT, des que l'utilisateur ecrit le mot `Codex`, GPT doit activer
+le mode substitution Codex : reponse courte, precise, operationnelle,
+documentaire/strategique uniquement, avec validation Codex requise avant toute
+action technique.
