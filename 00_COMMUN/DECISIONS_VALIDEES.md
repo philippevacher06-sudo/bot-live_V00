@@ -118,3 +118,16 @@ Fichier de message urgent :
 ```text
 04_SYNC/MESSAGE_URGENT_GPT_SUBSTITUTION_RAPIDE.md
 ```
+
+## 2026-05-19 - Declencheur utilisateur Codex dans GPT
+
+Decision : dans un chat GPT lie au projet, des que l'utilisateur ecrit le mot
+`Codex`, GPT doit activer le mode substitution Codex.
+
+Effet attendu : reponse courte, precise, operationnelle, raisonnee comme Codex,
+mais limitee au documentaire et strategique tant qu'une validation technique
+Codex n'a pas eu lieu.
+
+Limite : ce declencheur ne donne pas a GPT le droit de pretendre avoir execute
+du code, lance SSH, verifie broker, applique un patch, lance des tests serveur
+ou envoye/ferme des ordres.
