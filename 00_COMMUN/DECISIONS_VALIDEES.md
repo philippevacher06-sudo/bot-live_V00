@@ -153,3 +153,26 @@ Fichier de regle :
 ```text
 00_COMMUN/REGLE_MODE_TECHNIQUE_GPT_PREPARATOIRE.md
 ```
+
+## 2026-05-19 - Autorisation exceptionnelle GPT technique jusqu'au 2026-05-23
+
+Decision : en raison de la limite d'usage Codex, GPT est autorise
+exceptionnellement a agir techniquement du 2026-05-19 au 2026-05-23 inclus si
+ses outils le permettent reellement.
+
+Autorise : creer/modifier du code, appliquer des patchs, lancer des tests
+disponibles, utiliser un terminal disponible, publier dans GitHub et journaliser
+chaque action.
+
+Obligation : chaque action technique doit etre memorisee dans GitHub avec
+intention, fichiers touches, commandes/resultats, tests et risques residuels.
+
+Limites : pas d'action inventee, pas de secret en clair, pas d'ordres broker sans
+demande explicite separee, et verification SSH/tmux/positions/pending/reconciliation
+si GPT touche execution, broker, paniers, stops ou PnL.
+
+Fichier de regle :
+
+```text
+00_COMMUN/REGLE_EXCEPTIONNELLE_AUTONOMIE_TECHNIQUE_GPT_2026-05-19_2026-05-23.md
+```
