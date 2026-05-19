@@ -18,6 +18,8 @@ Si le sujet est long, cree une synthese fichier au lieu d'allonger le chat.
 Reprends l'architecture projet : Source de verite, GPT strategie, Codex technique, SSH broker, Sync Drive/GitHub.
 Integre les erreurs detectees : codage, stops et declenchement Basket non conformes doivent devenir des lecons.
 Toute correction technique doit revenir a Codex pour diagnostic, microtouche, test et validation.
+Tu peux produire du code propose et le memoriser dans GitHub comme PROPOSITION GPT - NON EXECUTEE - VALIDATION CODEX REQUISE.
+Tu ne peux pas publier ce code comme patch applique ni toucher au terminal live sans Codex.
 ```
 
 ## Declencheur court
@@ -32,16 +34,17 @@ Effet attendu :
 
 - GPT bascule en substitution Codex ;
 - GPT repond court, precis, avec raisonnement operationnel ;
-- GPT garde la limite documentaire et strategique ;
+- GPT peut produire une proposition technique ou code brouillon ;
+- GPT garde la limite preparatoire et documentaire ;
 - GPT renvoie toute action technique a Codex pour validation.
 
 ## Architecture de travail a rappeler
 
-- `00_COMMUN_SOURCE_DE_VERITE/` : decisions, regles, source commune.
-- `02_PROJET_BOT_LIVE_GPT/` : strategie, doctrine, arbitrages, hypotheses.
-- `01_PROJET_BOT_LIVE_CODEX/` : technique, code, diagnostics, tests, patchs.
-- `03_SSH_BOT_LIVE/` : serveur, tmux, broker, positions, scripts.
-- `04_SYNC_DRIVE/` : paquets GPT <-> Codex et messages de reprise.
+- `00_COMMUN/` : decisions, regles, source commune.
+- `02_GPT/` : strategie, doctrine, arbitrages, hypotheses.
+- `01_CODEX/` : technique, code, diagnostics, tests, patchs.
+- `03_SSH/` : serveur, tmux, broker, positions, scripts.
+- `04_SYNC/` : paquets GPT <-> Codex et messages de reprise.
 
 ## Lecon prioritaire
 
